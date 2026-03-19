@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Haunted Lab — Class X Physical Science Quiz</title>
+<link href="https://fonts.googleapis.com/css2?family=Creepster&family=Cinzel:wght@400;700;900&family=IM+Fell+English:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blood: #8b0000;
+    --crimson: #c0392b;
+    --ember: #e74c3c;
+    --dim-red: #ff4444;
+    --fog: #1a0a0a;
+    --shadow: #0d0505;
+    --parchment: #d4b896;
+    --bone: #e8d5b0;
+    --ghost: rgba(200,170,130,0.85);
+    --glow: #ff6b35;
+    --correct: #2ecc71;
+    --wrong: #e74c3c;
+    --muted: #7a5c4a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--shadow);
+    color: var(--parchment);
+    font-family: 'IM Fell English', serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Ccircle cx='10' cy='10' r='4' fill='%238b0000'/%3E%3C/svg%3E") 10 10, auto;
+  }
+
+  /* ANIMATED HORROR BACKGROUND */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 0%, rgba(139,0,0,0.15) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 10% 50%, rgba(100,0,0,0.1) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 90% 80%, rgba(80,0,0,0.1) 0%, transparent 60%),
+      linear-gradient(180deg, #0d0505 0%, #120808 40%, #0a0303 100%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* NOISE TEXTURE */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.5;
+  }
+
+  /* FLOATING PARTICLES */
+  .particles {
+    position: fixed;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: var(--crimson);
+    border-radius: 50%;
+    animation: floatUp linear infinite;
+    opacity: 0;
+  }
+  @keyframes floatUp {
+    0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+    10% { opacity: 0.6; }
+    90% { opacity: 0.3; }
+    100% { transform: translateY(-10vh) translateX(30px); opacity: 0; }
+  }
+
+  /* DRIPPING BLOOD TOP */
+  .drip-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    height: 80px;
+    pointer-events: none;
+  }
+  .drip {
+    position: absolute;
+    top: 0;
+    width: 6px;
+    background: linear-gradient(180deg, var(--blood), var(--crimson));
+    border-radius: 0 0 50% 50%;
+    animation: drip ease-in-out infinite;
+    transform-origin: top center;
+  }
+  @keyframes drip {
+    0%, 60% { height: 8px; border-radius: 0 0 50% 50%; }
+    80% { height: 50px; border-radius: 0 0 40% 40%; }
+    100% { height: 70px; border-radius: 0 0 50% 50%; opacity: 0; }
+  }
+
+  /* SPIDERWEB CORNERS */
+  .web-tl, .web-tr {
+    position: fixed;
+    top: 0;
+    width: 200px;
+    height: 200px;
+    z-index: 5;
+    pointer-events: none;
+    opacity: 0.25;
+  }
+  .web-tl { left: 0; }
+  .web-tr { right: 0; transform: scaleX(-1); }
+
+  /* MAIN WRAPPER */
+  .wrapper {
+    position: relative;
+    z-index: 10;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 20px 80px;
+  }
+
+  /* HEADER */
+  header {
+    text-align: center;
+    padding: 60px 20px 40px;
+    position: relative;
+  }
+  .skull-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 10px;
+    animation: pulse 3s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(139,0,0,0.5)); }
+    50% { transform: scale(1.05); filter: drop-shadow(0 0 25px rgba(220,50,50,0.8)); }
+  }
+  .site-title {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.8rem, 5vw, 3.2rem);
+    font-weight: 900;
+    color: var(--parchment);
+    text-shadow: 0 0 30px rgba(139,0,0,0.9), 0 0 60px rgba(80,0,0,0.5), 2px 2px 0 rgba(0,0,0,0.8);
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+  }
+  .site-subtitle {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    color: var(--muted);
+    margin-top: 8px;
+    font-size: 1.05rem;
+    letter-spacing: 0.05em;
+  }
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 24px auto;
+    max-width: 400px;
+  }
+  .divider-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--blood), transparent);
+  }
+  .divider-icon { color: var(--crimson); font-size: 1.2rem; }
+
+  /* STATS BAR */
+  .stats-bar {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+  }
+  .stat-box {
+    background: rgba(139,0,0,0.12);
+    border: 1px solid rgba(139,0,0,0.3);
+    border-radius: 4px;
+    padding: 10px 24px;
+    text-align: center;
+    backdrop-filter: blur(4px);
+    min-width: 100px;
+  }
+  .stat-val {
+    font-family: 'Cinzel', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--ember);
+    text-shadow: 0 0 15px rgba(220,60,30,0.6);
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  /* FILTER TABS */
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 36px;
+  }
+  .filter-btn {
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    background: transparent;
+    border: 1px solid rgba(139,0,0,0.4);
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.25s;
+    border-radius: 2px;
+  }
+  .filter-btn:hover, .filter-btn.active {
+    background: rgba(139,0,0,0.25);
+    border-color: var(--crimson);
+    color: var(--parchment);
+    box-shadow: 0 0 12px rgba(139,0,0,0.3);
+  }
+
+  /* PROGRESS */
+  .progress-bar-wrap {
+    background: rgba(255,255,255,0.05);
+    border-radius: 2px;
+    height: 4px;
+    margin-bottom: 36px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--blood), var(--ember));
+    border-radius: 2px;
+    transition: width 0.4s ease;
+    box-shadow: 0 0 10px rgba(220,60,30,0.5);
+  }
+
+  /* QUESTION CARD */
+  .question-card {
+    background: linear-gradient(135deg, rgba(25,8,8,0.95) 0%, rgba(15,5,5,0.98) 100%);
+    border: 1px solid rgba(139,0,0,0.25);
+    border-radius: 4px;
+    padding: 28px 32px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    animation: cardIn 0.4s ease both;
+  }
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .question-card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--blood), var(--crimson));
+    opacity: 0.7;
+  }
+  .question-card:hover {
+    border-color: rgba(139,0,0,0.5);
+    box-shadow: 0 4px 30px rgba(100,0,0,0.2), inset 0 0 30px rgba(139,0,0,0.03);
+  }
+
+  .q-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .q-number {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    color: var(--crimson);
+    text-transform: uppercase;
+  }
+  .q-topic {
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    background: rgba(139,0,0,0.1);
+    border: 1px solid rgba(139,0,0,0.2);
+    padding: 3px 10px;
+    border-radius: 2px;
+  }
+  .q-source {
+    font-size: 0.65rem;
+    color: rgba(120,90,70,0.6);
+    font-style: italic;
+  }
+
+  .q-text {
+    font-size: 1.05rem;
+    line-height: 1.65;
+    color: var(--bone);
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+
+  .options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  @media(max-width: 560px) { .options { grid-template-columns: 1fr; } }
+
+  .option-btn {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(139,0,0,0.2);
+    color: var(--parchment);
+    padding: 12px 16px;
+    text-align: left;
+    cursor: pointer;
+    font-family: 'IM Fell English', serif;
+    font-size: 0.92rem;
+    line-height: 1.4;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    position: relative;
+    overflow: hidden;
+  }
+  .option-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(139,0,0,0.15), transparent);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .option-btn:hover:not(:disabled) {
+    border-color: var(--crimson);
+    color: var(--bone);
+    box-shadow: 0 0 14px rgba(139,0,0,0.2);
+    transform: translateX(3px);
+  }
+  .option-btn:hover:not(:disabled)::before { opacity: 1; }
+  .option-btn:disabled { cursor: default; }
+
+  .option-letter {
+    font-family: 'Cinzel', serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--crimson);
+    min-width: 18px;
+    margin-top: 2px;
+    letter-spacing: 0.05em;
+  }
+
+  .option-btn.correct {
+    background: rgba(46,204,113,0.1);
+    border-color: var(--correct);
+    color: #a3f7c0;
+    box-shadow: 0 0 16px rgba(46,204,113,0.2);
+    transform: none;
+  }
+  .option-btn.correct .option-letter { color: var(--correct); }
+  .option-btn.wrong {
+    background: rgba(231,76,60,0.1);
+    border-color: var(--wrong);
+    color: #ffaaaa;
+    box-shadow: 0 0 16px rgba(231,76,60,0.2);
+  }
+  .option-btn.wrong .option-letter { color: var(--wrong); }
+  .option-btn.reveal-answer {
+    background: rgba(46,204,113,0.07);
+    border-color: rgba(46,204,113,0.4);
+    color: #7ed9a0;
+  }
+
+  /* FEEDBACK */
+  .feedback {
+    margin-top: 14px;
+    padding: 10px 14px;
+    border-radius: 3px;
+    font-size: 0.88rem;
+    letter-spacing: 0.03em;
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .feedback.correct-fb { background: rgba(46,204,113,0.08); border: 1px solid rgba(46,204,113,0.25); color: #a3f7c0; }
+  .feedback.wrong-fb { background: rgba(231,76,60,0.08); border: 1px solid rgba(231,76,60,0.25); color: #ffc0c0; }
+
+  /* RESULTS PANEL */
+  .results-panel {
+    display: none;
+    text-align: center;
+    padding: 50px 30px;
+    background: linear-gradient(135deg, rgba(30,5,5,0.98), rgba(15,3,3,0.99));
+    border: 1px solid rgba(139,0,0,0.4);
+    border-radius: 4px;
+    margin-bottom: 30px;
+    animation: cardIn 0.5s ease both;
+  }
+  .results-skull { font-size: 4rem; display: block; margin-bottom: 16px; }
+  .results-title {
+    font-family: 'Cinzel', serif;
+    font-size: 2rem;
+    font-weight: 900;
+    color: var(--parchment);
+    text-shadow: 0 0 20px rgba(139,0,0,0.6);
+    margin-bottom: 10px;
+  }
+  .results-score {
+    font-size: 4rem;
+    font-family: 'Cinzel', serif;
+    color: var(--ember);
+    text-shadow: 0 0 30px rgba(220,60,30,0.7);
+    display: block;
+    margin: 20px 0 10px;
+  }
+  .results-msg {
+    font-style: italic;
+    color: var(--muted);
+    font-size: 1.05rem;
+    margin-bottom: 30px;
+  }
+
+  /* CONTROL BUTTONS */
+  .ctrl-btn {
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 12px 28px;
+    background: transparent;
+    border: 1px solid var(--blood);
+    color: var(--parchment);
+    cursor: pointer;
+    transition: all 0.25s;
+    border-radius: 2px;
+    margin: 5px;
+  }
+  .ctrl-btn:hover {
+    background: rgba(139,0,0,0.3);
+    border-color: var(--ember);
+    box-shadow: 0 0 20px rgba(139,0,0,0.4);
+    color: var(--bone);
+  }
+  .ctrl-btn.primary {
+    background: rgba(139,0,0,0.2);
+    border-color: var(--crimson);
+  }
+
+  /* HIDDEN */
+  .hidden { display: none !important; }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--shadow); }
+  ::-webkit-scrollbar-thumb { background: var(--blood); border-radius: 3px; }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 30px;
+    color: rgba(120,90,70,0.4);
+    font-style: italic;
+    font-size: 0.82rem;
+    border-top: 1px solid rgba(139,0,0,0.1);
+    margin-top: 40px;
+  }
+
+  /* QUIZ MODE CONTROLS */
+  .quiz-controls {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+  }
+
+  /* SEARCH */
+  .search-wrap {
+    max-width: 400px;
+    margin: 0 auto 30px;
+    position: relative;
+  }
+  .search-input {
+    width: 100%;
+    background: rgba(20,5,5,0.8);
+    border: 1px solid rgba(139,0,0,0.3);
+    color: var(--parchment);
+    padding: 10px 40px 10px 16px;
+    font-family: 'IM Fell English', serif;
+    font-size: 0.9rem;
+    border-radius: 3px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .search-input:focus { border-color: var(--crimson); box-shadow: 0 0 12px rgba(139,0,0,0.2); }
+  .search-input::placeholder { color: var(--muted); font-style: italic; }
+  .search-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--crimson);
+    font-size: 0.9rem;
+  }
+
+  /* MODE TOGGLE */
+  .mode-badge {
+    display: inline-block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 2px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+  .mode-study { background: rgba(70,130,180,0.15); border: 1px solid rgba(70,130,180,0.3); color: #87ceeb; }
+  .mode-quiz { background: rgba(139,0,0,0.2); border: 1px solid rgba(139,0,0,0.4); color: var(--ember); }
+
+  /* No results */
+  .no-results {
+    text-align: center;
+    padding: 40px;
+    color: var(--muted);
+    font-style: italic;
+    font-size: 1.1rem;
+  }
+
+  /* TIMER (quiz mode) */
+  .timer-wrap {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    font-family: 'Cinzel', serif;
+  }
+  .timer-wrap.active { display: flex; }
+  .timer-num {
+    font-size: 2rem;
+    color: var(--ember);
+    text-shadow: 0 0 20px rgba(220,60,30,0.6);
+    min-width: 60px;
+    text-align: center;
+  }
+  .timer-label { color: var(--muted); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; }
+  .timer-num.urgent { color: var(--wrong); animation: flickerRed 0.5s ease infinite alternate; }
+  @keyframes flickerRed {
+    from { text-shadow: 0 0 10px rgba(231,76,60,0.4); }
+    to { text-shadow: 0 0 30px rgba(231,76,60,0.9); }
+  }
+</style>
+</head>
+<body>
+
+<!-- DRIPS -->
+<div class="drip-container" id="dripContainer"></div>
+
+<!-- SPIDERWEBS -->
+<svg class="web-tl" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <line x1="0" y1="0" x2="200" y2="200" stroke="#c0392b" stroke-width="0.8"/>
+  <line x1="0" y1="0" x2="150" y2="200" stroke="#c0392b" stroke-width="0.6"/>
+  <line x1="0" y1="0" x2="200" y2="120" stroke="#c0392b" stroke-width="0.6"/>
+  <line x1="0" y1="0" x2="80" y2="200" stroke="#c0392b" stroke-width="0.5"/>
+  <line x1="0" y1="0" x2="200" y2="50" stroke="#c0392b" stroke-width="0.5"/>
+  <line x1="0" y1="0" x2="30" y2="200" stroke="#c0392b" stroke-width="0.4"/>
+  <line x1="0" y1="0" x2="200" y2="20" stroke="#c0392b" stroke-width="0.4"/>
+  <ellipse cx="50" cy="50" rx="50" ry="50" stroke="#c0392b" stroke-width="0.5" fill="none"/>
+  <ellipse cx="50" cy="50" rx="100" ry="100" stroke="#c0392b" stroke-width="0.4" fill="none"/>
+  <ellipse cx="50" cy="50" rx="150" ry="150" stroke="#c0392b" stroke-width="0.3" fill="none"/>
+</svg>
+<svg class="web-tr" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <line x1="0" y1="0" x2="200" y2="200" stroke="#c0392b" stroke-width="0.8"/>
+  <line x1="0" y1="0" x2="150" y2="200" stroke="#c0392b" stroke-width="0.6"/>
+  <line x1="0" y1="0" x2="200" y2="120" stroke="#c0392b" stroke-width="0.6"/>
+  <line x1="0" y1="0" x2="80" y2="200" stroke="#c0392b" stroke-width="0.5"/>
+  <line x1="0" y1="0" x2="200" y2="50" stroke="#c0392b" stroke-width="0.5"/>
+  <ellipse cx="50" cy="50" rx="50" ry="50" stroke="#c0392b" stroke-width="0.5" fill="none"/>
+  <ellipse cx="50" cy="50" rx="100" ry="100" stroke="#c0392b" stroke-width="0.4" fill="none"/>
+  <ellipse cx="50" cy="50" rx="150" ry="150" stroke="#c0392b" stroke-width="0.3" fill="none"/>
+</svg>
+
+<!-- PARTICLES -->
+<div class="particles" id="particles"></div>
+
+<div class="wrapper">
+  <header>
+    <span class="skull-icon">💀</span>
+    <h1 class="site-title">The Haunted Laboratory</h1>
+    <p class="site-subtitle">Class X · Physical Science · MCQ Examination Bank · 2025–26</p>
+    <div class="divider">
+      <div class="divider-line"></div>
+      <span class="divider-icon">🕸</span>
+      <div class="divider-line"></div>
+    </div>
+  </header>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat-box">
+      <span class="stat-val" id="statTotal">0</span>
+      <span class="stat-label">Souls Trapped</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-val" id="statAnswered">0</span>
+      <span class="stat-label">Attempted</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-val" id="statCorrect">0</span>
+      <span class="stat-label">Correct</span>
+    </div>
+    <div class="stat-box">
+      <span class="stat-val" id="statScore">—</span>
+      <span class="stat-label">Score %</span>
+    </div>
+  </div>
+
+  <!-- CONTROLS -->
+  <div class="quiz-controls">
+    <button class="ctrl-btn primary" id="btnStudy" onclick="setMode('study')">📖 Study Mode</button>
+    <button class="ctrl-btn" id="btnQuiz" onclick="setMode('quiz')">⚔️ Quiz Mode</button>
+    <button class="ctrl-btn" onclick="shuffleQuestions()">🔀 Shuffle</button>
+    <button class="ctrl-btn" onclick="resetAll()">💀 Reset</button>
+  </div>
+
+  <!-- SEARCH -->
+  <div class="search-wrap">
+    <input class="search-input" id="searchInput" placeholder="Search questions..." oninput="filterSearch()" />
+    <span class="search-icon">🔍</span>
+  </div>
+
+  <!-- FILTER TABS -->
+  <div class="filter-bar" id="filterBar">
+    <button class="filter-btn active" onclick="filterTopic('All', this)">All</button>
+    <button class="filter-btn" onclick="filterTopic('Optics', this)">⚗ Optics</button>
+    <button class="filter-btn" onclick="filterTopic('Electricity', this)">⚡ Electricity</button>
+    <button class="filter-btn" onclick="filterTopic('Atomic Structure', this)">⚛ Atomic Structure</button>
+    <button class="filter-btn" onclick="filterTopic('Chemical Reactions', this)">🧪 Chemical Reactions</button>
+    <button class="filter-btn" onclick="filterTopic('Metallurgy', this)">⚒ Metallurgy</button>
+    <button class="filter-btn" onclick="filterTopic('Carbon Compounds', this)">🧬 Carbon Compounds</button>
+    <button class="filter-btn" onclick="filterTopic('Chemical Bonding', this)">🔗 Bonding</button>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress-bar-wrap">
+    <div class="progress-fill" id="progressFill" style="width:0%"></div>
+  </div>
+
+  <!-- QUIZ CONTAINER -->
+  <div id="quizContainer"></div>
+
+  <!-- RESULTS -->
+  <div class="results-panel" id="resultsPanel">
+    <span class="results-skull">💀</span>
+    <h2 class="results-title">The Reckoning</h2>
+    <span class="results-score" id="finalScore">0/0</span>
+    <p class="results-msg" id="finalMsg"></p>
+    <button class="ctrl-btn primary" onclick="resetAll()">Try Again</button>
+    <button class="ctrl-btn" onclick="setMode('study')">Review Answers</button>
+  </div>
+</div>
+
+<footer>
+  ⚰ Pre-Final Examinations · 2025–26 · District Common Examination Board ⚰
+</footer>
+
+<script>
+// ====================== DATA ======================
+const QUESTIONS = [
+  // OPTICS
+  { id:1, topic:"Optics", q:"Image formed by a convex mirror is always:", opts:["Real and inverted","Virtual and erect","Real and erect","Virtual and inverted"], ans:1, src:"RJ-84" },
+  { id:2, topic:"Optics", q:"A ray passing through the focus of a convex lens emerges:", opts:["Deviated","Reflected","Through centre","Parallel to principal axis"], ans:3, src:"RJ-84" },
+  { id:3, topic:"Optics", q:"All the distances related to spherical mirrors will be measured from:", opts:["Object","Focus","Pole","Centre of curvature"], ans:2, src:"19E" },
+  { id:4, topic:"Optics", q:"Focal length of a concave lens is 100 cm, then its power is:", opts:["+1D","+2D","−1D","−2D"], ans:2, src:"G-13A" },
+  { id:5, topic:"Optics", q:"A concave mirror always forms real and inverted image except when the object is placed:", opts:["At infinity","Beyond C","Between F and C","Between F and P"], ans:3, src:"N-12A" },
+  { id:6, topic:"Optics", q:"Which of the following image cannot be caught on a screen?", opts:["Virtual","Real","Blurred","Erected"], ans:0, src:"J-9A" },
+  { id:7, topic:"Optics", q:"Magnification value of a convex mirror is:", opts:["< 1","= 1","> 1","None of the above"], ans:0, src:"W-09A" },
+  { id:8, topic:"Optics", q:"Which one is NOT possible for the magnification by a concave mirror?", opts:["0 < m < 1","m < −1","0 = m > −1","m = −1"], ans:2, src:"SK-84" },
+  { id:9, topic:"Optics", q:"The mirror used in vehicle headlights is:", opts:["Concave","Convex","Plane mirror","Parabolic"], ans:0, src:"M-09A" },
+  { id:10, topic:"Optics", q:"The mirror used by a dentist is:", opts:["Plane","Convex","Concave","Both B & C"], ans:2, src:"PR-84B" },
+  { id:11, topic:"Optics", q:"Lens formula is:", opts:["1/f = 1/v + 1/u","1/f = 1/v − 1/u","f = v + u","f = v − u"], ans:1, src:"PR-84B" },
+  { id:12, topic:"Optics", q:"The focal length of a concave mirror if radius of curvature is 10 cm:", opts:["20 cm","15 cm","10 cm","5 cm"], ans:3, src:"R-9A" },
+  { id:13, topic:"Optics", q:"If an object is placed at C of a concave mirror and has size 5 cm, the size of the image is:", opts:["5 cm","10 cm","15 cm","20 cm"], ans:0, src:"Multiple" },
+  { id:14, topic:"Optics", q:"Which of the following always gives virtual images?", opts:["Convex mirror","Concave mirror","Prism","Glass slab"], ans:0, src:"J-9A" },
+  { id:15, topic:"Optics", q:"When objects at different distances are seen by the eye, which of the following remains constant?", opts:["Focal length of eye lens","Object distance from eye lens","Image distance from eye lens","All of the above"], ans:2, src:"19E" },
+  { id:16, topic:"Optics", q:"The light entering into human eye is controlled by:", opts:["Iris","Aqueous humour","Cornea","Eye lens"], ans:0, src:"M-09A" },
+  { id:17, topic:"Optics", q:"Which is responsible for the blue colour of the sky?", opts:["Reflection of light","Refraction of light","Dispersion of light","Scattering of light"], ans:3, src:"W-09A" },
+  { id:18, topic:"Optics", q:"During refraction of light, ______ will not change:", opts:["Wavelength","Speed of light","Frequency","Intensity"], ans:2, src:"SK-84" },
+  { id:19, topic:"Optics", q:"Refractive index is maximum for the light of colour:", opts:["Orange","Violet","Red","Green"], ans:1, src:"Multiple" },
+  { id:20, topic:"Optics", q:"A person suffering from hypermetropia cannot see objects at:", opts:["Near distance","Longer distance","Infinity distance","None"], ans:0, src:"Multiple" },
+  { id:21, topic:"Optics", q:"Which of the following is used for the correction of Myopia?", opts:["Convex lens","Concave lens","Convex mirror","Concave mirror"], ans:1, src:"R-9A" },
+  { id:22, topic:"Optics", q:"Which of the following materials cannot be used to make a lens?", opts:["Water","Glass","Acrylic","Clay"], ans:3, src:"R-9A" },
+  { id:23, topic:"Optics", q:"Accommodation in eye refers to:", opts:["Adjustment of eye lens","Adjustment of focal length of eye lens","Adjustment of distance between eye lens and retina","Adjustment of pupil"], ans:1, src:"C-9A" },
+  { id:24, topic:"Optics", q:"Maximum focal length of eye lens is:", opts:["25 cm","2.5 cm","2.27 cm","0.23 cm"], ans:1, src:"Multiple" },
+  { id:25, topic:"Optics", q:"If the magnification of a concave mirror of focal length 20 cm is −1, then the image distance is:", opts:["10 cm","20 cm","30 cm","40 cm"], ans:1, src:"Multiple" },
+
+  // ELECTRICITY & MAGNETISM
+  { id:26, topic:"Electricity", q:"3Ω, 4Ω, 6Ω resistors are connected in series. The equivalent resistance is:", opts:["10Ω","13Ω","9Ω","16Ω"], ans:1, src:"RJ-84" },
+  { id:27, topic:"Electricity", q:"The device which converts electrical energy into mechanical energy is:", opts:["Ammeter","Generator","Galvanometer","Electric motor"], ans:3, src:"RJ-84" },
+  { id:28, topic:"Electricity", q:"X converts mechanical energy into electrical energy. X is:", opts:["Motor","Switch","Generator","Battery"], ans:2, src:"J-9A" },
+  { id:29, topic:"Electricity", q:"Which device is used to prevent damage due to overloading?", opts:["Ammeter","Voltmeter","Fuse","Switch"], ans:2, src:"W-09A" },
+  { id:30, topic:"Electricity", q:"The voltage supplied to our houses is:", opts:["310V","240V","220V","160V"], ans:2, src:"M-09A" },
+  { id:31, topic:"Electricity", q:"The right-hand thumb rule gives the direction of:", opts:["Magnetic field","Electric current","Motion of electrons","Voltage"], ans:0, src:"G-13A" },
+  { id:32, topic:"Electricity", q:"The direction of lines of force in the inner side of a solenoid is:", opts:["North to south","South to north","East to west","West to east"], ans:1, src:"SK-84" },
+  { id:33, topic:"Electricity", q:"When the potential difference (V) is varied across the terminals of LED, the relation between V and I is:", opts:["V × I = Constant","V/I = Constant","V/I ≠ Constant","V = I"], ans:2, src:"C-9A" },
+  { id:34, topic:"Electricity", q:"The material which obeys Ohm's law:", opts:["Transistor","Silicon","LED","Copper"], ans:3, src:"J-9A" },
+  { id:35, topic:"Electricity", q:"Generator converts _____ energy into _____ energy:", opts:["Mechanical, Electrical","Chemical, Electrical","Chemical, Mechanical","Chemical, Heat"], ans:0, src:"Multiple" },
+  { id:36, topic:"Electricity", q:"The change of magnetic flux in a coil produces:", opts:["Electric charge","Electric current","Resistance","Heat"], ans:1, src:"Multiple" },
+  { id:37, topic:"Electricity", q:"Solenoid acts as _____ when current passes through it:", opts:["Ring magnet","Horse shoe magnet","Circular magnet","Bar magnet"], ans:3, src:"Multiple" },
+  { id:38, topic:"Electricity", q:"Let θ be the angle between direction of current and magnetic field, then the force acting on the current-carrying wire is:", opts:["F = ILB","F = ILB sin θ","F = ILB cos θ","F = LB/I"], ans:1, src:"Multiple" },
+  { id:39, topic:"Electricity", q:"S.I. unit of magnetic flux is:", opts:["Weber","Weber/metre²","Tesla","Ampere"], ans:0, src:"Multiple" },
+  { id:40, topic:"Electricity", q:"One Tesla =", opts:["Newton/coulomb","Newton/ampere-metre","Ampere/metre","Newton/ampere-second"], ans:1, src:"Multiple" },
+  { id:41, topic:"Electricity", q:"Potential difference is measured by:", opts:["Ammeter","Galvanometer","Voltmeter","Battery"], ans:2, src:"Multiple" },
+  { id:42, topic:"Electricity", q:"The filament of an electric bulb is usually made of:", opts:["Silver","Lead","Copper","Tungsten"], ans:3, src:"V-12A" },
+  { id:43, topic:"Electricity", q:"What is the equivalent resistance when 2Ω and 6Ω are connected in series?", opts:["2Ω","4Ω","6Ω","8Ω"], ans:3, src:"N-12A" },
+
+  // ATOMIC STRUCTURE
+  { id:44, topic:"Atomic Structure", q:"Mendeleev's eka-Boron is:", opts:["Scandium","Gallium","Germanium","Indium"], ans:0, src:"RJ-84" },
+  { id:45, topic:"Atomic Structure", q:"How many electrons are needed to get octet configuration for Nitrogen?", opts:["1","2","3","4"], ans:2, src:"RJ-84" },
+  { id:46, topic:"Atomic Structure", q:"Least energy orbital among the following:", opts:["3d","4p","4d","4s"], ans:3, src:"SK-84" },
+  { id:47, topic:"Atomic Structure", q:"Number of pi bonds in Oxygen (O₂) molecule:", opts:["1","2","3","0"], ans:0, src:"SK-84" },
+  { id:48, topic:"Atomic Structure", q:"Which is the linear molecule?", opts:["BF₃","BeCl₂","CH₄","NH₃"], ans:1, src:"SK-84" },
+  { id:49, topic:"Atomic Structure", q:"Which of the following shape shows the P-orbital?", opts:["Sphere","Dumbbell","Cloverleaf","Complex multilobed"], ans:1, src:"G-13A" },
+  { id:50, topic:"Atomic Structure", q:"If l = 3, the maximum electrons in those orbitals:", opts:["6","10","14","18"], ans:2, src:"M-09A" },
+  { id:51, topic:"Atomic Structure", q:"Number of elements present in period 2 of the long form of periodic table:", opts:["2","8","18","32"], ans:1, src:"19E" },
+  { id:52, topic:"Atomic Structure", q:"The inert gas element which does NOT have octet electronic configuration in its outermost orbit:", opts:["Helium","Argon","Krypton","Radon"], ans:0, src:"19E" },
+  { id:53, topic:"Atomic Structure", q:"The element with atomic number 6 belongs to:", opts:["1st period, I-A group","2nd period, V-A group","2nd period, III-A group","2nd period, IV-A group"], ans:3, src:"J-9A" },
+  { id:54, topic:"Atomic Structure", q:"In Dobereiner's triads:", opts:["Cl, Br, I","H, He, Li","H, Na, Li","C, N, O"], ans:0, src:"M-09A" },
+  { id:55, topic:"Atomic Structure", q:"Shape of d orbital is:", opts:["Elliptical","Dumbbell","Double dumbbell","Spherical"], ans:2, src:"Multiple" },
+  { id:56, topic:"Atomic Structure", q:"Number of orbitals present in a sub-shell is given by:", opts:["2l + 1","3(2l + 1)","l + 1","n"], ans:0, src:"Multiple" },
+  { id:57, topic:"Atomic Structure", q:"Elements present in 6th period:", opts:["8","2","18","32"], ans:3, src:"Multiple" },
+  { id:58, topic:"Atomic Structure", q:"Maximum number of electrons present in 'd' sub-shell:", opts:["10","2","6","5"], ans:0, src:"Multiple" },
+  { id:59, topic:"Atomic Structure", q:"The atomic number of an element is 18. Its valency is:", opts:["0","2","6","8"], ans:0, src:"Multiple" },
+  { id:60, topic:"Atomic Structure", q:"In a group as we move down, atomic radius:", opts:["Remains same","Decreases","Increases","All of the above"], ans:2, src:"Multiple" },
+  { id:61, topic:"Atomic Structure", q:"Which of the following is the most active metal?", opts:["Lithium","Sodium","Potassium","Rubidium"], ans:3, src:"R-9A" },
+  { id:62, topic:"Atomic Structure", q:"Electrons occupy the orbitals in increasing order of:", opts:["(n+m) values","(m+l) values","(n+l) values","(n+m+l) values"], ans:2, src:"Multiple" },
+  { id:63, topic:"Atomic Structure", q:"The element with atomic number Z = 12 belongs to:", opts:["1st group, 2nd period","2nd group, 2nd period","2nd group, 3rd period","1st group, 3rd period"], ans:2, src:"Multiple" },
+  { id:64, topic:"Atomic Structure", q:"Factors affecting ionization energy:", opts:["Nuclear charge","Atomic size","Screening effect","All of the above"], ans:3, src:"Multiple" },
+  { id:65, topic:"Atomic Structure", q:"The modern periodic table is constructed on the basis of:", opts:["Electron configuration","Atomic Weight","Atomic mass unit","Ionization energy"], ans:0, src:"Multiple" },
+  { id:66, topic:"Atomic Structure", q:"If l = 3, then the orbital is:", opts:["p-orbital","s-orbital","d-orbital","f-orbital"], ans:3, src:"V-12A" },
+  { id:67, topic:"Atomic Structure", q:"Eka-Silicon is:", opts:["Sc","Ge","Ga","Al"], ans:1, src:"PR-84B" },
+  { id:68, topic:"Atomic Structure", q:"The element with highest atomic radius among the following:", opts:["Li","N","F","Ne"], ans:0, src:"Multiple" },
+
+  // CHEMICAL REACTIONS
+  { id:69, topic:"Chemical Reactions", q:"Which salt is acidic in nature?", opts:["NH₄Cl","CH₃COONa","NaCl","Na₂CO₃"], ans:0, src:"RJ-84" },
+  { id:70, topic:"Chemical Reactions", q:"Which gas is evolved in the reaction of acids with carbonates?", opts:["H₂","O₂","N₂","CO₂"], ans:3, src:"G-13A" },
+  { id:71, topic:"Chemical Reactions", q:"Which gas is evolved when Zinc reacts with Sulphuric Acid?", opts:["Oxygen","Hydrogen","Nitrogen","Carbon dioxide"], ans:1, src:"19E" },
+  { id:72, topic:"Chemical Reactions", q:"Acetic acid, when dissolved in water, dissociates reversibly because it is a:", opts:["Weak acid","Strong acid","Weak base","Strong base"], ans:0, src:"19E" },
+  { id:73, topic:"Chemical Reactions", q:"Colour of methyl orange in alkaline solutions is:", opts:["Yellow","Orange","Red","Blue"], ans:0, src:"J-9A" },
+  { id:74, topic:"Chemical Reactions", q:"Which of the following is a balanced equation?", opts:["Mg + O₂ → MgO","CaCO₃ → CaO + CO₂","C + O₂ → CO","H₂ + O₂ → H₂O"], ans:1, src:"J-9A" },
+  { id:75, topic:"Chemical Reactions", q:"The chemical used in fire extinguishers:", opts:["Plaster of Paris","Bleaching powder","Sodium bicarbonate","Sodium chloride"], ans:2, src:"W-09A" },
+  { id:76, topic:"Chemical Reactions", q:"CaO reacts with water to produce:", opts:["Ca(OH)₂","CaCO₃","CaH₂","Ca"], ans:0, src:"N-12A" },
+  { id:77, topic:"Chemical Reactions", q:"Tooth decay starts when the pH of the mouth is lower than:", opts:["10","5.5","14","12"], ans:1, src:"N-12A" },
+  { id:78, topic:"Chemical Reactions", q:"When a honey bee stings, which substance should be used to get relief?", opts:["Lemon water","Common salt","Calcium hydroxide","Soda water"], ans:2, src:"RP-12A" },
+  { id:79, topic:"Chemical Reactions", q:"Which of the following is the weakest base?", opts:["NaOH","KOH","NH₄OH","Ca(OH)₂"], ans:2, src:"Multiple" },
+  { id:80, topic:"Chemical Reactions", q:"The common name of CaO is:", opts:["Limestone","Quick lime","Slaked lime","Rust"], ans:1, src:"Multiple" },
+  { id:81, topic:"Chemical Reactions", q:"Which of the following can be used for removing permanent hardness of water?", opts:["Baking soda","Washing soda","Bleaching powder","Plaster of Paris"], ans:1, src:"Multiple" },
+  { id:82, topic:"Chemical Reactions", q:"_________ is used to disinfect water:", opts:["Washing soda","Bleaching powder","Baking soda","Plaster of Paris"], ans:1, src:"Multiple" },
+  { id:83, topic:"Chemical Reactions", q:"Non-metal oxide + _____ = salt + water:", opts:["Acid","Base","Neutral solution","None"], ans:1, src:"R-9A" },
+  { id:84, topic:"Chemical Reactions", q:"Fresh milk has pH 6.6. As it turns to curd, pH:", opts:["Increases","Decreases","Stays same","Becomes 7"], ans:1, src:"Multiple" },
+  { id:85, topic:"Chemical Reactions", q:"Balanced equation for zinc and hydrochloric acid reaction:", opts:["Zn + HCl → ZnCl₂ + H₂","Zn + 2HCl → ZnCl₂ + H₂","2Zn + HCl → 2ZnCl₂ + 2H₂","2Zn + 2HCl → ZnCl₂ + 2H₂"], ans:1, src:"R-9A" },
+  { id:86, topic:"Chemical Reactions", q:"44g of CO₂ occupies 22.4L at STP. Then 132g of CO₂ occupies:", opts:["22.4L","44.8L","67.2L","89.6L"], ans:2, src:"G-13A" },
+  { id:87, topic:"Chemical Reactions", q:"Identify the chemical change:", opts:["Glowing of bulb","Attracting of iron nail by magnet","Digestion of food","Expansion of metals"], ans:2, src:"W-09A" },
+  { id:88, topic:"Chemical Reactions", q:"The required amount of oxygen to combust 2 moles of carbon is:", opts:["2 moles","1 mole","3 moles","4 moles"], ans:0, src:"Multiple" },
+  { id:89, topic:"Chemical Reactions", q:"Colour flame produced with cupric chloride:", opts:["Red","Green","Yellow","Blue"], ans:1, src:"Multiple" },
+
+  // METALLURGY
+  { id:90, topic:"Metallurgy", q:"Blister copper is purified using:", opts:["Electrolytic refining","Distillation","Liquation","Magnetic separation"], ans:0, src:"RJ-84" },
+  { id:91, topic:"Metallurgy", q:"The impurity present in the ore is called:", opts:["Gangue","Flux","Slag","Mineral"], ans:0, src:"19E" },
+  { id:92, topic:"Metallurgy", q:"Which ore is concentrated using the froth flotation method?", opts:["NaCl","HgS","Fe₂O₃","CaCO₃"], ans:1, src:"G-13A" },
+  { id:93, topic:"Metallurgy", q:"In which refining process of metals is the impure metal made to act as anode?", opts:["Distillation","Poling","Liquation","Electrolysis"], ans:3, src:"C-9A" },
+  { id:94, topic:"Metallurgy", q:"Molten slag is mixed with wood material in:", opts:["Distillation","Poling","Melting","Electrolytic"], ans:1, src:"M-09A" },
+  { id:95, topic:"Metallurgy", q:"Correct reactive series:", opts:["Al > Ca > Fe","Ca > Fe > Al","Fe > Ca > Al","Ca > Al > Fe"], ans:1, src:"SK-84" },
+  { id:96, topic:"Metallurgy", q:"Which method is used for purification of sulphide ore?", opts:["Calcination","Distillation","Froth flotation","Roasting"], ans:2, src:"W-09A" },
+  { id:97, topic:"Metallurgy", q:"The impurities are oxidized in which method?", opts:["Poling","Liquation","Smelting","Distillation"], ans:0, src:"Multiple" },
+  { id:98, topic:"Metallurgy", q:"Which of the following is NOT a process of concentration?", opts:["Froth Flotation","Magnetic Separation","Poling","Washing"], ans:2, src:"Multiple" },
+  { id:99, topic:"Metallurgy", q:"Ore of metal used in thermometer is:", opts:["Cinnabar","Galena","Carnallite","Bauxite"], ans:0, src:"Multiple" },
+  { id:100, topic:"Metallurgy", q:"Which of the following is a carbonate ore?", opts:["Gypsum","Galena","Magnesite","Bauxite"], ans:2, src:"N-12A" },
+  { id:101, topic:"Metallurgy", q:"High reactivity metals include:", opts:["K, Na, Ca, Mg, Al","Zn, Fe, Pb, Sn","Cu, Ag, Au, Pt","H, C, O, N"], ans:0, src:"J-9A" },
+
+  // CARBON COMPOUNDS
+  { id:102, topic:"Carbon Compounds", q:"Name of the carbon compound CH₃–CH₂–CHO:", opts:["Butanal","Propanal","Ethanal","Pentanal"], ans:1, src:"RJ-84" },
+  { id:103, topic:"Carbon Compounds", q:"Name of the carbon compound CH₃–C(=O)–O–CH₂CH₃:", opts:["Ethanoic acid","Ethanol","Ethyl acetate","Propanoic acid"], ans:2, src:"SK-84" },
+  { id:104, topic:"Carbon Compounds", q:"Name of the carbon compound CH₃–CH₂–CH₂–CH₂–OH:", opts:["Butan-1-ol","Butan-1-al","Butane","Butan-1-Aldehyde"], ans:0, src:"19E" },
+  { id:105, topic:"Carbon Compounds", q:"General formula of Alkanes is:", opts:["CₙH₂ₙ₋₂","CₙH₂ₙ₊₂","CₙH₂ₙ","CₙH₂ₙ₊₁"], ans:1, src:"G-13A" },
+  { id:106, topic:"Carbon Compounds", q:"Which of the following undergoes substitution reaction?", opts:["CH₄","C₂H₄","C₂H₂","CH₃OH"], ans:0, src:"G-13A" },
+  { id:107, topic:"Carbon Compounds", q:"The functional group of carboxylic acid is:", opts:["–OH","–COOH","–CHO",">C=O"], ans:1, src:"M-09A" },
+  { id:108, topic:"Carbon Compounds", q:"CH₃–CH₂–CH₂–CH₂–CH₃ is the structure of:", opts:["n-pentane","iso-pentane","cyclopentane","pentene"], ans:0, src:"Multiple" },
+  { id:109, topic:"Carbon Compounds", q:"Ethanol reacts with conc. H₂SO₄ to give:", opts:["Ethane","Ethene","Ethyne","Ethanoic acid"], ans:1, src:"Multiple" },
+  { id:110, topic:"Carbon Compounds", q:"CH₃–CH₂–CH₂–CH(CH₃)–CH₃ is the structure of:", opts:["n-pentane","iso-pentane","cyclopentane","pentene"], ans:1, src:"R-9A" },
+  { id:111, topic:"Carbon Compounds", q:"What is present in cough syrup?", opts:["Acetic acid","Ethyl alcohol","Ester","Ethene"], ans:1, src:"V-12A" },
+  { id:112, topic:"Carbon Compounds", q:"The reducing agent in thermite process is:", opts:["Mg","Fe","Si","Al"], ans:3, src:"Multiple" },
+
+  // CHEMICAL BONDING
+  { id:113, topic:"Chemical Bonding", q:"Example of ionic bond:", opts:["H₂O","NH₃","MgO","HCl"], ans:2, src:"M-09A" },
+  { id:114, topic:"Chemical Bonding", q:"HOH bond angle in H₂O molecule is:", opts:["104°31'","107°48'","109°28'","120°"], ans:0, src:"C-9A" },
+  { id:115, topic:"Chemical Bonding", q:"Number of π bonds in nitrogen molecule:", opts:["1","3","2","4"], ans:2, src:"Multiple" },
+  { id:116, topic:"Chemical Bonding", q:"Number of sigma bonds in nitrogen molecule:", opts:["1","3","2","4"], ans:0, src:"PR-84B" },
+  { id:117, topic:"Chemical Bonding", q:"Who proposed valence bond theory?", opts:["Millikan","Lewis","Linus Pauling","Bohr"], ans:2, src:"W-09A" },
+  { id:118, topic:"Chemical Bonding", q:"Structure of CO₂ molecule is:", opts:["O–C–O (single bonds)","O=C=O (double bonds)","C–O–C","C=O=C"], ans:1, src:"Multiple" },
+  { id:119, topic:"Chemical Bonding", q:"Which pair of elements forms an ionic bond?", opts:["IA and IIA","IA and IIIA","VIA and VIIA","IA and VIA"], ans:3, src:"RP-12A" },
+  { id:120, topic:"Chemical Bonding", q:"Shape and bond angle of water molecule is:", opts:["Angular, 104°30'","Pyramidal, 107°48'","Linear, 180°","Tetrahedral, 109°28'"], ans:0, src:"Multiple" },
+  { id:121, topic:"Chemical Bonding", q:"Coordination number of Cl⁻ in sodium chloride crystal is:", opts:["3","4","5","6"], ans:3, src:"Multiple" },
+  { id:122, topic:"Chemical Bonding", q:"The formula of the compound when X (2nd group) and Y (17th group) react is:", opts:["X₂Y","XY₂","X₂Y₂","XY"], ans:1, src:"Multiple" },
+];
+
+// ====================== STATE ======================
+let state = {
+  mode: 'study',
+  currentFilter: 'All',
+  searchTerm: '',
+  answered: {},
+  displayQuestions: [...QUESTIONS],
+  shuffled: false
+};
+
+// ====================== INIT ======================
+function init() {
+  generateDrips();
+  generateParticles();
+  renderQuestions();
+  updateStats();
+}
+
+function generateDrips() {
+  const c = document.getElementById('dripContainer');
+  const positions = [3,8,14,20,26,32,38,44,50,56,62,68,74,80,86,92,97];
+  positions.forEach((p, i) => {
+    const d = document.createElement('div');
+    d.className = 'drip';
+    d.style.cssText = `left:${p}%;animation-duration:${2.5+i*0.4}s;animation-delay:${i*0.3}s;width:${4+Math.random()*5}px;`;
+    c.appendChild(d);
+  });
+}
+
+function generateParticles() {
+  const c = document.getElementById('particles');
+  for(let i=0; i<25; i++) {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.cssText = `left:${Math.random()*100}%;animation-duration:${6+Math.random()*10}s;animation-delay:${Math.random()*8}s;width:${1+Math.random()*3}px;height:${1+Math.random()*3}px;`;
+    c.appendChild(p);
+  }
+}
+
+// ====================== FILTER / SEARCH ======================
+function filterTopic(topic, btn) {
+  state.currentFilter = topic;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  applyFilters();
+}
+
+function filterSearch() {
+  state.searchTerm = document.getElementById('searchInput').value.toLowerCase();
+  applyFilters();
+}
+
+function applyFilters() {
+  let filtered = QUESTIONS;
+  if(state.currentFilter !== 'All') {
+    filtered = filtered.filter(q => q.topic === state.currentFilter);
+  }
+  if(state.searchTerm) {
+    filtered = filtered.filter(q =>
+      q.q.toLowerCase().includes(state.searchTerm) ||
+      q.opts.some(o => o.toLowerCase().includes(state.searchTerm))
+    );
+  }
+  if(state.shuffled) {
+    filtered = [...filtered].sort(() => Math.random()-0.5);
+  }
+  state.displayQuestions = filtered;
+  renderQuestions();
+  updateStats();
+}
+
+function shuffleQuestions() {
+  state.shuffled = true;
+  state.displayQuestions = [...state.displayQuestions].sort(() => Math.random()-0.5);
+  renderQuestions();
+}
+
+function resetAll() {
+  state.answered = {};
+  state.shuffled = false;
+  document.getElementById('resultsPanel').style.display = 'none';
+  document.getElementById('quizContainer').style.display = 'block';
+  applyFilters();
+  updateStats();
+}
+
+function setMode(m) {
+  state.mode = m;
+  document.getElementById('btnStudy').classList.toggle('primary', m==='study');
+  document.getElementById('btnQuiz').classList.toggle('primary', m==='quiz');
+  renderQuestions();
+}
+
+// ====================== RENDER ======================
+function renderQuestions() {
+  const container = document.getElementById('quizContainer');
+  const qs = state.displayQuestions;
+
+  if(qs.length === 0) {
+    container.innerHTML = `<div class="no-results">⚰ No questions match your search ⚰</div>`;
+    return;
+  }
+
+  const letters = ['A','B','C','D'];
+  container.innerHTML = qs.map((q, idx) => {
+    const userAns = state.answered[q.id];
+    const isAnswered = userAns !== undefined;
+    const delay = Math.min(idx * 0.04, 1.2);
+
+    return `
+    <div class="question-card" style="animation-delay:${delay}s" id="card-${q.id}">
+      <div class="q-meta">
+        <span class="q-number">Question ${idx+1} of ${qs.length}</span>
+        <span class="q-topic">${q.topic}</span>
+        <span class="q-source">${q.src}</span>
+      </div>
+      <div class="q-text">${q.q}</div>
+      <div class="options" id="opts-${q.id}">
+        ${q.opts.map((opt, oi) => {
+          let cls = '';
+          let disabled = '';
+          if(isAnswered) {
+            disabled = 'disabled';
+            if(oi === q.ans) cls = state.mode === 'quiz' ? 'reveal-answer' : 'correct';
+            if(oi === userAns && userAns !== q.ans) cls = 'wrong';
+            if(oi === userAns && userAns === q.ans) cls = 'correct';
+          }
+          return `<button class="option-btn ${cls}" ${disabled} onclick="answer(${q.id},${oi})">
+            <span class="option-letter">${letters[oi]}</span>
+            <span>${opt}</span>
+          </button>`;
+        }).join('')}
+      </div>
+      <div class="feedback ${isAnswered ? (userAns===q.ans?'correct-fb':'wrong-fb') : ''}" 
+           id="fb-${q.id}" 
+           style="display:${isAnswered?'block':'none'}">
+        ${isAnswered ? (userAns===q.ans ? '✓ Correct! Well done, scholar.' : `✗ Incorrect. The correct answer is: <strong>${letters[q.ans]}) ${q.opts[q.ans]}</strong>`) : ''}
+      </div>
+    </div>`;
+  }).join('');
+
+  updateProgress();
+}
+
+// ====================== ANSWER ======================
+function answer(qid, optIdx) {
+  const q = QUESTIONS.find(x => x.id === qid);
+  if(!q || state.answered[qid] !== undefined) return;
+
+  state.answered[qid] = optIdx;
+  const correct = optIdx === q.ans;
+  const letters = ['A','B','C','D'];
+
+  // Update buttons
+  const btns = document.querySelectorAll(`#opts-${qid} .option-btn`);
+  btns.forEach((btn, i) => {
+    btn.disabled = true;
+    if(i === q.ans) {
+      btn.classList.add(state.mode === 'quiz' ? 'reveal-answer' : 'correct');
+      btn.querySelector('.option-letter').style.color = state.mode === 'quiz' ? 'var(--correct)' : 'var(--correct)';
+    }
+    if(i === optIdx && !correct) btn.classList.add('wrong');
+    if(i === optIdx && correct) { btn.classList.add('correct'); }
+  });
+
+  // Show feedback
+  const fb = document.getElementById(`fb-${qid}`);
+  fb.className = `feedback ${correct ? 'correct-fb' : 'wrong-fb'}`;
+  fb.innerHTML = correct
+    ? '✓ Correct! Well done, scholar.'
+    : `✗ Incorrect. The correct answer is: <strong>${letters[q.ans]}) ${q.opts[q.ans]}</strong>`;
+  fb.style.display = 'block';
+
+  updateStats();
+  updateProgress();
+  checkCompletion();
+}
+
+// ====================== STATS ======================
+function updateStats() {
+  const visible = state.displayQuestions;
+  const answered = visible.filter(q => state.answered[q.id] !== undefined);
+  const correct = answered.filter(q => state.answered[q.id] === q.ans);
+  const score = answered.length > 0 ? Math.round((correct.length/answered.length)*100) : '—';
+
+  document.getElementById('statTotal').textContent = visible.length;
+  document.getElementById('statAnswered').textContent = answered.length;
+  document.getElementById('statCorrect').textContent = correct.length;
+  document.getElementById('statScore').textContent = answered.length > 0 ? score+'%' : '—';
+}
+
+function updateProgress() {
+  const visible = state.displayQuestions;
+  const answered = visible.filter(q => state.answered[q.id] !== undefined);
+  const pct = visible.length > 0 ? (answered.length / visible.length) * 100 : 0;
+  document.getElementById('progressFill').style.width = pct + '%';
+}
+
+function checkCompletion() {
+  const visible = state.displayQuestions;
+  if(visible.length === 0) return;
+  const allAnswered = visible.every(q => state.answered[q.id] !== undefined);
+  if(allAnswered && state.mode === 'quiz') {
+    const correct = visible.filter(q => state.answered[q.id] === q.ans);
+    const pct = Math.round((correct.length/visible.length)*100);
+    setTimeout(() => showResults(correct.length, visible.length, pct), 600);
+  }
+}
+
+function showResults(c, t, pct) {
+  document.getElementById('quizContainer').style.display = 'none';
+  const panel = document.getElementById('resultsPanel');
+  panel.style.display = 'block';
+  document.getElementById('finalScore').textContent = `${c}/${t}`;
+
+  let msg = '';
+  if(pct >= 90) msg = '"You have conquered the darkness of ignorance!"';
+  else if(pct >= 75) msg = '"The shadows retreat before your knowledge."';
+  else if(pct >= 60) msg = '"The haunting of wrong answers lingers... but hope remains."';
+  else if(pct >= 40) msg = '"The laboratory spirits are displeased. Study harder."';
+  else msg = '"The darkness consumes you. The dead demand revision."';
+  document.getElementById('finalMsg').textContent = msg;
+}
+
+// ====================== START ======================
+init();
+</script>
+</body>
+</html>
