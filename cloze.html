@@ -1,0 +1,1655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SSC English Cloze Test Quiz</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0f0e17;
+    --surface: #1a1929;
+    --card: #221f35;
+    --card-hover: #2a2640;
+    --border: rgba(255,255,255,0.08);
+    --border-accent: rgba(255,255,255,0.18);
+    --text: #fffffe;
+    --muted: #a7a4c0;
+    --accent: #ff8906;
+    --accent2: #e53170;
+    --success: #3dba7e;
+    --danger: #e53170;
+    --purple: #6c63ff;
+    --purple-light: #9a94ff;
+    --gold: #f5c518;
+    --radius: 14px;
+    --radius-sm: 8px;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Animated background */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 10% 10%, rgba(108,99,255,0.18) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 90% 85%, rgba(229,49,112,0.14) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 30% at 50% 50%, rgba(255,137,6,0.06) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 0 20px; }
+
+  /* ===== HEADER ===== */
+  header {
+    padding: 40px 0 30px;
+    text-align: center;
+  }
+
+  .logo-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(108,99,255,0.15);
+    border: 1px solid rgba(108,99,255,0.3);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    color: var(--purple-light);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .logo-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: var(--purple-light);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%,100% { opacity:1; transform:scale(1); }
+    50% { opacity:0.5; transform:scale(0.7); }
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    background: linear-gradient(135deg, #fffffe 0%, #a7a4c0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 12px;
+  }
+
+  .subtitle {
+    font-size: 16px;
+    color: var(--muted);
+    font-weight: 300;
+    letter-spacing: 0.01em;
+  }
+
+  /* ===== STATS BAR ===== */
+  .stats-bar {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 32px 0 40px;
+    flex-wrap: wrap;
+  }
+
+  .stat-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 8px 18px;
+    font-size: 14px;
+    color: var(--muted);
+    transition: border-color 0.2s;
+  }
+
+  .stat-pill .val {
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .stat-pill .icon {
+    font-size: 15px;
+  }
+
+  /* ===== PROGRESS ===== */
+  .progress-wrap {
+    margin-bottom: 32px;
+  }
+
+  .progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 8px;
+  }
+
+  .progress-track {
+    height: 4px;
+    background: var(--surface);
+    border-radius: 100px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--purple), var(--accent2));
+    border-radius: 100px;
+    transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  /* ===== QUESTION CARD ===== */
+  .question-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 36px 40px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  .question-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--purple), var(--accent2), var(--accent));
+  }
+
+  .question-card.slide-out-left {
+    transform: translateX(-60px);
+    opacity: 0;
+  }
+
+  .question-card.slide-in-right {
+    transform: translateX(60px);
+    opacity: 0;
+  }
+
+  .q-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+
+  .q-badge {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--purple-light);
+    background: rgba(108,99,255,0.12);
+    border: 1px solid rgba(108,99,255,0.25);
+    border-radius: 6px;
+    padding: 4px 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .q-source {
+    font-size: 12px;
+    color: var(--muted);
+    opacity: 0.7;
+  }
+
+  .q-instruction {
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 18px;
+    line-height: 1.5;
+  }
+
+  .passage {
+    font-size: 16px;
+    line-height: 1.9;
+    color: var(--text);
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 20px 24px;
+    margin-bottom: 28px;
+  }
+
+  .blank-tag {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(108,99,255,0.2);
+    border: 1.5px dashed rgba(108,99,255,0.5);
+    color: var(--purple-light);
+    border-radius: 6px;
+    padding: 2px 10px;
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 2px;
+    transition: all 0.2s;
+  }
+
+  .blank-tag.blank-active {
+    background: rgba(108,99,255,0.3);
+    border-color: rgba(108,99,255,0.8);
+    color: #c0bbff;
+    animation: activeGlow 1.4s ease-in-out infinite;
+  }
+
+  @keyframes activeGlow {
+    0%,100% { box-shadow: 0 0 0 0 rgba(108,99,255,0); }
+    50% { box-shadow: 0 0 0 4px rgba(108,99,255,0.25); }
+  }
+
+  .blank-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    border-radius: 6px;
+    padding: 2px 10px;
+    font-size: 13px;
+    font-weight: 600;
+    margin: 0 2px;
+  }
+
+  .blank-chip em { font-style: normal; font-weight: 500; }
+
+  .blank-correct {
+    background: rgba(61,186,126,0.15);
+    border: 1.5px solid rgba(61,186,126,0.4);
+    color: #6de4a8;
+  }
+
+  .blank-wrong {
+    background: rgba(229,49,112,0.12);
+    border: 1.5px solid rgba(229,49,112,0.35);
+    color: #f08aad;
+  }
+
+  .blank-skipped {
+    background: rgba(255,137,6,0.1);
+    border: 1.5px dashed rgba(255,137,6,0.35);
+    color: var(--accent);
+  }
+
+  .blank-steps {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .blank-step {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 600;
+    border: 1.5px solid var(--border);
+    color: var(--muted);
+    background: var(--surface);
+    transition: all 0.2s;
+    cursor: default;
+  }
+
+  .blank-step.step-active {
+    background: rgba(108,99,255,0.2);
+    border-color: rgba(108,99,255,0.6);
+    color: var(--purple-light);
+  }
+
+  .blank-step.step-correct {
+    background: rgba(61,186,126,0.2);
+    border-color: rgba(61,186,126,0.5);
+    color: #6de4a8;
+  }
+
+  .blank-step.step-wrong {
+    background: rgba(229,49,112,0.15);
+    border-color: rgba(229,49,112,0.4);
+    color: #f08aad;
+  }
+
+  .blank-step.step-skip {
+    background: rgba(255,137,6,0.1);
+    border-color: rgba(255,137,6,0.3);
+    color: var(--accent);
+  }
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .q-number-label .qnum {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--purple), var(--accent2));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+
+  /* ===== OPTIONS ===== */
+  .options-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  @media (max-width: 580px) {
+    .options-grid { grid-template-columns: 1fr; }
+    .question-card { padding: 24px 20px; }
+  }
+
+  .option-btn {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 14px 18px;
+    cursor: pointer;
+    transition: all 0.18s ease;
+    text-align: left;
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    width: 100%;
+  }
+
+  .option-btn:hover:not(:disabled) {
+    background: var(--card-hover);
+    border-color: var(--border-accent);
+    transform: translateY(-1px);
+  }
+
+  .option-btn:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  .option-btn.correct {
+    background: rgba(61,186,126,0.12);
+    border-color: rgba(61,186,126,0.5);
+    color: #6de4a8;
+  }
+
+  .option-btn.wrong {
+    background: rgba(229,49,112,0.12);
+    border-color: rgba(229,49,112,0.4);
+    color: #f08aad;
+  }
+
+  .option-btn.reveal-correct {
+    background: rgba(61,186,126,0.08);
+    border-color: rgba(61,186,126,0.3);
+    color: #6de4a8;
+  }
+
+  .option-btn:disabled { cursor: default; }
+
+  .opt-letter {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    border: 1.5px solid var(--border-accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+    flex-shrink: 0;
+    transition: all 0.18s;
+  }
+
+  .option-btn.correct .opt-letter {
+    background: rgba(61,186,126,0.25);
+    border-color: #3dba7e;
+    color: #6de4a8;
+  }
+
+  .option-btn.wrong .opt-letter {
+    background: rgba(229,49,112,0.25);
+    border-color: var(--danger);
+    color: #f08aad;
+  }
+
+  .option-btn.reveal-correct .opt-letter {
+    background: rgba(61,186,126,0.15);
+    border-color: rgba(61,186,126,0.4);
+    color: #6de4a8;
+  }
+
+  /* ===== FEEDBACK BANNER ===== */
+  .feedback-banner {
+    display: none;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    animation: slideUp 0.25s ease;
+  }
+
+  @keyframes slideUp {
+    from { transform: translateY(8px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  .feedback-banner.correct-fb {
+    background: rgba(61,186,126,0.1);
+    border: 1px solid rgba(61,186,126,0.3);
+    color: #6de4a8;
+    display: flex;
+  }
+
+  .feedback-banner.wrong-fb {
+    background: rgba(229,49,112,0.1);
+    border: 1px solid rgba(229,49,112,0.3);
+    color: #f08aad;
+    display: flex;
+  }
+
+  .fb-icon {
+    width: 24px; height: 24px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .correct-fb .fb-icon { background: rgba(61,186,126,0.25); }
+  .wrong-fb .fb-icon { background: rgba(229,49,112,0.25); }
+
+  /* ===== NAVIGATION ===== */
+  .nav-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: var(--radius-sm);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+    transition: all 0.18s;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--purple), var(--accent2));
+    color: white;
+  }
+
+  .btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
+  .btn-primary:active { transform: translateY(0); }
+
+  .btn-ghost {
+    background: transparent;
+    color: var(--muted);
+    border: 1.5px solid var(--border);
+  }
+
+  .btn-ghost:hover { border-color: var(--border-accent); color: var(--text); }
+
+  .btn:disabled { opacity: 0.35; cursor: default; transform: none !important; }
+
+  .skip-link {
+    font-size: 13px;
+    color: var(--muted);
+    cursor: pointer;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    background: none;
+    border: none;
+    font-family: inherit;
+    transition: color 0.15s;
+  }
+  .skip-link:hover { color: var(--text); }
+
+  /* ===== RESULTS SCREEN ===== */
+  #results-screen {
+    display: none;
+    text-align: center;
+    padding: 20px 0 60px;
+    animation: fadeIn 0.4s ease;
+  }
+
+  @keyframes fadeIn {
+    from { opacity:0; transform:translateY(16px); }
+    to { opacity:1; transform:translateY(0); }
+  }
+
+  .result-trophy {
+    font-size: 72px;
+    margin-bottom: 20px;
+    animation: bounce 0.6s ease 0.2s both;
+  }
+
+  @keyframes bounce {
+    0% { transform: scale(0.5); opacity: 0; }
+    70% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  .result-score-ring {
+    width: 160px; height: 160px;
+    margin: 0 auto 30px;
+    position: relative;
+  }
+
+  .result-score-ring svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+
+  .ring-bg { fill: none; stroke: var(--surface); stroke-width: 10; }
+  .ring-fill {
+    fill: none;
+    stroke-width: 10;
+    stroke-linecap: round;
+    stroke-dasharray: 408;
+    stroke-dashoffset: 408;
+    transition: stroke-dashoffset 1.2s cubic-bezier(0.4,0,0.2,1) 0.3s;
+  }
+
+  .ring-label {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ring-pct {
+    font-family: 'Playfair Display', serif;
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 1;
+    background: linear-gradient(135deg, var(--text) 0%, var(--muted) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .ring-sub { font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+  .result-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 8px;
+  }
+
+  .result-msg { color: var(--muted); font-size: 16px; margin-bottom: 36px; }
+
+  .result-breakdown {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+  }
+
+  .breakdown-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 20px 32px;
+    min-width: 130px;
+  }
+
+  .breakdown-card .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .breakdown-card .lbl {
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .breakdown-card.c-green .num { color: #3dba7e; }
+  .breakdown-card.c-red .num { color: var(--danger); }
+  .breakdown-card.c-amber .num { color: var(--gold); }
+
+  /* ===== WELCOME SCREEN ===== */
+  #welcome-screen {
+    text-align: center;
+    padding: 20px 0 60px;
+    animation: fadeIn 0.4s ease;
+  }
+
+  .welcome-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 14px;
+    margin: 36px 0;
+  }
+
+  .welcome-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 22px 18px;
+    text-align: center;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .welcome-card:hover { border-color: var(--border-accent); transform: translateY(-2px); }
+
+  .wc-icon { font-size: 32px; margin-bottom: 10px; }
+  .wc-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .wc-desc { font-size: 12px; color: var(--muted); }
+
+  .topic-select-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+  }
+
+  .topic-chip {
+    padding: 8px 16px;
+    border-radius: 100px;
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.18s;
+  }
+
+  .topic-chip:hover, .topic-chip.active {
+    background: rgba(108,99,255,0.12);
+    border-color: rgba(108,99,255,0.4);
+    color: var(--purple-light);
+  }
+
+  .start-btn {
+    background: linear-gradient(135deg, var(--purple) 0%, var(--accent2) 100%);
+    color: white;
+    border: none;
+    border-radius: var(--radius-sm);
+    padding: 16px 48px;
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    letter-spacing: 0.01em;
+  }
+
+  .start-btn:hover { opacity: 0.88; transform: translateY(-2px); box-shadow: 0 12px 40px rgba(108,99,255,0.35); }
+
+  /* ===== STREAK INDICATOR ===== */
+  .streak-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    background: rgba(245,197,24,0.12);
+    border: 1px solid rgba(245,197,24,0.3);
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gold);
+    transition: all 0.3s;
+  }
+
+  .streak-badge.hidden { opacity: 0; transform: scale(0.8); }
+
+
+
+  /* ===== TOAST ===== */
+  .toast {
+    position: fixed;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%) translateY(16px);
+    background: var(--surface);
+    border: 1px solid var(--border-accent);
+    border-radius: var(--radius-sm);
+    padding: 12px 22px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+    z-index: 100;
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  /* ===== REVIEW MODE ===== */
+  .review-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+    gap: 8px;
+    margin: 24px 0;
+  }
+
+  .review-dot {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.15s;
+  }
+
+  .review-dot:hover { transform: scale(1.1); }
+  .review-dot.correct-dot { background: rgba(61,186,126,0.2); color: #6de4a8; border: 1.5px solid rgba(61,186,126,0.4); }
+  .review-dot.wrong-dot { background: rgba(229,49,112,0.15); color: #f08aad; border: 1.5px solid rgba(229,49,112,0.35); }
+  .review-dot.skip-dot { background: rgba(255,137,6,0.1); color: var(--accent); border: 1.5px solid rgba(255,137,6,0.25); }
+
+  /* ===== ANIMATIONS ===== */
+  .confetti-burst {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    pointer-events: none;
+    z-index: 999;
+    overflow: hidden;
+    height: 100vh;
+  }
+
+  .confetti-piece {
+    position: absolute;
+    width: 10px; height: 10px;
+    top: -20px;
+    animation: confettiFall linear forwards;
+    opacity: 0;
+  }
+
+  @keyframes confettiFall {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(105vh) rotate(720deg); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- WELCOME SCREEN -->
+  <div id="welcome-screen">
+    <header>
+      <div class="logo-pill"><div class="logo-dot"></div> SSC English Series</div>
+      <h1>Cloze Test<br>Practice Quiz</h1>
+      <p class="subtitle">Master fill-in-the-blank questions from Telangana District Board Papers</p>
+    </header>
+
+    <div class="welcome-cards">
+      <div class="welcome-card">
+        <div class="wc-icon">📝</div>
+        <div class="wc-title">28 Passages</div>
+        <div class="wc-desc">From 15+ district boards</div>
+      </div>
+      <div class="welcome-card">
+        <div class="wc-icon">⚡</div>
+        <div class="wc-title">Instant Feedback</div>
+        <div class="wc-desc">Learn from every answer</div>
+      </div>
+      <div class="welcome-card">
+        <div class="wc-icon">🎯</div>
+        <div class="wc-title">Instant Feedback</div>
+        <div class="wc-desc">Learn from every answer</div>
+      </div>
+      <div class="welcome-card">
+        <div class="wc-icon">🔥</div>
+        <div class="wc-title">Streak Tracking</div>
+        <div class="wc-desc">Build your momentum</div>
+      </div>
+    </div>
+
+    <div style="margin-bottom: 30px;">
+      <p style="font-size: 14px; color: var(--muted); margin-bottom: 14px;">Filter by topic</p>
+      <div class="topic-select-row" id="topic-chips"></div>
+    </div>
+
+    <button class="start-btn" onclick="startQuiz()">
+      Begin Quiz <span>→</span>
+    </button>
+  </div>
+
+  <!-- QUIZ SCREEN -->
+  <div id="quiz-screen" style="display:none; padding-bottom: 60px;">
+    <header style="padding-top: 32px; padding-bottom: 0; text-align: left; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+      <div>
+        <div class="logo-pill" style="margin-bottom: 8px;"><div class="logo-dot"></div> SSC English Series</div>
+        <h1 style="font-size: 1.6rem;">Cloze Test Quiz</h1>
+      </div>
+      <div style="display:flex; align-items:center; gap:14px; flex-wrap:wrap;">
+        <div class="streak-badge hidden" id="streak-badge">🔥 <span id="streak-num">0</span> streak</div>
+
+      </div>
+    </header>
+
+    <div class="stats-bar" id="live-stats" style="margin-top: 24px; margin-bottom: 28px;">
+      <div class="stat-pill"><span class="icon">✅</span> <span class="val" id="stat-correct">0</span> correct</div>
+      <div class="stat-pill"><span class="icon">❌</span> <span class="val" id="stat-wrong">0</span> wrong</div>
+      <div class="stat-pill"><span class="icon">⏭</span> <span class="val" id="stat-skip">0</span> skipped</div>
+    </div>
+
+    <div class="progress-wrap">
+      <div class="progress-info">
+        <span id="progress-label">Question 1 of 30</span>
+        <span id="progress-pct">0%</span>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+      </div>
+    </div>
+
+    <div class="question-card" id="question-card">
+      <div class="q-meta">
+        <span class="q-badge" id="q-badge">Passage 1 · 5 blanks</span>
+        <span class="q-source" id="q-source">Source</span>
+      </div>
+      <p class="q-instruction">Read the passage and choose the word that best fills each numbered blank.</p>
+      <div class="blank-steps" id="blank-steps"></div>
+      <div class="passage" id="passage-text"></div>
+      <div class="q-number-label">
+        <div class="qnum" id="qnum-circle">1</div>
+        <span id="qnum-label">Choose the correct word for blank (27)</span>
+      </div>
+      <div class="feedback-banner" id="feedback-banner">
+        <div class="fb-icon" id="fb-icon">✓</div>
+        <span id="fb-text">Correct!</span>
+      </div>
+      <div class="options-grid" id="options-grid"></div>
+      <div class="nav-row">
+        <button class="btn btn-ghost" id="btn-prev" onclick="goBack()">← Back</button>
+        <button class="skip-link" id="btn-skip" onclick="skipQuestion()">Skip this one</button>
+        <button class="btn btn-primary" id="btn-next" onclick="nextQuestion()" disabled>Next →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- RESULTS SCREEN -->
+  <div id="results-screen">
+    <div class="result-trophy" id="result-trophy">🏆</div>
+    <div class="result-score-ring">
+      <svg viewBox="0 0 140 140">
+        <circle class="ring-bg" cx="70" cy="70" r="65"/>
+        <circle class="ring-fill" id="ring-fill" cx="70" cy="70" r="65" stroke="url(#rg)"/>
+        <defs>
+          <linearGradient id="rg" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#6c63ff"/>
+            <stop offset="100%" stop-color="#e53170"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <div class="ring-label">
+        <div class="ring-pct" id="ring-pct">0%</div>
+        <div class="ring-sub">score</div>
+      </div>
+    </div>
+    <h2 class="result-title" id="result-title">Well done!</h2>
+    <p class="result-msg" id="result-msg">Keep practising to improve your score.</p>
+    <div class="result-breakdown">
+      <div class="breakdown-card c-green">
+        <div class="num" id="res-correct">0</div>
+        <div class="lbl">Correct</div>
+      </div>
+      <div class="breakdown-card c-red">
+        <div class="num" id="res-wrong">0</div>
+        <div class="lbl">Wrong</div>
+      </div>
+      <div class="breakdown-card c-amber">
+        <div class="num" id="res-skip">0</div>
+        <div class="lbl">Skipped</div>
+      </div>
+      <div class="breakdown-card" style="border-color:rgba(108,99,255,0.3);">
+        <div class="num" style="color: var(--purple-light);" id="res-best">0</div>
+        <div class="lbl">Best streak</div>
+      </div>
+    </div>
+
+    <p style="font-size: 14px; color: var(--muted); margin-bottom: 16px;">Your answers at a glance</p>
+    <div class="review-grid" id="review-grid"></div>
+
+    <div style="display:flex; gap:14px; justify-content:center; margin-top:36px; flex-wrap:wrap;">
+      <button class="btn btn-primary" onclick="restartQuiz()">↺ Play Again</button>
+      <button class="btn btn-ghost" onclick="reviewWrong()">Review Wrong Answers</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+<div class="confetti-burst" id="confetti-burst"></div>
+
+<script>
+const QUESTIONS = [
+  {
+    source: "K-3 / DCEB Khammam",
+    topic: "General",
+    passage: "Time management is an essential skill that helps students plan their daily activities _____(27)_____. Students who use their time wisely _____(28)_____ complete their work without stress. _____(29)_____ time is limited, it should be used carefully and productively. Those _____(30)_____ follow a proper schedule can balance studies and leisure effectively. Good time management helps students succeed _____(31)_____ both academics and life.",
+    blanks: [
+      { num: 27, options: ["A) proper","B) properly","C) properness","D) property"], answer: 1 },
+      { num: 28, options: ["A) often","B) oftenly","C) usual","D) using"], answer: 0 },
+      { num: 29, options: ["A) Although","B) Because","C) Unless","D) While"], answer: 0 },
+      { num: 30, options: ["A) which","B) whom","C) who","D) whose"], answer: 2 },
+      { num: 31, options: ["A) at","B) in","C) on","D) for"], answer: 1 }
+    ]
+  },
+  {
+    source: "MP-3",
+    topic: "Libraries",
+    passage: "Libraries are essential community hubs _____(27)_____ information and learning. They _____(28)_____ vast collections of books, journals, and digital media, accessible to anyone _____(29)_____ wants to study or explore a new topic. Libraries also offer _____(30)_____ peaceful environment to explore wide knowledge. _____(31)_____ help us to develop reading habits, improve language skills, and access a wealth of knowledge.",
+    blanks: [
+      { num: 27, options: ["A) off","B) of","C) with","D) at"], answer: 1 },
+      { num: 28, options: ["A) provide","B) provides","C) provided","D) providing"], answer: 0 },
+      { num: 29, options: ["A) whose","B) whom","C) whoever","D) who"], answer: 3 },
+      { num: 30, options: ["A) a","B) an","C) the","D) one/a"], answer: 0 },
+      { num: 31, options: ["A) Those","B) These","C) They","D) That"], answer: 2 }
+    ]
+  },
+  {
+    source: "V-3A",
+    topic: "Health",
+    passage: "As of the end of August _____(27)_____ five villages had experienced cases _____(28)_____ the preceding eight weeks. The last known case was _____(29)_____ 9th August. Because man is the only known _____(30)_____ of the smallpox virus, the disease should be _____(31)_____ forever when the last infected person recovers.",
+    blanks: [
+      { num: 27, options: ["A) much","B) the","C) only","D) many"], answer: 3 },
+      { num: 28, options: ["A) about","B) in","C) of","D) for"], answer: 1 },
+      { num: 29, options: ["A) in","B) at","C) on","D) for"], answer: 2 },
+      { num: 30, options: ["A) culprit","B) reservoir","C) producer","D) generator"], answer: 1 },
+      { num: 31, options: ["A) existed","B) eliminated","C) elaborated","D) estimated"], answer: 1 }
+    ]
+  },
+  {
+    source: "ST-80 / DCEB Siddipet",
+    topic: "Technology",
+    passage: "Computer _____(27)_____ become the most popular gadget _____(28)_____ every field. We cannot imagine today's life _____(29)_____ computers. It has become _____(30)_____ important. We can sit at home and can chat _____(31)_____ our friends in other parts of the world.",
+    blanks: [
+      { num: 27, options: ["A) have","B) had","C) has","D) is"], answer: 2 },
+      { num: 28, options: ["A) under","B) in","C) of","D) on"], answer: 1 },
+      { num: 29, options: ["A) by","B) with","C) without","D) of"], answer: 2 },
+      { num: 30, options: ["A) so","B) to","C) by","D) off"], answer: 0 },
+      { num: 31, options: ["A) to","B) with","C) by","D) so"], answer: 1 }
+    ]
+  },
+  {
+    source: "13/14E / DCEB",
+    topic: "Future Tense",
+    passage: "By this time next year, I will have completed my degree. I will have _____(27)_____ hard and learn a lot of new skills. My professors will have given _____(28)_____ valuable feedback on my projects. I will have participated _____(29)_____ several internships, gaining practical experience in my field. By graduation day, I _____(30)_____ built a solid network of professional contacts. When I finally receive _____(31)_____ job offer, I will have felt a great sense of accomplishment.",
+    blanks: [
+      { num: 27, options: ["A) study","B) studies","C) studying","D) studied"], answer: 3 },
+      { num: 28, options: ["A) him","B) me","C) in","D) them"], answer: 1 },
+      { num: 29, options: ["A) on","B) to","C) in","D) for"], answer: 2 },
+      { num: 30, options: ["A) will have","B) will had","C) would have","D) will has"], answer: 0 },
+      { num: 31, options: ["A) the","B) an","C) a","D) this"], answer: 2 }
+    ]
+  },
+  {
+    source: "JK-80 / DCEB Rajanna Sircilla",
+    topic: "People",
+    passage: "Naina Jaiswal is a noted Indian table tennis player. She has _____(27)_____ international attention with her outstanding performance. She has won _____(28)_____ titles in both national and international championships. A very intelligent girl, _____(29)_____ also graduated _____(30)_____ St. Mary's College, Hyderabad at the age of 15 _____(31)_____ started her doctoral studies.",
+    blanks: [
+      { num: 27, options: ["A) draw","B) drew","C) drown","D) drawing"], answer: 1 },
+      { num: 28, options: ["A) multiple","B) multiply","C) multi","D) multiplication"], answer: 0 },
+      { num: 29, options: ["A) her","B) she","C) her's","D) herself"], answer: 1 },
+      { num: 30, options: ["A) with","B) for","C) or","D) from"], answer: 3 },
+      { num: 31, options: ["A) and","B) or","C) but","D) are"], answer: 0 }
+    ]
+  },
+  {
+    source: "RJ-80 / DCEB Jagtial",
+    topic: "Culture",
+    passage: "I found the villagers were curious about me and strange as it may seem, it usually showed itself in their _____(27)_____ indirect questions. _____(28)_____ instance, a few children from the headman's household watched me eat my first lunch in the village. I had taken my food in a tiffin carrier _____(29)_____ it included a large tomato. The children watched me grasping the window bars while their feet rested on _____(30)_____ ledge in the wall. They _____(31)_____ to each other as I plunged my teeth into the tomato.",
+    blanks: [
+      { num: 27, options: ["A) ask","B) asks","C) asking","D) asked"], answer: 2 },
+      { num: 28, options: ["A) for","B) from","C) to","D) on"], answer: 0 },
+      { num: 29, options: ["A) but","B) and","C) or","D) however"], answer: 1 },
+      { num: 30, options: ["A) an","B) a","C) the","D) no article"], answer: 1 },
+      { num: 31, options: ["A) talked","B) talk","C) talks","D) have talked"], answer: 0 }
+    ]
+  },
+  {
+    source: "RM-80 / DCEB Karimnagar",
+    topic: "Social Issues",
+    passage: "Gender equality is _____(27)_____ important social issue in today's world. It aims to provide equal _____(28)_____ and opportunities to all genders. In the past, many people _____(29)_____ not given equal treatment. However, society is changing _____(30)_____ awareness is increasing. Everyone should work together so that equality _____(31)_____ be achieved.",
+    blanks: [
+      { num: 27, options: ["A) a","B) an","C) the","D) no article"], answer: 1 },
+      { num: 28, options: ["A) rights","B) duties","C) responsibilities","D) works"], answer: 0 },
+      { num: 29, options: ["A) are","B) were","C) is","D) has"], answer: 1 },
+      { num: 30, options: ["A) but","B) so","C) because","D) and"], answer: 3 },
+      { num: 31, options: ["A) might","B) must","C) should","D) could"], answer: 3 }
+    ]
+  },
+  {
+    source: "R-3A / DCEB",
+    topic: "Childhood",
+    passage: "Childhood is a time when there are _____(27)_____ responsibilities to make life difficult. If a child _____(28)_____ good parents, he is fed, looked _____(29)_____ and loved, whatever he may do. It is improbable that he will ever again in his life _____(30)_____ given so much without having to do anything _____(31)_____ return.",
+    blanks: [
+      { num: 27, options: ["A) many","B) little","C) few","D) more"], answer: 1 },
+      { num: 28, options: ["A) had","B) has","C) have","D) will have"], answer: 1 },
+      { num: 29, options: ["A) after","B) up","C) at","D) around"], answer: 0 },
+      { num: 30, options: ["A) is","B) has","C) are","D) be"], answer: 3 },
+      { num: 31, options: ["A) for","B) in","C) as","D) of"], answer: 1 }
+    ]
+  },
+  {
+    source: "RP-3A",
+    topic: "Nature",
+    passage: "Last night, I looked at the sky. It was clear and full _____(27)_____ bright stars. The moon, _____(28)_____ was big and silver, shone above the trees. I whispered, 'How beautiful the sky is!' Suddenly, a shooting star moved across the _____(29)_____ sky, and I _____(30)_____ made a wish. Birds were asleep, and the cool wind touched _____(31)_____ face.",
+    blanks: [
+      { num: 27, options: ["A) off","B) of","C) at","D) in"], answer: 1 },
+      { num: 28, options: ["A) which","B) who","C) where","D) why"], answer: 0 },
+      { num: 29, options: ["A) darkness","B) darkly","C) darker","D) dark"], answer: 3 },
+      { num: 30, options: ["A) quickly","B) quick","C) quickness","D) quickly"], answer: 0 },
+      { num: 31, options: ["A) me","B) my","C) mine","D) myself"], answer: 1 }
+    ]
+  },
+  {
+    source: "DP-3A / DCEB",
+    topic: "People",
+    passage: "The famous Indian Mathematician, Srinivasa Ramanujan _____(27)_____ born in 1887 in a poor family _____(28)_____ Erode, in Tamil Nadu. _____(29)_____ he was seven, he was _____(30)_____ to the High School at Kumbakonam. At a very young age, Ramanujan showed an unusual grasp of Mathematics. _____(31)_____ nobody in that school believed that one day he would become famous.",
+    blanks: [
+      { num: 27, options: ["A) is","B) has","C) was","D) had"], answer: 2 },
+      { num: 28, options: ["A) in","B) at","C) of","D) by"], answer: 0 },
+      { num: 29, options: ["A) where","B) when","C) which","D) that"], answer: 1 },
+      { num: 30, options: ["A) send","B) sending","C) sent","D) sends"], answer: 2 },
+      { num: 31, options: ["A) though","B) since","C) as","D) but"], answer: 0 }
+    ]
+  },
+  {
+    source: "G03(A) / DCEB Jogulamba Gadwal",
+    topic: "Science",
+    passage: "Edison didn't really invent the light bulb by _____(27)_____. He used earlier inventions by other people and he _____(28)_____ a large team of people _____(29)_____ with him. Edison did not really invent the light bulb, _____(30)_____ he did make it better. Edison _____(31)_____ a big problem with the earlier inventions.",
+    blanks: [
+      { num: 27, options: ["A) hisself","B) herself","C) itself","D) himself"], answer: 3 },
+      { num: 28, options: ["A) had","B) have","C) has","D) had been"], answer: 0 },
+      { num: 29, options: ["A) work","B) working","C) works","D) worked"], answer: 3 },
+      { num: 30, options: ["A) yet","B) or","C) but","D) still"], answer: 2 },
+      { num: 31, options: ["A) see","B) seeing","C) saw","D) seen"], answer: 2 }
+    ]
+  },
+  {
+    source: "G-3A / DCEB Practice Test",
+    topic: "General",
+    passage: "The Election Commission of India is _____(27)_____ autonomous constitutional authority responsible _____(28)_____ administering election processes in India at national, state _____(29)_____ district level. The body _____(30)_____ elections to the Lok Sabha, Rajya Sabha, State Legislative Assemblies and the offices of the President and Vice President _____(31)_____ the country.",
+    blanks: [
+      { num: 27, options: ["A) a","B) an","C) of","D) the"], answer: 0 },
+      { num: 28, options: ["A) of","B) on","C) for","D) to"], answer: 2 },
+      { num: 29, options: ["A) and","B) but","C) or","D) of"], answer: 0 },
+      { num: 30, options: ["A) administer","B) administering","C) administered","D) administers"], answer: 3 },
+      { num: 31, options: ["A) to","B) of","C) off","D) by"], answer: 1 }
+    ]
+  },
+  {
+    source: "M-3A / DCEB",
+    topic: "General",
+    passage: "New York City is _____(27)_____ of the largest cities in the world. It is also one of _____(28)_____ most densely populated, with an estimated 8 million inhabitants. Manhattan is the _____(29)_____ popular part of New York with tourists. There is also a large number _____(30)_____ businesses in this area of the city. New York is also regarded _____(31)_____ the centre of entertainment.",
+    blanks: [
+      { num: 27, options: ["A) one","B) some","C) any","D) more"], answer: 0 },
+      { num: 28, options: ["A) some","B) an","C) a","D) the"], answer: 3 },
+      { num: 29, options: ["A) many","B) most","C) any","D) much"], answer: 1 },
+      { num: 30, options: ["A) on","B) of","C) off","D) by"], answer: 1 },
+      { num: 31, options: ["A) so","B) as","C) since","D) like"], answer: 1 }
+    ]
+  },
+  {
+    source: "NK-3(A) / DCEB Nagarkurnool",
+    topic: "Science",
+    passage: "About 70 percent _____(27)_____ a person's body is made up of water. The water percentage _____(28)_____ as a person gets older. Infants and children have higher content of water _____(29)_____ adults. It is important _____(30)_____ everyone to maintain proper water level in _____(31)_____ body.",
+    blanks: [
+      { num: 27, options: ["A) of","B) off","C) on","D) in"], answer: 0 },
+      { num: 28, options: ["A) decreas","B) decreasing","C) decreases","D) decreased"], answer: 2 },
+      { num: 29, options: ["A) than","B) up","C) upon","D) from"], answer: 0 },
+      { num: 30, options: ["A) from","B) for","C) up","D) at"], answer: 1 },
+      { num: 31, options: ["A) a","B) an","C) the","D) one"], answer: 2 }
+    ]
+  },
+  {
+    source: "NP-3(A) / DCEB Narayanpet",
+    topic: "Science",
+    passage: "Sir Alexander Fleming, who discovered penicillin, _____(27)_____ once forced into _____(28)_____ interview in New York by two journalists. One of them asked, 'Sir, what are you _____(29)_____ about right now?' Fleming replied, 'I am thinking of something very special.' The journalists, _____(30)_____ were all ears, drawing themselves forward. 'I am thinking _____(31)_____ whether to have one egg or two.'",
+    blanks: [
+      { num: 27, options: ["A) are","B) is","C) was","D) were"], answer: 2 },
+      { num: 28, options: ["A) a","B) the","C) an","D) none"], answer: 2 },
+      { num: 29, options: ["A) thinking","B) think","C) thought","D) thinks"], answer: 0 },
+      { num: 30, options: ["A) that","B) who","C) which","D) when"], answer: 1 },
+      { num: 31, options: ["A) by","B) of","C) about","D) while"], answer: 2 }
+    ]
+  },
+  {
+    source: "C-3A / DCEB Grand Test",
+    topic: "Science",
+    passage: "The Solar System is the gravitationally bound system. It _____(27)_____ of the Sun, the eight planets and other objects. The Sun is _____(28)_____ most important part _____(29)_____ our Solar System. It is the _____(30)_____ object and does have about 98% of the whole mass of the Solar System. The Sun moves _____(31)_____ the galaxy together with planets and other objects.",
+    blanks: [
+      { num: 27, options: ["A) consisting","B) consisted","C) consists","D) will consist"], answer: 2 },
+      { num: 28, options: ["A) a","B) an","C) some","D) the"], answer: 3 },
+      { num: 29, options: ["A) into","B) of","C) for","D) with"], answer: 1 },
+      { num: 30, options: ["A) big","B) bigger","C) biggest","D) more big"], answer: 2 },
+      { num: 31, options: ["A) around","B) rounded","C) from","D) beside"], answer: 0 }
+    ]
+  },
+  {
+    source: "M-03(A) / DCEB Mahabubnagar",
+    topic: "Story",
+    passage: "Once upon a time, a farmer _____(27)_____ a goose that laid a golden egg every day. The farmer used to sell that egg _____(28)_____ earn enough money. One day, he thought that if he could get more golden eggs, he could make _____(29)_____ lot of money. The farmer decided to cut the goose and remove all the golden eggs _____(30)_____ its stomach. He found no eggs. The _____(31)_____ farmer realized he had destroyed his last resource out of greed.",
+    blanks: [
+      { num: 27, options: ["A) has","B) had","C) have","D) having"], answer: 1 },
+      { num: 28, options: ["A) and","B) but","C) so","D) nor"], answer: 2 },
+      { num: 29, options: ["A) an","B) a","C) the","D) no article"], answer: 0 },
+      { num: 30, options: ["A) for","B) on","C) from","D) under"], answer: 1 },
+      { num: 31, options: ["A) fool","B) fooling","C) foolish","D) foolishly"], answer: 2 }
+    ]
+  },
+  {
+    source: "Y-3A / Pre-Public Exams",
+    topic: "History",
+    passage: "Bhuvanagiri Fort is a famous historical fort _____(27)_____ the Yadadri Bhuvanagiri district of Telangana. It _____(28)_____ built in the 10th–11th century _____(29)_____ the Western Chalukya ruler Tribhuvanamalla Vikramaditya VI on a huge rock. The fort stands about 500 feet high and was _____(30)_____ for its strong defence and strategic location. It _____(31)_____ massive walls, gates, and underground passages.",
+    blanks: [
+      { num: 27, options: ["A) in","B) over","C) at","D) on"], answer: 0 },
+      { num: 28, options: ["A) is","B) was","C) are","D) were"], answer: 1 },
+      { num: 29, options: ["A) by","B) with","C) for","D) of"], answer: 0 },
+      { num: 30, options: ["A) know","B) knew","C) known","D) knows"], answer: 2 },
+      { num: 31, options: ["A) had","B) has","C) have","D) having"], answer: 1 }
+    ]
+  },
+  {
+    source: "S-3A / Pre-Public Exams",
+    topic: "Values",
+    passage: "One day, a young boy found a wallet and _____(27)_____ picked it up. _____(28)_____ he was walking home, he saw a policeman on the road. The boy thought for a moment and _____(29)_____ decided to tell the truth. Being honest, he _____(30)_____ the wallet to the policeman. The policeman smiled and presented him a wonderful gift _____(31)_____ honesty is always rewarded.",
+    blanks: [
+      { num: 27, options: ["A) slowly","B) quiet","C) happy","D) sad"], answer: 0 },
+      { num: 28, options: ["A) Because","B) As","C) After","D) Before"], answer: 1 },
+      { num: 29, options: ["A) careless","B) carelessly","C) careful","D) carefully"], answer: 3 },
+      { num: 30, options: ["A) gave","B) taken","C) kept","D) thrown"], answer: 0 },
+      { num: 31, options: ["A) but","B) so","C) because","D) through"], answer: 2 }
+    ]
+  },
+  {
+    source: "Warangal DCEB",
+    topic: "People",
+    passage: "Mokshagundam Vishweshwaraiah was _____(27)_____ eminent Indian engineer and statesman _____(28)_____ shaped modern India through his vision and discipline. Born in a small village in Karnataka, he graduated in engineering _____(29)_____ distinction. As an _____(30)_____ professional, he worked tirelessly on dams, bridges, and irrigation systems. He served as the Diwan of Mysore, where he introduced reforms which transformed the state into a model of progress _____(31)_____ planning.",
+    blanks: [
+      { num: 27, options: ["A) an","B) a","C) the","D) no article"], answer: 0 },
+      { num: 28, options: ["A) which","B) who","C) what","D) whom"], answer: 1 },
+      { num: 29, options: ["A) to","B) of","C) with","D) by"], answer: 2 },
+      { num: 30, options: ["A) innovative","B) innovate","C) innovation","D) innovating"], answer: 0 },
+      { num: 31, options: ["A) so","B) or","C) and","D) but"], answer: 2 }
+    ]
+  }
+];
+
+// ==================== STATE ====================
+// allPassages: array of passage objects (filtered by topic, shuffled)
+// currentPIdx: index into allPassages (which passage we're on)
+// currentBIdx: index of the active blank within the current passage (0-4)
+// blankAnswers[pIdx][bIdx]: { chosen, correct, skipped }
+let allPassages = [];
+let currentPIdx = 0;
+let currentBIdx = 0;
+let blankAnswers = [];   // [passage][blank] -> {chosen,correct,skipped}|null
+let correctCount = 0;
+let wrongCount = 0;
+let skipCount = 0;
+let streak = 0;
+let bestStreak = 0;
+let selectedTopic = "All";
+
+function totalBlanks() { return allPassages.reduce((s,p) => s + p.blanks.length, 0); }
+function answeredSoFar() { return blankAnswers.flat().filter(Boolean).length; }
+
+// ==================== BUILD ====================
+function buildPassageList(topic) {
+  allPassages = QUESTIONS.filter(p => topic === "All" || p.topic === topic);
+  shuffle(allPassages);
+  blankAnswers = allPassages.map(p => new Array(p.blanks.length).fill(null));
+}
+
+function shuffle(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [arr[i], arr[j]] = [arr[j], arr[i]];
+  }
+}
+
+// ==================== TOPICS ====================
+const TOPICS = ["All", ...new Set(QUESTIONS.map(q => q.topic))];
+
+function buildTopicChips() {
+  const container = document.getElementById("topic-chips");
+  TOPICS.forEach(t => {
+    const chip = document.createElement("button");
+    chip.className = "topic-chip" + (t === "All" ? " active" : "");
+    chip.textContent = t;
+    chip.onclick = () => {
+      document.querySelectorAll(".topic-chip").forEach(c => c.classList.remove("active"));
+      chip.classList.add("active");
+      selectedTopic = t;
+    };
+    container.appendChild(chip);
+  });
+}
+
+// ==================== START ====================
+function startQuiz() {
+  buildPassageList(selectedTopic);
+  if (allPassages.length === 0) { showToast("No passages for this topic!"); return; }
+  currentPIdx = 0;
+  currentBIdx = 0;
+  correctCount = wrongCount = skipCount = streak = bestStreak = 0;
+  updateStats();
+  document.getElementById("welcome-screen").style.display = "none";
+  document.getElementById("quiz-screen").style.display = "block";
+  renderPassage();
+}
+
+// ==================== RENDER PASSAGE ====================
+// Renders the full passage card. All blanks are shown; the active blank has
+// its option buttons; answered blanks show a small result chip inline.
+function renderPassage(animDir) {
+  if (currentPIdx >= allPassages.length) { showResults(); return; }
+
+  const card = document.getElementById("question-card");
+
+  const doRender = () => {
+    const p = allPassages[currentPIdx];
+    const totalP = allPassages.length;
+    const doneP = currentPIdx;
+
+    // Progress (passage-level)
+    const pct = Math.round((doneP / totalP) * 100);
+    document.getElementById("progress-label").textContent = `Passage ${currentPIdx + 1} of ${totalP}`;
+    document.getElementById("progress-pct").textContent = pct + "%";
+    document.getElementById("progress-fill").style.width = pct + "%";
+
+    // Blank step dots
+    const stepsEl = document.getElementById("blank-steps");
+    stepsEl.innerHTML = "";
+    p.blanks.forEach((b, i) => {
+      const ans = blankAnswers[currentPIdx][i];
+      const isActive = i === currentBIdx && !ans;
+      let cls = "blank-step";
+      if (isActive) cls += " step-active";
+      else if (ans?.correct) cls += " step-correct";
+      else if (ans && !ans.correct && !ans.skipped) cls += " step-wrong";
+      else if (ans?.skipped) cls += " step-skip";
+      const dot = document.createElement("div");
+      dot.className = cls;
+      dot.textContent = b.num;
+      dot.title = `Blank (${b.num})`;
+      dot.onclick = () => {
+        if (blankAnswers[currentPIdx][i] || i === currentBIdx) return;
+        currentBIdx = i;
+        renderPassage();
+      };
+      stepsEl.appendChild(dot);
+    });
+
+    // Meta
+    document.getElementById("q-badge").textContent = `Passage ${currentPIdx + 1} · ${p.blanks.length} blanks`;
+    document.getElementById("q-source").textContent = p.source;
+
+    // Build passage HTML — each blank becomes a numbered chip
+    const passageHtml = p.passage.replace(/_____\((\d+)\)_____/g, (m, n) => {
+      const bIdx = p.blanks.findIndex(b => b.num === parseInt(n));
+      const ans = blankAnswers[currentPIdx][bIdx];
+      const isActive = bIdx === currentBIdx && !ans;
+      if (ans) {
+        const chosen = p.blanks[bIdx].options[ans.chosen]?.replace(/^[A-D]\)\s*/,"") || "—";
+        const cls = ans.skipped ? "blank-skipped" : ans.correct ? "blank-correct" : "blank-wrong";
+        return `<span class="blank-chip ${cls}" title="Blank (${n}): ${chosen}">(${n}) <em>${ans.skipped ? "skipped" : chosen}</em></span>`;
+      }
+      return `<span class="blank-tag${isActive ? " blank-active" : ""}">(${n})</span>`;
+    });
+    document.getElementById("passage-text").innerHTML = passageHtml;
+
+    // Question area (active blank)
+    const allAnswered = blankAnswers[currentPIdx].every(Boolean);
+    const qSection = buildBlankSection(p, currentBIdx, allAnswered);
+    document.getElementById("qnum-circle").textContent = currentBIdx + 1;
+    document.getElementById("qnum-label").textContent = allAnswered
+      ? "All blanks answered — move to next passage"
+      : `Choose the correct word for blank (${p.blanks[currentBIdx].num})`;
+    document.getElementById("feedback-banner").className = "feedback-banner";
+    document.getElementById("feedback-banner").style.display = "none";
+    document.getElementById("options-grid").innerHTML = qSection;
+
+    // Bind option buttons
+    if (!allAnswered) {
+      document.querySelectorAll(".option-btn").forEach((btn, i) => {
+        btn.onclick = () => selectAnswer(i);
+      });
+    }
+
+    // Nav buttons
+    document.getElementById("btn-prev").disabled = currentPIdx === 0 && currentBIdx === 0;
+    document.getElementById("btn-next").disabled = !allAnswered;
+    document.getElementById("btn-skip").style.display = allAnswered ? "none" : "inline";
+
+    // Restore feedback if already answered
+    const existing = blankAnswers[currentPIdx][currentBIdx];
+    if (existing && !existing.skipped) {
+      const bObj = p.blanks[currentBIdx];
+      restoreOptionStates(bObj, existing);
+      showFeedback(existing.correct, bObj.options[bObj.answer].replace(/^[A-D]\)\s*/,""));
+    }
+  };
+
+  if (animDir) {
+    card.style.transition = "transform 0.22s ease, opacity 0.22s ease";
+    card.style.transform = animDir === "left" ? "translateX(-60px)" : "translateX(60px)";
+    card.style.opacity = "0";
+    setTimeout(() => {
+      card.style.transition = "none";
+      card.style.transform = "";
+      card.style.opacity = "1";
+      doRender();
+      setTimeout(() => { card.style.transition = ""; }, 30);
+    }, 220);
+  } else {
+    doRender();
+  }
+}
+
+function buildBlankSection(passage, bIdx, allAnswered) {
+  if (allAnswered) return "";
+  const blank = passage.blanks[bIdx];
+  const letters = ["A","B","C","D"];
+  return blank.options.map((opt, i) =>
+    `<button class="option-btn">
+      <span class="opt-letter">${letters[i]}</span>
+      <span>${opt.replace(/^[A-D]\)\s*/,"")}</span>
+    </button>`
+  ).join("");
+}
+
+function restoreOptionStates(bObj, ans) {
+  document.querySelectorAll(".option-btn").forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === bObj.answer) btn.classList.add("correct");
+    else if (i === ans.chosen && !ans.correct) btn.classList.add("wrong");
+  });
+  document.getElementById("btn-next").disabled = false;
+  document.getElementById("btn-skip").style.display = "none";
+}
+
+// ==================== ANSWER ====================
+function selectAnswer(chosen) {
+  const p = allPassages[currentPIdx];
+  const blank = p.blanks[currentBIdx];
+  if (blankAnswers[currentPIdx][currentBIdx]) return; // already answered
+
+  const isCorrect = chosen === blank.answer;
+  blankAnswers[currentPIdx][currentBIdx] = { chosen, correct: isCorrect };
+
+  // Style buttons
+  document.querySelectorAll(".option-btn").forEach((btn, i) => {
+    btn.disabled = true;
+    if (i === blank.answer) btn.classList.add("correct");
+    else if (i === chosen && !isCorrect) btn.classList.add("wrong");
+  });
+
+  if (isCorrect) {
+    correctCount++; streak++;
+    if (streak > bestStreak) bestStreak = streak;
+    showFeedback(true);
+    if (streak >= 3) updateStreak();
+  } else {
+    wrongCount++; streak = 0;
+    document.getElementById("streak-badge").classList.add("hidden");
+    showFeedback(false, blank.options[blank.answer].replace(/^[A-D]\)\s*/,""));
+  }
+  updateStats();
+
+  // After a short delay, advance to next blank (or unlock Next button)
+  const allAnswered = blankAnswers[currentPIdx].every(Boolean);
+  if (!allAnswered) {
+    setTimeout(() => {
+      // move to next unanswered blank
+      const next = blankAnswers[currentPIdx].findIndex((a, i) => i > currentBIdx && !a);
+      const first = blankAnswers[currentPIdx].findIndex(a => !a);
+      currentBIdx = next !== -1 ? next : (first !== -1 ? first : currentBIdx);
+      renderPassage();
+    }, 900);
+  } else {
+    document.getElementById("btn-next").disabled = false;
+    document.getElementById("btn-skip").style.display = "none";
+    // Refresh passage to show all answered chips
+    setTimeout(() => renderPassage(), 900);
+  }
+}
+
+function showFeedback(correct, correctAnswer = "") {
+  const fb = document.getElementById("feedback-banner");
+  const icon = document.getElementById("fb-icon");
+  const text = document.getElementById("fb-text");
+  fb.style.display = "flex";
+  if (correct) {
+    fb.className = "feedback-banner correct-fb";
+    icon.textContent = "✓";
+    const msgs = ["Excellent!","Well done!","Correct!","Great job!","Spot on!","Perfect!"];
+    text.textContent = msgs[Math.floor(Math.random() * msgs.length)];
+  } else {
+    fb.className = "feedback-banner wrong-fb";
+    icon.textContent = "✗";
+    text.textContent = `Not quite — the answer is "${correctAnswer}"`;
+  }
+}
+
+function updateStreak() {
+  const badge = document.getElementById("streak-badge");
+  const num = document.getElementById("streak-num");
+  badge.classList.remove("hidden");
+  num.textContent = streak;
+  if (streak === 5) showToast("🔥 5-in-a-row! You're on fire!");
+  else if (streak === 10) showToast("⚡ 10 streak! Incredible!");
+}
+
+// ==================== SKIP ====================
+function skipQuestion() {
+  const p = allPassages[currentPIdx];
+  blankAnswers[currentPIdx][currentBIdx] = { chosen: -1, correct: false, skipped: true };
+  skipCount++; streak = 0;
+  document.getElementById("streak-badge").classList.add("hidden");
+  updateStats();
+
+  const allAnswered = blankAnswers[currentPIdx].every(Boolean);
+  if (!allAnswered) {
+    const next = blankAnswers[currentPIdx].findIndex((a, i) => i > currentBIdx && !a);
+    const first = blankAnswers[currentPIdx].findIndex(a => !a);
+    currentBIdx = next !== -1 ? next : (first !== -1 ? first : currentBIdx);
+    renderPassage();
+  } else {
+    document.getElementById("btn-next").disabled = false;
+    document.getElementById("btn-skip").style.display = "none";
+    renderPassage();
+  }
+}
+
+// ==================== NAVIGATION ====================
+function nextQuestion() {
+  currentPIdx++;
+  currentBIdx = 0;
+  if (currentPIdx >= allPassages.length) { showResults(); return; }
+  renderPassage("left");
+}
+
+function goBack() {
+  if (currentPIdx === 0 && currentBIdx === 0) return;
+  if (currentBIdx > 0) {
+    currentBIdx--;
+  } else {
+    currentPIdx--;
+    currentBIdx = allPassages[currentPIdx].blanks.length - 1;
+  }
+  renderPassage("right");
+}
+
+// ==================== STATS ====================
+function updateStats() {
+  document.getElementById("stat-correct").textContent = correctCount;
+  document.getElementById("stat-wrong").textContent = wrongCount;
+  document.getElementById("stat-skip").textContent = skipCount;
+}
+
+// ==================== RESULTS ====================
+function showResults() {
+  document.getElementById("quiz-screen").style.display = "none";
+  document.getElementById("results-screen").style.display = "block";
+
+  const total = totalBlanks();
+  const pct = total > 0 ? Math.round((correctCount / total) * 100) : 0;
+
+  document.getElementById("ring-pct").textContent = pct + "%";
+  document.getElementById("res-correct").textContent = correctCount;
+  document.getElementById("res-wrong").textContent = wrongCount;
+  document.getElementById("res-skip").textContent = skipCount;
+  document.getElementById("res-best").textContent = bestStreak;
+
+  let trophy = "🏆", title = "Outstanding!", msg = "You're a cloze test master!";
+  if (pct < 40) { trophy = "📚"; title = "Keep Practising"; msg = "Review the passages and try again."; }
+  else if (pct < 60) { trophy = "💪"; title = "Good Effort"; msg = "You're getting there — keep going!"; }
+  else if (pct < 80) { trophy = "⭐"; title = "Well Done!"; msg = "Strong performance. A little more practice and you'll ace it!"; }
+  document.getElementById("result-trophy").textContent = trophy;
+  document.getElementById("result-title").textContent = title;
+  document.getElementById("result-msg").textContent = msg;
+
+  const circumference = 408;
+  const offset = circumference - (pct / 100) * circumference;
+  const ring = document.getElementById("ring-fill");
+  ring.style.stroke = pct >= 60 ? "url(#rg)" : "#e53170";
+  setTimeout(() => { ring.style.strokeDashoffset = offset; }, 100);
+
+  // Review dots — one dot per PASSAGE
+  const grid = document.getElementById("review-grid");
+  grid.innerHTML = "";
+  allPassages.forEach((p, pIdx) => {
+    const pas = blankAnswers[pIdx];
+    const allCorrect = pas.every(a => a?.correct);
+    const anyWrong = pas.some(a => a && !a.correct && !a.skipped);
+    const anySkip = pas.some(a => a?.skipped);
+    const cls = allCorrect ? "correct-dot" : anyWrong ? "wrong-dot" : "skip-dot";
+    const dot = document.createElement("div");
+    dot.className = "review-dot " + cls;
+    dot.textContent = pIdx + 1;
+    const c = pas.filter(a => a?.correct).length;
+    dot.title = `Passage ${pIdx+1}: ${c}/${p.blanks.length} correct`;
+    grid.appendChild(dot);
+  });
+
+  if (pct >= 80) launchConfetti();
+}
+
+// ==================== CONFETTI ====================
+function launchConfetti() {
+  const burst = document.getElementById("confetti-burst");
+  burst.innerHTML = "";
+  const colors = ["#6c63ff","#e53170","#ff8906","#3dba7e","#f5c518","#9a94ff"];
+  for (let i = 0; i < 80; i++) {
+    const piece = document.createElement("div");
+    piece.className = "confetti-piece";
+    const size = 6 + Math.random() * 8;
+    const left = Math.random() * 100;
+    const delay = Math.random() * 2;
+    const duration = 2 + Math.random() * 3;
+    const color = colors[Math.floor(Math.random() * colors.length)];
+    const shape = Math.random() > 0.5 ? "50%" : "2px";
+    piece.style.cssText = `left:${left}%;width:${size}px;height:${size}px;background:${color};border-radius:${shape};animation-duration:${duration}s;animation-delay:${delay}s;`;
+    burst.appendChild(piece);
+  }
+  setTimeout(() => { burst.innerHTML = ""; }, 6000);
+}
+
+// ==================== RESTART ====================
+function restartQuiz() {
+  document.getElementById("results-screen").style.display = "none";
+  correctCount = wrongCount = skipCount = streak = bestStreak = 0;
+  currentPIdx = 0; currentBIdx = 0;
+  buildPassageList(selectedTopic);
+  updateStats();
+  document.getElementById("quiz-screen").style.display = "block";
+  renderPassage();
+}
+
+function reviewWrong() {
+  // Collect passages that had at least one wrong/skipped answer
+  const wrongPassages = allPassages.filter((p, pIdx) =>
+    blankAnswers[pIdx].some(a => a && !a.correct)
+  );
+  if (wrongPassages.length === 0) { showToast("No wrong answers to review! 🎉"); return; }
+  allPassages = wrongPassages;
+  blankAnswers = allPassages.map(p => new Array(p.blanks.length).fill(null));
+  currentPIdx = 0; currentBIdx = 0;
+  correctCount = wrongCount = skipCount = streak = bestStreak = 0;
+  document.getElementById("results-screen").style.display = "none";
+  document.getElementById("quiz-screen").style.display = "block";
+  updateStats();
+  renderPassage();
+  showToast(`Reviewing ${wrongPassages.length} passage${wrongPassages.length > 1 ? "s" : ""} with mistakes`);
+}
+
+// ==================== TOAST ====================
+function showToast(msg) {
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  setTimeout(() => t.classList.remove("show"), 2800);
+}
+
+// ==================== INIT ====================
+buildTopicChips();
+</script>
+</body>
+</html>
