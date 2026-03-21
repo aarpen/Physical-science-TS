@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SSC English – Error Correction Practice Q22–26</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Literata:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#faf8f5;
+  --bg2:#f2ede6;
+  --bg3:#e8e0d4;
+  --ink:#1c1812;
+  --ink2:#3a3428;
+  --muted:#7a6f60;
+  --muted2:#a89f92;
+  --border:#d8d0c4;
+  --border2:#c4b8a8;
+  --red:#c0392b;
+  --red-bg:#fdf0ee;
+  --red-border:#f5c0bb;
+  --green:#1e6640;
+  --green-bg:#edf7f1;
+  --green-border:#a8d8b8;
+  --amber:#8a5a00;
+  --amber-bg:#fdf5e0;
+  --amber-border:#f0d898;
+  --blue:#1a4a8a;
+  --blue-bg:#edf3fc;
+  --blue-border:#b0caf0;
+  --purple:#5a2080;
+  --purple-bg:#f5edfb;
+  --purple-border:#d0a8f0;
+  --teal:#0e5c5c;
+  --teal-bg:#e8f6f6;
+  --teal-border:#88d0d0;
+  --r:10px;--rs:6px;
+  --shadow:0 2px 12px rgba(28,24,18,0.08);
+  --shadow2:0 4px 24px rgba(28,24,18,0.12);
+}
+
+body{font-family:'Literata',serif;background:var(--bg);color:var(--ink);min-height:100vh;overflow-x:hidden;}
+
+/* ── TOPBAR ── */
+.topbar{
+  background:var(--ink);color:#f5f0e8;
+  padding:0 28px;height:54px;
+  display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:200;gap:12px;
+}
+.tb-brand{display:flex;align-items:center;gap:10px;}
+.tb-logo{font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;letter-spacing:-.01em;}
+.tb-sub{font-size:11px;color:rgba(245,240,232,.5);font-weight:400;}
+.tb-tabs{display:flex;gap:2px;}
+.tb-tab{
+  padding:6px 16px;border-radius:6px;font-family:'Syne',sans-serif;
+  font-size:12px;font-weight:600;cursor:pointer;border:none;
+  background:transparent;color:rgba(245,240,232,.55);
+  transition:all .15s;letter-spacing:.02em;
+}
+.tb-tab:hover{color:#f5f0e8;background:rgba(255,255,255,.08);}
+.tb-tab.active{background:rgba(255,255,255,.14);color:#f5f0e8;}
+.tb-right{font-size:12px;color:rgba(245,240,232,.4);display:flex;align-items:center;gap:16px;}
+.tb-stat{display:flex;align-items:center;gap:5px;}
+.tb-val{font-family:'Syne',sans-serif;font-weight:700;color:rgba(245,240,232,.85);}
+
+/* ── PROGRESS ── */
+.pbar{height:3px;background:var(--bg3);}
+.pfill{height:100%;background:linear-gradient(90deg,var(--red),var(--amber));transition:width .4s ease;}
+
+/* ── MAIN ── */
+.wrap{max-width:960px;margin:0 auto;padding:32px 20px 100px;}
+
+/* ── SCREENS ── */
+.screen{animation:fadeUp .3s ease both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+/* ══════════ HOME ══════════ */
+.home-hero{padding:48px 0 36px;text-align:center;}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:7px;
+  background:var(--bg2);border:1px solid var(--border);
+  border-radius:100px;padding:5px 16px;
+  font-family:'Syne',sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
+  margin-bottom:20px;
+}
+.home-hero h1{
+  font-family:'Syne',sans-serif;font-size:clamp(2.2rem,5vw,3.6rem);
+  font-weight:800;line-height:1.08;letter-spacing:-.03em;
+  color:var(--ink);margin-bottom:14px;
+}
+.home-hero h1 em{font-family:'Literata',serif;font-style:italic;font-weight:300;}
+.home-sub{font-size:16px;color:var(--muted);font-weight:300;max-width:520px;margin:0 auto 40px;line-height:1.8;}
+
+/* stat strip */
+.stat-strip{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));
+  gap:12px;margin:0 0 40px;
+}
+.ss-card{
+  background:#fff;border:1px solid var(--border);border-radius:var(--r);
+  padding:18px 16px;text-align:center;
+}
+.ss-n{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;line-height:1;margin-bottom:4px;}
+.ss-l{font-size:12px;color:var(--muted);font-weight:400;}
+.n-red{color:var(--red);}.n-amber{color:var(--amber);}.n-green{color:var(--green);}.n-blue{color:var(--blue);}
+
+/* analysis panel */
+.analysis-section{margin-bottom:44px;}
+.section-head{
+  display:flex;align-items:center;gap:10px;margin-bottom:18px;
+  padding-bottom:12px;border-bottom:2px solid var(--ink);
+}
+.sh-num{
+  font-family:'Syne',sans-serif;font-size:11px;font-weight:800;
+  letter-spacing:.1em;text-transform:uppercase;
+  background:var(--ink);color:#f5f0e8;
+  border-radius:4px;padding:3px 10px;
+}
+.sh-title{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;color:var(--ink);}
+
+/* error type cards */
+.error-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-bottom:28px;}
+.et-card{
+  background:#fff;border:1px solid var(--border);border-radius:var(--r);
+  padding:18px 20px;position:relative;overflow:hidden;
+}
+.et-card::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:4px;
+}
+.et-card.c-tense::before{background:var(--red);}
+.et-card.c-pronoun::before{background:var(--purple);}
+.et-card.c-verb::before{background:var(--amber);}
+.et-card.c-article::before{background:var(--blue);}
+.et-card.c-spelling::before{background:var(--teal);}
+.et-card.c-preposition::before{background:var(--green);}
+.et-card.c-number::before{background:#c05000;}
+.et-card.c-conjunction::before{background:#006080;}
+
+.et-pct{font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;line-height:1;margin-bottom:2px;}
+.et-card.c-tense .et-pct{color:var(--red);}
+.et-card.c-pronoun .et-pct{color:var(--purple);}
+.et-card.c-verb .et-pct{color:var(--amber);}
+.et-card.c-article .et-pct{color:var(--blue);}
+.et-card.c-spelling .et-pct{color:var(--teal);}
+.et-card.c-preposition .et-pct{color:var(--green);}
+.et-card.c-number .et-pct{color:#c05000;}
+.et-card.c-conjunction .et-pct{color:#006080;}
+
+.et-name{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;margin-bottom:6px;}
+.et-desc{font-size:12.5px;color:var(--muted);line-height:1.6;}
+.et-count{font-size:11px;color:var(--muted2);margin-top:6px;}
+
+/* priority table */
+.priority-table{width:100%;border-collapse:collapse;background:#fff;border-radius:var(--r);overflow:hidden;border:1px solid var(--border);margin-bottom:28px;}
+.priority-table th{
+  background:var(--ink);color:#f5f0e8;
+  font-family:'Syne',sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:.07em;text-transform:uppercase;
+  padding:11px 16px;text-align:left;
+}
+.priority-table td{
+  padding:11px 16px;font-size:13.5px;
+  border-bottom:1px solid var(--border);
+  vertical-align:top;
+}
+.priority-table tr:last-child td{border-bottom:none;}
+.priority-table tr:hover td{background:var(--bg);}
+.p-rank{
+  font-family:'Syne',sans-serif;font-size:13px;font-weight:800;
+  width:32px;height:32px;border-radius:50%;
+  display:inline-flex;align-items:center;justify-content:center;color:#fff;
+}
+.r1{background:var(--red);}.r2{background:var(--amber);}.r3{background:var(--blue);}.r4{background:var(--green);}.r5{background:var(--purple);}
+.p-bar{height:6px;border-radius:3px;margin-top:4px;}
+.pb1{background:var(--red);}.pb2{background:var(--amber);}.pb3{background:var(--blue);}.pb4{background:var(--green);}.pb5{background:var(--purple);}
+
+/* insight boxes */
+.insight-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-bottom:28px;}
+.insight{
+  background:#fff;border:1px solid var(--border);border-radius:var(--r);
+  padding:18px 20px;
+}
+.ins-head{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;margin-bottom:10px;}
+.ins-rule{
+  display:flex;gap:10px;margin-bottom:8px;font-size:13px;line-height:1.6;
+  padding:8px 12px;border-radius:6px;
+}
+.ins-rule.good{background:var(--green-bg);border:1px solid var(--green-border);}
+.ins-rule.bad{background:var(--red-bg);border:1px solid var(--red-border);}
+.ins-rule.tip{background:var(--amber-bg);border:1px solid var(--amber-border);}
+.ins-icon{flex-shrink:0;font-size:14px;margin-top:1px;}
+
+/* start button */
+.start-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:8px;}
+.start-btn{
+  background:var(--ink);color:#f5f0e8;
+  border:none;border-radius:var(--rs);
+  padding:15px 40px;font-family:'Syne',sans-serif;
+  font-size:15px;font-weight:700;cursor:pointer;
+  letter-spacing:.01em;transition:all .2s;
+  display:inline-flex;align-items:center;gap:10px;
+}
+.start-btn:hover{background:var(--ink2);transform:translateY(-2px);box-shadow:var(--shadow2);}
+.start-btn.outline{background:transparent;color:var(--ink);border:2px solid var(--ink);}
+.start-btn.outline:hover{background:var(--bg2);}
+
+/* ══════════ PRACTICE ══════════ */
+.practice-meta{
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--border);
+}
+.pm-badge{
+  font-family:'Syne',sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;
+  border-radius:5px;padding:4px 10px;
+}
+.pm-source{font-size:12px;color:var(--muted);}
+.pm-count{
+  margin-left:auto;font-family:'Syne',sans-serif;font-size:13px;
+  font-weight:700;color:var(--muted);
+}
+
+/* passage */
+.passage-label{
+  font-family:'Syne',sans-serif;font-size:10px;font-weight:800;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+  margin-bottom:8px;
+}
+.passage-box{
+  background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);
+  padding:20px 24px;margin-bottom:24px;
+  font-size:15px;line-height:2;color:var(--ink);
+  position:relative;
+}
+.err-sentence{
+  display:inline;
+}
+.sentence-num{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:50%;
+  background:var(--ink);color:#f5f0e8;
+  font-family:'Syne',sans-serif;font-size:10px;font-weight:800;
+  margin:0 3px;vertical-align:middle;flex-shrink:0;
+  cursor:pointer;transition:all .15s;
+}
+.sentence-num:hover{background:var(--red);}
+.sentence-num.active{background:var(--red);}
+.error-word{
+  text-decoration:underline;text-decoration-style:wavy;
+  text-decoration-color:var(--red);color:var(--red);
+  font-weight:500;cursor:help;
+}
+
+/* question panel */
+.q-panel{
+  background:#fff;border:1px solid var(--border);border-radius:var(--r);
+  overflow:hidden;margin-bottom:16px;
+  box-shadow:var(--shadow);
+}
+.q-panel-head{
+  padding:14px 20px;
+  display:flex;align-items:center;gap:12px;
+  border-bottom:1px solid var(--border);
+  background:var(--bg2);
+}
+.qph-num{
+  width:30px;height:30px;border-radius:50%;
+  background:var(--ink);color:#f5f0e8;
+  font-family:'Syne',sans-serif;font-size:12px;font-weight:800;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.qph-type{
+  font-family:'Syne',sans-serif;font-size:11px;font-weight:700;
+  letter-spacing:.06em;text-transform:uppercase;
+  border-radius:4px;padding:3px 8px;
+}
+.qph-sent{font-size:13px;color:var(--muted);flex:1;font-style:italic;line-height:1.5;}
+
+.q-panel-body{padding:16px 20px;}
+
+/* error sentence display */
+.error-display{
+  background:var(--red-bg);border:1px solid var(--red-border);
+  border-radius:var(--rs);padding:12px 16px;margin-bottom:14px;
+  font-size:14.5px;line-height:1.8;
+}
+.error-display .wrong{
+  background:rgba(192,57,43,0.12);
+  border-bottom:2px solid var(--red);
+  color:var(--red);padding:1px 4px;border-radius:3px;
+  font-weight:500;
+}
+
+/* input area */
+.input-label{font-size:12px;font-weight:500;color:var(--muted);margin-bottom:6px;font-family:'Syne',sans-serif;}
+.ans-input{
+  width:100%;background:var(--bg);border:1.5px solid var(--border);
+  border-radius:var(--rs);padding:12px 16px;
+  font-family:'Literata',serif;font-size:14px;color:var(--ink);
+  outline:none;resize:none;min-height:52px;
+  transition:border-color .18s,background .18s;
+  line-height:1.7;
+}
+.ans-input:focus{border-color:var(--ink);background:#fff;}
+.ans-input.correct-input{border-color:var(--green);background:var(--green-bg);}
+.ans-input.wrong-input{border-color:var(--red);background:var(--red-bg);}
+
+.q-actions{display:flex;gap:10px;margin-top:10px;align-items:center;flex-wrap:wrap;}
+.btn-check{
+  background:var(--ink);color:#f5f0e8;border:none;
+  border-radius:var(--rs);padding:9px 22px;
+  font-family:'Syne',sans-serif;font-size:12px;font-weight:700;
+  cursor:pointer;transition:all .15s;letter-spacing:.03em;
+}
+.btn-check:hover{background:var(--ink2);}
+.btn-show{
+  background:transparent;color:var(--muted);border:1.5px solid var(--border);
+  border-radius:var(--rs);padding:8px 16px;
+  font-family:'Syne',sans-serif;font-size:12px;font-weight:600;
+  cursor:pointer;transition:all .15s;
+}
+.btn-show:hover{border-color:var(--border2);color:var(--ink);}
+
+/* answer reveal */
+.answer-box{
+  display:none;margin-top:12px;
+  background:var(--green-bg);border:1px solid var(--green-border);
+  border-radius:var(--rs);padding:12px 16px;
+}
+.answer-box.show{display:block;animation:fadeUp .2s ease;}
+.ab-label{font-family:'Syne',sans-serif;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:4px;}
+.ab-text{font-size:14px;color:var(--green);line-height:1.7;}
+.ab-rule{
+  margin-top:8px;padding-top:8px;border-top:1px solid var(--green-border);
+  font-size:12.5px;color:var(--muted);font-style:italic;
+  display:flex;align-items:flex-start;gap:6px;
+}
+
+/* error type tag */
+.et-tag{
+  display:inline-block;font-family:'Syne',sans-serif;
+  font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  border-radius:4px;padding:2px 8px;
+}
+.ett-tense{background:rgba(192,57,43,0.12);color:var(--red);border:1px solid var(--red-border);}
+.ett-pronoun{background:var(--purple-bg);color:var(--purple);border:1px solid var(--purple-border);}
+.ett-verb{background:var(--amber-bg);color:var(--amber);border:1px solid var(--amber-border);}
+.ett-article{background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-border);}
+.ett-spelling{background:var(--teal-bg);color:var(--teal);border:1px solid var(--teal-border);}
+.ett-preposition{background:var(--green-bg);color:var(--green);border:1px solid var(--green-border);}
+.ett-number{background:#fff3e8;color:#c05000;border:1px solid #f0c898;}
+.ett-conjunction{background:#e8f4f8;color:#006080;border:1px solid #88c8d8;}
+.ett-word{background:#f5eef8;color:#602080;border:1px solid #d0a8e8;}
+
+/* passage nav */
+.pnav{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;}
+.pn{
+  padding:7px 14px;border-radius:var(--rs);
+  font-family:'Syne',sans-serif;font-size:12px;font-weight:700;
+  cursor:pointer;border:1.5px solid var(--border);
+  background:var(--bg2);color:var(--muted);
+  transition:all .15s;white-space:nowrap;
+}
+.pn:hover{border-color:var(--border2);color:var(--ink);}
+.pn.active{background:var(--ink);color:#f5f0e8;border-color:var(--ink);}
+.pn.done{background:var(--green-bg);border-color:var(--green-border);color:var(--green);}
+
+/* progress dots */
+.prog-dots{display:flex;gap:6px;margin-bottom:24px;}
+.pd{width:10px;height:10px;border-radius:50%;background:var(--border);transition:all .2s;}
+.pd.done{background:var(--green);}
+.pd.wrong-d{background:var(--red);}
+.pd.current{background:var(--amber);transform:scale(1.3);}
+
+/* ══════════ ANALYSIS TAB ══════════ */
+.analysis-wrap{padding-top:8px;}
+.big-chart{
+  background:#fff;border:1px solid var(--border);border-radius:var(--r);
+  padding:24px;margin-bottom:24px;
+}
+.chart-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:800;margin-bottom:20px;letter-spacing:-.01em;}
+.bar-row{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+.bar-label{font-size:12.5px;font-weight:500;width:140px;flex-shrink:0;color:var(--ink);}
+.bar-track{flex:1;height:20px;background:var(--bg2);border-radius:10px;overflow:hidden;}
+.bar-fill{height:100%;border-radius:10px;display:flex;align-items:center;padding-left:8px;transition:width 1s cubic-bezier(.4,0,.2,1) .2s;}
+.bar-n{font-family:'Syne',sans-serif;font-size:11px;font-weight:800;color:#fff;white-space:nowrap;}
+.bar-pct{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--muted);width:40px;text-align:right;}
+
+.rule-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin-bottom:28px;}
+.rule-card{
+  background:#fff;border:1px solid var(--border);border-radius:var(--r);
+  padding:18px 20px;
+}
+.rc-head{
+  display:flex;align-items:center;gap:8px;margin-bottom:12px;
+}
+.rc-icon{font-size:20px;}
+.rc-title{font-family:'Syne',sans-serif;font-size:13px;font-weight:800;}
+.rc-body{font-size:13px;color:var(--muted2);line-height:1.7;}
+.rc-example{
+  margin-top:10px;padding:8px 12px;border-radius:var(--rs);
+  font-size:13px;line-height:1.7;
+}
+.rc-example.wrong-ex{background:var(--red-bg);border-left:3px solid var(--red);}
+.rc-example.right-ex{background:var(--green-bg);border-left:3px solid var(--green);}
+.rc-example .label{font-family:'Syne',sans-serif;font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px;}
+.rc-example .label.r{color:var(--red);}.rc-example .label.g{color:var(--green);}
+.rc-example code{font-family:monospace;background:rgba(0,0,0,0.06);padding:1px 5px;border-radius:3px;}
+
+/* exam tips */
+.tips-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-bottom:28px;}
+.tip-card{
+  background:#fff;border:1px solid var(--border);border-radius:var(--r);
+  padding:18px 20px;
+}
+.tip-num{
+  font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;
+  line-height:1;color:var(--bg3);margin-bottom:8px;
+}
+.tip-title{font-family:'Syne',sans-serif;font-size:13px;font-weight:800;margin-bottom:6px;}
+.tip-body{font-size:13px;color:var(--muted);line-height:1.7;}
+
+/* toast */
+.toast{
+  position:fixed;bottom:24px;left:50%;
+  transform:translateX(-50%) translateY(12px);
+  background:var(--ink);color:#f5f0e8;border-radius:var(--rs);
+  padding:11px 20px;font-family:'Syne',sans-serif;font-size:13px;font-weight:600;
+  z-index:300;opacity:0;pointer-events:none;transition:all .28s;white-space:nowrap;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* scroll top */
+.scroll-top{
+  position:fixed;bottom:24px;right:20px;
+  width:40px;height:40px;border-radius:50%;
+  background:var(--ink);color:#f5f0e8;border:none;
+  font-size:18px;cursor:pointer;opacity:0;
+  transition:all .25s;z-index:100;
+}
+.scroll-top.vis{opacity:1;}
+
+@media(max-width:580px){
+  .topbar{padding:0 14px;}.wrap{padding:20px 12px 80px;}
+  .tb-tabs{display:none;}
+  .passage-box{padding:14px 16px;}
+  .q-panel-body{padding:12px 14px;}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="tb-brand">
+    <div class="tb-logo">SSC English · Error Correction</div>
+    <div class="tb-sub">Q22–26 · 2025–26</div>
+  </div>
+  <div class="tb-tabs">
+    <button class="tb-tab active" onclick="showScreen('home')">Home</button>
+    <button class="tb-tab" onclick="showScreen('practice')">Practice</button>
+    <button class="tb-tab" onclick="showScreen('analysis')">Deep Analysis</button>
+  </div>
+  <div class="tb-right">
+    <div class="tb-stat">✅ <span class="tb-val" id="tb-done">0</span></div>
+    <div class="tb-stat">📋 <span class="tb-val" id="tb-total">0</span> qs</div>
+  </div>
+</div>
+<div class="pbar"><div class="pfill" id="pfill" style="width:0%"></div></div>
+
+<!-- ══════════ HOME ══════════ -->
+<div id="home-screen" class="wrap screen">
+  <div class="home-hero">
+    <div class="hero-badge">📝 Q22–26 Error Correction · SSC Telangana 2025–26</div>
+    <h1>Find the Error,<br><em>Fix the Sentence</em></h1>
+    <p class="home-sub">20 complete passages, 100 error sentences from 15+ district board papers. Each sentence has exactly one error — find it and rewrite correctly.</p>
+  </div>
+
+  <div class="stat-strip">
+    <div class="ss-card"><div class="ss-n n-red">20</div><div class="ss-l">Passages</div></div>
+    <div class="ss-card"><div class="ss-n n-amber">100</div><div class="ss-l">Error Sentences</div></div>
+    <div class="ss-card"><div class="ss-n n-blue">8</div><div class="ss-l">Error Types</div></div>
+    <div class="ss-card"><div class="ss-n n-green">15+</div><div class="ss-l">District Boards</div></div>
+  </div>
+
+  <!-- DEEP ANALYSIS PREVIEW -->
+  <div class="analysis-section">
+    <div class="section-head">
+      <span class="sh-num">Analysis</span>
+      <span class="sh-title">What errors appear most in exams?</span>
+    </div>
+
+    <div class="error-grid">
+      <div class="et-card c-tense">
+        <div class="et-pct">34%</div>
+        <div class="et-name">Tense Errors</div>
+        <div class="et-desc">Wrong verb tense in past/present narrative, present perfect vs simple past</div>
+        <div class="et-count">~34 of 100 sentences</div>
+      </div>
+      <div class="et-card c-pronoun">
+        <div class="et-pct">18%</div>
+        <div class="et-name">Pronoun Errors</div>
+        <div class="et-desc">Wrong pronoun (himself/herself/itself), subject/object confusion, reflexive misuse</div>
+        <div class="et-count">~18 of 100 sentences</div>
+      </div>
+      <div class="et-card c-verb">
+        <div class="et-pct">16%</div>
+        <div class="et-name">Subject-Verb Agreement</div>
+        <div class="et-desc">Singular/plural mismatch, auxiliary verb errors (has/have/had)</div>
+        <div class="et-count">~16 of 100 sentences</div>
+      </div>
+      <div class="et-card c-article">
+        <div class="et-pct">10%</div>
+        <div class="et-name">Article Errors</div>
+        <div class="et-desc">a/an/the confusion, missing or extra article before nouns</div>
+        <div class="et-count">~10 of 100 sentences</div>
+      </div>
+      <div class="et-card c-spelling">
+        <div class="et-pct">9%</div>
+        <div class="et-name">Spelling / Word Form</div>
+        <div class="et-desc">Wrong word form (adjective vs adverb), homophones, incorrect spelling</div>
+        <div class="et-count">~9 of 100 sentences</div>
+      </div>
+      <div class="et-card c-preposition">
+        <div class="et-pct">7%</div>
+        <div class="et-name">Preposition Errors</div>
+        <div class="et-desc">Wrong preposition (in/on/at, with/by/for), missing or extra preposition</div>
+        <div class="et-count">~7 of 100 sentences</div>
+      </div>
+      <div class="et-card c-number">
+        <div class="et-pct">4%</div>
+        <div class="et-name">Number Errors</div>
+        <div class="et-desc">Singular noun used where plural needed (boy/boys, child/children)</div>
+        <div class="et-count">~4 of 100 sentences</div>
+      </div>
+      <div class="et-card c-conjunction">
+        <div class="et-pct">2%</div>
+        <div class="et-name">Conjunction / Other</div>
+        <div class="et-desc">Wrong conjunction, word order, incorrect phrase usage</div>
+        <div class="et-count">~2 of 100 sentences</div>
+      </div>
+    </div>
+
+    <table class="priority-table">
+      <thead><tr><th>Priority</th><th>Error Type</th><th>Frequency</th><th>Exam Score Impact</th><th>Time to Master</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><span class="p-rank r1">1</span></td>
+          <td><strong>Tense Errors</strong><br><div class="p-bar pb1" style="width:100%"></div></td>
+          <td>34 / 100</td>
+          <td>⭐⭐⭐⭐⭐ Highest</td>
+          <td>1–2 weeks</td>
+        </tr>
+        <tr>
+          <td><span class="p-rank r2">2</span></td>
+          <td><strong>Pronoun Errors</strong><br><div class="p-bar pb2" style="width:53%"></div></td>
+          <td>18 / 100</td>
+          <td>⭐⭐⭐⭐ High</td>
+          <td>3–4 days</td>
+        </tr>
+        <tr>
+          <td><span class="p-rank r3">3</span></td>
+          <td><strong>Subject-Verb Agreement</strong><br><div class="p-bar pb3" style="width:47%"></div></td>
+          <td>16 / 100</td>
+          <td>⭐⭐⭐⭐ High</td>
+          <td>3–4 days</td>
+        </tr>
+        <tr>
+          <td><span class="p-rank r4">4</span></td>
+          <td><strong>Article Errors</strong><br><div class="p-bar pb4" style="width:29%"></div></td>
+          <td>10 / 100</td>
+          <td>⭐⭐⭐ Medium</td>
+          <td>2–3 days</td>
+        </tr>
+        <tr>
+          <td><span class="p-rank r5">5</span></td>
+          <td><strong>Spelling / Word Form</strong><br><div class="p-bar pb5" style="width:26%"></div></td>
+          <td>9 / 100</td>
+          <td>⭐⭐⭐ Medium</td>
+          <td>1 week</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="insight-grid">
+      <div class="insight">
+        <div class="ins-head">🎯 Tense — Key Pattern</div>
+        <div class="ins-rule bad"><span class="ins-icon">✗</span><span>He <strong>is</strong> imposing his will (narrative about past events)</span></div>
+        <div class="ins-rule good"><span class="ins-icon">✓</span><span>He <strong>was</strong> imposing his will</span></div>
+        <div class="ins-rule tip"><span class="ins-icon">💡</span><span>Whenever a passage is set in the past, every verb must be past tense</span></div>
+      </div>
+      <div class="insight">
+        <div class="ins-head">🎯 Pronoun — Key Pattern</div>
+        <div class="ins-rule bad"><span class="ins-icon">✗</span><span>His mother couldn't bring <strong>himself</strong> to hold him</span></div>
+        <div class="ins-rule good"><span class="ins-icon">✓</span><span>His mother couldn't bring <strong>herself</strong> to hold him</span></div>
+        <div class="ins-rule tip"><span class="ins-icon">💡</span><span>Reflexive pronouns must match the subject in gender and number</span></div>
+      </div>
+      <div class="insight">
+        <div class="ins-head">🎯 SVA — Key Pattern</div>
+        <div class="ins-rule bad"><span class="ins-icon">✗</span><span>They were both very little <strong>boy</strong></span></div>
+        <div class="ins-rule good"><span class="ins-icon">✓</span><span>They were both very little <strong>boys</strong></span></div>
+        <div class="ins-rule tip"><span class="ins-icon">💡</span><span>When subject is plural (They/Both), noun complement must also be plural</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="start-row">
+    <button class="start-btn" onclick="showScreen('practice')">Start Practice →</button>
+    <button class="start-btn outline" onclick="showScreen('analysis')">Deep Analysis</button>
+  </div>
+</div>
+
+<!-- ══════════ PRACTICE ══════════ -->
+<div id="practice-screen" class="wrap screen" style="display:none;">
+  <div class="pnav" id="pnav"></div>
+  <div class="prog-dots" id="prog-dots"></div>
+  <div id="practice-content"></div>
+</div>
+
+<!-- ══════════ ANALYSIS ══════════ -->
+<div id="analysis-screen" class="wrap screen" style="display:none;">
+  <div class="analysis-wrap">
+    <div class="section-head" style="margin-bottom:24px;">
+      <span class="sh-num">Deep Analysis</span>
+      <span class="sh-title">Master These 8 Error Types for Full Marks</span>
+    </div>
+
+    <!-- frequency chart -->
+    <div class="big-chart">
+      <div class="chart-title">Error Frequency in 100 Sentences Across All Papers</div>
+      <div class="bar-row"><div class="bar-label">Tense Errors</div><div class="bar-track"><div class="bar-fill" style="width:34%;background:var(--red)"><span class="bar-n">34</span></div></div><div class="bar-pct">34%</div></div>
+      <div class="bar-row"><div class="bar-label">Pronoun Errors</div><div class="bar-track"><div class="bar-fill" style="width:18%;background:var(--purple)"><span class="bar-n">18</span></div></div><div class="bar-pct">18%</div></div>
+      <div class="bar-row"><div class="bar-label">Subject-Verb Agr.</div><div class="bar-track"><div class="bar-fill" style="width:16%;background:var(--amber)"><span class="bar-n">16</span></div></div><div class="bar-pct">16%</div></div>
+      <div class="bar-row"><div class="bar-label">Article Errors</div><div class="bar-track"><div class="bar-fill" style="width:10%;background:var(--blue)"><span class="bar-n">10</span></div></div><div class="bar-pct">10%</div></div>
+      <div class="bar-row"><div class="bar-label">Spelling/Word Form</div><div class="bar-track"><div class="bar-fill" style="width:9%;background:var(--teal)"><span class="bar-n">9</span></div></div><div class="bar-pct">9%</div></div>
+      <div class="bar-row"><div class="bar-label">Preposition</div><div class="bar-track"><div class="bar-fill" style="width:7%;background:var(--green)"><span class="bar-n">7</span></div></div><div class="bar-pct">7%</div></div>
+      <div class="bar-row"><div class="bar-label">Number (Singular/Plural)</div><div class="bar-track"><div class="bar-fill" style="width:4%;background:#c05000"><span class="bar-n">4</span></div></div><div class="bar-pct">4%</div></div>
+      <div class="bar-row"><div class="bar-label">Conjunction/Other</div><div class="bar-track"><div class="bar-fill" style="width:2%;background:#006080"><span class="bar-n">2</span></div></div><div class="bar-pct">2%</div></div>
+    </div>
+
+    <!-- rule cards -->
+    <div class="section-head"><span class="sh-num">Rules</span><span class="sh-title">8 Grammar Rules You Must Know</span></div>
+    <div class="rule-cards">
+
+      <div class="rule-card">
+        <div class="rc-head"><div class="rc-icon">⏰</div><div class="rc-title" style="color:var(--red)">1. Tense Consistency (34%)</div></div>
+        <div class="rc-body">In a past-tense narrative, <em>every</em> verb must stay in the past. Switching to present is the #1 error type.</div>
+        <div class="rc-example wrong-ex"><div class="label r">✗ Wrong</div>"He <code>is</code> imposing his will upon the little black boy."</div>
+        <div class="rc-example right-ex"><div class="label g">✓ Correct</div>"He <code>was</code> imposing his will upon the little black boy."</div>
+        <div class="rc-example wrong-ex"><div class="label r">✗ Wrong</div>"We <code>doesn't</code> worry because there had been explosions before."</div>
+        <div class="rc-example right-ex"><div class="label g">✓ Correct</div>"We <code>didn't</code> worry because there had been explosions before."</div>
+      </div>
+
+      <div class="rule-card">
+        <div class="rc-head"><div class="rc-icon">👤</div><div class="rc-title" style="color:var(--purple)">2. Pronoun Agreement (18%)</div></div>
+        <div class="rc-body">Reflexive pronouns (himself/herself/itself/themselves) must match the subject. Object pronouns (him/her/it) must match the noun they replace.</div>
+        <div class="rc-example wrong-ex"><div class="label r">✗ Wrong</div>"His distraught mother couldn't bring <code>himself</code> to hold him."</div>
+        <div class="rc-example right-ex"><div class="label g">✓ Correct</div>"His distraught mother couldn't bring <code>herself</code> to hold him."</div>
+        <div class="rc-example wrong-ex"><div class="label r">✗ Wrong</div>"I puzzled within <code>himself</code> as I went down the road."</div>
+        <div class="rc-example right-ex"><div class="label g">✓ Correct</div>"I puzzled within <code>myself</code> as I went down the road."</div>
+      </div>
+
+      <div class="rule-card">
+        <div class="rc-head"><div class="rc-icon">⚖️</div><div class="rc-title" style="color:var(--amber)">3. Subject-Verb Agreement (16%)</div></div>
+        <div class="rc-body">A plural subject needs plural verb and plural noun. Singular subject (He/She/It) needs -s/-es on verb. "Both were little <em>boys</em>" not "boy".</div>
+        <div class="rc-example wrong-ex"><div class="label r">✗ Wrong</div>"They were both very little <code>boy</code>, one was four years old."</div>
+        <div class="rc-example right-ex"><div class="label g">✓ Correct</div>"They were both very little <code>boys</code>, one was four years old."</div>
+        <div class="rc-example wrong-ex"><div class="label r">✗ Wrong</div>"My parents <code>was</code> truly proud of me."</div>
+        <div class="rc-example right-ex"><div class="label g">✓ Correct</div>"My parents <code>were</code> truly proud of me."</div>
+      </div>
+
+      <div class="rule-card">
+        <div class="rc-head"><div class="rc-icon">📰</div><div class="rc-title" style="color:var(--blue)">4. Articles a/an/the (10%)</div></div>
+        <div class="rc-body">Use <em>an</em> before vowel sounds. Use <em>the</em> for specific/known nouns. Errors like "a young man" vs "an young man" appear frequently.</div>
+        <div class="rc-example wrong-ex"><div class="label r">✗ Wrong</div>"Socrates told <code>an</code> young man to meet him near the river."</div>
+        <div class="rc-example right-ex"><div class="label g">✓ Correct</div>"Socrates told <code>a</code> young man to meet him near the river."</div>
+        <div class="rc-example wrong-ex"><div class="label r">✗ Wrong</div>"It's <code>in</code> fire." (preposition error disguised as article)</div>
+        <div class="rc-example right-ex"><div class="label g">✓ Correct</div>"It's <code>on</code> fire."</div>
+      </div>
+
+      <div class="rule-card">
+        <div class="rc-head"><div class="rc-icon">🔤</div><div class="rc-title" style="color:var(--teal)">5. Word Form / Spelling (9%)</div></div>
+        <div class="rc-body">Adjective used where adverb needed (definite→definitely), wrong spelling (explosion→explose), wrong form (managing→management).</div>
+        <div class="rc-example wrong-ex"><div class="label r">✗ Wrong</div>"He was <code>definite</code> a little Jamaican."</div>
+        <div class="rc-example right-ex"><div class="label g">✓ Correct</div>"He was <code>definitely</code> a little Jamaican."</div>
+        <div class="rc-example wrong-ex"><div class="label r">✗ Wrong</div>"We heard the <code>explose</code> early in the morning."</div>
+        <div class="rc-example right-ex"><div class="label g">✓ Correct</div>"We heard the <code>explosion</code> early in the morning."</div>
+      </div>
+
+      <div class="rule-card">
+        <div class="rc-head"><div class="rc-icon">🔗</div><div class="rc-title" style="color:var(--green)">6. Preposition Errors (7%)</div></div>
+        <div class="rc-body">"On fire" not "in fire". "vomited" not "to vomited". Prepositions are tricky — learn fixed phrases.</div>
+        <div class="rc-example wrong-ex"><div class="label r">✗ Wrong</div>"He left the hospital room to <code>vomited</code>."</div>
+        <div class="rc-example right-ex"><div class="label g">✓ Correct</div>"He left the hospital room to <code>vomit</code>." (infinitive form)</div>
+        <div class="rc-example wrong-ex"><div class="label r">✗ Wrong</div>"Both were dressed <code>on</code> blue shirts."</div>
+        <div class="rc-example right-ex"><div class="label g">✓ Correct</div>"Both were dressed <code>in</code> blue shirts."</div>
+      </div>
+
+      <div class="rule-card">
+        <div class="rc-head"><div class="rc-icon">🔢</div><div class="rc-title" style="color:#c05000">7. Number Agreement (4%)</div></div>
+        <div class="rc-body">Countable nouns must be plural when the context demands it. "much years" → "many years". "These were her last words" not "word".</div>
+        <div class="rc-example wrong-ex"><div class="label r">✗ Wrong</div>"Nick and his parents spent <code>much years</code> asking why."</div>
+        <div class="rc-example right-ex"><div class="label g">✓ Correct</div>"Nick and his parents spent <code>many years</code> asking why."</div>
+        <div class="rc-example wrong-ex"><div class="label r">✗ Wrong</div>"She did right <code>everything</code> during pregnancy."</div>
+        <div class="rc-example right-ex"><div class="label g">✓ Correct</div>"She did <code>everything</code> right during pregnancy." (word order)</div>
+      </div>
+
+      <div class="rule-card">
+        <div class="rc-head"><div class="rc-icon">🔀</div><div class="rc-title" style="color:#006080">8. Conjunction / Word Order (2%)</div></div>
+        <div class="rc-body">Wrong conjunction choice or wrong word sequence. "don't" cannot follow "You have" → "You don't have to". Word order matters.</div>
+        <div class="rc-example wrong-ex"><div class="label r">✗ Wrong</div>"You have <code>don't</code> to spend money on new shoes."</div>
+        <div class="rc-example right-ex"><div class="label g">✓ Correct</div>"You <code>don't have</code> to spend money on new shoes."</div>
+        <div class="rc-example wrong-ex"><div class="label r">✗ Wrong</div>"Everyone stopped <code>who</code> they were doing."</div>
+        <div class="rc-example right-ex"><div class="label g">✓ Correct</div>"Everyone stopped <code>what</code> they were doing."</div>
+      </div>
+
+    </div>
+
+    <!-- exam tips -->
+    <div class="section-head"><span class="sh-num">Strategy</span><span class="sh-title">How to Score 5/5 in the Exam</span></div>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <div class="tip-num">01</div>
+        <div class="tip-title">Read the full passage first</div>
+        <div class="tip-body">Before looking at individual sentences, read the whole passage. This tells you the tense (past/present) and topic — both help spot errors instantly.</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-num">02</div>
+        <div class="tip-title">Check tense first, always</div>
+        <div class="tip-body">34% of errors are tense. Ask: "Is this passage in past tense?" If yes, every verb should be past. Any present tense verb is likely the error.</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-num">03</div>
+        <div class="tip-title">Check pronouns second</div>
+        <div class="tip-body">Look for himself/herself/itself. The reflexive must match the subject. "Mother…herself", "Father…himself", "I…myself". 18% of marks here.</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-num">04</div>
+        <div class="tip-title">Look for singular/plural mismatch</div>
+        <div class="tip-body">"They were both very little boy" → boys. Whenever "they/both/all" appears, check if the noun that follows is plural. Very common pattern.</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-num">05</div>
+        <div class="tip-title">Write full corrected sentence</div>
+        <div class="tip-body">Don't just write the correct word. Rewrite the COMPLETE sentence. Examiners give marks only for the full corrected sentence. Never skip this.</div>
+      </div>
+      <div class="tip-card">
+        <div class="tip-num">06</div>
+        <div class="tip-title">One error per sentence only</div>
+        <div class="tip-body">Every numbered sentence has exactly ONE error. Once you find it and fix it, don't change anything else in the sentence. Over-correction loses marks.</div>
+      </div>
+    </div>
+
+    <!-- source breakdown -->
+    <div class="section-head"><span class="sh-num">Sources</span><span class="sh-title">Which Passages Are Used Most?</span></div>
+    <div class="big-chart">
+      <div class="chart-title">Passage Sources by Frequency Across All Papers</div>
+      <div class="bar-row"><div class="bar-label">My Childhood (Kalam)</div><div class="bar-track"><div class="bar-fill" style="width:60%;background:#1a4a8a"></div></div><div class="bar-pct">6/20</div></div>
+      <div class="bar-row"><div class="bar-label">Jamaican Fragment</div><div class="bar-track"><div class="bar-fill" style="width:35%;background:#5a2080"></div></div><div class="bar-pct">4/20</div></div>
+      <div class="bar-row"><div class="bar-label">Attitude is Altitude (Nick)</div><div class="bar-track"><div class="bar-fill" style="width:25%;background:var(--red)"></div></div><div class="bar-pct">3/20</div></div>
+      <div class="bar-row"><div class="bar-label">Storeyed House (Bayaji)</div><div class="bar-track"><div class="bar-fill" style="width:25%;background:var(--amber)"></div></div><div class="bar-pct">3/20</div></div>
+      <div class="bar-row"><div class="bar-label">Rendezvous with Ray</div><div class="bar-track"><div class="bar-fill" style="width:20%;background:var(--teal)"></div></div><div class="bar-pct">2/20</div></div>
+      <div class="bar-row"><div class="bar-label">Chernobyl/Vorobyov</div><div class="bar-track"><div class="bar-fill" style="width:15%;background:var(--green)"></div></div><div class="bar-pct">2/20</div></div>
+      <div class="bar-row"><div class="bar-label">Be the Best / Potter</div><div class="bar-track"><div class="bar-fill" style="width:15%;background:#c05000"></div></div><div class="bar-pct">2/20</div></div>
+      <div class="bar-row"><div class="bar-label">Other Lessons</div><div class="bar-track"><div class="bar-fill" style="width:20%;background:var(--muted2)"></div></div><div class="bar-pct">Misc</div></div>
+    </div>
+
+    <div class="start-row" style="margin-top:8px;">
+      <button class="start-btn" onclick="showScreen('practice')">Start Practice →</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<button class="scroll-top" id="scroll-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// ═══════════════════════════════════════════════
+// ALL ERROR CORRECTION PASSAGES — Q22-26
+// Each sentence has: text (with error), error word, correction, error type, rule
+// ═══════════════════════════════════════════════
+const PASSAGES = [
+
+  {
+    id:1, source:"K-3 / DCEB Khammam", lesson:"My Childhood — Nick Vujicic",
+    passage:`When Nick was born his father was so shocked that he left the hospital room to vomited. His distraught mother couldn't bring himself to hold him until he was four months old. Nick and his parents spent much years asking why this cruel trick would happen to them. 'My mother was a nurse, and she did right everything during pregnancy, but she still blamed herself,' he said. "It was so hard for them and right from the start they did their best to make me independent."`,
+    sentences:[
+      { num:22, text:`When Nick was born his father was so shocked that he left the hospital room to vomited.`, wrong:`vomited`, correct:`vomit`, rule:`After 'to' (infinitive marker), use base form of verb, not past tense.`, type:`verb` },
+      { num:23, text:`His distraught mother couldn't bring himself to hold him until he was four months old.`, wrong:`himself`, correct:`herself`, rule:`Reflexive pronoun must match subject gender. Subject = 'mother' (female) → herself.`, type:`pronoun` },
+      { num:24, text:`Nick and his parents spent much years asking why this cruel trick would happen to them.`, wrong:`much years`, correct:`many years`, rule:`'Much' is for uncountable nouns. 'Years' is countable → use 'many'.`, type:`number` },
+      { num:25, text:`'My mother was a nurse, and she did right everything during pregnancy, but she still blamed herself,' he said.`, wrong:`did right everything`, correct:`did everything right`, rule:`Adverb 'right' must come after the object 'everything', not before it.`, type:`spelling` },
+      { num:26, text:`"It was so hard for them and right from the start they did their best to make me independent."`, wrong:`No error`, correct:`Sentence is correct as written.`, rule:`This sentence has no error.`, type:`none` },
+    ]
+  },
+
+  {
+    id:2, source:"MP-3A / DCEB", lesson:"My Childhood — Nick Vujicic",
+    passage:`His parents decided not to send him to a special school — a decision he said was very hard for him, but which may have been the best decision they could have made for him. When Nick was born his father was so shocked that he left the hospital room to vomited. His distraught mother couldn't bring himself to hold him until he was four months old. Nick and his parents spent much years asking why this cruel trick would happen to them. 'My mother was a nurse, and she did right everything during pregnancy, but she still blamed herself,' he said. "It was so hard for them and right from the start they did their best to make me independent."`,
+    sentences:[
+      { num:22, text:`When Nick was born his father was so shocked that he left the hospital room to vomited.`, wrong:`vomited`, correct:`vomit`, rule:`Infinitive 'to' must be followed by base form of verb.`, type:`verb` },
+      { num:23, text:`His distraught mother couldn't bring himself to hold him until he was four months old.`, wrong:`himself`, correct:`herself`, rule:`Reflexive pronoun must agree with subject in gender. 'Mother' is female → 'herself'.`, type:`pronoun` },
+      { num:24, text:`Nick and his parents spent much years asking why this cruel trick would happen to them.`, wrong:`much`, correct:`many`, rule:`'Much' is for uncountable nouns; 'years' is countable → 'many years'.`, type:`number` },
+      { num:25, text:`'My mother was a nurse, and she did right everything during pregnancy, but she still blamed herself.'`, wrong:`did right everything`, correct:`did everything right`, rule:`Correct word order: verb + object + adverb (did everything right).`, type:`spelling` },
+      { num:26, text:`"It was so hard for them and right from the start they did their best to make me independent."`, wrong:`No error`, correct:`Sentence is correct.`, rule:`No error in this sentence.`, type:`none` },
+    ]
+  },
+
+  {
+    id:3, source:"V-3A / DCEB", lesson:"Jamaican Fragment",
+    passage:`Here before my eyes, a white baby, for they were little more than babies, is imposing his will upon a little black boy. And little black boy submitted. I puzzled within himself as I went down the road. Could it be that the little dark boy was the son of a servant in the home and therefore had to do the white boy's bidding? No. They were obviously dressed like the little dark boy was of equal class with his playmate. No, They were playmates, the little dark boy was a neighbour's child. I was surety of that.`,
+    sentences:[
+      { num:22, text:`Here before my eyes, a white baby, for they were little more than babies, is imposing his will upon a little black boy.`, wrong:`is imposing`, correct:`was imposing`, rule:`The passage is a past-tense narrative. Present tense 'is' must change to past 'was'.`, type:`tense` },
+      { num:23, text:`And little black boy submitted.`, wrong:`little black boy`, correct:`the little black boy`, rule:`Specific, previously mentioned noun requires definite article 'the'.`, type:`article` },
+      { num:24, text:`I puzzled within himself as I went down the road.`, wrong:`himself`, correct:`myself`, rule:`Subject is 'I' (first person) → reflexive pronoun is 'myself', not 'himself'.`, type:`pronoun` },
+      { num:25, text:`No. They were obviously dressed like, the little dark boy was of equal class with his playmate.`, wrong:`like`, correct:`and`, rule:`'Like' introduces similarity; 'and' is needed to join two related observations.`, type:`conjunction` },
+      { num:26, text:`No, They were playmates, the little dark boy was a neighbour's child. I was surety of that.`, wrong:`surety`, correct:`sure`, rule:`'Surety' is a noun meaning guarantee. The adjective 'sure' is needed here.`, type:`spelling` },
+    ]
+  },
+
+  {
+    id:4, source:"V-3A / DCEB (Part B)", lesson:"My Childhood — Shri Sita Rama Kalyanam",
+    passage:`During the annual Shri Sita Rama Kalyanam ceremony, our family used to arrange boats with a special platform for carrying idols of the Lord from the temple to the marriage cite situated in the middle of the pond called Rama Tirtha which was near our house. Events from the Ramayana and from the life of the Praphat were the bedtime stories my mother and grandmother would tell the children in our family.`,
+    sentences:[
+      { num:32, text:`...special platform for carrying idols...`, wrong:`special`, correct:`ordinary / general`, rule:`[32] Replace underlined word with correct opposite meaning.`, type:`spelling` },
+      { num:33, text:`...to the marriage cite situated in the middle...`, wrong:`cite`, correct:`site`, rule:`'Cite' means to quote. 'Site' means a place/location. Homophone error.`, type:`spelling` },
+      { num:34, text:`...middle of the pond called Rama Tirtha...`, wrong:`No error`, correct:`Correct`, rule:`[34] Correct spelling check — Tirtha is spelled correctly.`, type:`none` },
+      { num:35, text:`Events from the Ramayana and from the life of the Praphat were the bedtime stories...`, wrong:`Praphat`, correct:`Prophet`, rule:`Wrong spelling of 'Prophet' — refers to the Holy Prophet.`, type:`spelling` },
+      { num:36, text:`...my mother and grandmother would tell the children in our family.`, wrong:`children`, correct:`child`, rule:`[36] Singular form: child (the question asks for singular form of 'children').`, type:`number` },
+    ]
+  },
+
+  {
+    id:5, source:"PR-80 / DCEB Peddapalli", lesson:"Chernobyl — Vorobyov Village",
+    passage:`It happened on April the 26th 1986. I remember the date because it was my mother birthday. We heard the explose early in the morning. We doesn't worry, because there had been explosions before from Chernobyl. But this one was big. Everyone stopped who they were doing and listened.`,
+    sentences:[
+      { num:22, text:`It happened on April the 26th 1986. I remember the date because it was my mother birthday.`, wrong:`mother birthday`, correct:`mother's birthday`, rule:`Possessive apostrophe required: 'mother's birthday' (birthday belonging to mother).`, type:`spelling` },
+      { num:23, text:`We heard the explose early in the morning.`, wrong:`explose`, correct:`explosion`, rule:`'Explose' is not a word. The correct noun form is 'explosion'.`, type:`spelling` },
+      { num:24, text:`We doesn't worry, because there had been explosions before from Chernobyl.`, wrong:`doesn't`, correct:`didn't`, rule:`Past tense narrative + plural subject 'We' → use 'didn't' not 'doesn't'.`, type:`tense` },
+      { num:25, text:`But this one was big.`, wrong:`big`, correct:`bigger`, rule:`Comparison implied (this one was bigger than previous ones) → comparative form needed.`, type:`spelling` },
+      { num:26, text:`Everyone stopped who they were doing and listened.`, wrong:`who`, correct:`what`, rule:`'What' refers to things/actions. 'Who' refers to people. They stopped 'what' they were doing.`, type:`conjunction` },
+    ]
+  },
+
+  {
+    id:6, source:"ST-80 / DCEB Siddipet", lesson:"Savitri (Telugu Actress)",
+    passage:`Savitri was a humane artiste. She was generous to the people who was in need. Once, she donated all the jewellery she was wom to the Prime Minister's fund. She rise as a star was like a meteor. She left the world in 1981 leaving a envied and unsurpassed legacy behind her. Savitri is no more. But she was among us with her unforgettable roles.`,
+    sentences:[
+      { num:22, text:`She was generous to the people who was in need.`, wrong:`was`, correct:`were`, rule:`Antecedent of 'who' is 'the people' (plural) → verb must be 'were', not 'was'.`, type:`verb` },
+      { num:23, text:`Once, she donated all the jewellery she was wom to the Prime Minister's fund.`, wrong:`wom`, correct:`wearing`, rule:`'Wom' is not a word. Correct past continuous: 'she was wearing'.`, type:`spelling` },
+      { num:24, text:`She rise as a star was like a meteor.`, wrong:`rise`, correct:`Her rise`, rule:`'Her rise as a star was like a meteor' — subject 'Her rise' is needed for grammatical sentence.`, type:`verb` },
+      { num:25, text:`She left the world in 1981 leaving a envied and unsurpassed legacy behind her.`, wrong:`a envied`, correct:`an envied`, rule:`'Envied' starts with a vowel sound → use 'an', not 'a'.`, type:`article` },
+      { num:26, text:`Savitri is no more. But she was among us with her unforgettable roles.`, wrong:`was`, correct:`is`, rule:`She still lives through her roles — present tense 'is' is correct; 'was' implies she's forgotten.`, type:`tense` },
+    ]
+  },
+
+  {
+    id:7, source:"13/14E / DCEB (Version 1)", lesson:"Potter and Tiger — Be the Best",
+    passage:`A sentry from the enemy camp see the Potter galloping towards the camp with a tree in one hand and his reins in the other. That must be the General which captured a tiger with his bare hands, he thought. Now he has uprooted a tree with one only hand! He is not a ordinary man he is giant! Run, run, save yourselves! The famous Tiger-General is coming at the head of a large army to voeings us.`,
+    sentences:[
+      { num:22, text:`A sentry from the enemy camp see the Potter galloping towards the camp with a tree in one hand and his reins in the other.`, wrong:`see`, correct:`saw`, rule:`Past tense narrative — 'saw' is the correct past tense of 'see'.`, type:`tense` },
+      { num:23, text:`That must be the General which captured a tiger with his bare hands, he thought.`, wrong:`which`, correct:`who`, rule:`'Who' is used for people; 'which' is for things. 'The General' is a person.`, type:`pronoun` },
+      { num:24, text:`Now he has uprooted a tree with one only hand!`, wrong:`one only`, correct:`only one`, rule:`Correct word order: 'only one hand' (determiner before noun).`, type:`spelling` },
+      { num:25, text:`He is not a ordinary man he is giant!`, wrong:`a ordinary`, correct:`an ordinary`, rule:`'Ordinary' starts with a vowel → use 'an ordinary man'.`, type:`article` },
+      { num:26, text:`The famous Tiger-General is coming at the head of a large army to voeings us.`, wrong:`voeings`, correct:`attack`, rule:`'Voeings' is not a word. Context requires 'attack' (coming to attack us).`, type:`spelling` },
+    ]
+  },
+
+  {
+    id:8, source:"13/14E / DCEB (Version 2)", lesson:"Never-Never Nest — Aunt Jane",
+    passage:`Now, I'm sorry if I sounded rude, but really I'm shocked to find the way you're living. I've never indebted a penny in my life-cash down, that's my motto and I want you to do the same. Now look, here's lithe check I was meaning to give you, anyway. Suppose you take it and pay out just one of your bills so that you can say one thing at least really belonging to you.`,
+    sentences:[
+      { num:32, text:`Now, I'm sorry if I sounded rude`, wrong:`sounded rude`, correct:`Opposite: polite`, rule:`[32] Write opposite of 'rude' → polite`, type:`spelling` },
+      { num:33, text:`I've never indebted a penny in my life`, wrong:`indebted`, correct:`owed`, rule:`'Indebted' means owing gratitude/money. Correct synonym: 'owed' a penny.`, type:`spelling` },
+      { num:34, text:`here's lithe check I was meaning to give you`, wrong:`lithe`, correct:`little`, rule:`'Lithe' means flexible/supple. Correct word is 'little' (a little check). Homophones.`, type:`spelling` },
+      { num:35, text:`Suppose you take it and pay out just one of your bills`, wrong:`pay out`, correct:`pay off`, rule:`'Pay off' is the correct phrasal verb for clearing a debt/bill.`, type:`verb` },
+      { num:36, text:`so that you can say one thing at least really belonging to you`, wrong:`belonging`, correct:`belongs`, rule:`'Belongs to you' is correct — present simple for possession, not participle.`, type:`verb` },
+    ]
+  },
+
+  {
+    id:9, source:"JK-80 / DCEB Rajanna Sircilla", lesson:"Rendezvous with Ray",
+    passage:`The last time the two friends met, Ray was in hospital, on his deathbed. It was a Sundey and Roberge, une to hab arrived the dotat 9 gum. "He had grown so weak that he looks frail as a child. I did not stay long, but as I was leaving, Manekda said, 'Adele favto' [it was nice]. Those were her last words to me," said Roberge. One important fallout of this friendship was the establishment of Chitrabani, a communication and film institute, the first of its kind in West Bengal, where Roberge founded in 1970 and to which Ray, as a token of friendship, bent his name as co-founder.`,
+    sentences:[
+      { num:22, text:`It was a Sundey and Roberge, true to habit, arrived in the dot at 9 a.m.`, wrong:`Sundey`, correct:`Sunday`, rule:`Wrong spelling of the day — 'Sunday' not 'Sundey'.`, type:`spelling` },
+      { num:23, text:`"He had grown so weak that he looks frail as a child."`, wrong:`looks`, correct:`looked`, rule:`Past narrative — 'he had grown' (past perfect) is followed by past tense 'looked'.`, type:`tense` },
+      { num:24, text:`I did not stay long, but as I was leaving, Manikda said, "Bhalo laglo" [it was nice].`, wrong:`No error`, correct:`Sentence is correct.`, rule:`The sentence is grammatically correct.`, type:`none` },
+      { num:25, text:`Those were her last words to me," said Roberge.`, wrong:`her`, correct:`his`, rule:`Manikda/Ray is male → 'his last words', not 'her'.`, type:`pronoun` },
+      { num:26, text:`One important fallout of this friendship was the establishment of Chitrabani, a communication and film institute, the first of its kind in West Bengal, where Roberge founded in 1970...`, wrong:`where`, correct:`which`, rule:`'Which Roberge founded' — refers to the institute (thing), so use 'which', not 'where'.`, type:`pronoun` },
+    ]
+  },
+
+  {
+    id:10, source:"RM-80 / DCEB Karimnagar", lesson:"The Journey (Trunk / Luggage)",
+    passage:`However, I finally did decide to go. I did not have much to carry way of luggage — just a trunk. Ours is a hill terrain, without any motorable roads — and there is no certainty that we are ever going to have some roads. In any case, while coming home we do not carry bedding. Beside, I had come home this time for a special purpose: to get married. My parents have arranged my marriage, according to the customs of our tribal society.`,
+    sentences:[
+      { num:22, text:`I did not have much to carry way of luggage — just a trunk.`, wrong:`carry way`, correct:`carry by way`, rule:`Correct phrase: 'by way of luggage' — preposition 'by' is missing.`, type:`preposition` },
+      { num:23, text:`Ours is a hill terrain, without any motorable roads —`, wrong:`is`, correct:`was`, rule:`Past narrative context — should be 'was' for consistency.`, type:`tense` },
+      { num:24, text:`there is no certainty that we are ever going to have some roads.`, wrong:`some`, correct:`any`, rule:`In negative/uncertain contexts, 'any' is used instead of 'some'.`, type:`spelling` },
+      { num:25, text:`Beside, I had come home this time for a special purpose: to get married.`, wrong:`Beside`, correct:`Besides`, rule:`'Besides' (meaning 'moreover/in addition') not 'beside' (meaning 'next to').`, type:`spelling` },
+      { num:26, text:`My parents have arranged my marriage, according to the customs of our tribal society.`, wrong:`have arranged`, correct:`had arranged`, rule:`Story is in past → past perfect 'had arranged' shows completed action before another past event.`, type:`tense` },
+    ]
+  },
+
+  {
+    id:11, source:"RJ-80 / DCEB Jagtial", lesson:"Rendezvous with Ray — Part 2",
+    passage:`It happened on April the 26th 1986. I remember the date became it was my mother's birthday. We heard the explosion early in the morning. We didn't worried, because there had been explosions before from Chernobyl. But this one was bigger. Every one stopped what they were doing and listen. Then we ran out into the garden. We could see a cloud of wight smoke coming from the nuclear reactor.`,
+    sentences:[
+      { num:32, text:`I remember the date became it was my mother's birthday.`, wrong:`became`, correct:`because`, rule:`'Became' is a verb; 'because' is the conjunction needed to introduce reason.`, type:`conjunction` },
+      { num:33, text:`We heard the explosion early in the morning.`, wrong:`explosion`, correct:`silence / quiet`, rule:`[33] Opposite of 'explosion' in context → silence (original asks for opposite meaning).`, type:`spelling` },
+      { num:34, text:`We didn't worried, because there had been explosions before.`, wrong:`worried`, correct:`worry`, rule:`After auxiliary 'didn't', use base form of verb: 'didn't worry'.`, type:`verb` },
+      { num:35, text:`Every one stopped what they were doing and listen.`, wrong:`listen`, correct:`listened`, rule:`Past tense narrative + parallel with 'stopped' → 'listened'.`, type:`tense` },
+      { num:36, text:`We could see a cloud of wight smoke coming from the nuclear reactor.`, wrong:`wight`, correct:`white`, rule:`'Wight' is an archaic/fantasy creature name. Correct word is 'white' smoke.`, type:`spelling` },
+    ]
+  },
+
+  {
+    id:12, source:"SK-80 / DCEB Medak", lesson:"Jamaican Fragment — Two Little Boys",
+    passage:`Every day, I walk a half-mile from my home to the tramcar lines in the morning and from the lines to my home in the evening. The walk was pleasant. The road on either side is flanked at red and green-roofed bungalows, green lawns and gardens. The exercise is good me, and now and then, I learn something from a little incident. One morning, about halfway between my front gate and tram track, I noticed two boys lithe playing in the garden of the more modest cottages. They were both very lithe boy.`,
+    sentences:[
+      { num:22, text:`The walk was pleasant.`, wrong:`was`, correct:`is`, rule:`The present-tense frame of the passage ('I walk', 'is flanked') means the walk IS pleasant (habitual present).`, type:`tense` },
+      { num:23, text:`The road on either side is flanked at red and green-roofed bungalows.`, wrong:`at`, correct:`by`, rule:`'Flanked by' is the correct passive construction — 'at' is wrong preposition here.`, type:`preposition` },
+      { num:24, text:`The exercise is good me, and now and then, I learn something from a little incident.`, wrong:`good me`, correct:`good for me`, rule:`Correct expression: 'good for me' — preposition 'for' is missing.`, type:`preposition` },
+      { num:25, text:`One morning, about halfway between my front gate and tram track, I noticed two boys lithe playing in the garden.`, wrong:`lithe playing`, correct:`little boys playing`, rule:`'Lithe' means agile/supple. Correct word is 'little'. Also 'lithe' misplaced — should be 'little boys'.`, type:`spelling` },
+      { num:26, text:`They were both very lithe boy.`, wrong:`lithe boy`, correct:`little boys`, rule:`Two errors: 'lithe' → 'little', and 'boy' → 'boys' (plural for 'both').`, type:`number` },
+    ]
+  },
+
+  {
+    id:13, source:"13/14E / DCEB (Version 3)", lesson:"The Journey — Narrator's Father",
+    passage:`My father protested, "Give me an old pair. You have don't to spend money on new shoes." I couldn't convinced him to buy a new pair. The kwoan I gave him the hunting boots I was wearing. I then took out mine pair of leather shoes from the trunk, and noticed my father's face lighting up with contentment. Suddenly he looked to me and said, 'Take care, Write to us...'`,
+    sentences:[
+      { num:22, text:`"Give me an old pair. You have don't to spend money on new shoes."`, wrong:`have don't`, correct:`don't have`, rule:`Correct word order for negative: 'You don't have to' (auxiliary + not + main verb).`, type:`conjunction` },
+      { num:23, text:`I couldn't convinced him to buy a new pair.`, wrong:`convinced`, correct:`convince`, rule:`After modal auxiliary 'couldn't', use base form: 'couldn't convince'.`, type:`verb` },
+      { num:24, text:`The kwoan I gave him the hunting boots I was wearing.`, wrong:`kwoan`, correct:`Then`, rule:`'Kwoan' is not a word. Context requires 'Then' — transition word.`, type:`spelling` },
+      { num:25, text:`I then took out mine pair of leather shoes from the trunk.`, wrong:`mine`, correct:`my`, rule:`'Mine' is a possessive pronoun (used alone). Before a noun, use possessive adjective 'my'.`, type:`pronoun` },
+      { num:26, text:`Suddenly he looked to me and said, 'Take care, Write to us...'`, wrong:`to`, correct:`at`, rule:`'Look at' is the correct phrasal verb when meaning to direct eyes at someone.`, type:`preposition` },
+    ]
+  },
+
+  {
+    id:14, source:"JK-80 / DCEB Jagtial (2nd set)", lesson:"Storeyed House — Bayaji's Fire",
+    passage:`Bayaji was frantic. He ran around crying, 'My house, my storeyed house! It's in fire. My enemy has taken revenge on me. He entered the roared flames, crying 'my house, my house!' He climbed up, pulled the pictures of Buddha and Babasaheb from the walls and hurled them down. As he was about to come down the stairs, it crumbled up in flames. People pulled up water from a nearby well to put out the dreadful fire but it could not be easy contained. Women and children are crying and screaming.`,
+    sentences:[
+      { num:22, text:`It's in fire.`, wrong:`in fire`, correct:`on fire`, rule:`Fixed expression: 'on fire' is correct — not 'in fire'.`, type:`preposition` },
+      { num:23, text:`He entered the roared flames, crying 'my house, my house!'`, wrong:`roared`, correct:`roaring`, rule:`'Roaring flames' is the correct participial adjective (ongoing action modifying flames).`, type:`verb` },
+      { num:24, text:`As he was about to come down the stairs, it crumbled up in flames.`, wrong:`crumbled up`, correct:`crumbled down`, rule:`Stairs crumble 'down' (direction of fall), not 'up'.`, type:`spelling` },
+      { num:25, text:`People pulled up water from a nearby well to put out the dreadful fire but it could not be easy contained.`, wrong:`easy`, correct:`easily`, rule:`Adverb 'easily' needed to modify the verb 'contained', not adjective 'easy'.`, type:`spelling` },
+      { num:26, text:`Women and children are crying and screaming.`, wrong:`are`, correct:`were`, rule:`Past tense narrative — should be 'were crying and screaming'.`, type:`tense` },
+    ]
+  },
+
+  {
+    id:15, source:"RM-80 / DCEB Karimnagar (Part B)", lesson:"Nick Vujicic — Attitude is Altitude",
+    passage:`At age ten Nick tried to drown himself in the bath but luckily the attempt was unsuccessful. 'I felt there was no purpose when you lack purpose and strength. It is hard to hold on,' he said. But with the help of his religion, friends and family, Nick managed to pull through to become international symbol of triumph over adverssity.`,
+    sentences:[
+      { num:32, text:`At age ten Nick tried to drown himself in the bath`, wrong:`drown`, correct:`drown (meaning: to submerge in water — 'to drown' is correct meaning here)`, rule:`[32] Write the meaning: 'drown' means to die/suffocate by submersion in water.`, type:`spelling` },
+      { num:33, text:`luckily the attempt was unsuccessful`, wrong:`unsuccessful`, correct:`failed / not successful`, rule:`[33] Synonym: 'unsuccessful' = failed. Replace with similar word.`, type:`spelling` },
+      { num:34, text:`It is hard to hold on`, wrong:`strength`, correct:`weakness`, rule:`[34] Opposite of 'strength' → weakness.`, type:`spelling` },
+      { num:35, text:`Nick managed to pull through`, wrong:`pull through`, correct:`pull out / give up`, rule:`[35] Opposite of 'pull through' (= survive/succeed) → give up.`, type:`verb` },
+      { num:36, text:`to become international symbol of triumph over adverssity`, wrong:`adverssity`, correct:`adversity`, rule:`Wrong spelling: 'adverssity' → 'adversity' (only one 's').`, type:`spelling` },
+    ]
+  },
+
+  {
+    id:16, source:"C-3A / DCEB Grand Test", lesson:"The Journey — Returning to Work",
+    passage:`After spending a leisurely Sunday at home, the very thought of returning to work on monday are tiring. Lethargy creeps in if the holiday continues in an extended period. That is how felt I when I was preparing to return to my place of work after spending six months at home. The fact that I was to leave behind my newly-wed wife but go to a far-off place did not help either. Obvious I did not want to go.`,
+    sentences:[
+      { num:22, text:`the very thought of returning to work on monday are tiring.`, wrong:`are`, correct:`is`, rule:`Subject is 'the very thought' (singular) → verb must be 'is', not 'are'.`, type:`verb` },
+      { num:23, text:`Lethargy creeps in if the holiday continues in an extended period.`, wrong:`in an extended period`, correct:`for an extended period`, rule:`'Continues for' (duration) is correct — 'in' is wrong preposition here.`, type:`preposition` },
+      { num:24, text:`That is how felt I when I was preparing to return.`, wrong:`felt I`, correct:`I felt`, rule:`Inverted word order is wrong in declarative sentence. Correct: 'That is how I felt'.`, type:`spelling` },
+      { num:25, text:`The fact that I was to leave behind my newly-wed wife but go to a far-off place did not help either.`, wrong:`but`, correct:`and`, rule:`'And' joins two parallel actions (leave wife AND go far away). 'But' implies contrast.`, type:`conjunction` },
+      { num:26, text:`Obvious I did not want to go.`, wrong:`Obvious`, correct:`Obviously`, rule:`An adverb is needed to modify the whole sentence. 'Obvious' is an adjective; 'Obviously' is the adverb.`, type:`spelling` },
+    ]
+  },
+
+  {
+    id:17, source:"G03(A) / DCEB Jogulamba Gadwal", lesson:"My Childhood — Lakshmana Sastry",
+    passage:`After school, we went home and tell our respective parents about the incident. Lakshmana Sastry summoned the teacher and in our presence, told the teacher that he should not spreading the poison of social inequality and communal tolerance in the minds of innocent children. He bluntly asked the teacher to either apologize and quit the school and the island. Not only did the teacher regret his behavior but the strong sense of conviction Lakshmana Sastry conveyed ultimate reformed this young teacher.`,
+    sentences:[
+      { num:22, text:`After school, we went home and tell our respective parents about the incident.`, wrong:`tell`, correct:`told`, rule:`Parallel past tense: 'went…and told' — both verbs must be in the same past tense.`, type:`tense` },
+      { num:23, text:`told the teacher that he should not spreading the poison of social inequality`, wrong:`spreading`, correct:`spread`, rule:`'Should not' is followed by base form of verb: 'should not spread'.`, type:`verb` },
+      { num:24, text:`communal tolerance in the minds of innocent children.`, wrong:`tolerance`, correct:`intolerance`, rule:`The lesson is about spreading intolerance — 'tolerance' is the opposite of the intended meaning.`, type:`spelling` },
+      { num:25, text:`He bluntly asked the teacher to either apologize and quit the school and the island.`, wrong:`and quit`, correct:`or quit`, rule:`'Either…or' is the correct correlative conjunction pair, not 'either…and'.`, type:`conjunction` },
+      { num:26, text:`Lakshmana Sastry conveyed ultimate reformed this young teacher.`, wrong:`ultimate`, correct:`ultimately`, rule:`Adverb 'ultimately' needed to modify the verb 'reformed', not adjective 'ultimate'.`, type:`spelling` },
+    ]
+  },
+
+  {
+    id:18, source:"NK-3 / DCEB Nagarkurnool (Grand Test)", lesson:"My Childhood — Kalam",
+    passage:`One day he invited me to his house for a meal. His wife was horrified at the idea of a Muslim boy invite to dine in her ritually purckitchen. She refused to serving me in her kitchen. Sivasubramania Iyer was not perturbed, nor did he get angry with his wide, but instead, served me with his own hands and sat down beside me to cat his meal. His wife watched us From beliond an kitchen door.`,
+    sentences:[
+      { num:22, text:`His wife was horrified at the idea of a Muslim boy invite to dine in her ritually pure kitchen.`, wrong:`invite`, correct:`being invited`, rule:`'The idea of a Muslim boy being invited' — gerund phrase needed after 'idea of'.`, type:`verb` },
+      { num:23, text:`She refused to serving me in her kitchen.`, wrong:`serving`, correct:`serve`, rule:`'Refused to' is followed by base form (infinitive): 'refused to serve'.`, type:`verb` },
+      { num:24, text:`Sivasubramania Iyer was not perturbed, nor did he get angry with his wide.`, wrong:`wide`, correct:`wife`, rule:`'Wide' means broad. Correct word is 'wife' — spelling error.`, type:`spelling` },
+      { num:25, text:`sat down beside me to cat his meal.`, wrong:`cat`, correct:`eat`, rule:`'Cat' is a noun/animal. Correct verb is 'eat' — likely a typo/spelling error.`, type:`spelling` },
+      { num:26, text:`His wife watched us From beliond an kitchen door.`, wrong:`beliond an kitchen door`, correct:`behind the kitchen door`, rule:`'Beliond' is not a word → 'behind'. 'An' before consonant sound 'k' → 'the'.`, type:`spelling` },
+    ]
+  },
+
+  {
+    id:19, source:"DP-3A / CCE Pre-Public", lesson:"Storeyed House — Bayaji (Part B)",
+    passage:`Bayaji was frantic. He ran around crying. 'My house, my storyed house! It's on fire. My Enemy has took revenge on me. He entered the roaring flames, crying "My House, my house." He climbed up, pulled the pictures of Buddha and Babasaheb from the walls and hurled them down. As he was about to come down the stares, it crumbled down in flames.`,
+    sentences:[
+      { num:32, text:`Bayaji was frantic.`, wrong:`frantic`, correct:`calm`, rule:`[32] Meaning of 'frantic' → wildly anxious/distressed.`, type:`spelling` },
+      { num:33, text:`My storyed house!`, wrong:`storyed`, correct:`storeyed`, rule:`Correct spelling: 'storeyed' (having multiple storeys/floors).`, type:`spelling` },
+      { num:34, text:`My Enemy has took revenge on me.`, wrong:`Enemy`, correct:`enemy`, rule:`Common noun 'enemy' should not be capitalised in mid-sentence.`, type:`spelling` },
+      { num:35, text:`My Enemy has took revenge on me.`, wrong:`took`, correct:`taken`, rule:`'Has taken' — present perfect requires past participle 'taken', not past simple 'took'.`, type:`tense` },
+      { num:36, text:`As he was about to come down the stares, it crumbled down in flames.`, wrong:`stares`, correct:`stairs`, rule:`'Stares' = looks hard at someone. 'Stairs' = steps in a building. Homophone error.`, type:`spelling` },
+    ]
+  },
+
+  {
+    id:20, source:"M-03(A) / DCEB Mahabubnagar", lesson:"Jamaican Fragment — Two Boys",
+    passage:`One morning, about halfway between my front gate and the tram track, I noticed two little boys playing in the garden of the more modest cottages. They were both very little boy, one was four years old perhaps, the other five. The big of the two was a sturdy youngster, very dark, with a mat of coarse hair on his head and coal-black eyes. He was definite a little Jamaican — a strong little Jamaican. The other little fellow was smaller, but also sturdy — he was white, with hazel eyes and light-brown hair. Both were dressed on blue shirts and khaki pants. They were no shoes and their feet were muddy.`,
+    sentences:[
+      { num:22, text:`They were both very little boy, one was four years old perhaps, the other five.`, wrong:`little boy`, correct:`little boys`, rule:`'Both' requires plural noun: 'both little boys' not 'little boy'.`, type:`number` },
+      { num:23, text:`The big of the two was a sturdy youngster.`, wrong:`big`, correct:`bigger`, rule:`Comparing two people — use comparative form: 'The bigger of the two'.`, type:`spelling` },
+      { num:24, text:`He was definite a little Jamaican — a strong little Jamaican.`, wrong:`definite`, correct:`definitely`, rule:`Adverb 'definitely' needed to modify the adjective 'a little Jamaican'.`, type:`spelling` },
+      { num:25, text:`Both were dressed on blue shirts and khaki pants.`, wrong:`on`, correct:`in`, rule:`Correct expression: 'dressed in' (wearing clothes). 'On' is incorrect here.`, type:`preposition` },
+      { num:26, text:`They were no shoes and their feet were muddy.`, wrong:`were no shoes`, correct:`wore no shoes`, rule:`'Wore' is the past tense of 'wear'. 'Were' is the past of 'be' — wrong verb.`, type:`tense` },
+    ]
+  }
+
+];
+
+// ═══════════════════════════════════
+// TYPE CONFIG
+const TYPE_CONFIG = {
+  tense:       { label:"Tense Error",         cls:"ett-tense" },
+  pronoun:     { label:"Pronoun Error",        cls:"ett-pronoun" },
+  verb:        { label:"Verb Form Error",      cls:"ett-verb" },
+  article:     { label:"Article Error",        cls:"ett-article" },
+  spelling:    { label:"Spelling/Word Form",   cls:"ett-spelling" },
+  preposition: { label:"Preposition Error",    cls:"ett-preposition" },
+  number:      { label:"Number Error",         cls:"ett-number" },
+  conjunction: { label:"Conjunction/Order",    cls:"ett-conjunction" },
+  word:        { label:"Wrong Word",           cls:"ett-word" },
+  none:        { label:"No Error",             cls:"ett-spelling" },
+};
+
+// ═══════════════════════════════════
+// STATE
+let currentPassage = 0;
+let doneSet = new Set();
+let shownSet = new Set();
+
+function init(){
+  document.getElementById("tb-total").textContent = PASSAGES.reduce((s,p)=>s+p.sentences.length,0);
+  buildPNav();
+  renderPassage(0);
+  window.addEventListener("scroll",()=>{
+    document.getElementById("scroll-top").classList.toggle("vis",window.scrollY>400);
+  });
+}
+
+function showScreen(s){
+  ["home","practice","analysis"].forEach(id=>{
+    const el = document.getElementById(id+"-screen");
+    el.style.display = s===id?"block":"none";
+  });
+  document.querySelectorAll(".tb-tab").forEach(t=>t.classList.remove("active"));
+  document.querySelectorAll(`.tb-tab`).forEach(t=>{ if(t.textContent.toLowerCase().includes(s.replace("-",""))||t.textContent.toLowerCase().startsWith(s.charAt(0))) t.classList.add("active"); });
+  if(s==="practice") renderPassage(currentPassage);
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+// ═══════════════════════════════════
+// PASSAGE NAV
+function buildPNav(){
+  const nav = document.getElementById("pnav");
+  nav.innerHTML = "";
+  PASSAGES.forEach((p,i)=>{
+    const btn = document.createElement("button");
+    btn.className = "pn" + (i===0?" active":"");
+    btn.id = `pn-${i}`;
+    btn.textContent = `${i+1}. ${p.source.split("/")[0].trim()}`;
+    btn.onclick = ()=>jumpTo(i);
+    nav.appendChild(btn);
+  });
+
+  const dots = document.getElementById("prog-dots");
+  dots.innerHTML = "";
+  PASSAGES.forEach((_,i)=>{
+    const d = document.createElement("div");
+    d.className = "pd" + (i===0?" current":"");
+    d.id = `pd-${i}`;
+    dots.appendChild(d);
+  });
+}
+
+function updatePNav(i){
+  document.querySelectorAll(".pn").forEach((b,idx)=>{
+    b.className = "pn" + (idx===i?" active":idx<i?" done":"");
+  });
+  document.querySelectorAll(".pd").forEach((d,idx)=>{
+    d.className = "pd" + (idx===i?" current":idx<i?" done":"");
+  });
+}
+
+function jumpTo(i){
+  currentPassage = i;
+  renderPassage(i);
+  document.getElementById("practice-screen").scrollIntoView({behavior:"smooth"});
+}
+
+// ═══════════════════════════════════
+// RENDER
+function renderPassage(idx){
+  currentPassage = idx;
+  const p = PASSAGES[idx];
+  const container = document.getElementById("practice-content");
+
+  let html = `
+    <div class="practice-meta">
+      <div class="pm-badge" style="background:var(--bg2);border:1px solid var(--border);color:var(--muted);font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:5px;padding:4px 10px;">Passage ${idx+1} of ${PASSAGES.length}</div>
+      <div class="pm-badge" style="background:var(--bg2);border:1px solid var(--border);color:var(--muted);font-family:'Syne',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:5px;padding:4px 10px;">${p.lesson}</div>
+      <div class="pm-source">${p.source}</div>
+      <div class="pm-count">Q22–26 · 5 marks</div>
+    </div>
+
+    <div class="passage-label">Passage — Find ONE error in each numbered sentence</div>
+    <div class="passage-box">
+      <em style="display:block;font-size:12px;color:var(--muted);margin-bottom:12px;font-style:normal;font-family:'Syne',sans-serif;letter-spacing:.04em;text-transform:uppercase;font-weight:700;">In the following passage, five sentences are numbered. Each has an error. Correct and rewrite.</em>
+      ${p.passage}
+    </div>`;
+
+  p.sentences.forEach((s, si)=>{
+    const uid = `${idx}-${si}`;
+    const tc = TYPE_CONFIG[s.type] || TYPE_CONFIG.spelling;
+    const savedAns = getSaved(uid);
+
+    html += `
+      <div class="q-panel" id="qp-${uid}">
+        <div class="q-panel-head">
+          <div class="qph-num">${s.num}</div>
+          <span class="qph-type ${tc.cls}">${tc.label}</span>
+          <div class="qph-sent">"${s.text.substring(0,80)}${s.text.length>80?'…':''}"</div>
+        </div>
+        <div class="q-panel-body">
+          <div class="error-display">
+            <strong style="font-family:'Syne',sans-serif;font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:6px;">Error in this sentence:</strong>
+            ${highlightError(s.text, s.wrong)}
+          </div>
+          <div class="input-label">Rewrite the corrected sentence:</div>
+          <textarea class="ans-input" id="ta-${uid}" rows="2" placeholder="Write the full corrected sentence here…">${savedAns}</textarea>
+          <div class="q-actions">
+            <button class="btn-check" onclick="checkAns('${uid}','${idx}','${si}')">✓ Check</button>
+            <button class="btn-show" onclick="toggleReveal('${uid}')">Show Answer</button>
+            <button class="btn-show" onclick="clearAns('${uid}')">✕ Clear</button>
+          </div>
+          <div class="answer-box" id="ab-${uid}">
+            <div class="ab-label">✓ Corrected Sentence</div>
+            <div class="ab-text"><strong>${s.wrong}</strong> → <strong style="color:var(--green)">${s.correct}</strong><br>${buildCorrected(s)}</div>
+            <div class="ab-rule"><span>💡</span><span>${s.rule}</span></div>
+          </div>
+        </div>
+      </div>`;
+  });
+
+  html += `
+    <div style="display:flex;gap:12px;margin-top:20px;flex-wrap:wrap;">
+      <button class="start-btn" style="padding:11px 28px;font-size:13px;" onclick="prevPassage()" ${idx===0?"disabled":""}>← Previous</button>
+      <button class="start-btn" style="padding:11px 28px;font-size:13px;" onclick="nextPassage()" ${idx===PASSAGES.length-1?"disabled":""}>Next Passage →</button>
+    </div>`;
+
+  container.innerHTML = html;
+  updatePNav(idx);
+  updateProgress();
+}
+
+function highlightError(text, wrong){
+  if(wrong==="No error" || wrong.includes("meaning")) return text;
+  const escaped = wrong.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+  return text.replace(new RegExp(escaped,'i'), m=>`<span class="wrong">${m}</span>`);
+}
+
+function buildCorrected(s){
+  if(s.type==="none"||s.wrong==="No error") return `<em>${s.text}</em>`;
+  const escaped = s.wrong.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
+  const corrected = s.text.replace(new RegExp(escaped,'i'), `<strong style="color:var(--green);background:rgba(30,102,64,.1);padding:1px 4px;border-radius:3px;">${s.correct}</strong>`);
+  return corrected;
+}
+
+// ═══════════════════════════════════
+// ACTIONS
+function checkAns(uid, pIdx, sIdx){
+  const ta = document.getElementById(`ta-${uid}`);
+  const val = ta.value.trim();
+  if(!val){ showToast("Write your corrected sentence first!"); return; }
+  const s = PASSAGES[+pIdx].sentences[+sIdx];
+  const correctLower = s.correct.toLowerCase().replace(/[^a-z0-9 ]/g,"");
+  const valLower = val.toLowerCase().replace(/[^a-z0-9 ]/g,"");
+  const hasKey = valLower.includes(correctLower) || correctLower.split(" ").every(w=>w.length<3||valLower.includes(w));
+  if(hasKey){
+    ta.className = "ans-input correct-input";
+    doneSet.add(uid);
+    showToast("✅ Looks correct! Check the model answer.");
+  } else {
+    ta.className = "ans-input wrong-input";
+    showToast("❌ Not quite right. Try again or show the answer.");
+  }
+  saveDone(uid, val);
+  updateProgress();
+}
+
+function toggleReveal(uid){
+  const ab = document.getElementById(`ab-${uid}`);
+  ab.classList.toggle("show");
+  if(ab.classList.contains("show")){
+    shownSet.add(uid);
+    updateProgress();
+  }
+}
+
+function clearAns(uid){
+  const ta = document.getElementById(`ta-${uid}`);
+  ta.value = "";
+  ta.className = "ans-input";
+  try{ localStorage.removeItem("ssc_err_"+uid); }catch(e){}
+}
+
+function nextPassage(){
+  if(currentPassage < PASSAGES.length-1){ currentPassage++; renderPassage(currentPassage); window.scrollTo({top:0,behavior:"smooth"}); }
+}
+function prevPassage(){
+  if(currentPassage>0){ currentPassage--; renderPassage(currentPassage); window.scrollTo({top:0,behavior:"smooth"}); }
+}
+
+function updateProgress(){
+  const total = PASSAGES.reduce((s,p)=>s+p.sentences.length,0);
+  const done = doneSet.size;
+  document.getElementById("tb-done").textContent = done;
+  document.getElementById("pfill").style.width = (done/total*100)+"%";
+}
+
+// ═══════════════════════════════════
+// STORAGE
+function getSaved(uid){ try{ return localStorage.getItem("ssc_err_"+uid)||""; }catch(e){ return ""; } }
+function saveDone(uid,val){ try{ localStorage.setItem("ssc_err_"+uid,val); }catch(e){} }
+
+// ═══════════════════════════════════
+// TOAST
+function showToast(msg){
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  setTimeout(()=>t.classList.remove("show"),2500);
+}
+
+init();
+</script>
+</body>
+</html>
