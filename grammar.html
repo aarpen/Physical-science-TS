@@ -1,0 +1,1212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grammar Practice – Q13 SSC English</title>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;1,400&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --ink:#1a1a2e;
+  --ink2:#2d2d4e;
+  --paper:#f7f4ef;
+  --paper2:#efeae2;
+  --paper3:#e5dfd5;
+  --cream:#fdf9f3;
+  --gold:#c8973a;
+  --gold2:#e8b96a;
+  --teal:#1d7a6e;
+  --teal2:#2ba898;
+  --teal-light:#e0f4f2;
+  --coral:#c94f3a;
+  --coral-light:#fdecea;
+  --green:#2e7d52;
+  --green-light:#e6f4ec;
+  --muted:#7a7090;
+  --border:#d4cdc2;
+  --radius:12px;
+  --radius-sm:8px;
+  --shadow:0 2px 16px rgba(26,26,46,0.10);
+  --shadow-lg:0 8px 40px rgba(26,26,46,0.14);
+}
+
+body{
+  font-family:'Outfit',sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* ── decorative grain overlay ── */
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:0;
+}
+
+/* ── top bar ── */
+.topbar{
+  background:var(--ink);
+  color:#fff;
+  padding:14px 28px;
+  display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:100;
+  gap:12px;flex-wrap:wrap;
+}
+.topbar-brand{
+  display:flex;align-items:center;gap:12px;
+}
+.brand-dot{
+  width:10px;height:10px;border-radius:50%;
+  background:var(--gold2);
+  animation:blink 2s ease-in-out infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
+.brand-name{
+  font-family:'Lora',serif;
+  font-size:1.1rem;font-weight:600;
+  letter-spacing:.01em;
+}
+.brand-sub{font-size:12px;color:rgba(255,255,255,.55);font-weight:300;}
+
+.topbar-stats{
+  display:flex;gap:18px;align-items:center;flex-wrap:wrap;
+}
+.ts{
+  display:flex;align-items:center;gap:6px;
+  font-size:13px;color:rgba(255,255,255,.7);
+}
+.ts .val{
+  font-weight:600;font-size:15px;
+  color:#fff;
+}
+
+/* ── progress bar ── */
+.prog-wrap{
+  height:3px;background:var(--paper3);
+  position:sticky;top:52px;z-index:99;
+}
+.prog-fill{
+  height:100%;background:linear-gradient(90deg,var(--teal),var(--gold));
+  transition:width .5s cubic-bezier(.4,0,.2,1);
+}
+
+/* ── main layout ── */
+.container{
+  max-width:860px;margin:0 auto;
+  padding:32px 20px 80px;
+  position:relative;z-index:1;
+}
+
+/* ── screen transitions ── */
+.screen{animation:fadeUp .35s ease both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── WELCOME ── */
+.hero{
+  text-align:center;
+  padding:48px 0 40px;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--teal-light);
+  border:1px solid rgba(29,122,110,.25);
+  border-radius:100px;
+  padding:6px 16px;
+  font-size:12px;font-weight:600;
+  color:var(--teal);
+  text-transform:uppercase;letter-spacing:.07em;
+  margin-bottom:22px;
+}
+.hero h1{
+  font-family:'Lora',serif;
+  font-size:clamp(2.2rem,5vw,3.4rem);
+  font-weight:600;line-height:1.15;
+  letter-spacing:-.02em;
+  color:var(--ink);
+  margin-bottom:14px;
+}
+.hero h1 em{
+  font-style:italic;color:var(--teal);
+}
+.hero-sub{
+  font-size:16px;color:var(--muted);
+  font-weight:300;max-width:500px;margin:0 auto 36px;
+  line-height:1.7;
+}
+
+.feature-row{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:14px;margin:0 0 40px;
+}
+.feature-card{
+  background:var(--cream);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:22px 16px 18px;
+  text-align:center;
+  transition:transform .2s,border-color .2s;
+}
+.feature-card:hover{transform:translateY(-3px);border-color:var(--teal2);}
+.fc-icon{font-size:30px;margin-bottom:10px;}
+.fc-title{font-size:14px;font-weight:600;color:var(--ink);margin-bottom:4px;}
+.fc-desc{font-size:12px;color:var(--muted);}
+
+/* filter chips */
+.filter-label{
+  font-size:13px;font-weight:500;color:var(--muted);
+  margin-bottom:12px;text-align:center;
+}
+.chip-row{
+  display:flex;flex-wrap:wrap;gap:8px;
+  justify-content:center;margin-bottom:32px;
+}
+.chip{
+  padding:7px 16px;border-radius:100px;
+  background:var(--cream);
+  border:1.5px solid var(--border);
+  font-size:13px;font-weight:500;
+  color:var(--muted);cursor:pointer;
+  transition:all .18s;
+}
+.chip:hover,.chip.active{
+  background:var(--teal-light);
+  border-color:var(--teal2);
+  color:var(--teal);
+}
+
+.start-btn{
+  background:var(--ink);
+  color:#fff;
+  border:none;border-radius:var(--radius-sm);
+  padding:16px 48px;
+  font-family:'Lora',serif;
+  font-size:1.1rem;font-weight:600;
+  cursor:pointer;
+  transition:all .2s;
+  display:inline-flex;align-items:center;gap:10px;
+  box-shadow:var(--shadow);
+}
+.start-btn:hover{
+  background:var(--ink2);
+  transform:translateY(-2px);
+  box-shadow:var(--shadow-lg);
+}
+
+/* ── QUESTION CARD ── */
+.q-card{
+  background:var(--cream);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  margin-bottom:0;
+}
+.q-card-top{
+  background:var(--ink);
+  padding:18px 28px;
+  display:flex;align-items:center;justify-content:space-between;
+  gap:12px;flex-wrap:wrap;
+}
+.q-tag{
+  font-size:11px;font-weight:700;
+  color:var(--gold2);
+  text-transform:uppercase;letter-spacing:.08em;
+  background:rgba(200,151,58,.15);
+  border:1px solid rgba(200,151,58,.3);
+  border-radius:6px;padding:4px 10px;
+}
+.q-source{
+  font-size:12px;color:rgba(255,255,255,.45);
+}
+.q-body{padding:28px 32px;}
+@media(max-width:580px){.q-body{padding:20px 18px;}}
+
+.q-instruction{
+  font-size:13px;color:var(--muted);
+  font-style:italic;margin-bottom:20px;
+  line-height:1.6;
+  border-left:3px solid var(--gold2);
+  padding-left:12px;
+}
+
+/* passage box */
+.passage-box{
+  background:var(--paper2);
+  border:1px solid var(--border);
+  border-radius:var(--radius-sm);
+  padding:20px 24px;
+  margin-bottom:26px;
+  font-size:15.5px;
+  line-height:2;
+  color:var(--ink);
+  position:relative;
+}
+.passage-box::before{
+  content:'PASSAGE';
+  position:absolute;top:-10px;left:16px;
+  font-size:10px;font-weight:700;
+  letter-spacing:.1em;
+  background:var(--paper2);
+  color:var(--muted);
+  padding:0 8px;
+}
+.underline-part{
+  border-bottom:2.5px solid var(--teal);
+  color:var(--teal);
+  font-weight:500;
+  padding-bottom:1px;
+}
+.roman-tag{
+  display:inline-flex;
+  align-items:center;justify-content:center;
+  width:22px;height:22px;
+  border-radius:50%;
+  background:var(--ink);
+  color:#fff;
+  font-size:10px;font-weight:700;
+  margin:0 1px;
+  vertical-align:middle;
+}
+
+/* sub-question */
+.sub-questions{display:flex;flex-direction:column;gap:18px;}
+.sub-q{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:var(--radius-sm);
+  overflow:hidden;
+  transition:border-color .2s;
+}
+.sub-q:focus-within{border-color:var(--teal2);}
+
+.sub-q-header{
+  background:var(--paper3);
+  padding:10px 18px;
+  display:flex;align-items:center;gap:10px;
+}
+.sub-num{
+  width:28px;height:28px;
+  border-radius:50%;
+  background:var(--ink);
+  color:#fff;
+  font-size:12px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.sub-type{
+  font-size:12px;font-weight:600;color:var(--muted);
+  text-transform:uppercase;letter-spacing:.06em;
+}
+.sub-q-prompt{
+  padding:14px 18px 4px;
+  font-size:14px;font-weight:500;color:var(--ink);
+  line-height:1.6;
+}
+.sub-q-hint{
+  padding:4px 18px 10px;
+  font-size:12.5px;color:var(--muted);
+  font-style:italic;
+}
+
+/* answer area */
+.answer-area{
+  padding:10px 18px 16px;
+  display:flex;flex-direction:column;gap:8px;
+}
+.ans-input{
+  width:100%;
+  background:var(--paper);
+  border:1.5px solid var(--border);
+  border-radius:var(--radius-sm);
+  padding:12px 16px;
+  font-family:'Outfit',sans-serif;
+  font-size:14px;
+  color:var(--ink);
+  outline:none;
+  resize:vertical;
+  min-height:48px;
+  transition:border-color .18s,background .18s;
+}
+.ans-input:focus{
+  border-color:var(--teal2);
+  background:#fff;
+}
+.ans-input.correct{
+  border-color:var(--green);
+  background:var(--green-light);
+  color:var(--green);
+}
+.ans-input.wrong{
+  border-color:var(--coral);
+  background:var(--coral-light);
+}
+
+.check-btn{
+  align-self:flex-start;
+  background:var(--teal);
+  color:#fff;
+  border:none;border-radius:var(--radius-sm);
+  padding:9px 22px;
+  font-family:'Outfit',sans-serif;
+  font-size:13px;font-weight:600;
+  cursor:pointer;
+  transition:all .18s;
+  display:flex;align-items:center;gap:6px;
+}
+.check-btn:hover{background:var(--teal2);}
+.check-btn:disabled{opacity:.4;cursor:default;}
+
+.answer-reveal{
+  display:none;
+  background:var(--green-light);
+  border:1px solid rgba(46,125,82,.25);
+  border-radius:var(--radius-sm);
+  padding:12px 16px;
+  font-size:13.5px;
+  color:var(--green);
+  line-height:1.6;
+}
+.answer-reveal.show{display:block;animation:fadeUp .25s ease;}
+.answer-reveal strong{color:var(--ink);}
+
+.show-ans-btn{
+  align-self:flex-start;
+  background:transparent;
+  color:var(--muted);
+  border:1.5px solid var(--border);
+  border-radius:var(--radius-sm);
+  padding:8px 18px;
+  font-family:'Outfit',sans-serif;
+  font-size:12px;font-weight:500;
+  cursor:pointer;
+  transition:all .18s;
+}
+.show-ans-btn:hover{border-color:var(--teal2);color:var(--teal);}
+
+/* ── nav row ── */
+.nav-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:24px;
+  flex-wrap:wrap;gap:12px;
+}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:12px 26px;
+  border-radius:var(--radius-sm);
+  font-family:'Outfit',sans-serif;
+  font-size:14px;font-weight:600;
+  cursor:pointer;border:none;
+  transition:all .18s;
+}
+.btn-primary{
+  background:var(--ink);color:#fff;
+  box-shadow:var(--shadow);
+}
+.btn-primary:hover{background:var(--ink2);transform:translateY(-1px);}
+.btn-ghost{
+  background:transparent;
+  color:var(--muted);
+  border:1.5px solid var(--border);
+}
+.btn-ghost:hover{border-color:var(--ink2);color:var(--ink);}
+.btn:disabled{opacity:.35;cursor:default;transform:none!important;}
+
+/* q counter dots */
+.dot-nav{
+  display:flex;flex-wrap:wrap;gap:6px;
+  margin-bottom:20px;
+}
+.dot{
+  width:32px;height:32px;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:600;
+  cursor:pointer;
+  transition:all .15s;
+  border:1.5px solid var(--border);
+  color:var(--muted);background:var(--cream);
+}
+.dot:hover{border-color:var(--teal2);}
+.dot.current{background:var(--ink);color:#fff;border-color:var(--ink);}
+.dot.done{background:var(--teal-light);color:var(--teal);border-color:var(--teal2);}
+
+/* ── RESULTS ── */
+#results-screen{text-align:center;padding:40px 0 60px;}
+.res-ring{width:150px;height:150px;margin:0 auto 28px;position:relative;}
+.res-ring svg{width:100%;height:100%;transform:rotate(-90deg);}
+.ring-bg{fill:none;stroke:var(--paper3);stroke-width:10;}
+.ring-fill{fill:none;stroke-width:10;stroke-linecap:round;stroke-dasharray:408;stroke-dashoffset:408;transition:stroke-dashoffset 1.2s cubic-bezier(.4,0,.2,1) .3s;}
+.ring-lbl{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.ring-pct{font-family:'Lora',serif;font-size:36px;font-weight:600;color:var(--ink);}
+.ring-sub{font-size:12px;color:var(--muted);}
+.res-title{font-family:'Lora',serif;font-size:2rem;margin-bottom:8px;color:var(--ink);}
+.res-msg{color:var(--muted);font-size:16px;margin-bottom:32px;}
+.res-cards{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:36px;}
+.rc{
+  background:var(--cream);border:1px solid var(--border);
+  border-radius:var(--radius-sm);padding:18px 28px;
+  min-width:110px;text-align:center;
+}
+.rc .n{font-family:'Lora',serif;font-size:1.8rem;font-weight:600;margin-bottom:4px;}
+.rc .l{font-size:12px;color:var(--muted);}
+.rc.g .n{color:var(--green);}
+.rc.r .n{color:var(--coral);}
+.rc.t .n{color:var(--teal);}
+.rc.o .n{color:var(--gold);}
+
+/* ── confetti ── */
+.confetti-burst{position:fixed;top:0;left:0;right:0;pointer-events:none;z-index:999;overflow:hidden;height:100vh;}
+.cp{position:absolute;width:9px;height:9px;top:-20px;animation:cffall linear forwards;opacity:0;}
+@keyframes cffall{0%{transform:translateY(0) rotate(0deg);opacity:1}100%{transform:translateY(105vh) rotate(720deg);opacity:0}}
+
+/* ── toast ── */
+.toast{
+  position:fixed;bottom:28px;left:50%;
+  transform:translateX(-50%) translateY(14px);
+  background:var(--ink);color:#fff;
+  border-radius:var(--radius-sm);
+  padding:12px 22px;font-size:14px;font-weight:500;
+  z-index:200;opacity:0;pointer-events:none;
+  transition:all .3s ease;white-space:nowrap;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* ── grammar type badges ── */
+.type-badge{
+  display:inline-block;
+  font-size:11px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.06em;
+  border-radius:4px;padding:3px 8px;margin-right:6px;
+}
+.tb-voice{background:#e8f4fc;color:#1a6fa0;}
+.tb-speech{background:#f3e8fc;color:#7a1aa0;}
+.tb-degree{background:#fef3e8;color:#b05a10;}
+.tb-combine{background:#e8fcf0;color:#1a8050;}
+.tb-rewrite{background:#fce8e8;color:#a01a1a;}
+.tb-tag{background:#f0e8fc;color:#5a1aa0;}
+.tb-transform{background:#e8fcfc;color:#1a8080;}
+.tb-other{background:#f5f5e8;color:#6a6a1a;}
+
+</style>
+</head>
+<body>
+
+<!-- WELCOME -->
+<div id="welcome-screen" class="screen">
+  <div class="topbar">
+    <div class="topbar-brand">
+      <div class="brand-dot"></div>
+      <div>
+        <div class="brand-name">SSC English — Q13 Grammar</div>
+        <div class="brand-sub">Telangana District Board Papers · 2025–26</div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="hero">
+      <div class="hero-eyebrow">📘 Grammar Practice</div>
+      <h1>Master<br><em>Grammar Transformations</em></h1>
+      <p class="hero-sub">All Q13 grammar questions from 15+ Telangana district board pre-final papers. Practice sentence transformations, voice, speech, degree, combining sentences and more.</p>
+    </div>
+    <div class="feature-row">
+      <div class="feature-card"><div class="fc-icon">🔄</div><div class="fc-title">Voice Change</div><div class="fc-desc">Active ↔ Passive</div></div>
+      <div class="feature-card"><div class="fc-icon">💬</div><div class="fc-title">Reported Speech</div><div class="fc-desc">Direct ↔ Indirect</div></div>
+      <div class="feature-card"><div class="fc-icon">🔗</div><div class="fc-title">Combining</div><div class="fc-desc">Using conjunctions & relatives</div></div>
+      <div class="feature-card"><div class="fc-icon">✏️</div><div class="fc-title">Rewrite</div><div class="fc-desc">Using given starters & forms</div></div>
+      <div class="feature-card"><div class="fc-icon">📊</div><div class="fc-title">Degree</div><div class="fc-desc">Positive / Comparative / Superlative</div></div>
+      <div class="feature-card"><div class="fc-icon">❓</div><div class="fc-title">Question Tags</div><div class="fc-desc">Add the right tag</div></div>
+    </div>
+    <div class="filter-label">Filter by grammar type</div>
+    <div class="chip-row" id="type-chips"></div>
+    <div style="text-align:center;">
+      <button class="start-btn" onclick="startPractice()">Start Practice <span>→</span></button>
+    </div>
+  </div>
+</div>
+
+<!-- QUIZ -->
+<div id="quiz-screen" class="screen" style="display:none;">
+  <div class="topbar">
+    <div class="topbar-brand">
+      <div class="brand-dot"></div>
+      <div>
+        <div class="brand-name">Q13 Grammar Practice</div>
+        <div class="brand-sub">SSC English · 2025–26</div>
+      </div>
+    </div>
+    <div class="topbar-stats">
+      <div class="ts">✅ <span class="val" id="s-done">0</span> done</div>
+      <div class="ts">💡 <span class="val" id="s-shown">0</span> revealed</div>
+      <div class="ts">📚 <span class="val" id="s-total">0</span> total</div>
+    </div>
+  </div>
+  <div class="prog-wrap"><div class="prog-fill" id="prog-fill" style="width:0%"></div></div>
+
+  <div class="container" style="padding-top:24px;">
+    <div class="dot-nav" id="dot-nav"></div>
+
+    <div class="q-card" id="q-card">
+      <div class="q-card-top">
+        <span class="q-tag" id="q-tag">Passage 1</span>
+        <span class="q-source" id="q-src">Source</span>
+      </div>
+      <div class="q-body">
+        <p class="q-instruction" id="q-instr"></p>
+        <div class="passage-box" id="passage-box"></div>
+        <div class="sub-questions" id="sub-qs"></div>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn btn-ghost" id="btn-prev" onclick="goBack()">← Previous</button>
+      <button class="btn btn-primary" id="btn-next" onclick="goNext()">Next →</button>
+    </div>
+  </div>
+</div>
+
+<!-- RESULTS -->
+<div id="results-screen" class="screen" style="display:none;">
+  <div class="topbar">
+    <div class="topbar-brand">
+      <div class="brand-dot"></div>
+      <div><div class="brand-name">Results</div></div>
+    </div>
+  </div>
+  <div class="container" style="padding-top:40px;">
+    <div id="results-screen-inner">
+      <div id="res-trophy" style="font-size:64px;margin-bottom:16px;">🏆</div>
+      <div class="res-ring">
+        <svg viewBox="0 0 140 140">
+          <circle class="ring-bg" cx="70" cy="70" r="65"/>
+          <circle class="ring-fill" id="ring-fill" cx="70" cy="70" r="65" stroke="#1d7a6e"/>
+        </svg>
+        <div class="ring-lbl">
+          <div class="ring-pct" id="ring-pct">0%</div>
+          <div class="ring-sub">attempted</div>
+        </div>
+      </div>
+      <h2 class="res-title" id="res-title">Good effort!</h2>
+      <p class="res-msg" id="res-msg"></p>
+      <div class="res-cards">
+        <div class="rc g"><div class="n" id="rc-done">0</div><div class="l">Attempted</div></div>
+        <div class="rc t"><div class="n" id="rc-shown">0</div><div class="l">Hints used</div></div>
+        <div class="rc o"><div class="n" id="rc-total">0</div><div class="l">Total Qs</div></div>
+      </div>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+        <button class="btn btn-primary" onclick="restart()">↺ Practice Again</button>
+        <button class="btn btn-ghost" onclick="backToHome()">← Home</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<div class="confetti-burst" id="cf"></div>
+
+<script>
+// ═══════════════════════════════════════════════════════
+// ALL Q13 GRAMMAR DATA FROM SSC DISTRICT BOARD PAPERS
+// ═══════════════════════════════════════════════════════
+const PASSAGES = [
+
+  // ─── 1. K-3 / DCEB KHAMMAM ───
+  {
+    source: "K-3 / DCEB Khammam",
+    instruction: "Read the passage below focusing on the underlined parts. Answer any FOUR of the questions as directed.",
+    passage: `During a rescue mission after heavy floods, a group of volunteers worked tirelessly to help the affected people. They supplied food, water, and medicines to those in need. <u>(I)</u> The volunteers <u>have completed</u> the rescue work successfully. One of the team members spoke confidently about their effort. <u>(II)</u> The leader said, <u>"We will continue our service until everyone is safe."</u> This was <u>(III)</u> one of the <u>bravest</u> efforts made by the volunteers. The conditions were risky in many areas. <u>(IV)</u> The roads were <u>so damaged</u> that vehicles could not move freely. The volunteers did not stop their work. <u>(V)</u> Though the situation was dangerous, they carried on their mission. <u>(VI)</u> The team followed safety instructions carefully. They avoided serious accidents.`,
+    questions: [
+      { roman:"I",  type:"voice",   prompt: "Rewrite the sentence beginning with 'The rescue work'.", answer: "The rescue work has been completed successfully by the volunteers.", typeLabel:"Voice" },
+      { roman:"II", type:"speech",  prompt: "Change to indirect speech: The leader said, …", answer: "The leader said that they would continue their service until everyone was safe.", typeLabel:"Reported Speech" },
+      { roman:"III",type:"degree",  prompt: "Rewrite the sentence beginning with 'Very few'.", answer: "Very few efforts made by the volunteers were as brave as this.", typeLabel:"Degree" },
+      { roman:"IV", type:"rewrite", prompt: "Rewrite the sentence using 'too — to'.", answer: "The roads were too damaged for vehicles to move freely.", typeLabel:"Rewrite" },
+      { roman:"V",  type:"rewrite", prompt: "Rewrite the sentence using 'despite'.", answer: "Despite the dangerous situation, they carried on their mission.", typeLabel:"Rewrite" },
+      { roman:"VI", type:"combine", prompt: "Combine the sentences using 'if'.", answer: "If the team follows safety instructions carefully, they will avoid serious accidents.", typeLabel:"Combine" },
+    ]
+  },
+
+  // ─── 2. MP-3 ───
+  {
+    source: "MP-3",
+    instruction: "Read the passage below focusing on the underlined parts. Answer any 4 questions as directed.",
+    passage: `A thirsty crow was searching for water on a hot day. <u>(i)</u> He saw a pitcher with some water at the bottom, but <u>(ii)</u> his beak was very short. He cannot reach it. After a moment, <u>(iii)</u> he thought <u>"Something is to be done now."</u> The crow flew to a nearby pile of pebbles. He picked one up and dropped it into the pitcher. <u>(iv)</u> The water level rose a little. He continued dropping pebbles one by one. After a while, the water was high enough for him to drink. He drank them and flew away. This story is a simple one. Such stories are enjoyed by kids. <u>(v)</u> They have a positive message, and are easy for students to remember and retell. <u>(vi)</u> This is one of <u>best</u> stories for the small kids.`,
+    questions: [
+      { roman:"i",   type:"voice",   prompt: "Re-write the sentence beginning with 'A pitcher'.", answer: "A pitcher with some water at the bottom was seen by him.", typeLabel:"Voice" },
+      { roman:"ii",  type:"rewrite", prompt: "Combine the sentences using 'too…to'.", answer: "His beak was too short to reach the water.", typeLabel:"Rewrite" },
+      { roman:"iii", type:"speech",  prompt: "Re-write the sentences beginning with 'He thought that…'.", answer: "He thought that something was to be done then.", typeLabel:"Reported Speech" },
+      { roman:"iv",  type:"combine", prompt: "Combine the sentences using 'Although'.", answer: "Although the water level rose a little, he continued dropping pebbles.", typeLabel:"Combine" },
+      { roman:"v",   type:"rewrite", prompt: "Re-write the sentence using 'not only … but also'.", answer: "They not only have a positive message but also are easy for students to remember and retell.", typeLabel:"Rewrite" },
+      { roman:"vi",  type:"degree",  prompt: "Re-write the sentence beginning with 'Very few'.", answer: "Very few stories for the small kids are as good as this.", typeLabel:"Degree" },
+    ]
+  },
+
+  // ─── 3. V-3 ───
+  {
+    source: "V-3 / Pre-Public Examinations",
+    instruction: "Read the passage below focusing on the underlined parts. Answer any four of the questions as directed.",
+    passage: `Elephants are found in India and Africa. <u>(i)</u> The elephant is a <u>strong</u> animal. It is an intelligent animal too. <u>(ii)</u> It has been trained to serve in various ways. <u>(iii)</u> Elephants can carry heavy loads. They are used to draw heavy wagons and big guns that would require many horses. They are very skilful too. <u>(iv)</u> Elephants are <u>not only strong but also gentle</u> by nature. <u>(v)</u> Elephants can be seen in forests or in zoos. Sometimes they are used in festivals to carry idols or guests. <u>(vi)</u> They are one of the most loved animals in the world.`,
+    questions: [
+      { roman:"i",   type:"combine", prompt: "Combine using 'not only … but also'.", answer: "The elephant is not only a strong animal but also an intelligent animal.", typeLabel:"Combine" },
+      { roman:"ii",  type:"tag",     prompt: "Add a question tag.", answer: "It has been trained to serve in various ways, hasn't it?", typeLabel:"Question Tag" },
+      { roman:"iii", type:"voice",   prompt: "Re-write the sentence beginning with 'Heavy loads …'.", answer: "Heavy loads can be carried by elephants.", typeLabel:"Voice" },
+      { roman:"iv",  type:"combine", prompt: "Combine the sentences using 'Despite'.", answer: "Despite being strong, elephants are gentle by nature.", typeLabel:"Combine" },
+      { roman:"v",   type:"combine", prompt: "Combine using 'either … or'.", answer: "Elephants can be seen either in forests or in zoos.", typeLabel:"Combine" },
+    ]
+  },
+
+  // ─── 4. PR-80 / DCEB PEDDAPALLI ───
+  {
+    source: "PR-80 / DCEB Peddapalli",
+    instruction: "Read the passage below focusing on the underlined parts. Answer any 4 questions as directed and write them in your answer booklet.",
+    passage: `Abhinav is an engineering student. <u>(i)</u> He loved planting trees in his village. <u>(ii)</u> He tells his friends, <u>"It is our duty to grow trees to protect the environment."</u> Together, they planted many saplings. <u>(iii)</u> The villagers also appreciated Abhinav as well as the neighbouring villages. The villagers appreciated him for his foresight. <u>(iv)</u> Now, the village is cooler than neighbouring villages. <u>(v)</u> The District Collector honoured him with the Vriksha Mitra Award.`,
+    questions: [
+      { roman:"i",   type:"tag",     prompt: "Add an appropriate question tag.", answer: "He loved planting trees in his village, didn't he?", typeLabel:"Question Tag" },
+      { roman:"ii",  type:"speech",  prompt: "Change into indirect speech.", answer: "He tells his friends that it is their duty to grow trees to protect the environment.", typeLabel:"Reported Speech" },
+      { roman:"iii", type:"combine", prompt: "Combine the sentences using 'not only … but also'.", answer: "The villagers not only appreciated Abhinav but also the neighbouring villages.", typeLabel:"Combine" },
+      { roman:"iv",  type:"combine", prompt: "Combine the sentences using 'so … that'.", answer: "The village is so cool now that it is cooler than neighbouring villages.", typeLabel:"Combine" },
+      { roman:"v",   type:"voice",   prompt: "Change the sentence into Passive Voice.", answer: "He was honoured with the Vriksha Mitra Award by the District Collector.", typeLabel:"Voice" },
+    ]
+  },
+
+  // ─── 5. ST-80 / DCEB SIDDIPET ───
+  {
+    source: "ST-80 / DCEB Siddipet",
+    instruction: "Read the passage below focusing on the underlined parts. Answer any 4 questions as directed.",
+    passage: `<u>(i)</u> On seeing the headmaster, Ramana ran away. <u>(ii)</u> He was rushing home. He met one of his friends on the way. <u>(iii)</u> The friend stopped him. He asked him, <u>"Where are you going now?"</u> <u>(iv)</u> Ramana was in a hurry; he did not stop there to talk to his friend. <u>(v)</u> The friend understood the reason.`,
+    questions: [
+      { roman:"i",   type:"rewrite", prompt: "Rewrite the sentence using 'When'.", answer: "When Ramana saw the headmaster, he ran away.", typeLabel:"Rewrite" },
+      { roman:"ii",  type:"combine", prompt: "Combine the sentence using 'While'.", answer: "While he was rushing home, he met one of his friends on the way.", typeLabel:"Combine" },
+      { roman:"iii", type:"speech",  prompt: "Begin the sentence with 'He was …'.", answer: "He was asked where he was going then.", typeLabel:"Reported Speech" },
+      { roman:"iv",  type:"speech",  prompt: "Begin the sentence with 'He asked'.", answer: "He asked where he was going.", typeLabel:"Reported Speech" },
+      { roman:"v",   type:"tag",     prompt: "Use the proper question tag.", answer: "The friend understood the reason, didn't he?", typeLabel:"Question Tag" },
+    ]
+  },
+
+  // ─── 6. 13/14E DCEB ─── version 1
+  {
+    source: "13/14E / DCEB (Version 1)",
+    instruction: "Read the passage below focusing on the underlined parts. Answer any four (4) of the questions as directed.",
+    passage: `Robert is admired by many for his work. <u>(i)</u> He is one of the <u>most famous</u> environmentalists in the city. <u>(ii)</u> He has a deep connection with nature and he often travels to remote areas to study biodiversity. His efforts inspire others to care for the environment. <u>(iii)</u> He is very dedicated to his cause. He spends most of his time organising campaigns. <u>(iv)</u> In 2010, Robert founded the Green Earth Organization. <u>(v)</u> This organisation plants thousands of trees every year and also supports renewable energy projects. <u>(vi)</u> Volunteers work with the organisation. They help to spread environmental awareness in local communities.`,
+    questions: [
+      { roman:"i",   type:"degree",  prompt: "Rewrite the sentence using 'Very few'.", answer: "Very few environmentalists in the city are as famous as he.", typeLabel:"Degree" },
+      { roman:"ii",  type:"tag",     prompt: "Add suitable question tag.", answer: "He has a deep connection with nature and he often travels to remote areas to study biodiversity, doesn't he?", typeLabel:"Question Tag" },
+      { roman:"iii", type:"combine", prompt: "Combine the sentences using 'so … that'.", answer: "He is so dedicated to his cause that he spends most of his time organising campaigns.", typeLabel:"Combine" },
+      { roman:"iv",  type:"voice",   prompt: "Begin the sentence with 'The Green Earth Organization'.", answer: "The Green Earth Organization was founded by Robert in 2010.", typeLabel:"Voice" },
+      { roman:"v",   type:"rewrite", prompt: "Rewrite the sentence using 'not only … but also'.", answer: "This organisation not only plants thousands of trees every year but also supports renewable energy projects.", typeLabel:"Rewrite" },
+      { roman:"vi",  type:"combine", prompt: "Combine the sentences using 'who'.", answer: "Volunteers who work with the organisation help to spread environmental awareness in local communities.", typeLabel:"Combine" },
+    ]
+  },
+
+  // ─── 7. JK-80 / Rajanna Sircilla ───
+  {
+    source: "JK-80 / DCEB Rajanna Sircilla",
+    instruction: "Read the passage below focusing on the underlined parts. Answer any 4 questions as directed.",
+    passage: `The weather in England can change very quickly. One day last week, <u>(i)</u> I went for a walk in the country. <u>(ii)</u> I started early in the morning; the weather was beautiful. <u>(iii)</u> My father said to me, <u>"The sky is blue and there are no clouds at all."</u> In the middle of the morning, a sudden change came. Black clouds covered the sun, and in a very short time, it started to rain heavily. There were no houses in sight, and I had no coat with me. So I got wet indeed and very cold too. After about an hour, <u>(v)</u> I managed to catch a bus; the bus took me home. But when I arrived, I was shivering and sneezing. <u>(vi)</u> As soon as I changed my dress, I sat near the fireplace.`,
+    questions: [
+      { roman:"i",   type:"tag",     prompt: "Add a question tag to the sentence.", answer: "I went for a walk in the country, didn't I?", typeLabel:"Question Tag" },
+      { roman:"ii",  type:"rewrite", prompt: "Rewrite the sentence beginning with 'when'.", answer: "When I started early in the morning, the weather was beautiful.", typeLabel:"Rewrite" },
+      { roman:"iii", type:"speech",  prompt: "Begin your answer with 'My father told me …'.", answer: "My father told me that the sky was blue and there were no clouds at all.", typeLabel:"Reported Speech" },
+      { roman:"v",   type:"combine", prompt: "Rewrite the sentence beginning with 'The sun …'.", answer: "The sun was covered by black clouds.", typeLabel:"Voice" },
+      { roman:"vi",  type:"combine", prompt: "Combine the sentences using 'no sooner … than'.", answer: "No sooner had I changed my dress than I sat near the fireplace.", typeLabel:"Combine" },
+    ]
+  },
+
+  // ─── 8. RM-80 / DCEB Karimnagar ───
+  {
+    source: "RM-80 / DCEB Karimnagar",
+    instruction: "Read the passage below focusing on the underlined parts. Answer any 4 of the questions as directed.",
+    passage: `Education plays a vital role in shaping the future of an individual. <u>(a)</u> The teacher explained the lesson clearly to the students. The homework was completed by Ravi before sunset. <u>(b)</u> The teacher said, <u>"Hardwork always leads to success"</u>. <u>(c)</u> He is very punctual. <u>(d)</u> As soon as the bell rang, the students left the classroom. <u>(e)</u> Ravi will achieve good results by working sincerely. <u>(f)</u> The principal praised Ravi for his discipline.`,
+    questions: [
+      { roman:"a",   type:"voice",   prompt: "Begin the sentence with 'The lesson …'.", answer: "The lesson was explained clearly to the students by the teacher.", typeLabel:"Voice" },
+      { roman:"b",   type:"speech",  prompt: "Rewrite the sentence beginning with 'The teacher said that …'.", answer: "The teacher said that hardwork always leads to success.", typeLabel:"Reported Speech" },
+      { roman:"c",   type:"tag",     prompt: "Add a question tag.", answer: "He is very punctual, isn't he?", typeLabel:"Question Tag" },
+      { roman:"d",   type:"rewrite", prompt: "Rewrite the sentence using 'No sooner … than'.", answer: "No sooner did the bell ring than the students left the classroom.", typeLabel:"Combine" },
+      { roman:"e",   type:"rewrite", prompt: "Rewrite the sentence with 'If … clause'.", answer: "If Ravi works sincerely, he will achieve good results.", typeLabel:"Rewrite" },
+      { roman:"f",   type:"voice",   prompt: "Rewrite the sentence beginning with 'Ravi …'.", answer: "Ravi was praised by the principal for his discipline.", typeLabel:"Voice" },
+    ]
+  },
+
+  // ─── 9. RJ-80 / DCEB JAGTIAL ───
+  {
+    source: "RJ-80 / DCEB Jagtial",
+    instruction: "Read the passage below focusing on the underlined parts. Answer any 4 questions as directed.",
+    passage: `Our Rigvedas discuss the relationship that exists between the universe and the natural order. They tell us about the importance of water as an important element of our life. <u>(i)</u> The Vedas contain some basic concepts of mathematics. The Vedic priests were also keen observers of the sky. <u>(ii)</u> When the Vedic Aryans had come to our land around 1500 BC, the ancient tradition of India reached great heights. The concept of the decimal system was introduced during the Vedic period. The biggest discovery attributed to Indian mathematicians is the discovery of "Zero". Very often jokingly, <u>(iii)</u> we say, <u>"India has contributed nothing (meaning zero) to mathematics."</u> We can be proud of this zero. <u>(iv)</u> Our scholars were eager to study the relation between the body and the mind. By about 6th century BC, <u>(v)</u> Ayurveda emerged as the greatest contribution of India to the medical science. It is based on its theory in the philosophy of 'Yoga'. <u>(vi)</u> Ayurveda deals with the cure of the disease and preserves man's health by the study of his mind, body and the surroundings.`,
+    questions: [
+      { roman:"i",   type:"voice",   prompt: "Begin the sentence with 'Some basic concepts of mathematics …'.", answer: "Some basic concepts of mathematics are contained in the Vedas.", typeLabel:"Voice" },
+      { roman:"ii",  type:"rewrite", prompt: "Begin the sentence with 'No sooner had the Vedic Aryans …'.", answer: "No sooner had the Vedic Aryans come to our land around 1500 BC than the ancient tradition of India reached great heights.", typeLabel:"Combine" },
+      { roman:"iii", type:"speech",  prompt: "Rewrite the sentence with 'We say that …'.", answer: "We say that India has contributed nothing (meaning zero) to mathematics.", typeLabel:"Reported Speech" },
+      { roman:"iv",  type:"tag",     prompt: "Add suitable 'Question Tag' for the underlined statement.", answer: "Our scholars were eager to study the relation between the body and the mind, weren't they?", typeLabel:"Question Tag" },
+      { roman:"v",   type:"degree",  prompt: "Begin the sentence with 'No other contribution of India …'.", answer: "No other contribution of India to medical science is as great as Ayurveda.", typeLabel:"Degree" },
+      { roman:"vi",  type:"combine", prompt: "Combine the sentences with 'Not only … but also'.", answer: "Ayurveda not only deals with the cure of the disease but also preserves man's health by the study of his mind, body and the surroundings.", typeLabel:"Combine" },
+    ]
+  },
+
+  // ─── 10. DP-3 / CCE ───
+  {
+    source: "DP-3 / CCE Pre-Public Examinations",
+    instruction: "Read the passage below focussing on the underlined parts. Answer any Four of the questions as directed.",
+    passage: `<u>(i)</u> The elephant is the largest land animal on earth. <u>(ii)</u> Rohan visited the elephant sanctuary with his family. <u>(iii)</u> He fed the elephants and enjoyed the Safari. <u>(iv)</u> The elephant keeper said, <u>"The elephants are very friendly."</u> Rohan's sister asked if she could take photos with the elephants. <u>(v)</u> The keeper said that she must be gentle with elephants to take photos with them. <u>(vi)</u> Rohan was thrilled to see the elephants so close.`,
+    questions: [
+      { roman:"i",   type:"degree",  prompt: "Re-write the sentence beginning with 'No other …'.", answer: "No other land animal on earth is as large as the elephant.", typeLabel:"Degree" },
+      { roman:"ii",  type:"rewrite", prompt: "Re-write the sentence beginning with 'The elephant …'.", answer: "The elephant sanctuary was visited by Rohan with his family.", typeLabel:"Voice" },
+      { roman:"iii", type:"combine", prompt: "Rewrite the sentence using 'not only … but also'.", answer: "He not only fed the elephants but also enjoyed the Safari.", typeLabel:"Combine" },
+      { roman:"iv",  type:"speech",  prompt: "Rewrite the sentence beginning with 'The elephant keeper said that …'.", answer: "The elephant keeper said that the elephants were very friendly.", typeLabel:"Reported Speech" },
+      { roman:"v",   type:"rewrite", prompt: "Re-write the sentence beginning with 'He …'.", answer: "He told her that she must be gentle with elephants to take photos with them.", typeLabel:"Reported Speech" },
+      { roman:"vi",  type:"rewrite", prompt: "Re-write the sentence using 'When'.", answer: "When Rohan saw the elephants so close, he was thrilled.", typeLabel:"Rewrite" },
+    ]
+  },
+
+  // ─── 11. C-3 / DCEB ───
+  {
+    source: "C-3 / DCEB Pre-Final 2025–26",
+    instruction: "Read the passage below focussing on the underlined parts. Answer any four (4) of the questions as directed.",
+    passage: `<u>(i)</u> Childhood is the sweetest time in the life of a person. Childhood is the most beautiful time in the life of a person. <u>(ii)</u> It is the time. One gets to explore everything and learn new things. <u>(iii)</u> "I also enjoyed my childhood to the fullest," said Harinath. <u>(iv)</u> My childhood was filled with happiness and innocence. <u>(v)</u> I have played many games with my friends. I remember those days and they always bring a smile to my face. <u>(vi)</u> Childhood is the happiest stage of the life.`,
+    questions: [
+      { roman:"i",   type:"combine", prompt: "Combine the two sentences with 'and'.", answer: "Childhood is the sweetest and most beautiful time in the life of a person.", typeLabel:"Combine" },
+      { roman:"ii",  type:"combine", prompt: "Combine the two sentences with 'when'.", answer: "It is the time when one gets to explore everything and learn new things.", typeLabel:"Combine" },
+      { roman:"iii", type:"speech",  prompt: "Change the sentence into reported speech.", answer: "Harinath said that he had also enjoyed his childhood to the fullest.", typeLabel:"Reported Speech" },
+      { roman:"iv",  type:"combine", prompt: "Rewrite the sentence beginning with 'not only … but also'.", answer: "My childhood was filled not only with happiness but also with innocence.", typeLabel:"Combine" },
+      { roman:"v",   type:"voice",   prompt: "Rewrite the sentence beginning with 'Many games'.", answer: "Many games have been played by me with my friends.", typeLabel:"Voice" },
+      { roman:"vi",  type:"degree",  prompt: "Rewrite the sentence with 'no other'.", answer: "No other stage of life is as happy as childhood.", typeLabel:"Degree" },
+    ]
+  },
+
+  // ─── 12. G-3 / DCEB Practice Test ───
+  {
+    source: "G-3 / DCEB Practice Test Paper II",
+    instruction: "Read the passage below focussing on the underlined parts. Answer any 4 of the questions as directed.",
+    passage: `Once there lived a woman in a city. <u>(i)</u> She was fond of penguin birds. <u>(ii)</u> She bought a Penguin. <u>(iii)</u> "It's very nice," she said to her daughter. "Yes, mom," said the daughter. <u>(iv)</u> "It is the most beautiful Penguin." "Yes," said the mother. The next day, <u>(v)</u> the neighbours came to their house. They wanted to see the Penguin. One of them got a doubt. "Do Penguins live here?" he said. <u>(vi)</u> "Penguins live in cold places. The temperature will be very low."`,
+    questions: [
+      { roman:"i",   type:"tag",     prompt: "Add a suitable Question Tag.", answer: "She was fond of penguin birds, wasn't she?", typeLabel:"Question Tag" },
+      { roman:"ii",  type:"voice",   prompt: "Rewrite the sentence beginning with 'A Penguin'.", answer: "A Penguin was bought by her.", typeLabel:"Voice" },
+      { roman:"iii", type:"speech",  prompt: "Rewrite the sentence beginning with 'She said to her daughter that …'.", answer: "She said to her daughter that it was very nice.", typeLabel:"Reported Speech" },
+      { roman:"iv",  type:"degree",  prompt: "Rewrite the sentence using 'more beautiful'.", answer: "No other penguin is more beautiful than this.", typeLabel:"Degree" },
+      { roman:"v",   type:"combine", prompt: "Combine the two sentences using 'in order to'.", answer: "The neighbours came to their house in order to see the Penguin.", typeLabel:"Combine" },
+      { roman:"vi",  type:"combine", prompt: "Combine the two sentences using 'where'.", answer: "Penguins live in cold places where the temperature will be very low.", typeLabel:"Combine" },
+    ]
+  },
+
+  // ─── 13. SK-80 / DCEB MEDAK ───
+  {
+    source: "SK-80 / DCEB Medak",
+    instruction: "Read the passage below focusing on the underlined parts. Answer any 4 of the questions as directed.",
+    passage: `<u>(i)</u> Karthik was a student of class 4. He was eager to know about festivals of India. <u>(ii)</u> One day he went to his teacher and said, <u>"Teacher, could you please tell me about Diwali festival?"</u> The teacher explained as follows. <u>(iii)</u> Diwali is the <u>most popular</u> festival of India. <u>(iv)</u> It is also called festival of lights. It falls in October or November. It is celebrated all over India <u>(v)</u> with happiness and prosperity. The festival is celebrated for five days beginning with Dhanteras. The main day, <u>(vi)</u> People worship Goddess Laxmi and Lord Ganesha.`,
+    questions: [
+      { roman:"i",   type:"combine", prompt: "Combine the sentences using 'who'.", answer: "Karthik was a student of class 4 who was eager to know about festivals of India.", typeLabel:"Combine" },
+      { roman:"ii",  type:"speech",  prompt: "Rewrite beginning with 'One day he went to his teacher and requested …'.", answer: "One day he went to his teacher and requested him to please tell him about Diwali festival.", typeLabel:"Reported Speech" },
+      { roman:"iii", type:"degree",  prompt: "Rewrite the sentence beginning with 'No other …'.", answer: "No other festival of India is as popular as Diwali.", typeLabel:"Degree" },
+      { roman:"iv",  type:"tag",     prompt: "Write suitable question tag.", answer: "It is also called festival of lights, isn't it?", typeLabel:"Question Tag" },
+      { roman:"v",   type:"combine", prompt: "Combine the sentences using not only … but also.", answer: "It is celebrated all over India not only with happiness but also with prosperity.", typeLabel:"Combine" },
+      { roman:"vi",  type:"voice",   prompt: "Rewrite the sentence beginning with 'Goddess Laxmi'.", answer: "Goddess Laxmi and Lord Ganesha are worshipped by people on the main day.", typeLabel:"Voice" },
+    ]
+  },
+
+  // ─── 14. NK-3 / DCEB NAGARKURNOOL ───
+  {
+    source: "NK-3 / DCEB Nagarkurnool Grand Test",
+    instruction: "Read the passage below focussing on the underlined parts. Answer any 4 of the questions as directed.",
+    passage: `<u>(i)</u> Cricket is one of the <u>most popular</u> games in the world. People love to watch and play it. <u>(ii)</u> Our team has won the championship. The players are celebrated. <u>(iii)</u> The captain said, <u>"We worked very hard to achieve this victory."</u> <u>(iv)</u> The president presented awards. The players received medals. <u>(v)</u> It is a great relief to win after years of effort. <u>(vi)</u> The fans took photos with the winners. Many of them came from far away.`,
+    questions: [
+      { roman:"i",   type:"degree",  prompt: "Rewrite the sentence using 'very few'.", answer: "Very few games in the world are as popular as cricket.", typeLabel:"Degree" },
+      { roman:"ii",  type:"combine", prompt: "Combine the two sentences with 'which'.", answer: "Our team has won the championship, which is celebrated by the players.", typeLabel:"Combine" },
+      { roman:"iii", type:"speech",  prompt: "Change to indirect speech.", answer: "The captain said that they had worked very hard to achieve that victory.", typeLabel:"Reported Speech" },
+      { roman:"iv",  type:"rewrite", prompt: "Rewrite beginning with 'relief'.", answer: "It is a great relief to win after years of effort.", typeLabel:"Rewrite" },
+      { roman:"v",   type:"combine", prompt: "Combine the sentences using 'not only … but also'.", answer: "The fans not only took photos with the winners but also many came from far away.", typeLabel:"Combine" },
+    ]
+  },
+
+  // ─── 15. M-3 / DCEB (Environment passage) ───
+  {
+    source: "M-3 / DCEB Pre-Final 2025–26",
+    instruction: "Read the passage below focusing on the underlined parts. Answer any 4 of the questions as directed.",
+    passage: `You might have heard the success story of Nalini on social media. <u>(i)</u> Nalini is one of the <u>most renowned</u> teachers of English. She aspired to become a teacher in her childhood. As a girl child, <u>(ii)</u> she had to face various prime problems. The problems many girls in India face even today. <u>(iii)</u> These problems did not prevent the young girl from realising her dream. Nalini's father challenged conventional beliefs and became the strongest advocate for his daughter's dream. <u>(iv)</u> Rather than limit her aspirations, he gave her his blessings and his whole-hearted support. <u>(v)</u> He allowed her to go for higher education and also helped her realise her dreams. And the result is what we see today! <u>(vi)</u> "I have stopped regretting being born a girl," says Nalini.`,
+    questions: [
+      { roman:"i",   type:"degree",  prompt: "Rewrite the sentence beginning with 'Very few …'.", answer: "Very few teachers of English are as renowned as Nalini.", typeLabel:"Degree" },
+      { roman:"ii",  type:"combine", prompt: "Combine the sentences using the word 'which'.", answer: "She had to face various prime problems which many girls in India face even today.", typeLabel:"Combine" },
+      { roman:"iii", type:"voice",   prompt: "Begin the sentence with 'The young girl'.", answer: "The young girl was not prevented from realising her dream by these problems.", typeLabel:"Voice" },
+      { roman:"iv",  type:"rewrite", prompt: "Rewrite the sentence beginning with 'Instead of'.", answer: "Instead of limiting her aspirations, he gave her his blessings and his whole-hearted support.", typeLabel:"Rewrite" },
+      { roman:"v",   type:"rewrite", prompt: "Rewrite the sentence using 'not only … but also'.", answer: "He not only allowed her to go for higher education but also helped her realise her dreams.", typeLabel:"Rewrite" },
+      { roman:"vi",  type:"speech",  prompt: "Rewrite the sentence beginning with 'Nalini says that …'.", answer: "Nalini says that she has stopped regretting being born a girl.", typeLabel:"Reported Speech" },
+    ]
+  },
+
+  // ─── 16. RP-3 / Practice Pre-Public ───
+  {
+    source: "RP-3 / Practice Pre-Public Examinations",
+    instruction: "Read the passage below focussing on the underlined parts. Answer any 4 of the questions as directed.",
+    passage: `<u>(i)</u> Avinash was a curious boy. He loved exploring new places. <u>(ii)</u> He was young. He was wiser than many children his age. One day, <u>(iii)</u> he stepped out of his house. He saw a lost puppy on the road. The animal looked frightened. Avinash carefully picked it up, and soon the puppy was taken to a nearby shelter. <u>(iv)</u> The shelter was smaller than his house. <u>(v)</u> He cleaned the puppy. As he walked home he remembered his mother's words that kindness always returns in unexpected ways. <u>(vi)</u> He was very happy.`,
+    questions: [
+      { roman:"i",   type:"combine", prompt: "Combine the sentences using 'who'.", answer: "Avinash was a curious boy who loved exploring new places.", typeLabel:"Combine" },
+      { roman:"ii",  type:"combine", prompt: "Combine the sentences using 'Though'.", answer: "Though he was young, he was wiser than many children his age.", typeLabel:"Combine" },
+      { roman:"iii", type:"combine", prompt: "Combine the sentences using 'No sooner …'.", answer: "No sooner had he stepped out of his house than he saw a lost puppy on the road.", typeLabel:"Combine" },
+      { roman:"iv",  type:"degree",  prompt: "Begin the sentence with 'His house …'.", answer: "His house was bigger than the shelter.", typeLabel:"Degree" },
+      { roman:"v",   type:"voice",   prompt: "Re-write the sentence beginning with 'The puppy …'.", answer: "The puppy was cleaned by him.", typeLabel:"Voice" },
+      { roman:"vi",  type:"tag",     prompt: "Write the appropriate question tag.", answer: "He was very happy, wasn't he?", typeLabel:"Question Tag" },
+    ]
+  },
+
+  // ─── 17. NP-3 ───
+  {
+    source: "NP-3 / DCEB Narayanpet",
+    instruction: "Read the passage below focussing on the underlined parts. Answer any 4 of the questions as directed.",
+    passage: `<u>(i)</u> A tiger was hunting in the forest. He saw a fox. The fox noticed this. "Now the tiger will kill me," the fox thought, "But I should do something." Despite the danger, the fox said, "How dare you kill me!" On hearing this, the tiger was surprised. <u>(ii)</u> "Why can't I kill you?" he asked. The fox said, <u>(iii)</u> "God has appointed me as the king of the forest. I have to rule my kingdom. <u>(iv)</u> You can't kill me. God will punish you." "Is it true?" the tiger asked doubtfully. "Let's go through the forest. I'll show you how everyone is afraid of me," said the fox. The tiger agreed. The fox was walking through the forest followed by the tiger. <u>(v)</u> The animals saw the tiger. They ran away. The fox said, "Have you seen how the animals are scared of me?" The tiger thought <u>(vi)</u> he was the most powerful animal.`,
+    questions: [
+      { roman:"i",   type:"combine", prompt: "Combine the two sentences using 'while'.", answer: "While a tiger was hunting in the forest, he saw a fox.", typeLabel:"Combine" },
+      { roman:"ii",  type:"speech",  prompt: "Rewrite the sentence beginning with 'He asked why …'.", answer: "He asked why he could not kill him.", typeLabel:"Reported Speech" },
+      { roman:"iii", type:"speech",  prompt: "Rewrite beginning with 'I'.", answer: "The fox said that God had appointed him as the king of the forest and he had to rule his kingdom.", typeLabel:"Reported Speech" },
+      { roman:"iv",  type:"combine", prompt: "Combine the two sentences using 'if'.", answer: "If you kill me, God will punish you.", typeLabel:"Combine" },
+      { roman:"v",   type:"combine", prompt: "Combine the sentences using 'no sooner … than'.", answer: "No sooner did the animals see the tiger than they ran away.", typeLabel:"Combine" },
+      { roman:"vi",  type:"degree",  prompt: "Rewrite the sentence beginning with 'No other'.", answer: "No other animal was as powerful as he.", typeLabel:"Degree" },
+    ]
+  },
+
+  // ─── 18. R-3 / DCEB (Plastic) ───
+  {
+    source: "R-3 / DCEB Pre-Final",
+    instruction: "Read the passage below focussing on the underlined parts. Answer any 4 of the questions as directed.",
+    passage: `<u>(i)</u> Plastic is widely used in our day-to-day life. Starting from a pen to a polythene bag in which we carry our fruits and books, are all forms of plastic. <u>(ii)</u> Plastic is convenient in day-to-day use. It has posed an alarming threat to the environment. <u>(iii)</u> Plastic is non-biodegradable and does not decay by biological action of microbes. They remain in the same state as we throw them. To destroy plastics, <u>(iv)</u> we can recycle them or we can burn them. <u>(v)</u> Don't burn plastics. They emit harmful chemical gases. <u>(vi)</u> These gases pollute our environment.`,
+    questions: [
+      { roman:"i",   type:"tag",     prompt: "Add a suitable question tag.", answer: "Plastic is widely used in our day-to-day life, isn't it?", typeLabel:"Question Tag" },
+      { roman:"ii",  type:"combine", prompt: "Combine the sentences using 'though'.", answer: "Though plastic is convenient in day-to-day use, it has posed an alarming threat to the environment.", typeLabel:"Combine" },
+      { roman:"iii", type:"rewrite", prompt: "Rewrite the sentence using 'Neither … nor'.", answer: "Plastic neither decays by biological action of microbes nor changes its state after being thrown.", typeLabel:"Rewrite" },
+      { roman:"iv",  type:"combine", prompt: "Combine the sentences using 'either … or'.", answer: "We can either recycle plastics or burn them.", typeLabel:"Combine" },
+      { roman:"v",   type:"combine", prompt: "Combine the sentences using 'If'.", answer: "If you burn plastics, they will emit harmful chemical gases.", typeLabel:"Combine" },
+      { roman:"vi",  type:"voice",   prompt: "Start the sentence with 'Our environment' and write.", answer: "Our environment is polluted by these gases.", typeLabel:"Voice" },
+    ]
+  },
+
+  // ─── 19. Y-3 ───
+  {
+    source: "Y-3 / Pre-Public Examinations",
+    instruction: "Read the passage below focussing on the underlined parts. Answer any four of the questions as directed.",
+    passage: `<u>(i)</u> Ramu lived in a small village. It was surrounded by green fields and tall trees. <u>(ii)</u> His family was poor. Yet he worked hard and helped his parents every day. One morning, he started early for the town to sell vegetables. <u>(iii)</u> He crossed the river. Dark clouds gathered in the sky. <u>(iv)</u> The load was very heavy. He could not carry it for a long distance, but Ramu did not stop. Looking at the sky, <u>(v)</u> he said, "I have to reach the market before it rains," and walked faster. At last, <u>(vi)</u> he sold the vegetables in the market and got some money.`,
+    questions: [
+      { roman:"i",   type:"combine", prompt: "Combine the two sentences with 'which'.", answer: "Ramu lived in a small village which was surrounded by green fields and tall trees.", typeLabel:"Combine" },
+      { roman:"ii",  type:"combine", prompt: "Combine the sentences with 'though'.", answer: "Though his family was poor, he worked hard and helped his parents every day.", typeLabel:"Combine" },
+      { roman:"iii", type:"combine", prompt: "Combine the sentences using 'scarcely … when'.", answer: "Scarcely had he crossed the river when dark clouds gathered in the sky.", typeLabel:"Combine" },
+      { roman:"iv",  type:"rewrite", prompt: "Combine the sentence with 'too … to'.", answer: "The load was too heavy for him to carry for a long distance.", typeLabel:"Rewrite" },
+      { roman:"v",   type:"speech",  prompt: "Begin the sentence with 'He said that …'.", answer: "He said that he had to reach the market before it rained.", typeLabel:"Reported Speech" },
+      { roman:"vi",  type:"voice",   prompt: "Begin the sentence with 'The vegetables'.", answer: "The vegetables were sold by him in the market and some money was got.", typeLabel:"Voice" },
+    ]
+  },
+
+  // ─── 20. WARANGAL DCEB ───
+  {
+    source: "DCEB Warangal Pre-Final 2026",
+    instruction: "Read the passage below, focusing on the underlined parts. Answer any 4 of the questions as directed.",
+    passage: `Meena was a student of class 8. <u>(i)</u> She was one of the <u>quietest</u> students in the Class 8. <u>(ii)</u> She never raised her hand, never spoke unless asked, and always sat on the last bench. Her teachers believed <u>(iii)</u> she was <u>so shy</u> that she could not speak boldly. But Meena was not shy — she was afraid. When Meena was younger, <u>(iv)</u> her classmates laughed at her as soon as she gave a wrong answer. Since then, she had promised herself never to speak in class again. One day, a new English teacher, <u>(v)</u> Mr. Anand, joined the school. He noticed Meena's silence and decided to observe her carefully. He saw that her notebooks were neat and her answers were correct. One afternoon, he asked Meena to stay back after class. Instead of scolding her, <u>(vi)</u> Mr Anand said to Meena, <u>"Your silence is louder than others' noise."</u>`,
+    questions: [
+      { roman:"i",   type:"degree",  prompt: "Rewrite the sentence in comparative degree.", answer: "She was quieter than most students in Class 8.", typeLabel:"Degree" },
+      { roman:"ii",  type:"combine", prompt: "Combine the two sentences using 'neither … nor'.", answer: "She neither raised her hand nor spoke unless asked.", typeLabel:"Combine" },
+      { roman:"iii", type:"rewrite", prompt: "Rewrite the sentence using 'too … to'.", answer: "She was too shy to speak boldly.", typeLabel:"Rewrite" },
+      { roman:"iv",  type:"rewrite", prompt: "Rewrite the sentence using 'No sooner … than'.", answer: "No sooner did she give a wrong answer than her classmates laughed at her.", typeLabel:"Combine" },
+      { roman:"v",   type:"tag",     prompt: "Add the question tag.", answer: "Mr. Anand joined the school, didn't he?", typeLabel:"Question Tag" },
+      { roman:"vi",  type:"speech",  prompt: "Rewrite the sentence into indirect speech.", answer: "Mr Anand told Meena that her silence was louder than others' noise.", typeLabel:"Reported Speech" },
+    ]
+  },
+
+];
+
+// ════════════════════════════════════════
+// GRAMMAR TYPE CONFIG
+const TYPE_CONFIG = {
+  voice:    { label:"Voice Change",      badge:"tb-voice" },
+  speech:   { label:"Reported Speech",   badge:"tb-speech" },
+  degree:   { label:"Degree",            badge:"tb-degree" },
+  combine:  { label:"Combining",         badge:"tb-combine" },
+  rewrite:  { label:"Rewrite",           badge:"tb-rewrite" },
+  tag:      { label:"Question Tag",      badge:"tb-tag" },
+  transform:{ label:"Transform",         badge:"tb-transform" },
+  other:    { label:"Other",             badge:"tb-other" },
+};
+
+const ALL_TYPES = ["All", ...Object.keys(TYPE_CONFIG)];
+
+// ════════════════════════════════════════
+// STATE
+let activePassages = [];
+let currentIdx = 0;
+let doneCount = 0;
+let shownCount = 0;
+let selectedType = "All";
+
+// ════════════════════════════════════════
+// INIT
+function buildTypeChips() {
+  const container = document.getElementById("type-chips");
+  const labels = { All:"All Types", ...Object.fromEntries(Object.entries(TYPE_CONFIG).map(([k,v])=>[k,v.label])) };
+  Object.entries(labels).forEach(([k, lbl]) => {
+    const chip = document.createElement("button");
+    chip.className = "chip" + (k === "All" ? " active" : "");
+    chip.textContent = lbl;
+    chip.onclick = () => {
+      document.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
+      chip.classList.add("active");
+      selectedType = k;
+    };
+    container.appendChild(chip);
+  });
+}
+
+function startPractice() {
+  if (selectedType === "All") {
+    activePassages = [...PASSAGES];
+  } else {
+    // Filter passages that have at least one question of selected type
+    activePassages = PASSAGES.filter(p => p.questions.some(q => q.type === selectedType));
+  }
+  if (activePassages.length === 0) { showToast("No passages for this type!"); return; }
+  currentIdx = 0; doneCount = 0; shownCount = 0;
+  document.getElementById("s-total").textContent = activePassages.reduce((s,p)=>s+p.questions.length,0);
+  document.getElementById("welcome-screen").style.display = "none";
+  document.getElementById("quiz-screen").style.display = "block";
+  buildDotNav();
+  renderPassage();
+}
+
+// ════════════════════════════════════════
+// DOT NAV
+function buildDotNav() {
+  const nav = document.getElementById("dot-nav");
+  nav.innerHTML = "";
+  activePassages.forEach((p,i) => {
+    const d = document.createElement("div");
+    d.className = "dot" + (i === 0 ? " current" : "");
+    d.id = `dot-${i}`;
+    d.textContent = i + 1;
+    d.title = p.source;
+    d.onclick = () => jumpTo(i);
+    nav.appendChild(d);
+  });
+}
+
+function updateDotNav() {
+  activePassages.forEach((_,i) => {
+    const d = document.getElementById(`dot-${i}`);
+    if (!d) return;
+    d.className = "dot" + (i === currentIdx ? " current" : i < currentIdx ? " done" : "");
+  });
+}
+
+function jumpTo(i) {
+  currentIdx = i;
+  renderPassage("fade");
+}
+
+// ════════════════════════════════════════
+// RENDER PASSAGE
+function renderPassage(anim) {
+  const p = activePassages[currentIdx];
+  const total = activePassages.length;
+
+  // Progress
+  const pct = Math.round((currentIdx / total) * 100);
+  document.getElementById("prog-fill").style.width = pct + "%";
+
+  // Top meta
+  document.getElementById("q-tag").textContent = `Passage ${currentIdx + 1} of ${total}`;
+  document.getElementById("q-src").textContent = p.source;
+  document.getElementById("q-instr").textContent = p.instruction;
+
+  // Passage
+  document.getElementById("passage-box").innerHTML = formatPassage(p.passage);
+
+  // Sub-questions
+  const container = document.getElementById("sub-qs");
+  container.innerHTML = "";
+
+  const qs = selectedType === "All"
+    ? p.questions
+    : p.questions.filter(q => q.type === selectedType);
+
+  qs.forEach((q, i) => {
+    const tc = TYPE_CONFIG[q.type] || TYPE_CONFIG.other;
+    const el = document.createElement("div");
+    el.className = "sub-q";
+    el.id = `sq-${i}`;
+    el.innerHTML = `
+      <div class="sub-q-header">
+        <div class="sub-num">${q.roman}</div>
+        <span class="type-badge ${tc.badge}">${tc.label}</span>
+        <span class="sub-type">${q.typeLabel || tc.label}</span>
+      </div>
+      <div class="sub-q-prompt">${q.prompt}</div>
+      <div class="answer-area">
+        <textarea class="ans-input" id="ans-${i}" placeholder="Write your answer here…" rows="2"></textarea>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+          <button class="check-btn" onclick="checkAnswer(${i})">✓ Check</button>
+          <button class="show-ans-btn" onclick="revealAnswer(${i})">Show Answer</button>
+        </div>
+        <div class="answer-reveal" id="reveal-${i}">
+          <strong>Model Answer:</strong> ${q.answer}
+        </div>
+      </div>`;
+    container.appendChild(el);
+  });
+
+  // Nav buttons
+  document.getElementById("btn-prev").disabled = currentIdx === 0;
+  document.getElementById("btn-next").textContent = currentIdx === activePassages.length - 1 ? "Finish →" : "Next →";
+
+  updateDotNav();
+  updateTopStats();
+
+  // Animate card
+  const card = document.getElementById("q-card");
+  card.style.transition = "none";
+  card.style.opacity = "0";
+  card.style.transform = "translateY(14px)";
+  setTimeout(() => {
+    card.style.transition = "opacity .3s ease, transform .3s ease";
+    card.style.opacity = "1";
+    card.style.transform = "translateY(0)";
+  }, 20);
+}
+
+function formatPassage(html) {
+  // wrap roman numerals markers for styling
+  return html.replace(/\(([ivxIVX]+)\)/g, (m,r) => `<span class="roman-tag">${r}</span>`);
+}
+
+// ════════════════════════════════════════
+// CHECK & REVEAL
+function checkAnswer(i) {
+  const inp = document.getElementById(`ans-${i}`);
+  const val = inp.value.trim();
+  if (!val) { showToast("Please write an answer first!"); return; }
+  const qs = getFilteredQs(currentIdx);
+  const correct = qs[i].answer.toLowerCase().replace(/[^a-z0-9 ]/g,"");
+  const given = val.toLowerCase().replace(/[^a-z0-9 ]/g,"");
+  // simple keyword match
+  const keywords = correct.split(" ").filter(w=>w.length>3);
+  const matches = keywords.filter(k => given.includes(k)).length;
+  const score = keywords.length > 0 ? matches/keywords.length : 0;
+  if (score >= 0.6) {
+    inp.classList.remove("wrong"); inp.classList.add("correct");
+    showToast("✅ Looks good! Check the model answer to compare.");
+  } else {
+    inp.classList.remove("correct"); inp.classList.add("wrong");
+    showToast("❌ Not quite. Try again or reveal the answer.");
+  }
+  doneCount++;
+  updateTopStats();
+}
+
+function revealAnswer(i) {
+  const reveal = document.getElementById(`reveal-${i}`);
+  reveal.classList.toggle("show");
+  if (reveal.classList.contains("show")) { shownCount++; updateTopStats(); }
+}
+
+function getFilteredQs(pIdx) {
+  const p = activePassages[pIdx];
+  return selectedType === "All" ? p.questions : p.questions.filter(q => q.type === selectedType);
+}
+
+function updateTopStats() {
+  document.getElementById("s-done").textContent = doneCount;
+  document.getElementById("s-shown").textContent = shownCount;
+}
+
+// ════════════════════════════════════════
+// NAVIGATION
+function goNext() {
+  if (currentIdx >= activePassages.length - 1) { showResults(); return; }
+  currentIdx++;
+  renderPassage("forward");
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function goBack() {
+  if (currentIdx <= 0) return;
+  currentIdx--;
+  renderPassage("back");
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+// ════════════════════════════════════════
+// RESULTS
+function showResults() {
+  document.getElementById("quiz-screen").style.display = "none";
+  document.getElementById("results-screen").style.display = "block";
+
+  const total = activePassages.reduce((s,p) => s + getFilteredQs(activePassages.indexOf(p)).length, 0);
+  const pct = total > 0 ? Math.round((doneCount / total) * 100) : 0;
+
+  document.getElementById("ring-pct").textContent = pct + "%";
+  document.getElementById("rc-done").textContent = doneCount;
+  document.getElementById("rc-shown").textContent = shownCount;
+  document.getElementById("rc-total").textContent = total;
+
+  let trophy="📚", title="Keep Going!", msg="Practice makes perfect. Review the model answers and try again.";
+  if (pct >= 80) { trophy="🏆"; title="Excellent Work!"; msg="Outstanding effort! You've mastered these grammar transformations."; launchConfetti(); }
+  else if (pct >= 60) { trophy="⭐"; title="Well Done!"; msg="Great progress! A bit more practice and you'll ace the exam."; }
+  else if (pct >= 40) { trophy="💪"; title="Good Effort!"; msg="You're on the right track. Review the model answers carefully."; }
+
+  document.getElementById("res-trophy").textContent = trophy;
+  document.getElementById("res-title").textContent = title;
+  document.getElementById("res-msg").textContent = msg;
+
+  const circumference = 408;
+  const offset = circumference - (pct / 100) * circumference;
+  setTimeout(() => { document.getElementById("ring-fill").style.strokeDashoffset = offset; }, 100);
+}
+
+function restart() {
+  document.getElementById("results-screen").style.display = "none";
+  currentIdx = 0; doneCount = 0; shownCount = 0;
+  buildDotNav();
+  document.getElementById("quiz-screen").style.display = "block";
+  renderPassage();
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function backToHome() {
+  document.getElementById("results-screen").style.display = "none";
+  document.getElementById("welcome-screen").style.display = "block";
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+// ════════════════════════════════════════
+// CONFETTI
+function launchConfetti() {
+  const burst = document.getElementById("cf");
+  burst.innerHTML = "";
+  const colors = ["#1d7a6e","#c8973a","#c94f3a","#2e7d52","#7a1aa0","#1a6fa0"];
+  for (let i = 0; i < 70; i++) {
+    const p = document.createElement("div");
+    p.className = "cp";
+    const sz = 6 + Math.random()*7;
+    const lft = Math.random()*100;
+    const dl = Math.random()*2;
+    const dur = 2 + Math.random()*3;
+    const c = colors[Math.floor(Math.random()*colors.length)];
+    const sh = Math.random()>.5?"50%":"3px";
+    p.style.cssText=`left:${lft}%;width:${sz}px;height:${sz}px;background:${c};border-radius:${sh};animation-duration:${dur}s;animation-delay:${dl}s;`;
+    burst.appendChild(p);
+  }
+  setTimeout(()=>{burst.innerHTML="";},7000);
+}
+
+// ════════════════════════════════════════
+// TOAST
+function showToast(msg) {
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  setTimeout(()=>t.classList.remove("show"),2800);
+}
+
+// ════════════════════════════════════════
+// BOOT
+buildTypeChips();
+</script>
+</body>
+</html>
