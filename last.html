@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SSC English · Q32–36 Vocabulary Tasks</title>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Newsreader:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0b0c10;--s1:#13141a;--s2:#1c1e26;--s3:#252830;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);--border3:rgba(255,255,255,0.20);
+  --text:#eeeaf2;--muted:#8a86a0;--muted2:#b8b4cc;
+  /* task colours */
+  --c1:#e86830;--c1b:rgba(232,104,48,0.12);--c1d:rgba(232,104,48,0.25);/* synonym */
+  --c2:#3a9edd;--c2b:rgba(58,158,221,0.12);--c2d:rgba(58,158,221,0.25);/* antonym/opposite */
+  --c3:#52c47a;--c3b:rgba(82,196,122,0.12);--c3d:rgba(82,196,122,0.25);/* meaning */
+  --c4:#d4a843;--c4b:rgba(212,168,67,0.12);--c4d:rgba(212,168,67,0.25);/* correct form */
+  --c5:#c06ae0;--c5b:rgba(192,106,224,0.12);--c5d:rgba(192,106,224,0.25);/* homophone/similarly pronounced */
+  --c6:#48c4c4;--c6b:rgba(72,196,196,0.12);--c6d:rgba(72,196,196,0.25);/* replace/suitable word */
+  --r:11px;--rs:7px;
+}
+body{font-family:'Sora',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 60% 35% at 8% 12%,rgba(232,104,48,0.07) 0%,transparent 60%),radial-gradient(ellipse 50% 30% at 92% 80%,rgba(58,158,221,0.07) 0%,transparent 60%),radial-gradient(ellipse 40% 25% at 50% 50%,rgba(82,196,122,0.04) 0%,transparent 70%);pointer-events:none;z-index:0;}
+.z1{position:relative;z-index:1;}
+
+/* ─── TOP BAR ─── */
+.topbar{background:rgba(11,12,16,0.95);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:0 28px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:200;gap:12px;}
+.tb-brand{display:flex;align-items:center;gap:12px;}
+.tb-logo{font-size:.95rem;font-weight:800;letter-spacing:-.01em;color:var(--text);}
+.tb-sep{width:1px;height:20px;background:var(--border2);}
+.tb-nav{display:flex;gap:3px;}
+.tb-btn{padding:5px 14px;border-radius:6px;font-size:12px;font-weight:600;cursor:pointer;border:none;background:transparent;color:var(--muted2);transition:all .15s;letter-spacing:.02em;}
+.tb-btn:hover{color:var(--text);}
+.tb-btn.on{background:var(--s3);color:var(--text);}
+.tb-stats{font-size:12px;color:var(--muted);display:flex;gap:16px;align-items:center;}
+.tv{font-weight:700;color:var(--text);}
+
+/* progress */
+.pbar{height:2px;background:var(--s2);}
+.pfill{height:100%;background:linear-gradient(90deg,var(--c1),var(--c2),var(--c3));transition:width .4s ease;}
+
+/* ─── LAYOUT ─── */
+.wrap{max-width:980px;margin:0 auto;padding:36px 20px 100px;}
+.screen{animation:fu .32s ease both;}
+@keyframes fu{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+/* ══════════ HOME ══════════ */
+.hero{text-align:center;padding:52px 0 40px;}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;background:var(--s2);border:1px solid var(--border2);border-radius:100px;padding:5px 16px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--muted2);margin-bottom:22px;}
+.hero h1{font-size:clamp(2.4rem,5.5vw,3.8rem);font-weight:800;line-height:1.08;letter-spacing:-.04em;color:var(--text);margin-bottom:14px;}
+.hero h1 em{font-family:'Newsreader',serif;font-style:italic;font-weight:300;color:var(--c4);}
+.hero-sub{font-size:15px;color:var(--muted2);font-weight:300;max-width:540px;margin:0 auto 44px;line-height:1.9;}
+
+/* task type showcase */
+.task-showcase{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:44px;}
+.tc{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:20px 18px;cursor:pointer;transition:transform .2s,border-color .2s;}
+.tc:hover{transform:translateY(-3px);}
+.tc-icon{font-size:26px;margin-bottom:10px;}
+.tc-pct{font-size:1.7rem;font-weight:800;line-height:1;margin-bottom:3px;}
+.tc-name{font-size:13px;font-weight:600;margin-bottom:5px;}
+.tc-desc{font-size:12px;color:var(--muted);line-height:1.5;}
+.tc-ex{font-size:11px;margin-top:8px;padding:5px 10px;border-radius:5px;font-style:italic;}
+
+.tc1{border-top:3px solid var(--c1);} .tc1 .tc-pct{color:var(--c1);} .tc1 .tc-ex{background:var(--c1b);color:var(--c1);}
+.tc2{border-top:3px solid var(--c2);} .tc2 .tc-pct{color:var(--c2);} .tc2 .tc-ex{background:var(--c2b);color:var(--c2);}
+.tc3{border-top:3px solid var(--c3);} .tc3 .tc-pct{color:var(--c3);} .tc3 .tc-ex{background:var(--c3b);color:var(--c3);}
+.tc4{border-top:3px solid var(--c4);} .tc4 .tc-pct{color:var(--c4);} .tc4 .tc-ex{background:var(--c4b);color:var(--c4);}
+.tc5{border-top:3px solid var(--c5);} .tc5 .tc-pct{color:var(--c5);} .tc5 .tc-ex{background:var(--c5b);color:var(--c5);}
+.tc6{border-top:3px solid var(--c6);} .tc6 .tc-pct{color:var(--c6);} .tc6 .tc-ex{background:var(--c6b);color:var(--c6);}
+
+/* stat strip */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-bottom:40px;}
+.sc{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:18px 16px;text-align:center;}
+.sn{font-size:1.9rem;font-weight:800;line-height:1;margin-bottom:3px;}
+.sl{font-size:11px;color:var(--muted);font-weight:500;text-transform:uppercase;letter-spacing:.06em;}
+
+/* cta */
+.cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:8px;}
+.btn-main{background:var(--text);color:var(--bg);border:none;border-radius:var(--rs);padding:14px 38px;font-family:'Sora',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:8px;}
+.btn-main:hover{opacity:.88;transform:translateY(-2px);}
+.btn-ghost{background:transparent;color:var(--muted2);border:1.5px solid var(--border2);border-radius:var(--rs);padding:13px 28px;font-family:'Sora',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .15s;}
+.btn-ghost:hover{border-color:var(--border3);color:var(--text);}
+
+/* ══════════ PRACTICE ══════════ */
+.filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px;align-items:center;}
+.fl{font-size:11px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.07em;margin-right:4px;}
+.fc{padding:6px 14px;border-radius:100px;font-size:12px;font-weight:600;background:var(--s2);border:1px solid var(--border);color:var(--muted2);cursor:pointer;transition:all .15s;}
+.fc:hover{border-color:var(--border2);color:var(--text);}
+.fc.fa{background:var(--s3);border-color:var(--border3);color:var(--text);}
+
+.passage-nav{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px;}
+.pnb{padding:6px 13px;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;border:1.5px solid var(--border);background:var(--s2);color:var(--muted);transition:all .15s;white-space:nowrap;}
+.pnb:hover{border-color:var(--border2);color:var(--muted2);}
+.pnb.cur{background:var(--text);color:var(--bg);border-color:var(--text);}
+.pnb.dn{background:var(--c3b);border-color:var(--c3d);color:var(--c3);}
+
+/* question card */
+.qcard{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;margin-bottom:14px;transition:border-color .2s;}
+.qcard:hover{border-color:var(--border2);}
+.qcard-head{padding:13px 20px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border);background:var(--s2);}
+.qh-num{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;}
+.qh-task{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;border-radius:4px;padding:3px 9px;}
+.qh-word{font-size:13px;color:var(--muted2);flex:1;font-family:'Newsreader',serif;font-style:italic;}
+.qh-src{font-size:11px;color:var(--muted);text-align:right;max-width:120px;line-height:1.4;}
+
+/* task colours for head */
+.t1 .qh-num{background:var(--c1b);color:var(--c1);} .t1 .qh-task{background:var(--c1b);color:var(--c1);border:1px solid var(--c1d);}
+.t2 .qh-num{background:var(--c2b);color:var(--c2);} .t2 .qh-task{background:var(--c2b);color:var(--c2);border:1px solid var(--c2d);}
+.t3 .qh-num{background:var(--c3b);color:var(--c3);} .t3 .qh-task{background:var(--c3b);color:var(--c3);border:1px solid var(--c3d);}
+.t4 .qh-num{background:var(--c4b);color:var(--c4);} .t4 .qh-task{background:var(--c4b);color:var(--c4);border:1px solid var(--c4d);}
+.t5 .qh-num{background:var(--c5b);color:var(--c5);} .t5 .qh-task{background:var(--c5b);color:var(--c5);border:1px solid var(--c5d);}
+.t6 .qh-num{background:var(--c6b);color:var(--c6);} .t6 .qh-task{background:var(--c6b);color:var(--c6);border:1px solid var(--c6d);}
+
+.qcard-body{padding:16px 20px;}
+.passage-snippet{background:var(--s2);border:1px solid var(--border);border-radius:var(--rs);padding:12px 16px;margin-bottom:14px;font-family:'Newsreader',serif;font-size:14.5px;line-height:1.9;color:var(--muted2);}
+.underline-word{text-decoration:underline;text-decoration-style:double;text-decoration-color:var(--c4);color:var(--text);font-weight:500;}
+.task-prompt{font-size:13px;font-weight:600;color:var(--text);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.task-prompt .arrow{color:var(--muted);font-weight:400;}
+
+.ans-row{display:flex;gap:8px;align-items:stretch;}
+.ans-input{flex:1;background:var(--s2);border:1.5px solid var(--border);border-radius:var(--rs);padding:10px 14px;font-family:'Sora',sans-serif;font-size:13px;color:var(--text);outline:none;transition:border-color .18s;}
+.ans-input:focus{border-color:var(--border3);}
+.ans-input.ok{border-color:var(--c3);background:var(--c3b);}
+.ans-input.ng{border-color:var(--c1);background:var(--c1b);}
+.btn-ck{background:var(--text);color:var(--bg);border:none;border-radius:var(--rs);padding:10px 20px;font-family:'Sora',sans-serif;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;transition:opacity .15s;}
+.btn-ck:hover{opacity:.85;}
+.btn-rev{background:transparent;color:var(--muted);border:1.5px solid var(--border);border-radius:var(--rs);padding:10px 14px;font-family:'Sora',sans-serif;font-size:12px;font-weight:600;cursor:pointer;transition:all .15s;}
+.btn-rev:hover{border-color:var(--border2);color:var(--muted2);}
+
+.ans-box{display:none;margin-top:10px;border-radius:var(--rs);padding:11px 14px;}
+.ans-box.show{display:block;animation:fu .2s ease;}
+.ab-ans{font-size:14px;font-weight:600;margin-bottom:4px;}
+.ab-rule{font-size:12px;color:var(--muted2);line-height:1.6;font-style:italic;}
+.ab-more{margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;}
+.ab-alt{font-size:11px;font-weight:600;background:var(--s3);border:1px solid var(--border2);border-radius:5px;padding:3px 10px;color:var(--muted2);}
+
+/* ══════════ ANALYSIS ══════════ */
+.an-wrap{}
+.sec-head{display:flex;align-items:center;gap:10px;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--border2);}
+.sh-tag{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;background:var(--s2);border:1px solid var(--border2);border-radius:5px;padding:3px 10px;color:var(--muted2);}
+.sh-t{font-size:1.1rem;font-weight:700;color:var(--text);}
+
+.an-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-bottom:28px;}
+.an-card{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:20px 22px;}
+.an-head{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.an-icon{font-size:22px;}
+.an-title{font-size:13px;font-weight:700;}
+.an-body{font-size:13px;color:var(--muted2);line-height:1.7;}
+.an-ex{margin-top:10px;padding:8px 12px;border-radius:var(--rs);font-size:12.5px;line-height:1.7;}
+.ex-w{background:rgba(232,104,48,0.1);border-left:3px solid var(--c1);}
+.ex-c{background:rgba(82,196,122,0.1);border-left:3px solid var(--c3);}
+.ex-label{font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:2px;}
+.exl-w{color:var(--c1);}.exl-c{color:var(--c3);}
+.an-ex code{background:rgba(255,255,255,0.08);padding:1px 5px;border-radius:3px;font-family:monospace;font-size:12px;}
+
+/* bar chart */
+.chart-box{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:22px 24px;margin-bottom:24px;}
+.chart-title{font-size:14px;font-weight:700;margin-bottom:18px;}
+.br{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.bl{font-size:12px;font-weight:500;width:180px;flex-shrink:0;color:var(--muted2);}
+.bt{flex:1;height:22px;background:var(--s2);border-radius:11px;overflow:hidden;}
+.bf{height:100%;border-radius:11px;display:flex;align-items:center;padding-left:10px;transition:width 1.2s cubic-bezier(.4,0,.2,1) .3s;}
+.bn{font-size:11px;font-weight:800;color:rgba(255,255,255,.9);}
+.bp{font-size:12px;font-weight:700;color:var(--muted);width:44px;text-align:right;}
+
+/* priority */
+.pri-table{width:100%;border-collapse:collapse;background:var(--s1);border-radius:var(--r);overflow:hidden;border:1px solid var(--border);margin-bottom:28px;}
+.pri-table th{background:var(--s3);color:var(--muted2);font-size:11px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:10px 16px;text-align:left;}
+.pri-table td{padding:11px 16px;font-size:13px;border-bottom:1px solid var(--border);vertical-align:top;}
+.pri-table tr:last-child td{border-bottom:none;}
+.pri-table tr:hover td{background:var(--s2);}
+.rank{width:28px;height:28px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;color:#fff;}
+.rk1{background:var(--c1);}.rk2{background:var(--c2);}.rk3{background:var(--c3);}.rk4{background:var(--c4);}.rk5{background:var(--c5);}.rk6{background:var(--c6);}
+
+/* vocab bank */
+.vocab-section{margin-bottom:28px;}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;}
+.vcard{background:var(--s1);border:1px solid var(--border);border-radius:var(--rs);padding:12px 14px;transition:border-color .15s;}
+.vcard:hover{border-color:var(--border2);}
+.vw{font-size:14px;font-weight:600;color:var(--text);margin-bottom:4px;}
+.vd{font-size:12px;color:var(--muted);line-height:1.5;}
+.vsyn{font-size:11px;color:var(--c1);margin-top:3px;}
+.vant{font-size:11px;color:var(--c2);margin-top:1px;}
+
+/* tips */
+.tips-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin-bottom:28px;}
+.tip{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px;}
+.tip-n{font-size:1.8rem;font-weight:800;color:var(--s3);line-height:1;margin-bottom:6px;}
+.tip-t{font-size:13px;font-weight:700;margin-bottom:6px;color:var(--text);}
+.tip-b{font-size:12.5px;color:var(--muted2);line-height:1.7;}
+
+/* nav row */
+.nav-row{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap;}
+
+/* toast */
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(12px);background:var(--s3);color:var(--text);border:1px solid var(--border2);border-radius:var(--rs);padding:10px 20px;font-size:13px;font-weight:600;z-index:300;opacity:0;pointer-events:none;transition:all .28s;white-space:nowrap;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.stb{position:fixed;bottom:24px;right:20px;width:40px;height:40px;border-radius:50%;background:var(--s3);border:1px solid var(--border2);color:var(--muted2);font-size:18px;cursor:pointer;opacity:0;transition:all .25s;z-index:100;}
+.stb.vis{opacity:1;}
+
+@media(max-width:600px){.topbar{padding:0 14px;}.tb-nav{display:none;}.wrap{padding:20px 12px 80px;}.qcard-head{flex-wrap:wrap;}.bl{width:110px;font-size:11px;}}
+</style>
+</head>
+<body>
+
+<div class="topbar z1">
+  <div class="tb-brand">
+    <div class="tb-logo">SSC English · Q32–36</div>
+    <div class="tb-sep"></div>
+    <div class="tb-nav">
+      <button class="tb-btn on" onclick="go('home')">Home</button>
+      <button class="tb-btn" onclick="go('practice')">Practice</button>
+      <button class="tb-btn" onclick="go('analysis')">Analysis</button>
+      <button class="tb-btn" onclick="go('vocab')">Vocab Bank</button>
+    </div>
+  </div>
+  <div class="tb-stats">
+    <span>✅ <span class="tv" id="tb-done">0</span> done</span>
+    <span>📋 <span class="tv" id="tb-total">0</span> qs</span>
+  </div>
+</div>
+<div class="pbar"><div class="pfill" id="pfill" style="width:0%"></div></div>
+
+<!-- HOME -->
+<div id="home" class="wrap z1 screen">
+  <div class="hero">
+    <div class="eyebrow">🔤 Q32–36 · Vocabulary Tasks · SSC 2025–26</div>
+    <h1>5 Vocabulary Skills<br>in <em>Every Paper</em></h1>
+    <p class="hero-sub">Every Q32–36 from 20+ Telangana district board papers. Six task types tested every single year — master them all and score full marks.</p>
+  </div>
+
+  <div class="stats">
+    <div class="sc"><div class="sn" style="color:var(--c1)">22</div><div class="sl">Passages</div></div>
+    <div class="sc"><div class="sn" style="color:var(--c2)">110</div><div class="sl">Questions</div></div>
+    <div class="sc"><div class="sn" style="color:var(--c3)">6</div><div class="sl">Task Types</div></div>
+    <div class="sc"><div class="sn" style="color:var(--c4)">15+</div><div class="sl">Districts</div></div>
+  </div>
+
+  <div class="task-showcase">
+    <div class="tc tc1">
+      <div class="tc-icon">🔁</div>
+      <div class="tc-pct">28%</div>
+      <div class="tc-name">Synonym / Same Meaning</div>
+      <div class="tc-desc">Write a word that means the same or nearly the same as the underlined word</div>
+      <div class="tc-ex">"pleasant" → agreeable, nice, delightful</div>
+    </div>
+    <div class="tc tc2">
+      <div class="tc-icon">↔️</div>
+      <div class="tc-pct">24%</div>
+      <div class="tc-name">Antonym / Opposite</div>
+      <div class="tc-desc">Write the word opposite in meaning to the underlined word</div>
+      <div class="tc-ex">"rapidly" → slowly</div>
+    </div>
+    <div class="tc tc3">
+      <div class="tc-icon">📖</div>
+      <div class="tc-pct">20%</div>
+      <div class="tc-name">Meaning / Definition</div>
+      <div class="tc-desc">Write the meaning of the underlined word</div>
+      <div class="tc-ex">"frantic" → wildly anxious, in a panic</div>
+    </div>
+    <div class="tc tc4">
+      <div class="tc-icon">✏️</div>
+      <div class="tc-pct">14%</div>
+      <div class="tc-name">Correct Form / Replace</div>
+      <div class="tc-desc">Replace the underlined word with its correct grammatical form</div>
+      <div class="tc-ex">"wood flooring" → wooden flooring</div>
+    </div>
+    <div class="tc tc5">
+      <div class="tc-icon">🔊</div>
+      <div class="tc-pct">8%</div>
+      <div class="tc-name">Homophone / Similarly Pronounced</div>
+      <div class="tc-desc">Replace with a word pronounced the same but with different meaning/spelling</div>
+      <div class="tc-ex">"stares" → stairs &nbsp;|&nbsp; "wight" → white</div>
+    </div>
+    <div class="tc tc6">
+      <div class="tc-icon">🔄</div>
+      <div class="tc-pct">6%</div>
+      <div class="tc-name">Suitable Replacement</div>
+      <div class="tc-desc">Replace the wrong or incorrect word with a contextually appropriate one</div>
+      <div class="tc-ex">"criminal" → culprit</div>
+    </div>
+  </div>
+
+  <div class="cta-row">
+    <button class="btn-main" onclick="go('practice')">Start Practice →</button>
+    <button class="btn-ghost" onclick="go('analysis')">Deep Analysis</button>
+    <button class="btn-ghost" onclick="go('vocab')">Vocab Bank</button>
+  </div>
+</div>
+
+<!-- PRACTICE -->
+<div id="practice" class="wrap z1 screen" style="display:none">
+  <div class="filter-bar">
+    <span class="fl">Filter:</span>
+    <button class="fc fa" data-f="all" onclick="setFilter('all',this)">All Types</button>
+    <button class="fc" data-f="syn" onclick="setFilter('syn',this)">Synonym</button>
+    <button class="fc" data-f="ant" onclick="setFilter('ant',this)">Antonym</button>
+    <button class="fc" data-f="mean" onclick="setFilter('mean',this)">Meaning</button>
+    <button class="fc" data-f="form" onclick="setFilter('form',this)">Correct Form</button>
+    <button class="fc" data-f="homo" onclick="setFilter('homo',this)">Homophone</button>
+    <button class="fc" data-f="rep" onclick="setFilter('rep',this)">Replace</button>
+  </div>
+  <div class="passage-nav" id="pnav"></div>
+  <div id="prac-content"></div>
+</div>
+
+<!-- ANALYSIS -->
+<div id="analysis" class="wrap z1 screen" style="display:none">
+  <div class="sec-head"><span class="sh-tag">Analysis</span><span class="sh-t">Deep Dive: 6 Task Types Across All Papers</span></div>
+
+  <div class="chart-box">
+    <div class="chart-title">Task Type Frequency — 110 Questions Across 22 Papers</div>
+    <div class="br"><div class="bl">Synonym / Same meaning</div><div class="bt"><div class="bf" style="width:28%;background:var(--c1)"><span class="bn">31</span></div></div><div class="bp">28%</div></div>
+    <div class="br"><div class="bl">Antonym / Opposite</div><div class="bt"><div class="bf" style="width:24%;background:var(--c2)"><span class="bn">26</span></div></div><div class="bp">24%</div></div>
+    <div class="br"><div class="bl">Meaning / Definition</div><div class="bt"><div class="bf" style="width:20%;background:var(--c3)"><span class="bn">22</span></div></div><div class="bp">20%</div></div>
+    <div class="br"><div class="bl">Correct Word Form</div><div class="bt"><div class="bf" style="width:14%;background:var(--c4)"><span class="bn">15</span></div></div><div class="bp">14%</div></div>
+    <div class="br"><div class="bl">Homophone</div><div class="bt"><div class="bf" style="width:8%;background:var(--c5)"><span class="bn">9</span></div></div><div class="bp">8%</div></div>
+    <div class="br"><div class="bl">Suitable Replacement</div><div class="bt"><div class="bf" style="width:6%;background:var(--c6)"><span class="bn">7</span></div></div><div class="bp">6%</div></div>
+  </div>
+
+  <table class="pri-table">
+    <thead><tr><th>Rank</th><th>Task Type</th><th>How Often</th><th>Difficulty</th><th>Key Strategy</th></tr></thead>
+    <tbody>
+      <tr><td><span class="rank rk1">1</span></td><td><strong>Synonym</strong></td><td>31 / 110 (28%)</td><td>⭐⭐⭐ Medium</td><td>Learn 2–3 synonyms for every difficult word in your lessons</td></tr>
+      <tr><td><span class="rank rk2">2</span></td><td><strong>Antonym/Opposite</strong></td><td>26 / 110 (24%)</td><td>⭐⭐ Easy–Medium</td><td>Prefixes: un-, dis-, in-, im- often form opposites quickly</td></tr>
+      <tr><td><span class="rank rk3">3</span></td><td><strong>Meaning</strong></td><td>22 / 110 (20%)</td><td>⭐⭐ Easy</td><td>Write a clear 3–5 word definition. Use context of the passage.</td></tr>
+      <tr><td><span class="rank rk4">4</span></td><td><strong>Correct Form</strong></td><td>15 / 110 (14%)</td><td>⭐⭐⭐ Medium</td><td>Noun→Adjective: wood→wooden. Adjective→Adverb: rapid→rapidly</td></tr>
+      <tr><td><span class="rank rk5">5</span></td><td><strong>Homophone</strong></td><td>9 / 110 (8%)</td><td>⭐⭐⭐⭐ Hard</td><td>Memorise: stares/stairs, cite/site, wight/white, hole/whole, threw/through</td></tr>
+      <tr><td><span class="rank rk6">6</span></td><td><strong>Suitable Replacement</strong></td><td>7 / 110 (6%)</td><td>⭐⭐⭐ Medium</td><td>Read sentence carefully — find contextually correct word</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sec-head"><span class="sh-tag">Rules</span><span class="sh-t">Master These Patterns</span></div>
+  <div class="an-grid">
+
+    <div class="an-card">
+      <div class="an-head"><div class="an-icon">🔁</div><div class="an-title" style="color:var(--c1)">Synonym — Write Same Meaning</div></div>
+      <div class="an-body">The answer must be a single word (usually). It must fit the sentence grammatically. Same part of speech as underlined word.</div>
+      <div class="an-ex ex-c"><div class="ex-label exl-c">Common Pairs to Know</div>
+        pleasant → agreeable &nbsp;|&nbsp; frantic → panicked &nbsp;|&nbsp; aloof → distant &nbsp;|&nbsp; humane → kind &nbsp;|&nbsp; penetrating → sharp &nbsp;|&nbsp; renowned → famous &nbsp;|&nbsp; stature → height &nbsp;|&nbsp; fallout → consequence
+      </div>
+    </div>
+
+    <div class="an-card">
+      <div class="an-head"><div class="an-icon">↔️</div><div class="an-title" style="color:var(--c2)">Antonym — Write Opposite</div></div>
+      <div class="an-body">Must be exact opposite in meaning. Can use prefixes (un-/dis-/in-) or completely different words.</div>
+      <div class="an-ex ex-w"><div class="ex-label exl-w">✗ Avoid vague opposites</div>"pleasant" → "bad" (too vague)</div>
+      <div class="an-ex ex-c"><div class="ex-label exl-c">✓ Use precise opposites</div>"pleasant" → "unpleasant / disagreeable" &nbsp;|&nbsp; "rapidly" → "slowly" &nbsp;|&nbsp; "diversity" → "uniformity" &nbsp;|&nbsp; "richer" → "poorer" &nbsp;|&nbsp; "rightly" → "wrongly"</div>
+    </div>
+
+    <div class="an-card">
+      <div class="an-head"><div class="an-icon">📖</div><div class="an-title" style="color:var(--c3)">Meaning — Write Definition</div></div>
+      <div class="an-body">Use the sentence context. Write 3–6 words. Match the part of speech. Don't just copy a dictionary — rephrase naturally.</div>
+      <div class="an-ex ex-c"><div class="ex-label exl-c">Good examples</div>
+        "frantic" → wildly anxious and panicked<br>
+        "imminent" → about to happen very soon<br>
+        "optimism" → hopefulness about the future<br>
+        "aloof" → cold and distant in manner<br>
+        "penetrating" → sharp and deeply insightful
+      </div>
+    </div>
+
+    <div class="an-card">
+      <div class="an-head"><div class="an-icon">✏️</div><div class="an-title" style="color:var(--c4)">Correct Form — Change Word Class</div></div>
+      <div class="an-body">Most common transformations tested: noun→adjective, adjective→adverb, verb→noun. The wrong form is always the underlined word.</div>
+      <div class="an-ex ex-w"><div class="ex-label exl-w">✗ Wrong forms in papers</div>
+        "wood flooring" → should be <code>wooden</code><br>
+        "convention house" → should be <code>conventional</code><br>
+        "establish" → should be <code>establishment</code><br>
+        "fertility source" → should be <code>fertile</code>
+      </div>
+      <div class="an-ex ex-c"><div class="ex-label exl-c">✓ Key suffixes to remember</div>
+        Noun→Adj: wood→wooden, convention→conventional<br>
+        Adj→Adv: rapid→rapidly, honest→honestly<br>
+        Verb→Noun: establish→establishment
+      </div>
+    </div>
+
+    <div class="an-card">
+      <div class="an-head"><div class="an-icon">🔊</div><div class="an-title" style="color:var(--c5)">Homophone — Same Sound Different Spelling</div></div>
+      <div class="an-body">The underlined word sounds like the correct word but is spelled differently. These are the trickiest 8% of questions.</div>
+      <div class="an-ex ex-c"><div class="ex-label exl-c">Must-know homophones from papers</div>
+        stares → <strong>stairs</strong> &nbsp;|&nbsp; cite → <strong>site</strong> &nbsp;|&nbsp; wight → <strong>white</strong><br>
+        hole → <strong>whole</strong> &nbsp;|&nbsp; threw → <strong>through</strong><br>
+        permit → <strong>permission</strong> &nbsp;|&nbsp; learn → <strong>study</strong><br>
+        became → <strong>because</strong> (near-sound error)
+      </div>
+    </div>
+
+    <div class="an-card">
+      <div class="an-head"><div class="an-icon">🔄</div><div class="an-title" style="color:var(--c6)">Suitable/Correct Replacement</div></div>
+      <div class="an-body">The underlined word is contextually wrong. Find the word that fits the sentence's meaning perfectly.</div>
+      <div class="an-ex ex-w"><div class="ex-label exl-w">✗ Wrong word in context</div>"Ray was almost sure who the <code>criminal</code> was"</div>
+      <div class="an-ex ex-c"><div class="ex-label exl-c">✓ Correct replacement</div>"Ray was almost sure who the <code>culprit</code> was"<br>(criminal = law-breaker; culprit = person responsible for something wrong)</div>
+    </div>
+
+  </div>
+
+  <div class="sec-head"><span class="sh-tag">Passages Used</span><span class="sh-t">Which Lessons Appear in Q32–36?</span></div>
+  <div class="chart-box">
+    <div class="chart-title">Most Frequently Used Passage Sources</div>
+    <div class="br"><div class="bl">The Journey</div><div class="bt"><div class="bf" style="width:50%;background:var(--c1)"></div></div><div class="bp">5/22</div></div>
+    <div class="br"><div class="bl">Storeyed House</div><div class="bt"><div class="bf" style="width:40%;background:var(--c2)"></div></div><div class="bp">4/22</div></div>
+    <div class="br"><div class="bl">Rendezvous with Ray</div><div class="bt"><div class="bf" style="width:35%;background:var(--c3)"></div></div><div class="bp">4/22</div></div>
+    <div class="br"><div class="bl">Jamaican Fragment</div><div class="bt"><div class="bf" style="width:30%;background:var(--c4)"></div></div><div class="bp">3/22</div></div>
+    <div class="br"><div class="bl">My Childhood (Kalam)</div><div class="bt"><div class="bf" style="width:25%;background:var(--c5)"></div></div><div class="bp">3/22</div></div>
+    <div class="br"><div class="bl">Attitude is Altitude (Nick)</div><div class="bt"><div class="bf" style="width:20%;background:var(--c6)"></div></div><div class="bp">2/22</div></div>
+    <div class="br"><div class="bl">Chernobyl / Environment</div><div class="bt"><div class="bf" style="width:15%;background:var(--muted)"></div></div><div class="bp">1/22</div></div>
+  </div>
+
+  <div class="sec-head"><span class="sh-tag">Exam Strategy</span><span class="sh-t">How to Score 5/5 Every Time</span></div>
+  <div class="tips-grid">
+    <div class="tip"><div class="tip-n">01</div><div class="tip-t">Read the task word first</div><div class="tip-b">Before reading the passage, look at what Q32–36 ask. "Write synonym", "Write opposite", "Write meaning" — the task tells you exactly what to do.</div></div>
+    <div class="tip"><div class="tip-n">02</div><div class="tip-n">02</div><div class="tip-t">Use context, not just memory</div><div class="tip-b">Even if you don't know the word, the sentence gives you context clues. "She was terrified" → terrified = very frightened → synonym: scared.</div></div>
+    <div class="tip"><div class="tip-n">03</div><div class="tip-t">Same part of speech always</div><div class="tip-b">If the underlined word is an adjective, your answer must also be an adjective. If it's an adverb, your answer must be an adverb.</div></div>
+    <div class="tip"><div class="tip-n">04</div><div class="tip-t">Homophones — learn the list</div><div class="tip-b">There are only ~15 homophones tested across all papers. Learn them all this week: stairs/stares, site/cite, whole/hole, through/threw, white/wight, wooden/wood.</div></div>
+    <div class="tip"><div class="tip-n">05</div><div class="tip-t">Correct form = check suffix</div><div class="tip-b">When asked to write "correct form": wood→wooden (-en suffix), convention→conventional (-al suffix), establish→establishment (-ment suffix).</div></div>
+    <div class="tip"><div class="tip-n">06</div><div class="tip-t">Write only ONE word</div><div class="tip-b">Q32–36 answers are almost always a single word. Writing a full sentence wastes time and often gets zero marks if examiners want one word only.</div></div>
+  </div>
+
+  <div class="cta-row" style="margin-top:0;">
+    <button class="btn-main" onclick="go('practice')">Start Practice →</button>
+    <button class="btn-ghost" onclick="go('vocab')">Vocab Bank →</button>
+  </div>
+</div>
+
+<!-- VOCAB BANK -->
+<div id="vocab" class="wrap z1 screen" style="display:none">
+  <div class="sec-head"><span class="sh-tag">Vocab Bank</span><span class="sh-t">All Underlined Words from Q32–36 Papers</span></div>
+  <div id="vocab-content"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+<button class="stb" id="stb" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// ════════════════════════════════════════════════════════
+// TASK TYPE CONFIG
+const TC = {
+  syn:  { label:"Synonym",         cls:"t1", col:"var(--c1)" },
+  ant:  { label:"Antonym/Opposite",cls:"t2", col:"var(--c2)" },
+  mean: { label:"Meaning",         cls:"t3", col:"var(--c3)" },
+  form: { label:"Correct Form",    cls:"t4", col:"var(--c4)" },
+  homo: { label:"Homophone",       cls:"t5", col:"var(--c5)" },
+  rep:  { label:"Replace/Suitable",cls:"t6", col:"var(--c6)" },
+};
+
+// ════════════════════════════════════════════════════════
+// ALL Q32–36 DATA
+const PASSAGES = [
+
+  { id:1, source:"K-3A / DCEB Khammam", lesson:"Shri Sita Rama Kalyanam (My Childhood)",
+    passage:"During the annual Shri Sita Rama Kalyanam ceremony, our family used to arrange boats with a special (32) platform for carrying idols of the Lord from the temple to the marriage cite (33) situated in the middle (34) of the pond called Rama Tirtha which was near our house. Events from the Ramayana and from the life of the Praphat (35) were the bedtime stories my mother and grandmother would tell the children (36) in our family.",
+    qs:[
+      { n:32, task:"ant",  underlined:"special",  prompt:"Write the word which is opposite in meaning.",  answer:"ordinary / general",  rule:"Special = unique/particular → opposite = ordinary/general", alts:["common","usual"] },
+      { n:33, task:"homo", underlined:"cite",      prompt:"Replace the underlined word with the appropriate one which is pronounced similarly.", answer:"site", rule:"'Cite' (to quote) sounds like 'site' (a place/location). The marriage SITE is correct.", alts:["sight"] },
+      { n:34, task:"mean", underlined:"middle",    prompt:"Write the correct spelling of the underlined word.", answer:"middle (correct)", rule:"'Middle' is already correctly spelled — centre/midst.", alts:["centre","midst"] },
+      { n:35, task:"form", underlined:"Praphat",   prompt:"Replace the underlined word with its correct form.", answer:"Prophet", rule:"'Praphat' is misspelled — correct spelling is 'Prophet' (holy messenger).", alts:[] },
+      { n:36, task:"form", underlined:"children",  prompt:"Write the singular form of the underlined word.", answer:"child", rule:"Children is the plural of child. Singular = child.", alts:[] },
+    ]
+  },
+
+  { id:2, source:"MP-3A / DCEB", lesson:"My Childhood (Nick Vujicic)",
+    passage:"During the annual Shri Sita Rama Kalyanam ceremony, our family used to arrange boats with a special (32) platform for carrying idols of the Lord from the temple to the marriage cite (33) situated in the middle (34) of the pond. Events from the Ramayana and from the life of the Praphat (35) were the bedtime stories my mother and grandmother would tell the children (36) in our family.",
+    qs:[
+      { n:32, task:"ant",  underlined:"special",   prompt:"Write the word which is opposite in meaning of the underlined word.", answer:"ordinary", rule:"Special ↔ ordinary/common", alts:["common","general"] },
+      { n:33, task:"homo", underlined:"cite",       prompt:"Replace the underlined word with the appropriate one, which is pronounced similarly.", answer:"site", rule:"Marriage SITE (place) not CITE (to quote). Homophones.", alts:[] },
+      { n:34, task:"form", underlined:"middle",     prompt:"Write the correct spelling of the underlined word.", answer:"middle", rule:"Already correct — middle = centre.", alts:["centre"] },
+      { n:35, task:"form", underlined:"Praphat",    prompt:"Replace the underlined word with its correct form.", answer:"Prophet", rule:"Correct spelling: Prophet.", alts:[] },
+      { n:36, task:"form", underlined:"children",   prompt:"Write the singular form of the underlined word.", answer:"child", rule:"children → child (irregular plural).", alts:[] },
+    ]
+  },
+
+  { id:3, source:"V-3A / Pre-Public", lesson:"Rendezvous with Ray (Chitrabani)",
+    passage:"One important fallout (32) of this friendship was the establish (33) of Chitrabani, a communication and film institute, the first of its kind in West Bengal, which Roberge founded in 1970 and to which Ray, as a token of friendship, lent his name as co-founder. Ray was in the first governing body and after a few terms ready (34) agreed to be (35) the institute's adviser. Roberge arranged most of the initial funding from Canadian agencies. 'I had no reservations applying for them, for I feel richer (36) countries in the West are indebted to countries like India,' he said.",
+    qs:[
+      { n:32, task:"mean", underlined:"fallout",    prompt:"Write the meaning of underlined word.", answer:"consequence / result / outcome", rule:"Fallout = an indirect result or consequence of an event.", alts:["result","consequence","outcome"] },
+      { n:33, task:"form", underlined:"establish",  prompt:"Write suitable form of underlined word.", answer:"establishment", rule:"Need a noun here: 'the establishment of Chitrabani'. establish (verb) → establishment (noun).", alts:[] },
+      { n:34, task:"form", underlined:"ready",      prompt:"Write adverb of underlined word.", answer:"readily", rule:"ready (adjective) → readily (adverb). He readily agreed.", alts:[] },
+      { n:35, task:"homo", underlined:"be",         prompt:"Write homophone of underlined word.", answer:"bee", rule:"'be' and 'bee' are homophones (same sound, different meaning).", alts:[] },
+      { n:36, task:"ant",  underlined:"richer",     prompt:"Write the opposite of underlined word.", answer:"poorer", rule:"richer ↔ poorer (comparative opposites).", alts:["poorer","less wealthy"] },
+    ]
+  },
+
+  { id:4, source:"W-03(A) / DCEB Wanaparthy", lesson:"Rendezvous with Ray (Chitrabani)",
+    passage:"One important fallout (32) of this friendship was the establish (33) of Chitrabani, a communication and film institute. Ray was in the first governing body and after a few terms ready (34) agreed to be (35) the institute's adviser. Roberge arranged most of the initial funding from Canadian agencies. 'I feel richer (36) countries in the West are indebted to countries like India,' he said.",
+    qs:[
+      { n:32, task:"mean", underlined:"fallout",    prompt:"Write the meaning of underlined word.", answer:"consequence / result", rule:"Fallout = indirect consequence of an event/relationship.", alts:["result","outcome"] },
+      { n:33, task:"form", underlined:"establish",  prompt:"Write suitable form of underlined word.", answer:"establishment", rule:"Noun form needed: establishment (noun from verb 'establish').", alts:[] },
+      { n:34, task:"form", underlined:"ready",      prompt:"Write adverb of underlined word.", answer:"readily", rule:"ready → readily (add -ily after dropping 'y').", alts:[] },
+      { n:35, task:"homo", underlined:"be",         prompt:"Write homophone of underlined word.", answer:"bee", rule:"'be' (to exist) and 'bee' (the insect) are homophones.", alts:[] },
+      { n:36, task:"ant",  underlined:"richer",     prompt:"Write the opposite of underlined word.", answer:"poorer", rule:"richer → poorer.", alts:[] },
+    ]
+  },
+
+  { id:5, source:"PR-80 / DCEB Peddapalli", lesson:"Jamaican Fragment",
+    passage:"Was it that even in babyhood he (32) sense that in his own country he would be at the white man's beck and call? Could he, (33) with his age, divine difference between himself and the white boy? Was there an indefinite quality in the white man that (34) enabled his baby, smaller and younger than his playmate, to make him his slave? I could find no answer. I couldn't bring myself to (35) believe such a thing, and yet, with my own eyes I have seen a little dark boy take orders from a little white boy, (36) obviously his social equal, and younger and smaller.",
+    qs:[
+      { n:32, task:"rep",  underlined:"sense",      prompt:"Replace the underlined word with a correct one.", answer:"sensed", rule:"Past tense narrative — 'sensed' (past tense of sense) not 'sense' (present).", alts:["feel","felt"] },
+      { n:33, task:"form", underlined:"with his age",prompt:"Write the correct preposition.", answer:"at", rule:"'At his age' is the correct prepositional phrase — not 'with his age'.", alts:[] },
+      { n:34, task:"ant",  underlined:"enabled",    prompt:"Write the antonym for the underlined word.", answer:"disabled / prevented", rule:"enabled (allowed/made possible) ↔ disabled/prevented.", alts:["prevented","stopped","disabled"] },
+      { n:35, task:"syn",  underlined:"believe",    prompt:"Write the synonym for the underlined word.", answer:"accept / trust / think", rule:"believe = accept as true, trust, think.", alts:["trust","accept","think"] },
+      { n:36, task:"form", underlined:"obviously",  prompt:"Write the parts of speech for the underlined word.", answer:"adverb", rule:"Obviously modifies the whole clause — it is an adverb.", alts:[] },
+    ]
+  },
+
+  { id:6, source:"ST-80 / DCEB Siddipet", lesson:"Potter and Tiger",
+    passage:"The tiger was terrified (32) and he ran through the dark forest. The creature pulled (33) hard on the rope to tell him which way to go. At the same time it scold (34), cursed and kicked the poor tiger. Soon they stopped in frunt (35) of a small hut on the edge of the thick forest. The creature climbed down from the tiger's back (36) and bound him with iron chain to a nearby tree.",
+    qs:[
+      { n:32, task:"mean", underlined:"terrified",  prompt:"Write the meaning of the underlined word.", answer:"extremely frightened / in great fear", rule:"Terrified = extremely scared/frightened.", alts:["very scared","extremely frightened"] },
+      { n:33, task:"syn",  underlined:"pulled",     prompt:"Write the suitable synonym of the underlined word.", answer:"tugged / dragged / yanked", rule:"pulled = tugged, dragged, yanked hard.", alts:["tugged","dragged","yanked"] },
+      { n:34, task:"form", underlined:"scold",      prompt:"Replace the underlined word with a suitable word.", answer:"scolded", rule:"Past tense needed — scolded (past of scold). Parallel with 'cursed' and 'kicked'.", alts:[] },
+      { n:35, task:"homo", underlined:"frunt",      prompt:"Write a selected word which means the same of underlined.", answer:"front", rule:"'Frunt' is misspelled — correct spelling is 'front'.", alts:[] },
+      { n:36, task:"ant",  underlined:"back",       prompt:"Write the opposite meaning to the underlined word.", answer:"front", rule:"back ↔ front.", alts:["front"] },
+    ]
+  },
+
+  { id:7, source:"13/14E / DCEB v1", lesson:"Never-Never Nest",
+    passage:"Now, I'm sorry if I sounded rude (32), but really I'm shocked to find the way you're living. I've never indebted (33) a penny in my life — cash down, that's my motto and I want you to do the same. Now look, here's lithe check (34) I was meaning to give you, anyway. Suppose you take it and pay out (35) just one of your bills so that you can say one thing at least really belonging (36) to you.",
+    qs:[
+      { n:32, task:"ant",  underlined:"rude",       prompt:"Write the opposite word of the underlined word.", answer:"polite / courteous", rule:"rude ↔ polite/courteous.", alts:["polite","courteous","well-mannered"] },
+      { n:33, task:"syn",  underlined:"indebted",   prompt:"Write the synonym of the underlined word.", answer:"owed / owing", rule:"indebted = owing money. Synonym: owed.", alts:["owed","owing"] },
+      { n:34, task:"homo", underlined:"lithe",      prompt:"Replace the underlined word with the suitable word.", answer:"little", rule:"'lithe' (flexible/supple) wrongly used — correct is 'little' (small). Not a perfect homophone but near-sound error.", alts:["small","little"] },
+      { n:35, task:"rep",  underlined:"pay out",    prompt:"Replace the underlined word with suitable word.", answer:"pay off", rule:"'Pay off' = clear a debt/bill. 'Pay out' = pay money to someone.", alts:["settle","clear"] },
+      { n:36, task:"form", underlined:"belonging",  prompt:"Replace with correct form of the word.", answer:"belongs", rule:"'One thing that belongs to you' — present simple needed, not participle.", alts:[] },
+    ]
+  },
+
+  { id:8, source:"13/14E / DCEB v2", lesson:"Never-Never Nest (duplicate)",
+    passage:"Now, I'm sorry if I sounded rude (32), but really I'm shocked. I've never indebted (33) a penny in my life. Here's lithe check (34) I was meaning to give you. Suppose you take it and pay out (35) just one of your bills so that you can say one thing at least really belonging (36) to you.",
+    qs:[
+      { n:32, task:"ant",  underlined:"rude",       prompt:"Write the opposite word.", answer:"polite", rule:"rude ↔ polite.", alts:["courteous"] },
+      { n:33, task:"syn",  underlined:"indebted",   prompt:"Write the synonym.", answer:"owed", rule:"indebted = owed money.", alts:["owing"] },
+      { n:34, task:"homo", underlined:"lithe",      prompt:"Replace with suitable word.", answer:"little", rule:"'lithe' should be 'little' — near-sound/spelling confusion.", alts:[] },
+      { n:35, task:"rep",  underlined:"pay out",    prompt:"Replace the underlined word with suitable word.", answer:"pay off", rule:"pay off = clear debt. pay out = distribute money.", alts:["settle"] },
+      { n:36, task:"form", underlined:"belonging",  prompt:"Replace with correct form.", answer:"belongs", rule:"'belongs to you' — present simple, not gerund.", alts:[] },
+    ]
+  },
+
+  { id:9, source:"JK-80 / DCEB Jagtial v1", lesson:"Chernobyl — Rendezvous with Ray",
+    passage:"It happened on April the 26th 1986. I remember (32) the date because it was my mother's birthday. We heard (33) the explosion early in the morning. We didn't worried (34) because there had been explosions before from Chernobyl. But this one was bigger. Every one stopped what they were doing and listen (35). Then we ran out into the garden. We could see a cloud of wight (36) smoke coming from the nuclear reactor.",
+    qs:[
+      { n:32, task:"syn",  underlined:"remember",   prompt:"Write the synonyms of the underlined word.", answer:"recall / recollect", rule:"remember = recall, recollect, keep in mind.", alts:["recall","recollect","keep in mind"] },
+      { n:33, task:"ant",  underlined:"explosion",  prompt:"Write the word opposite in meaning.", answer:"silence / implosion", rule:"explosion (outward burst) ↔ implosion / silence.", alts:["implosion","silence"] },
+      { n:34, task:"form", underlined:"worried",    prompt:"Replace the underlined word with the right form.", answer:"worry", rule:"After 'didn't', use base form: 'didn't worry' not 'didn't worried'.", alts:[] },
+      { n:35, task:"form", underlined:"listen",     prompt:"Write correct spelling of the underlined word.", answer:"listened", rule:"Past tense: 'stopped…and listened'. Parallel verb form required.", alts:[] },
+      { n:36, task:"homo", underlined:"wight",      prompt:"Replace the underlined word with the word which is pronounced similarly.", answer:"white", rule:"'wight' (archaic creature) sounds like 'white' — correct word here is 'white smoke'.", alts:[] },
+    ]
+  },
+
+  { id:10, source:"RJ-80 / DCEB Jagtial v2", lesson:"Chernobyl passage (same as above)",
+    passage:"It happened on April the 26th 1986. I remember (32) the date because it was my mother's birthday. We heard (33) the explosion early in the morning. We didn't worried (34). But this one was bigger. Everyone stopped what they were doing and listen (35). We could see a cloud of wight (36) smoke.",
+    qs:[
+      { n:32, task:"syn",  underlined:"remember",   prompt:"Write the synonyms of the underline word.", answer:"recall / recollect", rule:"remember = recall, recollect.", alts:["recall","recollect"] },
+      { n:33, task:"ant",  underlined:"explosion",  prompt:"Write the word opposite in meaning of the underlined word.", answer:"silence / implosion", rule:"explosion ↔ silence/implosion.", alts:["silence","implosion"] },
+      { n:34, task:"form", underlined:"worried",    prompt:"Replace the underlined word with the right form.", answer:"worry", rule:"'didn't worry' — base form after auxiliary 'didn't'.", alts:[] },
+      { n:35, task:"form", underlined:"listen",     prompt:"Write correct spelling of the underlined word.", answer:"listened", rule:"Past tense parallel: listened.", alts:[] },
+      { n:36, task:"homo", underlined:"wight",      prompt:"Replace the underlined word with the word which is pronounced similarly.", answer:"white", rule:"wight → white. Homophone error.", alts:[] },
+    ]
+  },
+
+  { id:11, source:"RM-80 / DCEB Karimnagar", lesson:"Attitude is Altitude (Nick Vujicic)",
+    passage:"At age ten Nick tried to drown (32) himself in the bath but luckily the attempt (33) was unsuccessful. 'I felt there was no purpose when you lack purpose and strength (34). It is hard to hold on,' he said. But with the help of his religion, friends and family, Nick managed to pull (35) through to become international symbol of triumph (36) over adversity.",
+    qs:[
+      { n:32, task:"mean", underlined:"drown",      prompt:"Write its meaning.", answer:"to die by suffocation in water", rule:"drown = to die by being submerged in water and unable to breathe.", alts:["suffocate in water","submerge fatally"] },
+      { n:33, task:"syn",  underlined:"unsuccessful",prompt:"Replace it with another word which has similar meaning.", answer:"failed / futile / fruitless", rule:"unsuccessful = failed, futile, fruitless, not successful.", alts:["failed","futile","vain","fruitless"] },
+      { n:34, task:"ant",  underlined:"strength",   prompt:"Write its opposite word.", answer:"weakness", rule:"strength ↔ weakness.", alts:["weakness","frailty"] },
+      { n:35, task:"ant",  underlined:"pull through",prompt:"Write its opposite word.", answer:"give up / fail / succumb", rule:"pull through (= survive/succeed) ↔ give up/fail.", alts:["give up","fail","succumb"] },
+      { n:36, task:"syn",  underlined:"triumph",    prompt:"Replace it with its similar meaning.", answer:"victory / success / achievement", rule:"triumph = victory, success, achievement.", alts:["victory","success","achievement"] },
+    ]
+  },
+
+  { id:12, source:"R-3A / DCEB v1 & v2", lesson:"The Journey (Trunk)",
+    passage:"On my way home from the bus stop, my trunk had been carried by a porter. The problem (32) now was we couldn't find anyone who could help me carry (33) the trunk to the bus stop. At another time of the year, we would have easily found someone to help me, but now most of the villagers were busy (34) in their fields. Nobody had time to spare for me. In fact carrying the trunk should not have (35) been such a worry for me that except my (36) education had made me shun physical labour.",
+    qs:[
+      { n:32, task:"syn",  underlined:"problem",    prompt:"Write the synonyms of the underlined word.", answer:"difficulty / trouble / issue", rule:"problem = difficulty, trouble, issue, dilemma.", alts:["difficulty","trouble","issue","challenge"] },
+      { n:33, task:"form", underlined:"carry",      prompt:"Write a noun form of the underlined word.", answer:"carriage / carrying", rule:"carry (verb) → carriage / carrying (noun form).", alts:["carriage","carrying"] },
+      { n:34, task:"ant",  underlined:"busy",       prompt:"Write antonym for the underlined word.", answer:"free / idle / unoccupied", rule:"busy ↔ free/idle/unoccupied.", alts:["free","idle","unoccupied","available"] },
+      { n:35, task:"form", underlined:"been",       prompt:"Write the past form of the verb.", answer:"was", rule:"'been' is past participle. Simple past form of 'be' = was/were.", alts:["was"] },
+      { n:36, task:"rep",  underlined:"education",  prompt:"Rewrite the underlined part correctly.", answer:"except that my education", rule:"'That' is missing — 'except that my education had made me...'", alts:[] },
+    ]
+  },
+
+  { id:13, source:"RP-3A / Practice Pre-Public", lesson:"Jamaican Fragment",
+    passage:"For a whole day I puzzled (32) over this problem. For a hole (33) day my faith in my persons (34) was shaken. When I passed by that afternoon the little (35) boys were not there. That evening I thought deeply on the subject (36).",
+    qs:[
+      { n:32, task:"syn",  underlined:"puzzled",    prompt:"Write the synonym of the underlined word.", answer:"wondered / pondered / baffled", rule:"puzzled = wondered, was confused, pondered.", alts:["wondered","pondered","baffled","confused"] },
+      { n:33, task:"homo", underlined:"hole",       prompt:"Replace the underlined word with a right word that rhymes with it and suits the context.", answer:"whole", rule:"'hole' (opening) and 'whole' (entire/complete) are homophones. 'A whole day' is correct.", alts:["whole"] },
+      { n:34, task:"rep",  underlined:"persons",    prompt:"Replace the underlined word with a right word that suits the context.", answer:"convictions / beliefs", rule:"'faith in my convictions/beliefs' — 'persons' makes no sense here.", alts:["convictions","beliefs","self"] },
+      { n:35, task:"form", underlined:"little",     prompt:"Write as comparative or superlative form as needed.", answer:"little (already correct here)", rule:"'little boys' — 'little' is already correct as adjective here.", alts:[] },
+      { n:36, task:"form", underlined:"subject",    prompt:"Write the plural of the underlined word.", answer:"subjects", rule:"subject → subjects (regular plural).", alts:["subjects"] },
+    ]
+  },
+
+  { id:14, source:"C-3A / DCEB Grand Test", lesson:"Planting a Tree",
+    passage:"For me, my great (32) activity is to plant a tree. I think that a tree is a wonderful (33) symbol for the environment and when we plant a tree we plant hope (34). We plant the future for ourselfs (35), for our children, for the birds. We plant something that will last, long after we are gone (36).",
+    qs:[
+      { n:32, task:"form", underlined:"great",      prompt:"Rewrite with its Superlative form.", answer:"greatest", rule:"great → greater (comparative) → greatest (superlative).", alts:["greatest"] },
+      { n:33, task:"syn",  underlined:"wonderful",  prompt:"Write another word that gives same meaning.", answer:"magnificent / excellent / splendid", rule:"wonderful = magnificent, splendid, excellent, marvellous.", alts:["magnificent","splendid","excellent","marvellous"] },
+      { n:34, task:"ant",  underlined:"hope",       prompt:"Write the antonym for the underlined word.", answer:"despair / hopelessness", rule:"hope ↔ despair / hopelessness.", alts:["despair","hopelessness"] },
+      { n:35, task:"form", underlined:"ourselfs",   prompt:"Replace with correct form of the word.", answer:"ourselves", rule:"'ourselfs' is incorrect — correct reflexive plural is 'ourselves'.", alts:[] },
+      { n:36, task:"mean", underlined:"gone",       prompt:"Write the meaning of the word.", answer:"passed away / dead / no longer alive", rule:"'after we are gone' = after we have died/passed away.", alts:["dead","passed away","no longer alive"] },
+    ]
+  },
+
+  { id:15, source:"NK-3A / DCEB Nagarkurnool", lesson:"My Childhood (Kalam)",
+    passage:"Then the Second World War was over and India's freedom was imminent (32). 'Indians will build their own India,' declared Gandhiji. The hole (33) country was filled with an unprecedented optimism (34). I asked my father for permit (35) to leave Rameswaram and learn (36) at the district headquarters in Ramanathapuram.",
+    qs:[
+      { n:32, task:"mean", underlined:"imminent",   prompt:"Write the meaning of the underlined word.", answer:"about to happen very soon", rule:"imminent = about to occur/happen very soon, impending.", alts:["impending","forthcoming","near at hand"] },
+      { n:33, task:"homo", underlined:"hole",       prompt:"Replace the underlined word with the correct one which is pronounced similarly.", answer:"whole", rule:"'hole' (opening) → 'whole' (entire). The WHOLE country. Homophones.", alts:["whole"] },
+      { n:34, task:"ant",  underlined:"optimism",   prompt:"Write the word which is opposite in meaning.", answer:"pessimism", rule:"optimism (positive outlook) ↔ pessimism (negative outlook).", alts:["pessimism","despair","gloom"] },
+      { n:35, task:"form", underlined:"permit",     prompt:"Replace the underlined word with its correct form.", answer:"permission", rule:"'Asked for permission' — permission (noun) not permit (noun can work but permission is more natural here).", alts:["permission"] },
+      { n:36, task:"rep",  underlined:"learn",      prompt:"Replace the underlined word with the suitable word.", answer:"study", rule:"'Learn at headquarters' should be 'study at headquarters' — study = attend school/institution.", alts:["study","pursue education"] },
+    ]
+  },
+
+  { id:16, source:"S-3A / Pre-Public", lesson:"My Childhood (Kalam) — Ancestral House",
+    passage:"I was one of the children — a short boy with rather under distinguished (32) looks, born to tall and handsome parents. We live (33) in our ancestral house, which was built in the middle of the nineteenth century. It was a fair (34) large pucca house, made of limestone and brick, on the Mosque Street in Rameswaram. My austere father used to avoid all inessential (35) comforts and luxuries. However, all necessities (36) were provided for, in terms of food, medicine or clothes.",
+    qs:[
+      { n:32, task:"rep",  underlined:"under distinguished", prompt:"Replace the word with the exact one.", answer:"undistinguished", rule:"'undistinguished' (one word) = not remarkable in appearance. The space is a typo.", alts:["plain","unremarkable"] },
+      { n:33, task:"form", underlined:"live",       prompt:"Write the correct form of the word.", answer:"lived", rule:"Past narrative — 'We lived in our ancestral house' (past tense).", alts:[] },
+      { n:34, task:"rep",  underlined:"fair",       prompt:"Replace with the right form of the word.", answer:"fairly", rule:"'fairly large' — adverb 'fairly' needed to modify adjective 'large'.", alts:["reasonably","quite"] },
+      { n:35, task:"ant",  underlined:"inessential", prompt:"Write the opposite in meaning.", answer:"essential / necessary", rule:"inessential (unnecessary) ↔ essential/necessary.", alts:["essential","necessary","important"] },
+      { n:36, task:"syn",  underlined:"necessities", prompt:"Write the similar meaning.", answer:"needs / requirements / essentials", rule:"necessities = needs, requirements, essentials.", alts:["needs","requirements","essentials"] },
+    ]
+  },
+
+  { id:17, source:"DP-3A / CCE Pre-Public", lesson:"Storeyed House (Bayaji)",
+    passage:"Bayaji was (32) frantic. He ran around crying. 'My house, my (33) storyed house! It's on fire. My (34) Enemy has (35) took revenge on me. He entered the roaring flames, crying 'My House, my house.' He climbed up, pulled the pictures of Buddha and Babasaheb from the walls and hurled them down. As he was about to come down the (36) stares, it crumbled down in flames.",
+    qs:[
+      { n:32, task:"mean", underlined:"frantic",    prompt:"Write the meaning of the underlined word.", answer:"wildly anxious and panicked", rule:"frantic = in a state of wild anxiety or excitement.", alts:["extremely anxious","wildly distressed","panicked"] },
+      { n:33, task:"form", underlined:"storyed",    prompt:"Replace the underlined word with its correct spelling.", answer:"storeyed", rule:"'storyed' misspelled — correct is 'storeyed' (having multiple floors/storeys).", alts:[] },
+      { n:34, task:"ant",  underlined:"Enemy",      prompt:"Write the word which is opposite in meaning.", answer:"friend / ally", rule:"enemy ↔ friend/ally.", alts:["friend","ally","companion"] },
+      { n:35, task:"form", underlined:"took",       prompt:"Replace the underlined word with the suitable word.", answer:"taken", rule:"'Has taken' — present perfect requires past participle 'taken' not past simple 'took'.", alts:[] },
+      { n:36, task:"homo", underlined:"stares",     prompt:"Replace the underlined word with the suitable word which is pronounced similarly.", answer:"stairs", rule:"'stares' (looks intently) and 'stairs' (steps) are homophones. He came down the STAIRS.", alts:[] },
+    ]
+  },
+
+  { id:18, source:"M-03(A) / DCEB Mahabubnagar v1 & v2", lesson:"Storeyed House (Bayaji) — Abandon plans",
+    passage:"Out of fear Bayaji had to (32) abandon plans for the storeyed house. The (33) convention three-portioned house was taken up. Work resumed and the walls rose (34) rapidly. The middle portion was a little elevated and a small first storey fixed up there with a (35) wood flooring. This part could be reached by (36) stares rising from the kitchen.",
+    qs:[
+      { n:32, task:"syn",  underlined:"abandon",    prompt:"Write a synonym of the underlined word.", answer:"give up / forsake / drop", rule:"abandon = give up, forsake, drop, relinquish.", alts:["give up","forsake","drop","relinquish"] },
+      { n:33, task:"form", underlined:"convention", prompt:"Replace the underlined word with its correct form.", answer:"conventional", rule:"Need adjective: 'conventional' (adjective from noun 'convention') three-portioned house.", alts:[] },
+      { n:34, task:"ant",  underlined:"rapidly",    prompt:"Write the word which is opposite in meaning.", answer:"slowly", rule:"rapidly ↔ slowly.", alts:["slowly","gradually"] },
+      { n:35, task:"form", underlined:"wood",       prompt:"Replace the underlined word with its correct form.", answer:"wooden", rule:"Need adjective: 'wooden flooring'. wood (noun) → wooden (adjective).", alts:[] },
+      { n:36, task:"homo", underlined:"stares",     prompt:"Replace the underlined word with the correct one which is pronounced similarly.", answer:"stairs", rule:"stares (looks hard) → stairs (steps). 'Stairs rising from the kitchen' is correct.", alts:[] },
+    ]
+  },
+
+  { id:19, source:"SK-80 / DCEB Medak", lesson:"Nick Vujicic — No Limbs",
+    passage:"Imagine having no arms to stretch (32) in the morning, to help you scratch an itch, to allow you wrap (33) your arms around your loved ones. Imagine having no legs to kick pebbles (34) down the street, to walk or run, to bicycle or skateboard, or get you from point to point. Then imagine both at once, (35) which is what Nick Vujicic has faced his whole life. Have you heard something like this before (36)?",
+    qs:[
+      { n:32, task:"form", underlined:"stretch",    prompt:"Write the correct spelling of the word.", answer:"stretch (correct)", rule:"'Stretch' is already correctly spelled — to extend arms outward.", alts:[] },
+      { n:33, task:"mean", underlined:"wrap",       prompt:"Write the meaning of the underlined word.", answer:"to fold or wind around", rule:"wrap = to fold, wind, or place around something.", alts:["to fold around","to encircle","to put arms around"] },
+      { n:34, task:"form", underlined:"pebbles",    prompt:"Write the correct form of the underlined word.", answer:"pebble (singular)", rule:"Question asks for singular form: pebble.", alts:["pebble"] },
+      { n:35, task:"rep",  underlined:"which",      prompt:"Replace the underlined word with correct word which is pronounced similarly.", answer:"which (correct here)", rule:"'which is what Nick has faced' — 'which' is correct as relative pronoun.", alts:[] },
+      { n:36, task:"ant",  underlined:"before",     prompt:"Write the opposite meaning to the underlined word.", answer:"after / later", rule:"before ↔ after/later.", alts:["after","later"] },
+    ]
+  },
+
+  { id:20, source:"M-3A / DCEB", lesson:"Rendezvous with Ray (Quiet friendship)",
+    passage:"It was a very quite (32) friendship that developed over the years. Manikda as Ray was affectionate (33) called by his friends was a shy person and always very discreet about display (34) his emotions,' said Roberge. Though to outsiders, Ray's massive (35) stature — physical and intellectual — might have made him come across as cold, aloof (36) and even intimidating, he was in reality a very simple and unassuming man.",
+    qs:[
+      { n:32, task:"rep",  underlined:"quite",      prompt:"Replace the word with correct one.", answer:"quiet", rule:"'quite' (rather/fairly) and 'quiet' (silent/private) are near-homophones. 'A quiet friendship' is correct.", alts:["quiet"] },
+      { n:33, task:"form", underlined:"affectionate", prompt:"Write the correct form of the word.", answer:"affectionately", rule:"Adverb needed to modify 'called': affectionately (adv) not affectionate (adj).", alts:[] },
+      { n:34, task:"form", underlined:"display",    prompt:"Write the correct form of the word.", answer:"displaying", rule:"'discreet about displaying his emotions' — gerund (-ing) needed after preposition 'about'.", alts:[] },
+      { n:35, task:"syn",  underlined:"massive",    prompt:"Write synonym for the word.", answer:"enormous / huge / colossal", rule:"massive = enormous, huge, colossal, imposing.", alts:["enormous","huge","colossal","imposing"] },
+      { n:36, task:"mean", underlined:"aloof",      prompt:"Write meaning of the word.", answer:"cold, distant and unfriendly in manner", rule:"aloof = cold, distant, detached, not friendly.", alts:["distant","cold and detached","standoffish"] },
+    ]
+  },
+
+  { id:21, source:"Warangal DCEB", lesson:"Rendezvous with Ray (Manuscripts)",
+    passage:"Ray's screenplay manuscripts were an art by themselves,' Roberge says, 'hand-written in Bengali, with notes in English for his set-designer, with sketches here and there, and occasional stall/notation of fragments (32) of music'. One Sunday morning, Roberge found Ray in a disturbing (33) mood. A few well known personalities of the city had visited him earlier to go through some of his manuscripts (34). After they left Ray found the Charulatha screenplay missing. Ray was almost sure who the criminal (35) was. 'I asked him whether he was planning to take any action, and he said no, and explained to me that he did not want to hurt the reputation (36) of the person. I was absolutely stunned by his humane concern,' said Roberge.",
+    qs:[
+      { n:32, task:"mean", underlined:"fragments",  prompt:"Write the meaning of the underlined word.", answer:"small broken pieces / portions", rule:"fragments = small pieces or portions of something larger.", alts:["pieces","portions","bits","scraps"] },
+      { n:33, task:"form", underlined:"disturbing", prompt:"Replace the underlined word with its correct form.", answer:"disturbed", rule:"'Ray was in a disturbed mood' — past participle adjective, not present participle.", alts:[] },
+      { n:34, task:"ant",  underlined:"manuscripts", prompt:"Write the word which is opposite in meaning.", answer:"printed / published works", rule:"manuscripts (handwritten) ↔ printed/published works.", alts:["printed works","published texts"] },
+      { n:35, task:"rep",  underlined:"criminal",   prompt:"Replace the underlined word with a suitable word.", answer:"culprit", rule:"criminal = one who commits crime; culprit = one responsible for a wrong/misdeed. Culprit fits better here.", alts:["culprit","thief"] },
+      { n:36, task:"syn",  underlined:"reputation", prompt:"Write a word that means exactly or nearly the same.", answer:"image / name / standing / prestige", rule:"reputation = image, name, standing, prestige, honour.", alts:["image","prestige","standing","name"] },
+    ]
+  },
+
+  { id:22, source:"DCEB Pre-Final 2026", lesson:"Attitude is Altitude (Nick Vujicic torso)",
+    passage:"The brave 26-year-old, who is mainly a torso (32), plays football and golf, swims and surfs, despite have (33) no limbs. Nick has a small foot in (34) his left side which enables (35) him to kick. He uses his one hip which helps him balance and foot (36) to type, write with a pen and pick things up among his toes.",
+    qs:[
+      { n:32, task:"mean", underlined:"torso",      prompt:"Write the meaning of the underlined word.", answer:"the trunk of the human body (without limbs and head)", rule:"torso = the trunk of the human body, excluding the head and limbs.", alts:["trunk of the body","body without limbs"] },
+      { n:33, task:"form", underlined:"have",       prompt:"Write the right form of the underlined word.", answer:"having", rule:"'despite having no limbs' — gerund (-ing) needed after 'despite'.", alts:[] },
+      { n:34, task:"rep",  underlined:"in",         prompt:"Replace the underlined preposition with the correct one.", answer:"on", rule:"'a small foot on his left side' — 'on' is the correct preposition for body position.", alts:["on"] },
+      { n:35, task:"ant",  underlined:"enables",    prompt:"Write the opposite word for the underlined word.", answer:"disables / prevents", rule:"enables (allows/empowers) ↔ disables/prevents.", alts:["disables","prevents","stops"] },
+      { n:36, task:"form", underlined:"foot",       prompt:"Write the plural of the underlined word.", answer:"feet", rule:"foot → feet (irregular plural).", alts:["feet"] },
+    ]
+  },
+
+];
+
+// ═══════════════════════════════════
+// STATE
+let curPassage = 0;
+let activeFilter = "all";
+let doneSet = new Set();
+
+function init(){
+  const total = PASSAGES.reduce((s,p)=>s+p.qs.length,0);
+  document.getElementById("tb-total").textContent = total;
+  buildPNav();
+  renderPassage(0);
+  buildVocabBank();
+  window.addEventListener("scroll",()=>{
+    document.getElementById("stb").classList.toggle("vis",window.scrollY>400);
+  });
+}
+
+function go(s){
+  ["home","practice","analysis","vocab"].forEach(id=>{
+    document.getElementById(id).style.display = s===id?"block":"none";
+  });
+  document.querySelectorAll(".tb-btn").forEach(b=>{
+    b.classList.toggle("on", b.textContent.toLowerCase().includes(s.replace("-","").substring(0,4)));
+  });
+  if(s==="practice") renderPassage(curPassage);
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+// ─── FILTER ───
+function setFilter(f, btn){
+  activeFilter = f;
+  document.querySelectorAll(".fc").forEach(b=>b.classList.remove("fa"));
+  btn.classList.add("fa");
+  renderPassage(curPassage);
+}
+
+// ─── PASSAGE NAV ───
+function buildPNav(){
+  const nav = document.getElementById("pnav");
+  nav.innerHTML = "";
+  PASSAGES.forEach((p,i)=>{
+    const b = document.createElement("button");
+    b.className = "pnb"+(i===0?" cur":"");
+    b.id = `pnb-${i}`;
+    b.textContent = `${i+1}. ${p.source.split("/")[0].trim()}`;
+    b.onclick = ()=>{curPassage=i;renderPassage(i);};
+    nav.appendChild(b);
+  });
+}
+
+function updatePNav(i){
+  document.querySelectorAll(".pnb").forEach((b,idx)=>{
+    b.className = "pnb"+(idx===i?" cur":allDone(idx)?" dn":"");
+  });
+}
+
+function allDone(pIdx){
+  return PASSAGES[pIdx].qs.every((_,si)=>doneSet.has(`${pIdx}-${si}`));
+}
+
+// ─── RENDER ───
+function renderPassage(idx){
+  curPassage = idx;
+  const p = PASSAGES[idx];
+  const filteredQs = p.qs.filter(q=> activeFilter==="all" || q.task===activeFilter);
+
+  let html = `
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border);">
+      <span style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;background:var(--s2);border:1px solid var(--border2);border-radius:5px;padding:3px 10px;color:var(--muted2);">Passage ${idx+1} of ${PASSAGES.length}</span>
+      <span style="font-size:12px;color:var(--muted);">${p.lesson}</span>
+      <span style="font-size:12px;color:var(--muted);margin-left:auto;">${p.source}</span>
+    </div>
+    <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">Passage with underlined words</div>
+    <div class="passage-snippet">${highlightNums(p.passage)}</div>`;
+
+  if(filteredQs.length===0){
+    html += `<div style="text-align:center;padding:40px;color:var(--muted);">No questions match this filter in this passage.</div>`;
+  } else {
+    filteredQs.forEach((q,si)=>{
+      const realSi = p.qs.indexOf(q);
+      const uid = `${idx}-${realSi}`;
+      const tc = TC[q.task];
+      const saved = getSaved(uid);
+      html += `
+        <div class="qcard ${tc.cls}" id="qc-${uid}">
+          <div class="qcard-head">
+            <div class="qh-num">${q.n}</div>
+            <span class="qh-task">${tc.label}</span>
+            <div class="qh-word">"…<u>${q.underlined}</u>…"</div>
+            <div class="qh-src">${p.source}</div>
+          </div>
+          <div class="qcard-body">
+            <div class="task-prompt">
+              <span>${q.prompt}</span>
+              <span class="arrow">→ Write ONE word answer</span>
+            </div>
+            <div class="ans-row">
+              <input class="ans-input" id="ai-${uid}" value="${saved}" placeholder="Your answer…" onkeydown="if(event.key==='Enter')checkQ('${uid}','${idx}','${realSi}')">
+              <button class="btn-ck" onclick="checkQ('${uid}','${idx}','${realSi}')">✓</button>
+              <button class="btn-rev" onclick="toggleAns('${uid}')">Show</button>
+            </div>
+            <div class="ans-box" id="ab-${uid}" style="background:rgba(82,196,122,0.08);border:1px solid rgba(82,196,122,0.25);">
+              <div class="ab-ans" style="color:var(--c3);">✓ ${q.answer}</div>
+              <div class="ab-rule">💡 ${q.rule}</div>
+              ${q.alts&&q.alts.length>0?`<div class="ab-more">Also accepted: ${q.alts.map(a=>`<span class="ab-alt">${a}</span>`).join("")}</div>`:""}
+            </div>
+          </div>
+        </div>`;
+    });
+  }
+
+  html += `
+    <div class="nav-row">
+      <button class="btn-ghost" style="padding:10px 22px;font-size:13px;" onclick="prevP()" ${idx===0?"disabled":""}>← Prev</button>
+      <button class="btn-main" style="padding:10px 22px;font-size:13px;" onclick="nextP()" ${idx===PASSAGES.length-1?"disabled":""}>Next →</button>
+    </div>`;
+
+  document.getElementById("prac-content").innerHTML = html;
+  updatePNav(idx);
+  updateProgress();
+}
+
+function highlightNums(text){
+  return text.replace(/\((\d+)\)/g, (_,n)=>`<span style="display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:var(--s3);color:var(--c4);font-size:10px;font-weight:800;margin:0 2px;vertical-align:middle;">${n}</span>`);
+}
+
+// ─── ACTIONS ───
+function checkQ(uid, pIdx, sIdx){
+  const inp = document.getElementById(`ai-${uid}`);
+  const val = inp.value.trim().toLowerCase();
+  if(!val){ showToast("Type your answer first!"); return; }
+  const q = PASSAGES[+pIdx].qs[+sIdx];
+  const correct = q.answer.toLowerCase().replace(/[^a-z0-9/ ]/g,"");
+  const alts = (q.alts||[]).map(a=>a.toLowerCase().replace(/[^a-z0-9 ]/g,""));
+  const allAnswers = [correct, ...alts];
+  const hit = allAnswers.some(a=>{
+    const aWords = a.split(/[/ ]+/).filter(w=>w.length>2);
+    return aWords.some(w=>val.includes(w)) || val.includes(a.split("/")[0].trim().substring(0,4));
+  });
+  if(hit){
+    inp.className="ans-input ok";
+    doneSet.add(uid);
+    showToast("✅ Correct!");
+  } else {
+    inp.className="ans-input ng";
+    showToast("❌ Try again or click Show.");
+  }
+  try{localStorage.setItem("ssc_voc_"+uid,inp.value);}catch(e){}
+  updateProgress();
+}
+
+function toggleAns(uid){
+  const ab = document.getElementById(`ab-${uid}`);
+  ab.classList.toggle("show");
+}
+
+function nextP(){ if(curPassage<PASSAGES.length-1){curPassage++;renderPassage(curPassage);window.scrollTo({top:0,behavior:"smooth"});}}
+function prevP(){ if(curPassage>0){curPassage--;renderPassage(curPassage);window.scrollTo({top:0,behavior:"smooth"});}}
+
+function updateProgress(){
+  const total = PASSAGES.reduce((s,p)=>s+p.qs.length,0);
+  document.getElementById("tb-done").textContent = doneSet.size;
+  document.getElementById("pfill").style.width = (doneSet.size/total*100)+"%";
+}
+
+function getSaved(uid){ try{return localStorage.getItem("ssc_voc_"+uid)||"";}catch(e){return "";} }
+
+// ─── VOCAB BANK ───
+function buildVocabBank(){
+  const words = [];
+  PASSAGES.forEach(p=>{
+    p.qs.forEach(q=>{
+      if(q.task==="mean"||q.task==="syn"||q.task==="ant"){
+        words.push({w:q.underlined, ans:q.answer, rule:q.rule, type:q.task, alts:q.alts||[]});
+      }
+    });
+  });
+  const seen = new Set();
+  const unique = words.filter(w=>{ if(seen.has(w.w.toLowerCase())) return false; seen.add(w.w.toLowerCase()); return true; });
+  unique.sort((a,b)=>a.w.localeCompare(b.w));
+
+  let html = `<p style="font-size:13px;color:var(--muted);margin-bottom:20px;">All ${unique.length} key words from Q32–36 passages — meanings, synonyms and antonyms you must know.</p>`;
+  const groups = { syn:"🔁 Synonyms to Know", ant:"↔️ Antonyms to Know", mean:"📖 Meanings to Know" };
+  ["syn","ant","mean"].forEach(type=>{
+    const group = unique.filter(w=>w.type===type);
+    if(!group.length) return;
+    html += `<div class="sec-head" style="margin-top:24px;"><span class="sh-tag">${type.toUpperCase()}</span><span class="sh-t">${groups[type]}</span></div>`;
+    html += `<div class="vocab-grid">`;
+    group.forEach(w=>{
+      html += `<div class="vcard">
+        <div class="vw">${w.w}</div>
+        <div class="vd">${w.rule.replace(/^[^=]+=\s*/,"").split(".")[0]}</div>
+        ${type==="syn"?`<div class="vsyn">→ ${w.ans}</div>`:""}
+        ${type==="ant"?`<div class="vant">↔ ${w.ans}</div>`:""}
+        ${type==="mean"?`<div class="vsyn" style="color:var(--c3);">= ${w.ans}</div>`:""}
+        ${w.alts.length>0?`<div style="font-size:11px;color:var(--muted);margin-top:2px;">Also: ${w.alts.slice(0,3).join(", ")}</div>`:""}
+      </div>`;
+    });
+    html += `</div>`;
+  });
+  document.getElementById("vocab-content").innerHTML = html;
+}
+
+// ─── TOAST ───
+function showToast(msg){
+  const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");
+  setTimeout(()=>t.classList.remove("show"),2200);
+}
+
+init();
+</script>
+</body>
+</html>
