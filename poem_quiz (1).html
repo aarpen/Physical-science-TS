@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PoetryQuiz AI — SSC English All 18 Poems</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0c0c18;--surface:#14142a;--surface2:#1c1c34;--border:#2e2e50;
+  --gold:#d4960c;--gold-light:#f5b830;--gold-glow:rgba(212,150,12,.18);
+  --text:#eae6f5;--muted:#7a7aa0;--correct:#22c55e;--wrong:#ef4444;--r:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--ink);color:var(--text);font-family:'Outfit',sans-serif;min-height:100vh;overflow-x:hidden;}
+canvas#bg{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.35;}
+.app{position:relative;z-index:1;}
+.screen{display:none;}
+
+/* HOME */
+#home{min-height:100vh;align-items:center;justify-content:center;text-align:center;padding:40px 20px;flex-direction:column;}
+#home.active{display:flex;}
+.home-box{max-width:760px;width:100%;}
+.logo{display:inline-flex;align-items:center;gap:12px;margin-bottom:24px;animation:fadeUp .7s ease both;}
+.logo-icon{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,var(--gold),#e8a820);display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 0 28px var(--gold-glow),0 4px 16px rgba(0,0,0,.5);}
+.logo-name{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:700;}
+.logo-name span{color:var(--gold-light);}
+.home-badge{display:inline-block;background:rgba(212,150,12,.1);border:1px solid rgba(212,150,12,.3);color:var(--gold-light);padding:4px 16px;border-radius:100px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:18px;animation:fadeUp .7s ease .1s both;}
+.home-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,6vw,4.5rem);font-weight:700;line-height:1.05;margin-bottom:12px;animation:fadeUp .7s ease .15s both;}
+.home-title em{font-style:italic;color:var(--gold-light);display:block;}
+.home-desc{color:var(--muted);font-size:.95rem;max-width:520px;margin:0 auto 28px;line-height:1.7;animation:fadeUp .7s ease .2s both;}
+.sel-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:10px;}
+.chips-wrap{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin-bottom:24px;animation:fadeUp .7s ease .25s both;max-height:220px;overflow-y:auto;padding:4px;scrollbar-width:thin;scrollbar-color:var(--border) transparent;}
+.chip{padding:5px 12px;border-radius:8px;border:1px solid var(--border);background:var(--surface);color:var(--muted);font-size:12px;font-weight:500;cursor:pointer;transition:all .2s;white-space:nowrap;}
+.chip:hover{border-color:rgba(212,150,12,.4);color:var(--text);}
+.chip.on{background:rgba(212,150,12,.12);border-color:var(--gold);color:var(--gold-light);}
+.mode-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:24px;animation:fadeUp .7s ease .3s both;}
+.mode-card{background:var(--surface);border:2px solid var(--border);border-radius:var(--r);padding:16px 10px;cursor:pointer;transition:all .22s;text-align:center;}
+.mode-card:hover{border-color:rgba(212,150,12,.4);transform:translateY(-3px);}
+.mode-card.on{border-color:var(--gold);background:rgba(212,150,12,.07);}
+.mode-card .mi{font-size:1.7rem;margin-bottom:6px;display:block;}
+.mode-card .mn{font-weight:700;font-size:13px;margin-bottom:2px;}
+.mode-card .md{font-size:11px;color:var(--muted);}
+.go-btn{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--gold),#e8a820);color:#000;border:none;padding:14px 40px;border-radius:100px;font-family:'Outfit',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:all .3s;box-shadow:0 0 36px rgba(212,150,12,.3),0 4px 18px rgba(0,0,0,.3);animation:fadeUp .7s ease .35s both;letter-spacing:.5px;}
+.go-btn:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 0 55px rgba(212,150,12,.5);}
+.home-stats{display:flex;gap:16px;justify-content:center;margin-top:28px;flex-wrap:wrap;animation:fadeUp .7s ease .4s both;}
+.hstat{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:7px 16px;display:flex;align-items:center;gap:7px;font-size:13px;}
+.hstat b{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--gold-light);}
+
+/* QUIZ */
+#quiz{min-height:100vh;}
+#quiz.active{display:block;}
+.quiz-shell{display:grid;grid-template-columns:380px 1fr;min-height:100vh;}
+
+/* POEM PANEL */
+.poem-panel{background:var(--surface);border-right:1px solid var(--border);position:sticky;top:0;height:100vh;overflow-y:auto;padding:22px 20px;display:flex;flex-direction:column;gap:12px;scrollbar-width:thin;scrollbar-color:var(--border) transparent;}
+.poem-panel::-webkit-scrollbar{width:4px;}
+.poem-panel::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
+.p-num-tag{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;}
+.p-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:700;line-height:1.2;color:var(--text);margin-top:3px;}
+.p-author{font-size:13px;color:var(--gold-light);font-style:italic;margin-top:2px;}
+.p-paper{display:inline-block;background:rgba(212,150,12,.1);border:1px solid rgba(212,150,12,.25);color:var(--gold-light);padding:3px 9px;border-radius:7px;font-size:10px;font-family:'JetBrains Mono',monospace;margin-top:4px;}
+.p-full{flex:1;background:rgba(255,255,255,.03);border-left:3px solid var(--gold);border-radius:0 10px 10px 0;padding:14px 16px;font-family:'Cormorant Garamond',serif;font-size:1rem;line-height:2.0;color:rgba(234,230,245,.88);white-space:pre-line;}
+.p-nav{display:flex;gap:7px;}
+.pnav{flex:1;padding:8px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--muted);font-size:12px;font-family:'Outfit',sans-serif;font-weight:600;cursor:pointer;transition:all .2s;}
+.pnav:hover:not(:disabled){border-color:rgba(212,150,12,.4);color:var(--text);}
+.pnav:disabled{opacity:.3;cursor:default;}
+
+/* Q PANEL */
+.q-panel{padding:22px 26px 60px;background:var(--ink);overflow-y:auto;}
+.q-topbar{display:flex;align-items:center;gap:12px;margin-bottom:18px;position:sticky;top:0;z-index:10;background:var(--ink);padding:10px 0 12px;border-bottom:1px solid var(--border);}
+.back-btn{width:36px;height:36px;background:var(--surface);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0;}
+.back-btn:hover{border-color:var(--gold);}
+.prog-wrap{flex:1;}
+.prog-info{display:flex;justify-content:space-between;font-size:11px;color:var(--muted);margin-bottom:4px;font-family:'JetBrains Mono',monospace;}
+.prog-bar{height:5px;background:var(--surface2);border-radius:3px;overflow:hidden;}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-light));border-radius:3px;transition:width .5s ease;box-shadow:0 0 8px var(--gold-glow);}
+.score-pill{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:6px 12px;font-family:'JetBrains Mono',monospace;font-size:12px;flex-shrink:0;white-space:nowrap;}
+.score-pill b{color:var(--gold-light);}
+
+/* DOTS */
+.poem-dots{display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-bottom:16px;}
+.dot{width:26px;height:26px;border-radius:50%;background:var(--surface);border:2px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;font-family:'JetBrains Mono',monospace;color:var(--muted);cursor:pointer;transition:all .2s;flex-shrink:0;}
+.dot.active{border-color:var(--gold);color:var(--gold-light);background:rgba(212,150,12,.1);}
+.dot.ok{background:rgba(34,197,94,.15);border-color:var(--correct);color:var(--correct);}
+.dot.no{background:rgba(239,68,68,.12);border-color:var(--wrong);color:var(--wrong);}
+.dot-sep{width:1px;height:16px;background:var(--border);margin:0 3px;flex-shrink:0;}
+.dot-lbl{font-size:10px;color:var(--muted);font-family:'JetBrains Mono',monospace;white-space:nowrap;}
+
+/* TIMER */
+.timer-row{display:flex;align-items:center;gap:10px;padding:9px 14px;background:var(--surface);border:1px solid var(--border);border-radius:10px;margin-bottom:16px;}
+.t-num{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1.2rem;min-width:24px;transition:color .3s;}
+.t-num.red{color:var(--wrong);}
+.t-track{flex:1;height:5px;background:var(--surface2);border-radius:3px;overflow:hidden;}
+.t-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold-light));border-radius:3px;transition:width .9s linear;}
+.t-fill.red{background:linear-gradient(90deg,var(--wrong),#f87171);}
+.hint-btn-sm{display:flex;align-items:center;gap:5px;padding:6px 12px;background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.3);border-radius:8px;color:#c4b5fd;font-family:'Outfit',sans-serif;font-size:11px;font-weight:500;cursor:pointer;transition:all .2s;flex-shrink:0;}
+.hint-btn-sm:hover{background:rgba(124,58,237,.2);}
+.hd{width:5px;height:5px;border-radius:50%;background:#a78bfa;animation:pulse 1.5s infinite;}
+
+/* Q BLOCK */
+.q-block{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:20px;margin-bottom:12px;animation:fadeUp .35s ease both;}
+.q-block:nth-child(1){animation-delay:.00s}
+.q-block:nth-child(2){animation-delay:.05s}
+.q-block:nth-child(3){animation-delay:.10s}
+.q-block:nth-child(4){animation-delay:.15s}
+.q-block:nth-child(5){animation-delay:.20s}
+.q-hdr{display:flex;align-items:center;gap:9px;margin-bottom:12px;}
+.q-bdg{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--gold),#e8a820);color:#000;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:11px;font-family:'JetBrains Mono',monospace;flex-shrink:0;}
+.q-typ{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--muted);background:var(--surface2);padding:3px 9px;border-radius:5px;}
+.q-txt{font-size:.97rem;font-weight:500;line-height:1.6;margin-bottom:14px;color:var(--text);}
+.opts{display:grid;gap:8px;}
+.opt{display:flex;align-items:center;gap:11px;padding:11px 14px;background:var(--surface2);border:2px solid var(--border);border-radius:10px;color:var(--text);font-family:'Outfit',sans-serif;font-size:13px;font-weight:500;cursor:pointer;transition:all .2s;text-align:left;width:100%;}
+.opt:hover:not(:disabled){border-color:rgba(212,150,12,.5);background:rgba(212,150,12,.06);transform:translateX(3px);}
+.opt:disabled{cursor:default;}
+.opt-l{width:24px;height:24px;border-radius:6px;flex-shrink:0;background:var(--surface);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;transition:all .2s;}
+.opt-t{flex:1;line-height:1.4;}
+.opt.c{border-color:var(--correct);background:rgba(34,197,94,.1);}
+.opt.c .opt-l{background:var(--correct);color:#000;border-color:var(--correct);}
+.opt.w{border-color:var(--wrong);background:rgba(239,68,68,.08);}
+.opt.w .opt-l{background:var(--wrong);color:#fff;border-color:var(--wrong);}
+.opt.rc{border-color:rgba(34,197,94,.4);background:rgba(34,197,94,.05);opacity:.75;}
+.opt.rc .opt-l{border-color:rgba(34,197,94,.5);color:var(--correct);}
+.fb{display:none;margin-top:10px;padding:12px 14px;border-radius:9px;font-size:12.5px;line-height:1.6;animation:fadeUp .3s ease;}
+.fb.ok{display:block;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.25);color:#86efac;}
+.fb.no{display:block;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.2);color:#fca5a5;}
+.fb-exp{color:var(--text);opacity:.8;font-size:12px;margin-top:5px;padding-left:22px;}
+.ai-box{display:none;margin-top:9px;padding:12px 14px;background:rgba(124,58,237,.07);border:1px solid rgba(124,58,237,.22);border-radius:9px;font-size:12.5px;color:#ddd6fe;line-height:1.7;animation:fadeUp .3s ease;}
+.ai-lbl{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#a78bfa;margin-bottom:4px;display:flex;align-items:center;gap:4px;}
+.ai-dots span{display:inline-block;width:5px;height:5px;border-radius:50%;background:#a78bfa;margin:0 2px;animation:dotB 1.2s ease infinite;}
+.ai-dots span:nth-child(2){animation-delay:.2s}
+.ai-dots span:nth-child(3){animation-delay:.4s}
+.q-hint-btn{display:inline-flex;align-items:center;gap:5px;margin-top:8px;padding:6px 12px;background:rgba(124,58,237,.1);border:1px solid rgba(124,58,237,.3);border-radius:8px;color:#c4b5fd;font-family:'Outfit',sans-serif;font-size:11px;font-weight:500;cursor:pointer;transition:all .2s;}
+.q-hint-btn:hover{background:rgba(124,58,237,.2);}
+
+/* POEM DONE */
+.poem-done{display:none;text-align:center;padding:30px 20px;animation:fadeUp .5s ease;}
+.done-score{font-family:'Cormorant Garamond',serif;font-size:3.8rem;font-weight:700;color:var(--gold-light);line-height:1;margin-bottom:4px;}
+.done-lbl{font-size:12px;color:var(--muted);margin-bottom:14px;}
+.done-h{font-family:'Cormorant Garamond',serif;font-size:1.7rem;margin-bottom:5px;color:var(--gold-light);}
+.done-p{color:var(--muted);font-size:13px;margin-bottom:20px;}
+.done-btn{padding:12px 30px;border-radius:100px;background:linear-gradient(135deg,var(--gold),#e8a820);color:#000;border:none;font-family:'Outfit',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:all .2s;box-shadow:0 0 25px rgba(212,150,12,.3);}
+.done-btn:hover{transform:translateY(-2px);}
+
+/* RESULTS */
+#results{min-height:100vh;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 20px;}
+#results.active{display:flex;}
+.res-wrap{max-width:700px;width:100%;}
+.res-crown{font-size:3.5rem;display:block;margin-bottom:10px;animation:bounceIn .6s ease;}
+.res-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,5vw,3rem);font-weight:700;margin-bottom:7px;animation:fadeUp .6s ease .1s both;}
+.res-big{font-family:'Cormorant Garamond',serif;font-size:clamp(3.5rem,10vw,6rem);font-weight:700;color:var(--gold-light);line-height:1;margin-bottom:6px;animation:fadeUp .6s ease .2s both;}
+.res-sub{color:var(--muted);font-size:13px;margin-bottom:24px;animation:fadeUp .6s ease .25s both;}
+.res-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:24px;animation:fadeUp .6s ease .3s both;}
+.rstat{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:16px 8px;}
+.rstat-n{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:700;display:block;line-height:1;margin-bottom:3px;}
+.rstat-l{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;}
+.rev-wrap{text-align:left;margin-bottom:24px;animation:fadeUp .6s ease .35s both;}
+.rev-head{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--muted);text-align:center;margin-bottom:12px;}
+.rev-grp{margin-bottom:16px;}
+.rev-grp-title{font-size:11px;font-weight:700;color:var(--gold-light);text-transform:uppercase;letter-spacing:1px;margin-bottom:7px;padding-left:3px;}
+.rev-item{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 14px;margin-bottom:6px;display:flex;gap:9px;align-items:flex-start;font-size:12px;}
+.rev-ic{flex-shrink:0;margin-top:1px;}
+.rev-q{color:var(--text);font-weight:500;margin-bottom:2px;line-height:1.4;}
+.rev-a{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);}
+.rev-a .ca{color:var(--correct);}
+.rev-a .wa{color:var(--wrong);}
+.res-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;animation:fadeUp .6s ease .4s both;}
+.res-btn{padding:12px 26px;border-radius:100px;font-family:'Outfit',sans-serif;font-size:14px;font-weight:600;cursor:pointer;transition:all .2s;border:none;}
+.res-btn.p{background:linear-gradient(135deg,var(--gold),#e8a820);color:#000;box-shadow:0 0 25px rgba(212,150,12,.3);}
+.res-btn.s{background:var(--surface);border:1px solid var(--border);color:var(--text);}
+.res-btn:hover{transform:translateY(-2px);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes bounceIn{0%{transform:scale(.3);opacity:0}50%{transform:scale(1.12)}100%{transform:scale(1);opacity:1}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+@keyframes dotB{0%,100%{transform:translateY(0);opacity:.4}50%{transform:translateY(-5px);opacity:1}}
+
+.streak-toast{position:fixed;top:18px;left:50%;transform:translateX(-50%) translateY(-80px);background:linear-gradient(135deg,var(--gold),#e8a820);color:#000;padding:8px 20px;border-radius:100px;font-weight:700;font-size:13px;z-index:9999;transition:transform .4s cubic-bezier(.34,1.56,.64,1);white-space:nowrap;box-shadow:0 4px 20px rgba(212,150,12,.5);}
+.streak-toast.show{transform:translateX(-50%) translateY(0);}
+.conf{position:fixed;border-radius:2px;pointer-events:none;z-index:9998;animation:confDrop var(--d,3s) ease var(--dl,0s) forwards;}
+@keyframes confDrop{0%{transform:translateY(-20px) rotate(0);opacity:1}100%{transform:translateY(100vh) rotate(720deg);opacity:0}}
+
+@media(max-width:860px){.quiz-shell{grid-template-columns:1fr;}.poem-panel{position:relative;height:auto;border-right:none;border-bottom:1px solid var(--border);max-height:48vh;}.mode-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:480px){.mode-grid{grid-template-columns:1fr}.res-stats{gap:7px}}
+</style>
+</head>
+<body>
+<canvas id="bg"></canvas>
+<div class="streak-toast" id="sToast"></div>
+<div class="app">
+
+<!-- HOME -->
+<div class="screen" id="home">
+<div class="home-box">
+  <div class="logo"><div class="logo-icon">📜</div><div class="logo-name">Poetry<span>Quiz</span> AI</div></div>
+  <div class="home-badge">SSC English · Pre-Final 2026 · All 18 Poems</div>
+  <h1 class="home-title">Full Poem · All Questions<br><em>Same Page</em></h1>
+  <p class="home-desc">Every poem from every district paper. Full poem always visible on the left. All 5 questions on the right. AI hints on demand.</p>
+  <div style="margin-bottom:22px;animation:fadeUp .7s ease .25s both">
+    <div class="sel-label">Choose Poems to Practice</div>
+    <div class="chips-wrap" id="chips"></div>
+  </div>
+  <div style="max-width:660px;width:100%;margin:0 auto 22px;animation:fadeUp .7s ease .3s both">
+    <div class="sel-label">Quiz Mode</div>
+    <div class="mode-grid">
+      <div class="mode-card on" data-m="practice" onclick="pickMode(this)"><span class="mi">📚</span><div class="mn">Practice</div><div class="md">AI hints + explanations</div></div>
+      <div class="mode-card" data-m="timed" onclick="pickMode(this)"><span class="mi">⏱️</span><div class="mn">Timed</div><div class="md">30 sec per question</div></div>
+      <div class="mode-card" data-m="exam" onclick="pickMode(this)"><span class="mi">🎯</span><div class="mn">Exam Mode</div><div class="md">No hints · Real feel</div></div>
+    </div>
+  </div>
+  <button class="go-btn" onclick="startQuiz()">✨ Start Quiz</button>
+  <div class="home-stats">
+    <div class="hstat"><b>18</b><span>Poems</span></div>
+    <div class="hstat"><b>90</b><span>Questions</span></div>
+    <div class="hstat"><b>5</b><span>Q per Poem</span></div>
+    <div class="hstat"><b>AI</b><span>Hints</span></div>
+  </div>
+</div>
+</div>
+
+<!-- QUIZ -->
+<div class="screen" id="quiz">
+<div class="quiz-shell">
+  <div class="poem-panel" id="poemPanel">
+    <div>
+      <div class="p-num-tag" id="pNum">Poem 1 / 18</div>
+      <div class="p-title" id="pTitle">—</div>
+      <div class="p-author" id="pAuthor">—</div>
+      <div class="p-paper" id="pPaper">—</div>
+    </div>
+    <div class="p-full" id="pFull">—</div>
+    <div class="p-nav">
+      <button class="pnav" id="prevBtn" onclick="prevPoem()">← Prev</button>
+      <button class="pnav" id="nextBtn" onclick="nextPoem()">Next →</button>
+    </div>
+  </div>
+  <div class="q-panel" id="qPanel">
+    <div class="q-topbar">
+      <button class="back-btn" onclick="goHome()">←</button>
+      <div class="prog-wrap">
+        <div class="prog-info"><span id="progL">Poem 1/18</span><span id="progR">0/5 answered</span></div>
+        <div class="prog-bar"><div class="prog-fill" id="progFill" style="width:0%"></div></div>
+      </div>
+      <div class="score-pill">Score <b id="liveScore">0</b></div>
+    </div>
+    <div class="poem-dots" id="pDots"></div>
+    <div class="timer-row" id="timerRow" style="display:none">
+      <div class="t-num" id="tNum">30</div>
+      <div class="t-track"><div class="t-fill" id="tFill"></div></div>
+      <button class="hint-btn-sm" id="timedHintBtn" onclick="timedHint()"><div class="hd"></div> AI Hint</button>
+    </div>
+    <div id="qArea"></div>
+    <div class="poem-done" id="poemDone">
+      <div class="done-score" id="doneScore">0/5</div>
+      <div class="done-lbl">Questions Correct This Poem</div>
+      <div class="done-h" id="doneH">Well done!</div>
+      <div class="done-p" id="doneP">Keep going!</div>
+      <button class="done-btn" id="doneBtn" onclick="advancePoem()">Next Poem →</button>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- RESULTS -->
+<div class="screen" id="results">
+<div class="res-wrap">
+  <span class="res-crown" id="rCrown">🏆</span>
+  <div class="res-title" id="rTitle">Excellent!</div>
+  <div class="res-big" id="rBig">0/0</div>
+  <div class="res-sub" id="rSub">—</div>
+  <div class="res-stats">
+    <div class="rstat"><span class="rstat-n" id="rC" style="color:var(--correct)">0</span><div class="rstat-l">Correct</div></div>
+    <div class="rstat"><span class="rstat-n" id="rW" style="color:var(--wrong)">0</span><div class="rstat-l">Wrong</div></div>
+    <div class="rstat"><span class="rstat-n" id="rA" style="color:var(--gold-light)">0%</span><div class="rstat-l">Accuracy</div></div>
+  </div>
+  <div class="rev-wrap"><div class="rev-head">Question Review</div><div id="revList"></div></div>
+  <div class="res-btns">
+    <button class="res-btn p" onclick="retryQuiz()">🔄 Try Again</button>
+    <button class="res-btn s" onclick="goHome()">🏠 Home</button>
+  </div>
+</div>
+</div>
+
+</div>
+<script>
+// ══════════════════════════════════════════════════════════
+//  ALL 18 POEMS — COMPLETE DATA
+// ══════════════════════════════════════════════════════════
+const POEMS=[
+// 1
+{id:1,title:"I Wandered Lonely as a Cloud",author:"William Wordsworth",paper:"K-3A · Khammam",
+full:`I wandered lonely as a cloud
+That floats on high o'er vales and hills,
+When all at once I saw a crowd,
+A host, of golden daffodils;
+Beside the lake, beneath the trees,
+Fluttering and dancing in the breeze.
+
+Continuous as the stars that shine
+And twinkle on the milky way,
+They stretched in never-ending line
+Along the margin of a bay:
+Ten thousand saw I at a glance,
+Tossing their heads in sprightly dance.
+
+The waves beside them danced; but they
+Out-did the sparkling waves in glee:
+A poet could not but be gay,
+In such a jocund company:
+I gazed—and gazed—but little thought
+What wealth the show to me had brought:
+
+For oft, when on my couch I lie
+In vacant or in pensive mood,
+They flash upon that inward eye
+Which is the bliss of solitude;
+And then my heart with pleasure fills,
+And dances with the daffodils.`,
+qs:[
+{num:"Q17",type:"Mood",text:"The mood of the poem is ___",opts:["Sad","Fearful","Joyful","Angry"],ans:2,
+hint:"The poet sees daffodils and his heart fills with pleasure. How does seeing beautiful nature make you feel?",
+exp:"Joyful — the poet finds joy seeing the golden daffodils and they later fill his heart with pleasure even in solitude."},
+{num:"Q18",type:"Figure of Speech",text:'The figure of speech in "I wandered lonely as a cloud" is ___',opts:["Metaphor","Personification","Simile","Alliteration"],ans:2,
+hint:"Spot the word 'as'. Comparing two things using 'like' or 'as' = always Simile.",
+exp:"Simile — 'as a cloud' uses 'as' to compare the poet's wandering to a cloud floating. Like/as = Simile."},
+{num:"Q19",type:"Meaning",text:"The meaning of the phrase 'inward eye' is ___",opts:["Physical eyesight","Imagination or memory","Dream","Sleep"],ans:1,
+hint:"The poet lies on his couch and 'sees' daffodils — but he's not looking at them. What is he using?",
+exp:"Imagination or memory — the poet mentally visualises the daffodils when alone. This is his mind's eye, not physical sight."},
+{num:"Q20",type:"Comparison",text:"The poet compares the daffodils to stars because they ___",opts:["Shine at night","Are yellow in colour","Appear in a long continuous line","Move very fast"],ans:2,
+hint:"Read: 'Continuous as the stars… They stretched in never-ending line'. What quality is being compared?",
+exp:"Both daffodils and stars appear in a long, continuous, never-ending line — that is the specific quality being compared."},
+{num:"Q21",type:"Message",text:"The sight of the daffodils helps the poet later by ___",opts:["Making him rich","Giving him sleep","Filling his heart with pleasure","Teaching him a lesson"],ans:2,
+hint:"Last stanza: 'And then my heart with pleasure fills, And dances with the daffodils.'",
+exp:"Filling his heart with pleasure — the memory of daffodils brings pleasure when the poet is in a pensive, lonely mood."}
+]},
+// 2
+{id:2,title:"Be the Best",author:"Douglas Malloch",paper:"13/14E · RJ-80 · DP-3A · G-3A",
+full:`If you can't be a pine on the top of the hill,
+Be a scrub in the valley — but be
+The best little scrub by the side of the rill.
+Be a bush if you can't be a tree.
+
+If you can't be a bush, be a bit of the grass,
+And some highway happier make;
+If you can't be a muskie, then just be a bass —
+But be the liveliest bass in the lake!
+
+We can't all be captains, we've got to be crew,
+There's something for all of us here.
+There's big work to do, and there's lesser to do,
+And the task you must do is the near.
+
+If you can't be a highway then just be a trail,
+If you can't be the sun be a star;
+It isn't by size that you win or you fail —
+Be the best of whatever you are!`,
+qs:[
+{num:"Q17",type:"Theme",text:"What does the poet encourage individuals to do?",opts:["To aim for greatness only","To accept their roles and do their best","To compete with others","To ignore their abilities"],ans:1,
+hint:"The poem says be the BEST at whatever you are — not necessarily the BIGGEST or GREATEST.",
+exp:"Accept their roles and do their best — the poem celebrates excellence at every level, big or small."},
+{num:"Q18",type:"Figure of Speech",text:'Literary device in "If you can\'t be a bush, be a bit of grass" is ___',opts:["Simile","Metaphor","Personification","Alliteration"],ans:1,
+hint:"Is there 'like' or 'as'? No. But bush and grass directly represent people — direct comparison = Metaphor.",
+exp:"Metaphor — bushes, trees, grass directly represent people and roles without 'like' or 'as'."},
+{num:"Q19",type:"Meaning",text:"'The best little scrub by the side of the rill' implies ___",opts:["Being small is unimportant","Everyone should strive for excellence in their position","Only tall trees are important","Scrubs are useless plants"],ans:1,
+hint:"The scrub is small — but the poem says be the BEST scrub. What message does this give about small roles?",
+exp:"Everyone should strive for excellence — even small roles deserve full effort and dedication."},
+{num:"Q20",type:"Meaning",text:"What does the poet mean by 'the liveliest bass in the lake'?",opts:["To be competitive","To enjoy being oneself","To stand out in one's own way","To follow others"],ans:2,
+hint:"Bass is a small fish. Be the LIVELIEST — stand out within your own position.",
+exp:"To stand out in one's own way — excel within your own position rather than envying others'."},
+{num:"Q21",type:"Message",text:"What is the overall message of the poem?",opts:["Aim for high positions only","Every role is valuable and should be performed well","Compete with others for success","Ignore small tasks"],ans:1,
+hint:"From pine to scrub, captain to crew — all are given the same advice. What is that advice?",
+exp:"Every role is valuable and should be performed well — the task nearest to you, done well, is what matters most."}
+]},
+// 3
+{id:3,title:"Palanquin Bearers",author:"Sarojini Naidu",paper:"V-3A · Vikarabad",
+full:`Lightly, O lightly we bear her along,
+She sways like a flower in the wind of our song;
+She skims like a bird on the foam of a stream,
+She floats like a laugh from the lips of a dream.
+Gaily, O gaily we glide and we sing,
+We bear her along like a pearl on a string.
+
+Softly, O softly we bear her along,
+She hangs like a star in the dew of our song;
+She springs like a beam on the brow of the tide,
+She falls like a tear from the eyes of a bride.
+Lightly, O lightly we glide and we sing,
+We bear her along like a pearl on a string.`,
+qs:[
+{num:"Q17",type:"Theme",text:"What is the central theme of the poem?",opts:["Hardships faced by Palanquin bearers","Joyful devotion and pride in carrying the bride","The beauty of nature and mountains","The celebration of freedom"],ans:1,
+hint:"The bearers say 'Gaily, O gaily we glide and we sing'. Are they sad or happy?",
+exp:"Joyful devotion and pride in carrying the bride — they sing and celebrate, showing their work is a joy."},
+{num:"Q18",type:"Figure of Speech",text:'"She sways like a flower in the wind of our song" contains ___',opts:["Metaphor","Simile","Personification","Alliteration"],ans:1,
+hint:"She is compared to a flower using 'LIKE'. Like/as = Simile.",
+exp:"Simile — 'like a flower' uses 'like' to compare the bride's swaying to a flower. Like/as = always Simile."},
+{num:"Q19",type:"Meaning",text:'"She floats like a laugh from the lips of a dream" expresses ___',opts:["Fear and sadness","Anger and pride","Grace and happiness","Laziness and tiredness"],ans:2,
+hint:"'Floats', 'laugh', 'dream' — are these heavy negative words or light positive words?",
+exp:"Grace and happiness — floating, laughing, dreaming create images of lightness, joy, and gracefulness."},
+{num:"Q20",type:"Attitude",text:"What attitude do the palanquin bearers show towards their work?",opts:["They feel burdened and unhappy","They are proud and joyful in serving the bride","They are indifferent to their task","They wish to stop"],ans:1,
+hint:"They sing, say 'gaily, gaily', 'lightly, lightly'. Do unhappy people sing while working?",
+exp:"Proud and joyful — they sing songs, move gracefully, and describe the bride beautifully. Work is a celebration."},
+{num:"Q21",type:"Effect",text:'Repetition of "Lightly, O lightly we bear her along" creates ___',opts:["A sad tone","A sense of rhythm and movement","A feeling of fear","A serious atmosphere"],ans:1,
+hint:"Repetition in poetry creates musical effect. 'Lightly, lightly' — what does this feel like?",
+exp:"A sense of rhythm and movement — it mimics the steady rhythmic steps of the bearers and gives the poem a musical quality."}
+]},
+// 4
+{id:4,title:"She Walks in Beauty",author:"Lord Byron",paper:"ST-80 · Siddipet",
+full:`She walks in beauty, like the night
+Of cloudless climes and starry skies;
+And all that's best of dark and bright
+Meet in her aspect and her eyes:
+Thus mellow'd to that tender light
+Which heaven to gaudy day denies.
+
+One shade the more, one ray the less,
+Had half impair'd the nameless grace
+Which waves in every raven tress,
+Or softly lightens o'er her face;
+Where thoughts serenely sweet express
+How pure, how dear their dwelling-place.
+
+And on that cheek, and o'er that brow,
+So soft, so calm, yet eloquent,
+The smiles that win, the tints that glow,
+But tell of days in goodness spent,
+A mind at peace with all below,
+A heart whose love is innocent!`,
+qs:[
+{num:"Q17",type:"Theme",text:"The expression 'best of dark and bright' means ___",opts:["Pure and beautiful","Calm","Perfect combination of dark and light","Sweet and sour"],ans:2,
+hint:"Her beauty combines both darkness (night) and brightness (stars). What word describes this combination?",
+exp:"Perfect combination of dark and light — her beauty blends darkness and light like a starry cloudless night."},
+{num:"Q18",type:"Figure of Speech",text:"The way she is compared uses which figure of speech?",opts:["Metaphor","Oxymoron","Simile","None of these"],ans:2,
+hint:"First line: 'She walks in beauty, LIKE the night'. The word 'like' is there — like/as = Simile.",
+exp:"Simile — 'like the night' uses 'like' to compare her beauty to a starry cloudless night."},
+{num:"Q19",type:"Quality",text:"She has a ___",opts:["Healthy attitude","Calm and innocent mind","Light curly hair","Lovely dress"],ans:1,
+hint:"Last stanza: 'A mind at peace with all below, A heart whose love is innocent.'",
+exp:"Calm and innocent mind — Byron explicitly mentions both her outer and inner beauty — peace and innocence."},
+{num:"Q20",type:"Vocabulary",text:"In the poem, 'tender' means ___",opts:["Very soft","Harsh","Hard","Strong"],ans:0,
+hint:"Tender is the opposite of harsh. In poetry tender always means gentle and soft.",
+exp:"Very soft/gentle — Byron uses 'tender light' to describe the gentle soft light that suits her beauty."},
+{num:"Q21",type:"Message",text:"The poem mainly celebrates ___",opts:["The power of darkness","The perfect harmony of inner and outer beauty","The importance of night","The sadness of the poet"],ans:1,
+hint:"Byron describes both physical beauty (eyes, face) AND inner beauty (mind, heart). What does he celebrate?",
+exp:"The perfect harmony of inner and outer beauty — her physical beauty perfectly mirrors her inner goodness."}
+]},
+// 5
+{id:5,title:"To a Skylark (excerpt)",author:"P.B. Shelley",paper:"R-3A",
+full:`The pale purple even
+Melts around thy flight;
+Like a star of Heaven,
+In the broad day-light
+Thou art unseen, but yet
+I hear thy shrill delight.
+
+Keen as are the arrows
+Of that silver sphere,
+Whose intense lamp narrows
+In the white dawn clear
+Until we hardly see —
+We feel that it is there.`,
+qs:[
+{num:"Q17",type:"Meaning",text:"What does 'Pale purple even' refer to?",opts:["Early morning","Evening sky","Mid night sky","Sun rise"],ans:1,
+hint:"'Even' is an old English word for evening. 'Pale purple' describes the soft violet twilight colours.",
+exp:"Evening sky — 'even' means evening and pale purple describes the soft fading twilight colours."},
+{num:"Q18",type:"Meaning",text:"What melts around the bird's flight?",opts:["Clouds","Sun light","Pale purple evening light","Moon light"],ans:2,
+hint:"Read the first two lines: 'The pale purple even / Melts around thy flight' — what melts?",
+exp:"Pale purple evening light — the soft evening sky surrounding the skylark as it flies."},
+{num:"Q19",type:"Comparison",text:"The bird is compared to a 'star of heaven' because ___",opts:["It shines brightly at night","It flies very fast","It is unseen during daylight","It flies close to the sky"],ans:2,
+hint:"Stars are invisible during the day. The skylark flies so high it can't be seen. What quality connects them?",
+exp:"It is unseen during daylight — both the star and the skylark are invisible in the day, yet their presence is felt."},
+{num:"Q20",type:"Ability",text:"Even though the bird cannot be seen, the poet can still ___",opts:["See its shadow","Feel its presence","Hear its shrill delightful sound","Follow its direction"],ans:2,
+hint:"The last line says: 'I hear thy shrill delight.' What CAN the poet perceive?",
+exp:"Hear its shrill delightful sound — the skylark's song reveals its presence even when invisible."},
+{num:"Q21",type:"Figure of Speech",text:'"Like a star of Heaven" — figure of speech is ___',opts:["Personification","Simile","Metaphor","Hyperbole"],ans:1,
+hint:"The word 'LIKE' is in the phrase. Like/as = which figure of speech?",
+exp:"Simile — 'Like a star of Heaven' uses 'like' to compare the skylark to a star."}
+]},
+// 6
+{id:6,title:"A Friend is Someone",author:"Unknown",paper:"JK-80 · Rajanna Sircilla",
+full:`A friend is someone who understands you well,
+In laughter or sorrow, they're there to dwell.
+Through thick and thin they stand by your side,
+In moments of joy or when you've cried.
+
+They share your dreams and help you grow,
+With words of wisdom that gently flow.
+In silence or chatter, they know just what's right,
+A beacon of hope on a darkened night.
+
+So cherish your friends both near and far;
+They're treasures in life — your guiding stars.`,
+qs:[
+{num:"Q17",type:"Figure of Speech",text:"'They're treasures in life — your guiding stars' — the literary device is ___",opts:["Metaphor","Personification","Simile","Alliteration"],ans:0,
+hint:"Friends are directly called 'treasures' and 'guiding stars'. No 'like' or 'as' used. Direct comparison = Metaphor.",
+exp:"Metaphor — friends are directly called 'treasures' and 'guiding stars' without 'like' or 'as'."},
+{num:"Q18",type:"Quality",text:"Which of the following is NOT a quality of a true friend?",opts:["Understanding","Supportive during difficult times","Offers wisdom","Shares weak points with others"],ans:3,
+hint:"The poem says friends understand, support, offer wisdom. Does a true friend share your weaknesses with others?",
+exp:"Shares weak points with others — this is a betrayal of trust, NOT a quality of a true friend."},
+{num:"Q19",type:"Comparison",text:"Friendship is compared to ___",opts:["Dreams","Treasure","Night","Sorrow"],ans:1,
+hint:"Last line: 'They're treasures in life — your guiding stars.' What word is used?",
+exp:"Treasure — just as treasures are precious, true friends are the most precious part of life."},
+{num:"Q20",type:"Feeling",text:"The poem expresses feelings of ___ regarding friendship",opts:["Gratitude and appreciation","Pain and sorrow","Insults and punishments","Failure and success"],ans:0,
+hint:"The poem says 'cherish your friends' and calls them 'guiding stars'. Is the poet grateful or upset?",
+exp:"Gratitude and appreciation — the poem celebrates friendship, urges us to cherish friends."},
+{num:"Q21",type:"Expression",text:"The poet illustrates support during tough times with ___",opts:["In moments of joy","When you have cried","Through thick and thin","All of the above"],ans:2,
+hint:"'Through thick and thin' is an idiom meaning support during both good and bad times.",
+exp:"'Through thick and thin' — the classic expression for unwavering support through easy and difficult times."}
+]},
+// 7
+{id:7,title:"When God Created Teachers",author:"Unknown",paper:"MP-3A · Mahabubnagar",
+full:`When God created teachers,
+He gave us special friends
+To help us understand His world
+And truly comprehend
+The beauty and the wonder
+Of everything we see,
+And become a better person
+With each discovery.
+
+When God created teachers,
+He gave us special guides
+To show us ways in which to grow
+So we can all decide
+How to live and how to do
+What's right instead of wrong,
+To lead us so that we can lead:
+And learn how to be strong.
+
+Why God created teachers,
+In His wisdom and His grace,
+Was to help us learn to make our world
+A better and wiser place.`,
+qs:[
+{num:"Q17",type:"Theme",text:"According to the poem, teachers help us understand ___",opts:["Only academic subjects","God's world and its beauty","Preparation for examinations","Technology and inventions"],ans:1,
+hint:"The poem says teachers help us 'understand His world' and see 'the beauty and wonder of everything we see'.",
+exp:"God's world and its beauty — the poem says teachers help us comprehend the wonder of all creation."},
+{num:"Q18",type:"Purpose",text:"The poet says God created teachers to ___",opts:["Help us make the world better","Control students","Punish children","Replace parents"],ans:0,
+hint:"Last stanza: 'Was to help us learn to make our world A better and wiser place.'",
+exp:"Help us make the world better — this is explicitly the final purpose stated in the poem's last stanza."},
+{num:"Q19",type:"Reference",text:"'He gave us special friends' — 'He' refers to ___",opts:["Friend","Teacher","Person","God"],ans:3,
+hint:"The poem starts with 'When GOD created teachers'. Who is giving us special friends?",
+exp:"God — the poem starts with 'When God created teachers', so all 'He' pronouns refer to God."},
+{num:"Q20",type:"Vocabulary",text:"Which word in the poem means 'to understand'?",opts:["Comprehend","Discover","Decide","Wisdom"],ans:0,
+hint:"The poem says 'help us understand His world and truly _______'. Find the synonym for understand.",
+exp:"Comprehend = to understand fully. The poem uses 'understand' and 'truly comprehend' together."},
+{num:"Q21",type:"Tone",text:"The tone of the poem can be described as ___",opts:["Sarcastic and rude","Thankful and respectful","Angry and harsh","Fearful and sad"],ans:1,
+hint:"The poem praises teachers as 'special friends', 'special guides', and thanks God for creating them.",
+exp:"Thankful and respectful — the poem is a tribute to teachers expressing deep gratitude for their guidance."}
+]},
+// 8
+{id:8,title:"Money Madness",author:"David L. Harrison",paper:"N-3A · Nizamabad",
+full:`Money, money, money, it's a madness
+If you have it, you don't want it
+If you don't have it, you're sad
+It's a strange and wondrous thing.
+
+Money, money, money, it's a madness
+People kill and people steal
+People lie and people cheat
+All for the love of money
+
+Money, money, money, it's a madness.
+We work and we work and we work
+But what's the use of all our toil?
+We can't take it with us when we go
+
+Money, money, money it's a madness
+Let's not be fooled by its shine
+Let's find the real treasure in life
+Friendship, love, and a heart that's fine.`,
+qs:[
+{num:"Q17",type:"Action",text:"According to the poem, people ___ for money",opts:["Work hard","Steal and cheat","Give to charity","Travel the world"],ans:1,
+hint:"'People kill and people steal / People lie and people cheat / All for the love of money'",
+exp:"Steal and cheat — the poem explicitly says people kill, steal, lie, and cheat because of obsession with money."},
+{num:"Q18",type:"Description",text:"The poet describes the desire for money as ___",opts:["Rational desire","Necessary evil","Madness","Harmless obsession"],ans:2,
+hint:"Title is 'Money MADNESS' and it repeats 'it's a madness'. What word does the poet use?",
+exp:"Madness — the title itself says 'Money Madness' and the refrain 'it's a madness' repeats throughout."},
+{num:"Q19",type:"Theme",text:"The central theme of 'Money Madness' is ___",opts:["Love and good relationship","The importance of money","The madness of prioritizing wealth","The beauty of nature"],ans:2,
+hint:"People do terrible things for money; the poem ends: find 'the real treasure in life'. What does it criticize?",
+exp:"The madness of prioritizing wealth — obsessing over money leads to immoral actions and misses what truly matters."},
+{num:"Q20",type:"Critique",text:"The poet's implicit critique is that people are ___",opts:["Not materialistic enough","Too focused on spiritual pursuits","Not working hard enough","Prioritizing wealth over human values"],ans:3,
+hint:"People steal and cheat for money instead of valuing friendship and love. What are they wrongly prioritizing?",
+exp:"Prioritizing wealth over human values — the poem criticizes choosing money over friendship, kindness, and love."},
+{num:"Q21",type:"Message",text:"'We can't take it with us when we go' conveys ___",opts:["We can spend money when we're dead","Money is essential for happiness","Wealth is not the most important thing","We should save money for the future"],ans:2,
+hint:"We die and can't take money with us. What does this say about how important money really is?",
+exp:"Wealth is not the most important thing — since money can't follow us beyond death, love and friendship matter more."}
+]},
+// 9
+{id:9,title:"The Growing Mind",author:"Unknown",paper:"S-3A · Suryapet",
+full:`Everyday a student learns to stand,
+With steady heart and helping hand
+Though doubt and fear, they try once more.
+Discovering what life has in store.
+
+They learn to speak, they learn to listen,
+Let honesty and effort glisten
+Mistakes are steps, not signs of fall,
+Each small success outshines them all.
+
+With discipline and dreams held tight,
+They shape their future, day and night
+And say with strength and purpose true,
+"I will become what I pursue."`,
+qs:[
+{num:"Q17",type:"Learning",text:"The student learns to stand with ___",opts:["Pride and anger","Steady heart and helping hand","Fear and weakness","Silence and doubt"],ans:1,
+hint:"Exact words from line 2: 'Everyday a student learns to stand, With _____ and _____'.",
+exp:"Steady heart and helping hand — the exact words from the poem. Students face challenges calmly with support."},
+{num:"Q18",type:"Mistakes",text:"According to the poem, mistakes are ___",opts:["Failures in life","Reasons to stop trying","Steps towards learning","Signs of weakness"],ans:2,
+hint:"The poem says 'Mistakes are steps, not signs of fall'. What does this mean about mistakes?",
+exp:"Steps towards learning — mistakes are part of the learning journey, not reasons to give up."},
+{num:"Q19",type:"Development",text:"The student develops personality by learning to ___",opts:["Compete with others","Speak and listen","Avoid challenges","Depend on luck"],ans:1,
+hint:"The poem says 'They learn to speak, they learn to listen'. What two skills are mentioned?",
+exp:"Speak and listen — these two communication skills are explicitly mentioned as part of personality development."},
+{num:"Q20",type:"Effort",text:"'They shape their future, day and night' suggests students ___",opts:["Worry too much","Work continuously","Dream without effort","Wait for success"],ans:1,
+hint:"'Day and night' means all the time. If you shape your future day and night, what are you doing?",
+exp:"Work continuously — 'day and night' indicates persistent non-stop effort to build one's future."},
+{num:"Q21",type:"Message",text:"The poem mainly highlights ___",opts:["Fear of exams","Success without effort","Personality development through values and effort","Competition among students"],ans:2,
+hint:"Steady heart, honesty, effort, learning from mistakes, discipline — what overall theme?",
+exp:"Personality development through values and effort — students grow through honesty, perseverance, and discipline."}
+]},
+// 10
+{id:10,title:"Old Man",author:"William Blake",paper:"Warangal DCEB",
+full:`Old Man, who shall I tell my love to?
+I have loved thee long and dearly.
+I am weary of my youth,
+I am weary of my age.
+I am weary of my knowledge,
+I am weary of my fate.
+
+Pity, O pity the aged head,
+Bent with sorrow, weak with care,
+Forgotten by the busy world,
+Left alone in silent prayer.`,
+qs:[
+{num:"Q17",type:"Expression",text:"'Old Man, who shall I tell my love to?' expresses ___",opts:["Anger towards the old man","Desire to share feelings with someone trustworthy","Fear of being misunderstood","Complaint against society"],ans:1,
+hint:"The speaker asks the old man who to share deep feelings with. What does searching for a confidant show?",
+exp:"Desire to share feelings with someone trustworthy — the speaker turns to an old man as a confidant."},
+{num:"Q18",type:"Feeling",text:"By repeatedly saying 'I am weary of my...' the speaker conveys ___",opts:["Excitement","Satisfaction","Deep exhaustion and despair","Confidence"],ans:2,
+hint:"Weary = tired/exhausted. Repeating 'I am weary' again and again — what intense feeling does this create?",
+exp:"Deep exhaustion and despair — 'weary' means exhausted, and the repetition intensifies this into profound despair."},
+{num:"Q19",type:"Meaning",text:"'Forgotten by the busy world' suggests the aged person is ___",opts:["Respected by society","Ignored and neglected","Feared by others","Admired for wisdom"],ans:1,
+hint:"If the world is 'busy' and has 'forgotten' the old man — is he respected or ignored?",
+exp:"Ignored and neglected — society is too busy to care for the elderly, leaving them alone and forgotten."},
+{num:"Q20",type:"Figure of Speech",text:"What figure of speech is used in 'Bent with sorrow'?",opts:["Simile","Metaphor","Personification","Alliteration"],ans:1,
+hint:"Sorrow (an emotion) physically bends the head — no 'like' or 'as'. What figure of speech?",
+exp:"Metaphor — sorrow is described as physically bending the head. Direct figurative comparison = Metaphor."},
+{num:"Q21",type:"Theme",text:"___ is the central idea of the poem",opts:["The joy of old age","The power of knowledge","Loneliness and suffering of old age","The importance of prayer"],ans:2,
+hint:"An old man forgotten by the world, bent with sorrow, left alone in silent prayer. What is the main subject?",
+exp:"Loneliness and suffering of old age — the poem movingly portrays how the elderly are neglected by society."}
+]},
+// 11
+{id:11,title:"It Is a Beauteous Evening",author:"William Wordsworth",paper:"PR-80 · Peddapalli",
+full:`It is a beauteous evening, calm and free,
+The holy time is quiet as a Nun
+Breathless with adoration; the broad sun
+Is sinking down in its tranquility,
+
+The gentleness of heaven broods o'er the Sea;
+Listen! The mighty Being is awake,
+And doth with his eternal motion make
+A sound like thunder — everlastingly.
+
+Dear child! That walkest with me here,
+If thou appear untouched by solemn thought,
+Thy nature is not therefore less divine:
+Thou liest in Abraham's bosom all the year:
+And worshipp'st at the Temple's inner shrine,
+God being with thee when we know it not.`,
+qs:[
+{num:"Q17",type:"Scene",text:"What is the poet describing at the beginning of the poem?",opts:["A busy market scene","A calm and peaceful evening","A stormy night","A crowded city street"],ans:1,
+hint:"The poem says 'beauteous evening, calm and free'. What kind of scene is this?",
+exp:"A calm and peaceful evening — the poem opens with a beautiful, tranquil evening by the sea."},
+{num:"Q18",type:"Meaning",text:"What is the sun doing in the poem?",opts:["Rising in the east","Setting in the west","Hiding behind clouds","Shining brightly at noon"],ans:1,
+hint:"The poem says 'the broad sun Is sinking down'. What direction does the sun sink?",
+exp:"Setting in the west — 'sinking down in its tranquility' describes the sunset in the west."},
+{num:"Q19",type:"Figure of Speech",text:"What literary device is used in 'The gentleness of heaven broods o'er the Sea'?",opts:["Simile","Metaphor","Personification","Alliteration"],ans:2,
+hint:"Heaven (a non-human thing) is 'brooding' (a human action) — a non-human thing doing a human action = ?",
+exp:"Personification — heaven is given the human quality of 'brooding' (watching over protectively)."},
+{num:"Q20",type:"Sound",text:"What sound does the poet hear in the poem?",opts:["The sound of birds chirping","The sound of waves","A sound like thunder","The sound of people walking"],ans:2,
+hint:"The poem says 'doth with his eternal motion make / A sound like thunder — everlastingly.'",
+exp:"A sound like thunder — the mighty Being (God/the sea) makes a sound like eternal thunder."},
+{num:"Q21",type:"Message",text:"What is the poet suggesting about the child's relationship with God?",opts:["The child is unaware of God's presence","The child is disconnected from God","The child is too young to understand God","The child has a deep inner connection with God"],ans:3,
+hint:"The poem says God is 'with thee when we know it not' — the child is always with God even unknowingly.",
+exp:"The child has a deep inner connection with God — God is always present with the child even when unrecognised."}
+]},
+// 12
+{id:12,title:"The Stars Show Bright",author:"Unknown",paper:"RM-80 · SK-80 · Karimnagar/Medak",
+full:`The stars show bright in the midnight sky,
+A celestial show, beyond reply,
+The world was hushed, in quiet sleep,
+As the moon's soft light, the darkness did keep
+
+The night air, whispered, a gentle breeze,
+That rustled leaves, and swayed the trees,
+The world was full, of a peaceful sound,
+As the darkness reigned, without a bound.`,
+qs:[
+{num:"Q17",type:"Scene",text:"What is shining bright in the midnight sky?",opts:["The sun","The moon","The stars","The planets"],ans:2,
+hint:"First line: 'The stars show bright in the midnight sky'. What is showing bright?",
+exp:"The stars — the poem opens with stars shining brightly in the midnight sky."},
+{num:"Q18",type:"Activity",text:"The world is ___ in the poem",opts:["Working","Playing","Sleeping","Dancing"],ans:2,
+hint:"The poem says 'The world was hushed, in quiet sleep'. What is the world doing?",
+exp:"Sleeping — 'hushed in quiet sleep' clearly shows the world is asleep in peaceful silence."},
+{num:"Q19",type:"Function",text:"What does the moon's soft light do?",opts:["Keeps the darkness away","Creates shadows","Makes it day","Hides the stars"],ans:0,
+hint:"The poem says 'the moon's soft light, the darkness did keep'. What does soft moonlight do to darkness?",
+exp:"Keeps the darkness away — the moon's soft light holds back the complete darkness of midnight."},
+{num:"Q20",type:"Sound",text:"What does the night air whisper?",opts:["A loud shout","A gentle breeze","A strong wind","A heavy rain"],ans:1,
+hint:"The poem says 'The night air, whispered, a gentle breeze'. What does it whisper?",
+exp:"A gentle breeze — the night air whispers softly like a gentle breeze rustling leaves and swaying trees."},
+{num:"Q21",type:"Figure of Speech",text:"What figure of speech is used in 'The night air whispered a gentle breeze'?",opts:["Simile","Metaphor","Personification","Alliteration"],ans:2,
+hint:"The night air (non-human) is 'whispering' (a human action). Non-human doing human action = ?",
+exp:"Personification — the night air is given the human quality of whispering. Non-human doing human action = Personification."}
+]},
+// 13
+{id:13,title:"An Angel in Disguise",author:"Unknown",paper:"G03A · W03A · Gadwal/Wanaparthy",
+full:`I'm an angel in disguise,
+With dimpled cheeks and laughing eyes.
+Don't you want me?
+
+I have come as your little dream,
+To fill your life with joy, it seems.
+I'll dance in your heart, sweet and light,
+And bring you love both day and night.
+
+With every giggle, every smile,
+I'll make your life so worthwhile.
+So hold me close, don't let me go,
+For I am the love you'll come to know.
+
+In every moment, I will be,
+The laughter and joy you see in me.`,
+qs:[
+{num:"Q17",type:"Identity",text:"What does the unborn girl describe herself as?",opts:["A monster","An angel in disguise","A fairy","A dream"],ans:1,
+hint:"First line of the poem: 'I'm an _____ in disguise'. What does she call herself?",
+exp:"An angel in disguise — the poem begins with the unborn girl describing herself as an angel in disguise."},
+{num:"Q18",type:"Promise",text:"What does she promise to bring into the life of her parents?",opts:["Sadness","Joy and love","Wealth","Fear"],ans:1,
+hint:"The poem says 'To fill your life with joy' and 'bring you love both day and night'.",
+exp:"Joy and love — the unborn girl promises to fill her parents' lives with joy, love, and laughter."},
+{num:"Q19",type:"Feeling",text:"How does the unborn girl intend to make her parents feel?",opts:["Tired and bored","Happy and worthwhile","Angry and upset","Confused"],ans:1,
+hint:"The poem says 'I'll make your life so worthwhile'. How does she want them to feel?",
+exp:"Happy and worthwhile — she promises to make their lives meaningful and filled with happiness."},
+{num:"Q20",type:"Imagery",text:"What imagery is used to describe the girl?",opts:["Dark and gloomy","Dimpled cheeks and laughing eyes","Tall and slender","Quiet and shy"],ans:1,
+hint:"Second line: 'With ______ cheeks and ______ eyes.' What physical description is given?",
+exp:"Dimpled cheeks and laughing eyes — these are the exact physical images used to describe the unborn girl."},
+{num:"Q21",type:"Figure of Speech",text:"What literary device is used in 'I'm an angel'?",opts:["Metaphor","Simile","Personification","Hyperbole"],ans:0,
+hint:"She says she IS an angel — direct comparison without 'like' or 'as'. Direct comparison = Metaphor.",
+exp:"Metaphor — 'I'm an angel' is a direct comparison without 'like' or 'as'. Direct comparison = Metaphor."}
+]},
+// 14
+{id:14,title:"The Seeds I Sowed",author:"Walter de la Mare",paper:"G-3A · Practice Test",
+full:`The seeds I sowed
+For weeks unseen
+Have pushed up pygmy
+Shoots of green:
+
+So frail you'd think
+The tiniest stone
+Would never let
+A glimpse be shown
+
+But no, a pebble
+Near them lies,
+At least a cherry stone
+In size,
+
+Which that mere sprout
+Has heaved away.
+
+To bask in sunshine
+See the day.`,
+qs:[
+{num:"Q17",type:"Theme",text:"The theme of the poem is ___",opts:["Hope to grow and survive in difficulties","Making the right decision at the right time","Becoming weak during tough times","Stumbling backwards in difficulties"],ans:0,
+hint:"A tiny seed pushes through stone to reach sunlight. What does this journey symbolise?",
+exp:"Hope to grow and survive in difficulties — the tiny seed overcomes a stone to reach sunlight, symbolising hope and perseverance."},
+{num:"Q18",type:"State",text:"The seeds sowed by the poet ___",opts:["Grown into trees","Not sprouted at all","Sprouted small green shoots","Grown into big plants"],ans:2,
+hint:"The poem says 'Have pushed up pygmy / Shoots of green'. What have the seeds done?",
+exp:"Sprouted small green shoots — 'pygmy shoots of green' means tiny green shoots have appeared."},
+{num:"Q19",type:"Description",text:"The word 'frail' is used to describe ___",opts:["The seed","The flower","The green shoot","The leaves"],ans:2,
+hint:"The poem says 'So frail you'd think / The tiniest stone / Would never let / A glimpse be shown.' What is frail?",
+exp:"The green shoot — the poem describes the tiny green shoot as frail, so delicate that even a small stone seems too heavy."},
+{num:"Q20",type:"Meaning",text:"'The plant has pushed itself up to the surface' shows ___",opts:["Unwillingness of the seed to be buried","Strong desire of the seed to grow into a plant","Strength of the pebbles in the soil","Weakness of the soil"],ans:1,
+hint:"The tiny sprout pushes a pebble away to reach sunlight. What inner quality does this show?",
+exp:"Strong desire of the seed to grow — the seed's determination to push through obstacles represents will and hope."},
+{num:"Q21",type:"Figure of Speech",text:"'Has heaved away, To bask in sunshine' — the literary device is ___",opts:["Metaphor","Simile","Personification","Alliteration"],ans:2,
+hint:"The sprout 'heaved away' a pebble and wants to 'bask'. These are human actions done by a plant.",
+exp:"Personification — the sprout is given human actions (heaving, basking). Non-human doing human actions = Personification."}
+]},
+// 15
+{id:15,title:"Courage (A Prayer)",author:"Rabindranath Tagore",paper:"NK-3A · Nagarkurnool",
+full:`This is my prayer to you, my lord
+Give me the strength
+Lightly to bear my joys and sorrows
+Give me the strength
+to make my love
+to fruitful in service
+
+Give me the strength
+never to disown the poor
+or bend my knees
+before insolent might
+
+Give me the strength
+to raise my mind
+high above daily trifles
+
+And give me the strength
+to surrender my strength
+to your will with love.`,
+qs:[
+{num:"Q17",type:"Love",text:"Love for the poet means ___",opts:["A thing that bears fruit","A thing that progresses","A thing that progresses in serving others","A thing that serves others"],ans:2,
+hint:"The poem says 'make my love to fruitful in service'. What kind of love does the poet want?",
+exp:"A thing that progresses in serving others — the poet wants love that grows through acts of service."},
+{num:"Q18",type:"Refusal",text:"The poet won't like to surrender ___",opts:["His self respect to the mighty","Before the insolent","Before the insolent and powerful","None of the above"],ans:2,
+hint:"The poem says 'never... bend my knees before insolent might'. What won't the poet do?",
+exp:"Before the insolent and powerful — the poet prays for the strength never to bow before arrogant, powerful people."},
+{num:"Q19",type:"Type",text:"What kind of poem is 'Courage'?",opts:["An appeal","Motivational","A prayer","Suggestive"],ans:2,
+hint:"The poem starts 'This is my prayer to you, my lord'. What type of poem is this?",
+exp:"A prayer — the poem is explicitly titled and framed as a prayer, asking God for strength."},
+{num:"Q20",type:"Courage",text:"According to the poet, courage is ___",opts:["An affair of spirit","Physical strength","Moral strength","To be acquired by others"],ans:0,
+hint:"The poet asks for strength of mind, strength to serve, strength of spirit — not physical strength.",
+exp:"An affair of spirit — courage for the poet means inner spiritual strength, not physical strength."},
+{num:"Q21",type:"Message",text:"When is courage called strength?",opts:["When we can stand up when it is easier to fall down","When we believe what we have been told","When we bank on dishonesty","When we are not confident"],ans:0,
+hint:"The poet prays for strength to stand against insolent might, to raise his mind above daily trifles.",
+exp:"When we can stand up when it is easier to fall down — true courage is choosing what's right when it's hardest."}
+]},
+// 16
+{id:16,title:"What Can We Give Our Children",author:"Unknown",paper:"Y-3A",
+full:`What can we give our children?
+Knowledge, yes, and honour too,
+And strength of character
+And the gift of laughter.
+
+What gold do we give our children?
+The gold of a sunny childhood,
+Open spaces, a home that binds
+Us to the common good....
+
+These simple things
+Are greater than the gold of kings.`,
+qs:[
+{num:"Q17",type:"Gifts",text:"The poet says we can give our children ___ besides knowledge",opts:["Money and jewels","Honour and strength of character","Cars and toys","Freedom only"],ans:1,
+hint:"The poem says 'Knowledge, yes, and ______ too, And ______ of character'.",
+exp:"Honour and strength of character — the poem lists these alongside knowledge as the most important gifts."},
+{num:"Q18",type:"Meaning",text:"'The gold of a sunny childhood' refers to ___",opts:["Riches and wealth","Open spaces and a happy home","Fancy clothes and toys","Expensive gifts"],ans:1,
+hint:"The poem says 'The gold of a sunny childhood, Open spaces, a home that binds'. What is this 'gold'?",
+exp:"Open spaces and a happy home — the 'gold' of childhood is the freedom, joy, and warmth of a loving home."},
+{num:"Q19",type:"Gift",text:"A gift for children mentioned in the poem is ___",opts:["Laughter","Gold","Knowledge","Childhood"],ans:0,
+hint:"The poem mentions 'the gift of _______' as one of the things we can give children.",
+exp:"Laughter — the poem specifically calls laughter 'the gift of laughter', a precious thing to give children."},
+{num:"Q20",type:"Figure of Speech",text:"The figurative expression in 'A home that binds us to the common good' is ___",opts:["Simile","Metaphor","Hyperbole","Personification"],ans:1,
+hint:"Home is said to 'bind' — a direct comparison saying home IS a binding force. No 'like' or 'as'.",
+exp:"Metaphor — home is directly described as something that 'binds', a metaphorical comparison without 'like' or 'as'."},
+{num:"Q21",type:"Message",text:"The main idea of the poem is ___",opts:["Giving children expensive gifts makes them happy","Only knowledge is important for children","Simple things and values are more valuable than material wealth","Children should always obey adults"],ans:2,
+hint:"'These simple things / Are greater than the gold of kings.' What does this final line tell us?",
+exp:"Simple things and values are more valuable than material wealth — the poem says simple gifts like laughter and a happy home are greater than a king's gold."}
+]},
+// 17
+{id:17,title:"Jimmy Jet and His TV Set",author:"Shel Silverstein",paper:"RP-3A",
+full:`I'll tell you the story of Jimmy Jet
+And you know what I'll tell you is true:
+He loved to watch his TV set
+Almost as much as you-know-who.
+He watched all day, he watched all night
+Till he grew pale and lean,
+From "The Early Show" to "The Late Show"
+And all the shows in between.
+
+He watched till his eyes were frozen wide,
+And his bottom grew into his chair.
+And his chin turned into a tuning dial,
+And antennae grew out of his hair.
+And his brains turned into TV tubes,
+And his face to a TV screen.`,
+qs:[
+{num:"Q17",type:"Message",text:"The central message of the poem 'Jimmy Jet and His TV Set' is ___",opts:["Technology can help children become creative","Watching television excessively can be harmful","Children should always watch television","Television is more educational than books"],ans:1,
+hint:"Jimmy watched TV so much he literally turned INTO a TV. What is the poet warning us about?",
+exp:"Watching television excessively can be harmful — Jimmy turns into a TV to show the danger of addiction to screens."},
+{num:"Q18",type:"Tone",text:"The tone that best describes the poem is ___",opts:["Angry","Humorous","Sad","Serious"],ans:1,
+hint:"A boy turns into a TV — his bottom grows into a chair, antennae grow from his hair. Is this funny or serious?",
+exp:"Humorous — the poem uses funny, exaggerated imagery (turning into a TV) to make a serious point in a playful way."},
+{num:"Q19",type:"Effect",text:"What happened to Jimmy because he watched TV too much?",opts:["He became very smart","He turned into a TV set","He became a famous actor","He became healthy and strong"],ans:1,
+hint:"The poem says 'his brains turned into TV tubes, And his face to a TV screen'. What happened to Jimmy?",
+exp:"He turned into a TV set — the poem uses this extreme transformation to represent the dangers of excessive TV watching."},
+{num:"Q20",type:"Device",text:"Jimmy 'grew pale and lean' because he ___",opts:["Was sick","Watched TV all day and night","Did not eat food","Played outside too much"],ans:1,
+hint:"The poem says 'He watched all day, he watched all night / Till he grew pale and lean'. Why did he become pale?",
+exp:"Watched TV all day and night — Jimmy's unhealthy complexion is directly caused by his excessive TV watching."},
+{num:"Q21",type:"Figure of Speech",text:"'His bottom grew into his chair' is an example of ___",opts:["Simile","Metaphor","Hyperbole","Alliteration"],ans:2,
+hint:"Can a person's bottom literally grow into a chair? This is a massive exaggeration to make a point.",
+exp:"Hyperbole — extreme exaggeration for effect. Jimmy's bottom 'growing into his chair' is a humorous exaggeration."}
+]},
+// 18
+{id:18,title:"Woman is Beauty Innate",author:"Rakhi Nariani Shirke",paper:"NP-3A · Narayanpet",
+full:`A woman is beauty innate,
+A symbol of power and strength.
+She puts her life at stake,
+She's real, she's not fake!
+
+Strong is she in her faith and beliefs.
+"Persistence is the key to everything,"
+says she, Despite the sighs and groans and moans,
+She's strong in her faith, firm in her belief!
+
+She's a lioness; don't mess with her.
+She'll not spare you if you're a prankster.
+Don't ever try to saw her pride, her self-respect.
+She knows how to thaw you, saw you — so beware!
+
+She's today's woman. Today's woman,
+Dear! Love her, respect her, ...`,
+qs:[
+{num:"Q17",type:"Strength",text:"The woman is strong in ___",opts:["Groans and moans","Pride","Faith and beliefs","Pranking"],ans:2,
+hint:"The poem says 'Strong is she in her _____ and _____'. Find the exact words.",
+exp:"Faith and beliefs — the poem explicitly says 'Strong is she in her faith and beliefs'."},
+{num:"Q18",type:"Figure of Speech",text:"'She's a lioness' — which figure of speech is used here?",opts:["Personification","Simile","Irony","Metaphor"],ans:3,
+hint:"She IS called a lioness — a direct comparison. Is there 'like' or 'as'? No. Direct comparison = Metaphor.",
+exp:"Metaphor — 'She's a lioness' is a direct comparison saying she IS a lioness, without 'like' or 'as'."},
+{num:"Q19",type:"Key",text:"The key to success according to the poem is ___",opts:["Persistence","Punctuality","Pride","Sincerity"],ans:0,
+hint:"The poem says '\"_____ is the key to everything,\" says she'. Find the exact word.",
+exp:"Persistence — the poem explicitly quotes 'Persistence is the key to everything'."},
+{num:"Q20",type:"Symbol",text:"The woman is a symbol of ___",opts:["Self-respect","Pride","Faith","Power and strength"],ans:3,
+hint:"Second line of the poem: 'A symbol of _____ and _____'. Find the exact words.",
+exp:"Power and strength — the poem says 'A symbol of power and strength' in the very second line."},
+{num:"Q21",type:"True/False",text:"Which of the following is NOT true about today's woman?",opts:["She is strong in her faith","She is fake","She will not spare pranksters","She is beauty innate"],ans:1,
+hint:"The poem says 'She's real, she's not fake!' What is NOT true about her?",
+exp:"She is fake — the poem explicitly says 'She's real, she's not fake!' So 'she is fake' is NOT true."}
+]}
+];
+
+// ══════════════════════════════════════════════════════════
+//  STATE
+// ══════════════════════════════════════════════════════════
+const S={selPoems:[],mode:'practice',poemList:[],poemIdx:0,answered:[],totalScore:0,totalAnswered:0,allAnswers:[],timer:null,timeLeft:30,streak:0,curQIdx:0};
+
+// ── CANVAS ──────────────────────────────────────────────
+(()=>{
+  const c=document.getElementById('bg'),ctx=c.getContext('2d');let W,H,pts=[];
+  const r=()=>{W=c.width=window.innerWidth;H=c.height=window.innerHeight;};
+  const ini=()=>{pts=[];for(let n=0;n<55;n++)pts.push({x:Math.random()*W,y:Math.random()*H,r:Math.random()*1.4+.3,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25,a:Math.random()*.45+.1,col:Math.random()>.7?'#d4960c':'#fff'});};
+  const d=()=>{ctx.clearRect(0,0,W,H);pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=p.col;ctx.globalAlpha=p.a;ctx.fill();});ctx.globalAlpha=1;requestAnimationFrame(d);};
+  window.addEventListener('resize',()=>{r();ini();});r();ini();d();
+})();
+
+// ── HOME INIT ───────────────────────────────────────────
+function initHome(){
+  const w=document.getElementById('chips');w.innerHTML='';
+  const ac=mk('div','chip on');ac.textContent='⭐ All 18 Poems';ac.dataset.id='all';
+  ac.onclick=()=>{const on=ac.classList.toggle('on');document.querySelectorAll('.chip[data-id]').forEach(c=>on?c.classList.add('on'):c.classList.remove('on'));S.selPoems=on?POEMS.map(p=>p.id):[];};
+  w.appendChild(ac);
+  POEMS.forEach(p=>{const c=mk('div','chip on');c.textContent=p.title;c.dataset.id=p.id;c.onclick=()=>{c.classList.toggle('on');S.selPoems=c.classList.contains('on')?[...S.selPoems,p.id]:S.selPoems.filter(x=>x!==p.id);const a=document.querySelector('.chip[data-id="all"]');if(a)a.classList.toggle('on',S.selPoems.length===POEMS.length);};w.appendChild(c);});
+  S.selPoems=POEMS.map(p=>p.id);
+}
+
+function pickMode(el){document.querySelectorAll('.mode-card').forEach(c=>c.classList.remove('on'));el.classList.add('on');S.mode=el.dataset.m;}
+
+// ── START ───────────────────────────────────────────────
+function startQuiz(){
+  if(!S.selPoems.length){alert('Please select at least one poem!');return;}
+  S.poemList=POEMS.filter(p=>S.selPoems.includes(p.id));
+  shuf(S.poemList);
+  S.poemIdx=0;S.totalScore=0;S.totalAnswered=0;S.allAnswers=[];S.streak=0;
+  showScreen('quiz');loadPoem(0);
+}
+
+// ── LOAD POEM ───────────────────────────────────────────
+function loadPoem(idx){
+  clearInterval(S.timer);
+  S.poemIdx=idx;
+  const poem=S.poemList[idx];
+  S.answered=poem.qs.map(()=>null);
+  S.curQIdx=0;
+  // left
+  document.getElementById('pNum').textContent='Poem '+(idx+1)+' / '+S.poemList.length;
+  document.getElementById('pTitle').textContent=poem.title;
+  document.getElementById('pAuthor').textContent=poem.author;
+  document.getElementById('pPaper').textContent=poem.paper;
+  document.getElementById('pFull').textContent=poem.full;
+  document.getElementById('prevBtn').disabled=idx===0;
+  document.getElementById('nextBtn').disabled=true;
+  document.getElementById('poemDone').style.display='none';
+  updateTopBar();renderDots();renderQuestions(poem);
+  if(S.mode==='timed'){document.getElementById('timerRow').style.display='flex';startTimer(0);}
+  else document.getElementById('timerRow').style.display='none';
+  document.getElementById('qPanel').scrollTop=0;
+}
+
+// ── RENDER ALL 5 QUESTIONS ──────────────────────────────
+function renderQuestions(poem){
+  const area=document.getElementById('qArea');area.innerHTML='';
+  const L=['A','B','C','D'];
+  poem.qs.forEach((q,qi)=>{
+    const blk=mk('div','q-block');blk.id='qb'+qi;
+    blk.innerHTML=`<div class="q-hdr"><div class="q-bdg">${q.num}</div><div class="q-typ">${q.type}</div></div><div class="q-txt">${q.text}</div>`;
+    const opts=mk('div','opts');opts.id='opts'+qi;
+    q.opts.forEach((o,oi)=>{const b=mk('button','opt');b.dataset.qi=qi;b.dataset.oi=oi;b.innerHTML=`<span class="opt-l">${L[oi]}</span><span class="opt-t">${o}</span>`;b.onclick=()=>pick(qi,oi);opts.appendChild(b);});
+    blk.appendChild(opts);
+    const ai=mk('div','ai-box');ai.id='ai'+qi;ai.innerHTML=`<div class="ai-lbl">🤖 AI Hint</div><div id="ait${qi}"></div>`;blk.appendChild(ai);
+    const fb=mk('div','fb');fb.id='fb'+qi;fb.innerHTML=`<span id="fbi${qi}"></span><span id="fbt${qi}"></span><div class="fb-exp" id="fbe${qi}"></div>`;blk.appendChild(fb);
+    if(S.mode==='practice'){const hb=mk('button','q-hint-btn');hb.id='hb'+qi;hb.innerHTML='<div class="hd"></div> AI Hint';hb.onclick=()=>doHint(qi);blk.appendChild(hb);}
+    area.appendChild(blk);
+  });
+}
+
+// ── PICK ANSWER ─────────────────────────────────────────
+function pick(qi,oi){
+  if(S.answered[qi]!==null)return;
+  clearInterval(S.timer);
+  const q=S.poemList[S.poemIdx].qs[qi];
+  const ok=oi===q.ans;
+  S.answered[qi]={sel:oi,correct:ok};
+  S.totalAnswered++;
+  if(ok){S.totalScore++;S.streak++;if(S.streak>=3)showStreak(S.streak);}else S.streak=0;
+  S.allAnswers.push({poemTitle:S.poemList[S.poemIdx].title,q,sel:oi,correct:ok});
+  const L=['A','B','C','D'];
+  document.querySelectorAll('#opts'+qi+' .opt').forEach((b,i)=>{
+    b.disabled=true;
+    if(i===q.ans)b.classList.add(ok&&i===oi?'c':'rc');
+    if(i===oi&&!ok)b.classList.add('w');
+    if(i===q.ans&&ok)b.classList.add('c');
+  });
+  const fb=document.getElementById('fb'+qi);
+  if(ok){fb.className='fb ok';document.getElementById('fbi'+qi).textContent='✅ ';document.getElementById('fbt'+qi).textContent=['Excellent!','Perfect!','Brilliant!','Spot on!'][Math.floor(Math.random()*4)];document.getElementById('fbe'+qi).textContent=q.exp;}
+  else{fb.className='fb no';document.getElementById('fbi'+qi).textContent='❌ ';document.getElementById('fbt'+qi).textContent='Not quite.';document.getElementById('fbe'+qi).textContent=`Correct: ${L[q.ans]}) ${q.opts[q.ans]}. ${q.exp}`;}
+  const hb=document.getElementById('hb'+qi);if(hb){hb.style.opacity='.35';hb.style.pointerEvents='none';}
+  updateTopBar();renderDots();
+  if(S.answered.every(a=>a!==null)){showPoemDone();return;}
+  if(S.mode==='timed'){const nxt=S.answered.findIndex(a=>a===null);if(nxt!==-1){document.getElementById('qb'+nxt).scrollIntoView({behavior:'smooth',block:'center'});startTimer(nxt);}}
+}
+
+// ── TIMER ───────────────────────────────────────────────
+function startTimer(qi){
+  clearInterval(S.timer);S.curQIdx=qi;S.timeLeft=30;
+  const hb=document.getElementById('timedHintBtn');if(hb)hb.onclick=()=>doHint(qi);
+  updT();
+  S.timer=setInterval(()=>{S.timeLeft--;updT();if(S.timeLeft<=0){clearInterval(S.timer);timeUp(qi);}},1000);
+}
+function updT(){
+  const n=document.getElementById('tNum'),f=document.getElementById('tFill');
+  n.textContent=S.timeLeft;n.className='t-num'+(S.timeLeft<=10?' red':'');
+  f.style.width=(S.timeLeft/30*100)+'%';f.className='t-fill'+(S.timeLeft<=10?' red':'');
+}
+function timeUp(qi){
+  if(S.answered[qi]!==null)return;
+  const q=S.poemList[S.poemIdx].qs[qi];
+  S.answered[qi]={sel:-1,correct:false};S.totalAnswered++;S.streak=0;
+  S.allAnswers.push({poemTitle:S.poemList[S.poemIdx].title,q,sel:-1,correct:false,skipped:true});
+  document.querySelectorAll('#opts'+qi+' .opt').forEach((b,i)=>{b.disabled=true;if(i===q.ans)b.classList.add('rc');});
+  const fb=document.getElementById('fb'+qi);fb.className='fb no';
+  document.getElementById('fbi'+qi).textContent='⏰ ';
+  document.getElementById('fbt'+qi).textContent="Time's up!";
+  document.getElementById('fbe'+qi).textContent=`Correct: ${['A','B','C','D'][q.ans]}) ${q.opts[q.ans]}. ${q.exp}`;
+  updateTopBar();renderDots();
+  if(S.answered.every(a=>a!==null)){showPoemDone();return;}
+  const nxt=S.answered.findIndex(a=>a===null);
+  if(nxt!==-1){document.getElementById('qb'+nxt).scrollIntoView({behavior:'smooth',block:'center'});startTimer(nxt);}
+}
+
+// ── AI HINT ─────────────────────────────────────────────
+function doHint(qi){
+  const q=S.poemList[S.poemIdx].qs[qi];
+  const box=document.getElementById('ai'+qi);box.style.display='block';
+  const t=document.getElementById('ait'+qi);
+  t.innerHTML='<div class="ai-dots"><span></span><span></span><span></span></div>';
+  setTimeout(()=>t.textContent=q.hint,800);
+  const hb=document.getElementById('hb'+qi);if(hb){hb.style.opacity='.35';hb.style.pointerEvents='none';}
+}
+function timedHint(){doHint(S.curQIdx);}
+
+// ── DOTS ────────────────────────────────────────────────
+function renderDots(){
+  const w=document.getElementById('pDots');w.innerHTML='';
+  const lbl=mk('span','dot-lbl');lbl.textContent='Q: ';w.appendChild(lbl);
+  S.answered.forEach((a,i)=>{
+    const d=mk('div','dot');d.textContent=i+1;
+    if(a===null){if(S.mode==='timed'&&S.curQIdx===i)d.classList.add('active');}
+    else d.classList.add(a.correct?'ok':'no');
+    d.onclick=()=>document.getElementById('qb'+i).scrollIntoView({behavior:'smooth',block:'start'});
+    w.appendChild(d);
+  });
+  if(S.poemList.length>1){
+    const sp=mk('div','dot-sep');w.appendChild(sp);
+    const pl=mk('span','dot-lbl');pl.textContent='Poem: ';w.appendChild(pl);
+    S.poemList.forEach((_,pi)=>{
+      const d=mk('div','dot');d.style.fontSize='9px';d.textContent='P'+(pi+1);d.title=S.poemList[pi].title;
+      if(pi===S.poemIdx)d.classList.add('active');
+      else if(pi<S.poemIdx)d.classList.add('ok');
+      d.onclick=()=>{if(pi<S.poemIdx)loadPoem(pi);};
+      w.appendChild(d);
+    });
+  }
+}
+
+// ── TOP BAR ─────────────────────────────────────────────
+function updateTopBar(){
+  const poem=S.poemList[S.poemIdx];
+  const done=S.answered.filter(a=>a!==null).length;
+  const totalQ=S.poemList.reduce((s,p)=>s+p.qs.length,0);
+  const pct=Math.round(S.totalAnswered/totalQ*100);
+  document.getElementById('progL').textContent='Poem '+(S.poemIdx+1)+'/'+S.poemList.length+': '+poem.title.slice(0,22)+(poem.title.length>22?'…':'');
+  document.getElementById('progR').textContent=done+'/5 answered';
+  document.getElementById('progFill').style.width=pct+'%';
+  document.getElementById('liveScore').textContent=S.totalScore;
+}
+
+// ── POEM DONE ───────────────────────────────────────────
+function showPoemDone(){
+  clearInterval(S.timer);document.getElementById('timerRow').style.display='none';
+  const correct=S.answered.filter(a=>a&&a.correct).length;
+  const pct=Math.round(correct/5*100);
+  document.getElementById('doneScore').textContent=correct+'/5';
+  let h,p;
+  if(pct===100){h='Perfect! 🎉';p='Flawless on this poem!';}
+  else if(pct>=80){h='Excellent!';p='Great work on this poem.';}
+  else if(pct>=60){h='Good effort!';p='Review the incorrect ones.';}
+  else{h='Keep practising!';p='Re-read the poem and try again.';}
+  document.getElementById('doneH').textContent=h;
+  document.getElementById('doneP').textContent=p;
+  const last=S.poemIdx>=S.poemList.length-1;
+  document.getElementById('doneBtn').textContent=last?'View Results 🏆':'Next Poem →';
+  document.getElementById('poemDone').style.display='block';
+  document.getElementById('poemDone').scrollIntoView({behavior:'smooth',block:'center'});
+  if(pct===100)confetti();
+  if(!last)document.getElementById('nextBtn').disabled=false;
+}
+
+function advancePoem(){S.poemIdx>=S.poemList.length-1?showResults():loadPoem(S.poemIdx+1);}
+function prevPoem(){if(S.poemIdx>0)loadPoem(S.poemIdx-1);}
+function nextPoem(){if(!document.getElementById('nextBtn').disabled)loadPoem(S.poemIdx+1);}
+
+// ── RESULTS ─────────────────────────────────────────────
+function showResults(){
+  clearInterval(S.timer);
+  const total=S.allAnswers.length,correct=S.allAnswers.filter(a=>a.correct).length,pct=Math.round(correct/total*100);
+  document.getElementById('rBig').textContent=correct+'/'+total;
+  document.getElementById('rC').textContent=correct;
+  document.getElementById('rW').textContent=total-correct;
+  document.getElementById('rA').textContent=pct+'%';
+  document.getElementById('rSub').textContent=total+' questions across '+S.poemList.length+' poem'+(S.poemList.length>1?'s':'');
+  let crown='🏆',title='Excellent!';
+  if(pct===100){crown='🥇';title='Perfect Score! 🎉';}else if(pct>=80){crown='🏆';title='Excellent Work!';}else if(pct>=60){crown='📚';title='Good Progress!';}else if(pct>=40){crown='💪';title='Keep Practising!';}else{crown='📖';title='More Practice Needed';}
+  document.getElementById('rCrown').textContent=crown;document.getElementById('rTitle').textContent=title;
+  const L=['A','B','C','D'],rl=document.getElementById('revList');rl.innerHTML='';
+  S.poemList.forEach(poem=>{
+    const pa=S.allAnswers.filter(a=>a.poemTitle===poem.title);if(!pa.length)return;
+    const grp=mk('div','rev-grp');const pt=mk('div','rev-grp-title');pt.textContent=poem.title;grp.appendChild(pt);
+    pa.forEach(a=>{
+      const item=mk('div','rev-item');
+      item.innerHTML=`<div class="rev-ic">${a.correct?'✅':(a.skipped?'⏰':'❌')}</div><div><div class="rev-q">${a.q.num} (${a.q.type}) — ${a.q.text.slice(0,55)}...</div><div class="rev-a"><span class="ca">✓ ${L[a.q.ans]}) ${a.q.opts[a.q.ans]}</span>${!a.correct&&!a.skipped?` | <span class="wa">✗ ${L[a.sel]}) ${a.q.opts[a.sel]}</span>`:''}</div></div>`;
+      grp.appendChild(item);
+    });rl.appendChild(grp);
+  });
+  if(pct===100)confetti();
+  showScreen('results');
+}
+
+// ── HELPERS ─────────────────────────────────────────────
+function mk(t,c){const e=document.createElement(t);if(c)e.className=c;return e;}
+function shuf(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}}
+function showStreak(n){const t=document.getElementById('sToast');t.textContent='🔥 '+n+' in a row!';t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2000);}
+function confetti(){const cols=['#d4960c','#f5b830','#2dd4bf','#a78bfa','#4ade80','#fb7185','#fff'];for(let i=0;i<80;i++){const c=mk('div','conf');c.style.cssText=`left:${Math.random()*100}vw;top:0;background:${cols[Math.floor(Math.random()*cols.length)]};--d:${2+Math.random()*2}s;--dl:${Math.random()*.8}s;width:${6+Math.random()*7}px;height:${6+Math.random()*7}px;border-radius:${Math.random()>.5?'50%':'3px'};`;document.body.appendChild(c);setTimeout(()=>c.remove(),4000);}}
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s=>{s.classList.remove('active');s.style.display='none';});
+  const el=document.getElementById(id);
+  el.style.display=(id==='results'||id==='home')?'flex':'block';
+  el.classList.add('active');window.scrollTo(0,0);
+}
+function goHome(){clearInterval(S.timer);showScreen('home');}
+function retryQuiz(){S.poemIdx=0;S.totalScore=0;S.totalAnswered=0;S.allAnswers=[];S.streak=0;shuf(S.poemList);showScreen('quiz');loadPoem(0);}
+
+window.addEventListener('DOMContentLoaded',()=>{initHome();showScreen('home');});
+</script>
+</body>
+</html>
