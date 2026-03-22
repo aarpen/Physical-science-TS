@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Class X — 600+ Vocabulary Master</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0d0f14;--card:#161921;--card2:#1e2230;--bdr:#252a38;--acc:#e8543a;--acc2:#f5a623;--acc3:#4ecdc4;--txt:#e8eaf0;--mut:#8891a8;--syn:#4ecdc4;--ant:#e8543a}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--txt);font-family:'DM Sans',sans-serif;min-height:100vh}
+.hero{background:linear-gradient(135deg,#0d0f14,#161921,#0d0f14);border-bottom:1px solid var(--bdr);padding:44px 20px 32px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:700px;height:400px;background:radial-gradient(ellipse,rgba(232,84,58,.13) 0%,transparent 70%);pointer-events:none}
+.badge{display:inline-block;background:rgba(232,84,58,.15);border:1px solid rgba(232,84,58,.4);color:var(--acc);font-family:'Space Mono',monospace;font-size:10px;padding:4px 14px;border-radius:20px;letter-spacing:2px;text-transform:uppercase;margin-bottom:18px}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,9vw,88px);letter-spacing:3px;line-height:1;margin-bottom:10px;background:linear-gradient(135deg,#e8eaf0,#8891a8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{color:var(--mut);font-size:14px;max-width:500px;margin:0 auto 24px;line-height:1.6}
+.stats{display:flex;justify-content:center;gap:36px;flex-wrap:wrap}
+.stat .n{font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--acc);line-height:1}
+.stat .l{font-size:10px;color:var(--mut);text-transform:uppercase;letter-spacing:1px}
+.ctrl{position:sticky;top:0;z-index:100;background:rgba(13,15,20,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--bdr);padding:12px 20px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:center}
+.sw{position:relative;flex:1;max-width:360px;min-width:180px}
+.si{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--mut);font-size:14px}
+input[type=text]{width:100%;background:var(--card);border:1px solid var(--bdr);color:var(--txt);padding:9px 12px 9px 34px;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:13px;outline:none;transition:border-color .2s}
+input[type=text]:focus{border-color:var(--acc)}
+input[type=text]::placeholder{color:var(--mut)}
+.fbs{display:flex;gap:5px;flex-wrap:wrap}
+.fb{background:var(--card);border:1px solid var(--bdr);color:var(--mut);padding:7px 13px;border-radius:6px;font-size:11px;font-family:'Space Mono',monospace;cursor:pointer;transition:all .2s;text-transform:uppercase;letter-spacing:.5px}
+.fb:hover,.fb.active{background:var(--acc);border-color:var(--acc);color:#fff}
+.fb[data-d=medium].active{background:var(--acc2);border-color:var(--acc2);color:#1a1000}
+.fb[data-d=easy].active{background:var(--acc3);border-color:var(--acc3);color:#0a2020}
+.cstrip{padding:9px 20px;display:flex;gap:7px;overflow-x:auto;border-bottom:1px solid var(--bdr);scrollbar-width:none}
+.cstrip::-webkit-scrollbar{display:none}
+.cp{background:var(--card);border:1px solid var(--bdr);color:var(--mut);padding:5px 13px;border-radius:20px;font-size:10px;font-family:'Space Mono',monospace;cursor:pointer;white-space:nowrap;transition:all .2s}
+.cp:hover{border-color:var(--acc2);color:var(--acc2)}
+.cp.active{background:var(--acc2);border-color:var(--acc2);color:#1a1000}
+.cbar{padding:9px 20px;display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--mut);font-family:'Space Mono',monospace}
+.cbar b{color:var(--acc)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:13px;padding:13px 20px 60px;max-width:1700px;margin:0 auto}
+.card{background:var(--card);border:1px solid var(--bdr);border-radius:11px;padding:17px;transition:all .22s;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.02),transparent);pointer-events:none}
+.card:hover{background:var(--card2);border-color:rgba(232,84,58,.3);transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.35)}
+.ch{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:7px;gap:8px}
+.wd{font-family:'Bebas Neue',sans-serif;font-size:23px;letter-spacing:1px;line-height:1;color:var(--txt)}
+.dt{font-family:'Space Mono',monospace;font-size:8px;padding:3px 7px;border-radius:4px;text-transform:uppercase;letter-spacing:1px;font-weight:700;flex-shrink:0}
+.dh{background:rgba(232,84,58,.18);color:var(--ant);border:1px solid rgba(232,84,58,.3)}
+.dm{background:rgba(245,166,35,.18);color:var(--acc2);border:1px solid rgba(245,166,35,.3)}
+.de{background:rgba(78,205,196,.18);color:var(--syn);border:1px solid rgba(78,205,196,.3)}
+.mn{font-size:11px;color:var(--mut);line-height:1.5;margin-bottom:11px;font-style:italic}
+.sar{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.sb,.ab{background:rgba(255,255,255,.03);border-radius:7px;padding:8px 10px;border:1px solid rgba(255,255,255,.05)}
+.bl{font-family:'Space Mono',monospace;font-size:8px;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:5px;font-weight:700}
+.sb .bl{color:var(--syn)}
+.ab .bl{color:var(--ant)}
+.wl{display:flex;flex-wrap:wrap;gap:3px}
+.wc{font-size:10px;padding:2px 6px;border-radius:4px;font-family:'DM Sans',sans-serif;font-weight:500}
+.sc{background:rgba(78,205,196,.12);color:var(--syn);border:1px solid rgba(78,205,196,.22)}
+.ac{background:rgba(232,84,58,.12);color:var(--ant);border:1px solid rgba(232,84,58,.22)}
+.ct{margin-top:9px;font-family:'Space Mono',monospace;font-size:8px;color:var(--mut)}
+.ct span{color:var(--acc2)}
+.nr{grid-column:1/-1;text-align:center;padding:80px 20px;color:var(--mut)}
+.nr h3{font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--bdr);margin-bottom:8px}
+.st{position:fixed;bottom:22px;right:22px;background:var(--acc);color:#fff;width:42px;height:42px;border-radius:50%;border:none;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s;z-index:200;box-shadow:0 4px 18px rgba(232,84,58,.4)}
+.st.vis{opacity:1}
+@media(max-width:600px){.grid{grid-template-columns:1fr;padding:10px}.sar{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="badge">Class X English · All 8 Chapters</div>
+  <h1>Vocabulary Master</h1>
+  <p>600+ words with full synonyms &amp; antonyms. Hardest words first. Search, filter by chapter &amp; difficulty. Ace your exam!</p>
+  <div class="stats">
+    <div class="stat"><div class="n" id="tot">611</div><div class="l">Words</div></div>
+    <div class="stat"><div class="n">8</div><div class="l">Chapters</div></div>
+    <div class="stat"><div class="n">3</div><div class="l">Levels</div></div>
+  </div>
+</div>
+<div class="ctrl">
+  <div class="sw"><span class="si">⌕</span><input type="text" id="sq" placeholder="Search word, synonym or antonym..."></div>
+  <div class="fbs">
+    <button class="fb active" data-d="all">All</button>
+    <button class="fb" data-d="hard">🔴 Hard</button>
+    <button class="fb" data-d="medium">🟡 Medium</button>
+    <button class="fb" data-d="easy">🟢 Easy</button>
+  </div>
+</div>
+<div class="cstrip">
+  <div class="cp active" data-c="all">All Chapters</div>
+  <div class="cp" data-c="1">Ch.1 Personality</div>
+  <div class="cp" data-c="2">Ch.2 Wit &amp; Humour</div>
+  <div class="cp" data-c="3">Ch.3 Human Relations</div>
+  <div class="cp" data-c="4">Ch.4 Films &amp; Theatre</div>
+  <div class="cp" data-c="5">Ch.5 Social Issues</div>
+  <div class="cp" data-c="6">Ch.6 Bio-Diversity</div>
+  <div class="cp" data-c="7">Ch.7 Nation &amp; Diversity</div>
+  <div class="cp" data-c="8">Ch.8 Human Rights</div>
+</div>
+<div class="cbar"><div>Showing <b id="vc">—</b> words</div><div>🔴 Hard → 🟡 Medium → 🟢 Easy</div></div>
+<div class="grid" id="grid"></div>
+<button class="st" id="st" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+<script>
+const CN={1:"Ch.1 Personality",2:"Ch.2 Wit & Humour",3:"Ch.3 Human Relations",4:"Ch.4 Films & Theatre",5:"Ch.5 Social Issues",6:"Ch.6 Bio-Diversity",7:"Ch.7 Nation & Diversity",8:"Ch.8 Human Rights"};
+const W=[
+// ── CH1 HARD ──────────────────────────────────────────────────────────────────
+{w:"perseverance",d:"hard",m:"continuing despite difficulty or delay",s:["tenacity","persistence","resilience","determination","steadfastness","fortitude","grit"],a:["irresolution","surrender","apathy","laziness","quitting","defeatism"],c:1},
+{w:"adversity",d:"hard",m:"difficult or unpleasant situation; misfortune",s:["hardship","misfortune","calamity","tribulation","distress","affliction","ordeal"],a:["prosperity","fortune","blessing","success","ease","comfort"],c:1},
+{w:"conviction",d:"hard",m:"firmly held belief or opinion",s:["belief","certainty","assurance","principle","faith","creed","commitment"],a:["doubt","uncertainty","skepticism","disbelief","wavering","hesitation"],c:1},
+{w:"philanthropist",d:"hard",m:"person who promotes welfare of others through charity",s:["benefactor","humanitarian","altruist","patron","donor","magnanimous"],a:["miser","egoist","selfish person","hoarder","oppressor","exploiter"],c:1},
+{w:"precocious",d:"hard",m:"showing adult abilities at an unusually early age",s:["advanced","gifted","talented","mature","prodigious","exceptional","bright"],a:["backward","slow","immature","underdeveloped","delayed","naive"],c:1},
+{w:"meticulous",d:"hard",m:"showing great attention to detail; very careful",s:["painstaking","thorough","precise","scrupulous","fastidious","diligent","exact"],a:["careless","sloppy","negligent","reckless","haphazard","slipshod"],c:1},
+{w:"malicious",d:"hard",m:"intending to do harm; deliberately cruel",s:["spiteful","vindictive","malevolent","hostile","vicious","wicked","cruel"],a:["benevolent","kind","compassionate","generous","benign","gentle"],c:1},
+{w:"compassionate",d:"hard",m:"feeling deep sympathy and concern for others",s:["empathetic","sympathetic","merciful","caring","kind-hearted","humane","tender"],a:["callous","cruel","indifferent","heartless","ruthless","pitiless","cold"],c:1},
+{w:"suave",d:"hard",m:"charming, confident and polished; sometimes insincere",s:["urbane","polished","sophisticated","debonair","smooth","refined","charming"],a:["uncouth","awkward","rough","clumsy","boorish","crude","rustic"],c:1},
+{w:"incorrigible",d:"hard",m:"not able to be corrected or reformed",s:["irredeemable","hopeless","unreformable","hardened","obstinate","inveterate"],a:["reformable","correctable","redeemable","teachable","obedient","compliant"],c:1},
+{w:"fraudulent",d:"hard",m:"intended to cheat someone; obtained by deception",s:["deceitful","dishonest","crooked","swindling","deceptive","corrupt","fake"],a:["honest","legitimate","genuine","truthful","authentic","lawful"],c:1},
+{w:"omnipresent",d:"hard",m:"present everywhere at the same time",s:["ubiquitous","all-pervasive","universal","pervasive","ever-present"],a:["absent","local","limited","confined","rare","sparse"],c:1},
+{w:"versatile",d:"hard",m:"able to adapt to many different functions",s:["adaptable","flexible","multitalented","all-around","resourceful","capable"],a:["limited","narrow","inflexible","specialized","one-dimensional","rigid"],c:1},
+{w:"humility",d:"hard",m:"modest estimate of one's own importance",s:["modesty","meekness","humbleness","lowliness","unpretentiousness","deference"],a:["arrogance","pride","conceit","vanity","haughtiness","egotism","pomposity"],c:1},
+{w:"inevitable",d:"hard",m:"certain to happen; unavoidable",s:["unavoidable","inescapable","certain","destined","sure","assured","fated"],a:["avoidable","preventable","uncertain","escapable","optional","doubtful"],c:1},
+{w:"aspire",d:"hard",m:"to direct hopes toward achieving something great",s:["aim","strive","desire","yearn","seek","covet","endeavor","long for"],a:["despair","abandon","resign","surrender","neglect","give up"],c:1},
+{w:"distraught",d:"hard",m:"deeply upset and agitated with worry",s:["distressed","anguished","overwrought","frantic","disturbed","shattered","devastated"],a:["calm","composed","serene","unruffled","collected","tranquil"],c:1},
+{w:"conceive",d:"hard",m:"to form an idea in one's mind; to imagine",s:["envision","imagine","formulate","devise","create","visualize","think up"],a:["destroy","demolish","forget","overlook","ignore","discard"],c:1},
+{w:"setback",d:"hard",m:"a reversal or check to progress; a defeat",s:["reversal","obstacle","hindrance","blow","stumbling block","defeat","disappointment"],a:["advancement","progress","triumph","breakthrough","success","boost","victory"],c:1},
+{w:"polyglot",d:"hard",m:"a person who speaks many languages",s:["multilingual","linguist","interpreter","translator","language expert"],a:["monolingual","unilingual"],c:1},
+{w:"laconic",d:"hard",m:"using very few words; brief and concise",s:["concise","terse","brief","succinct","pithy","compact","to the point"],a:["verbose","long-winded","wordy","garrulous","talkative","rambling"],c:1},
+{w:"prudent",d:"hard",m:"acting with care and thought for the future",s:["wise","cautious","sensible","judicious","careful","thoughtful","sage"],a:["reckless","imprudent","careless","hasty","unwise","foolish","irresponsible"],c:1},
+{w:"indefatigable",d:"hard",m:"persisting tirelessly; untiring",s:["tireless","relentless","unflagging","dogged","persistent","tenacious"],a:["lazy","tired","lethargic","yielding","sluggish","half-hearted"],c:1},
+{w:"laudable",d:"hard",m:"deserving praise and commendation",s:["praiseworthy","admirable","commendable","meritorious","worthy","exemplary"],a:["deplorable","blameworthy","disgraceful","shameful","reprehensible"],c:1},
+{w:"tenacious",d:"hard",m:"holding firm to a purpose; not giving up easily",s:["persistent","determined","resolute","stubborn","steadfast","unyielding","dogged"],a:["irresolute","weak","wavering","yielding","flexible","fickle"],c:1},
+{w:"proficient",d:"hard",m:"competent or skilled in doing something",s:["skilled","expert","competent","capable","accomplished","adept","adroit"],a:["incompetent","unskilled","inept","amateur","clumsy","inexperienced"],c:1},
+{w:"paramount",d:"hard",m:"more important than anything else; supreme",s:["supreme","foremost","primary","dominant","chief","overriding","highest"],a:["minor","insignificant","secondary","trivial","unimportant","subordinate"],c:1},
+{w:"arduous",d:"hard",m:"involving strenuous effort; difficult and tiring",s:["difficult","strenuous","tough","exhausting","demanding","challenging","laborious"],a:["easy","effortless","simple","light","undemanding","comfortable"],c:1},
+{w:"exemplary",d:"hard",m:"serving as a desirable model; representing the best",s:["outstanding","ideal","model","perfect","admirable","commendable","excellent"],a:["poor","terrible","disgraceful","shameful","unworthy","mediocre"],c:1},
+{w:"benevolent",d:"hard",m:"well meaning and kindly; generous in spirit",s:["kind","charitable","generous","magnanimous","humanitarian","altruistic"],a:["malevolent","cruel","selfish","evil","mean","greedy","unkind"],c:1},
+{w:"resilience",d:"hard",m:"ability to recover quickly from difficulties",s:["toughness","durability","adaptability","fortitude","flexibility","endurance"],a:["fragility","weakness","vulnerability","brittleness","helplessness"],c:1},
+{w:"undaunted",d:"hard",m:"not intimidated or discouraged by difficulty",s:["fearless","bold","brave","intrepid","courageous","resolute","unflinching"],a:["intimidated","fearful","discouraged","deterred","weak","cowardly"],c:1},
+{w:"valiant",d:"hard",m:"possessing or showing courage; heroic",s:["courageous","brave","heroic","gallant","bold","daring","fearless"],a:["cowardly","timid","fearful","spineless","weak","pusillanimous"],c:1},
+{w:"diligence",d:"hard",m:"careful and persistent work or effort",s:["industriousness","assiduity","dedication","application","conscientiousness"],a:["laziness","idleness","negligence","carelessness","sloth","inactivity"],c:1},
+{w:"rectify",d:"hard",m:"to put something right; to correct",s:["correct","fix","remedy","amend","adjust","repair","redress"],a:["worsen","damage","corrupt","aggravate","ignore","neglect","harm"],c:1},
+{w:"impeccable",d:"hard",m:"in accordance with the highest standards; faultless",s:["flawless","perfect","faultless","irreproachable","immaculate","spotless"],a:["flawed","imperfect","faulty","defective","blemished","shoddy"],c:1},
+{w:"indispensable",d:"hard",m:"absolutely necessary; essential",s:["essential","necessary","vital","crucial","critical","irreplaceable","needed"],a:["dispensable","unnecessary","optional","replaceable","nonessential"],c:1},
+{w:"intrepid",d:"hard",m:"fearless and adventurous",s:["fearless","bold","brave","audacious","daring","courageous","undaunted"],a:["timid","fearful","cowardly","cautious","nervous","hesitant"],c:1},
+{w:"sagacious",d:"hard",m:"having practical wisdom; shrewdly sensible",s:["wise","shrewd","astute","perceptive","discerning","judicious","clever"],a:["foolish","unwise","naive","imprudent","reckless","ignorant"],c:1},
+{w:"magnanimous",d:"hard",m:"very generous or forgiving; noble in spirit",s:["generous","noble","big-hearted","charitable","liberal","unselfish"],a:["petty","mean-spirited","selfish","stingy","vindictive","small-minded"],c:1},
+// ── CH1 MEDIUM ────────────────────────────────────────────────────────────────
+{w:"modest",d:"medium",m:"not boastful about one's abilities",s:["humble","unpretentious","meek","reserved","simple","understated"],a:["arrogant","boastful","conceited","vain","proud","haughty"],c:1},
+{w:"independent",d:"medium",m:"free from outside control; self-reliant",s:["self-reliant","autonomous","free","sovereign","self-sufficient","liberated"],a:["dependent","reliant","subordinate","controlled","restricted","subservient"],c:1},
+{w:"courageous",d:"medium",m:"not deterred by danger or pain; brave",s:["brave","bold","fearless","daring","valiant","heroic","gallant"],a:["cowardly","fearful","timid","hesitant","frightened","spineless"],c:1},
+{w:"ambitious",d:"medium",m:"having strong desire and determination to succeed",s:["driven","determined","motivated","eager","aspiring","purposeful"],a:["apathetic","lazy","unambitious","complacent","indifferent","passive"],c:1},
+{w:"optimistic",d:"medium",m:"hopeful and confident about the future",s:["positive","hopeful","cheerful","sanguine","upbeat","buoyant"],a:["pessimistic","negative","gloomy","despairing","cynical","hopeless"],c:1},
+{w:"determined",d:"medium",m:"having made a firm decision; resolute",s:["resolute","firm","decided","committed","steadfast","unwavering"],a:["indecisive","irresolute","uncertain","wavering","hesitant","undecided"],c:1},
+{w:"honest",d:"medium",m:"free of deceit; truthful and sincere",s:["truthful","sincere","trustworthy","straightforward","candid","frank"],a:["dishonest","deceitful","lying","corrupt","false","cheating"],c:1},
+{w:"generous",d:"medium",m:"willing to give more than is expected",s:["charitable","giving","magnanimous","munificent","liberal","open-handed"],a:["stingy","selfish","miserly","greedy","mean","tight-fisted"],c:1},
+{w:"dedicated",d:"medium",m:"devoted to a task or purpose; committed",s:["committed","devoted","loyal","enthusiastic","hardworking","faithful"],a:["uncommitted","disloyal","indifferent","lazy","halfhearted","faithless"],c:1},
+{w:"sympathetic",d:"medium",m:"showing compassion for someone in difficulty",s:["compassionate","understanding","caring","empathetic","supportive","kind"],a:["unsympathetic","cold","indifferent","uncaring","heartless","callous"],c:1},
+// ── CH1 EASY ──────────────────────────────────────────────────────────────────
+{w:"brave",d:"easy",m:"ready to face danger without fear",s:["courageous","bold","fearless","heroic","valiant","daring"],a:["cowardly","timid","fearful","afraid","weak","scared"],c:1},
+{w:"kind",d:"easy",m:"having a friendly and considerate nature",s:["caring","generous","warm","compassionate","gentle","good-natured"],a:["cruel","unkind","harsh","mean","cold","hostile"],c:1},
+{w:"happy",d:"easy",m:"feeling or showing pleasure and contentment",s:["joyful","pleased","delighted","cheerful","content","elated","glad"],a:["sad","unhappy","miserable","sorrowful","depressed","gloomy"],c:1},
+{w:"clever",d:"easy",m:"quick to understand or learn",s:["intelligent","smart","bright","sharp","keen","talented","gifted"],a:["stupid","foolish","ignorant","dull","slow","dim-witted"],c:1},
+{w:"diligent",d:"easy",m:"having care and effort in one's work",s:["hardworking","industrious","dedicated","assiduous","committed","careful"],a:["lazy","idle","negligent","careless","slothful","indifferent"],c:1},
+{w:"strong",d:"easy",m:"having great physical power",s:["powerful","sturdy","robust","muscular","vigorous","tough","athletic"],a:["weak","feeble","frail","fragile","delicate","powerless"],c:1},
+{w:"hopeful",d:"easy",m:"feeling optimistic about a future event",s:["optimistic","confident","positive","expectant","bright","encouraged"],a:["hopeless","pessimistic","despairing","gloomy","dejected","discouraged"],c:1},
+{w:"talented",d:"easy",m:"having a natural ability to do something well",s:["gifted","skilled","able","capable","accomplished","proficient"],a:["untalented","mediocre","incompetent","unskilled","ordinary","average"],c:1},
+{w:"confident",d:"easy",m:"feeling or showing self-assurance",s:["assured","bold","self-reliant","certain","positive","secure","poised"],a:["insecure","uncertain","doubtful","shy","nervous","hesitant"],c:1},
+{w:"patient",d:"easy",m:"able to wait without complaining",s:["tolerant","calm","forbearing","serene","understanding","enduring"],a:["impatient","restless","irritable","hasty","agitated","intolerant"],c:1},
+// ── CH2 HARD ──────────────────────────────────────────────────────────────────
+{w:"complacent",d:"hard",m:"uncritically satisfied with oneself; smug",s:["smug","self-satisfied","conceited","vain","overconfident","pleased with oneself"],a:["humble","modest","dissatisfied","self-critical","anxious","concerned"],c:2},
+{w:"vindictive",d:"hard",m:"having strong desire to harm in return",s:["vengeful","malicious","spiteful","revengeful","resentful","bitter","hostile"],a:["forgiving","merciful","kind","charitable","magnanimous","benevolent"],c:2},
+{w:"swindling",d:"hard",m:"obtaining money by cheating or deception",s:["cheating","defrauding","scamming","conning","fleecing","bilking"],a:["honest dealing","fair trading","legitimate","truthful","transparent"],c:2},
+{w:"consternation",d:"hard",m:"anxiety or dismay at something unexpected",s:["alarm","dismay","distress","shock","disquiet","perturbation","dread"],a:["calm","composure","reassurance","ease","comfort","serenity"],c:2},
+{w:"transfixed",d:"hard",m:"unable to move due to shock or amazement",s:["paralyzed","petrified","frozen","spellbound","rooted","riveted","stunned"],a:["unaffected","mobile","composed","indifferent","unmoved"],c:2},
+{w:"tomfoolery",d:"hard",m:"silly or foolish behavior; nonsense",s:["foolishness","absurdity","clowning","silliness","buffoonery","antics"],a:["seriousness","solemnity","gravity","dignity","decorum","propriety"],c:2},
+{w:"malevolent",d:"hard",m:"having a wish to do evil to others",s:["malicious","wicked","evil","sinister","vicious","hostile","cruel"],a:["benevolent","kind","generous","goodhearted","charitable","good"],c:2},
+{w:"hypocritical",d:"hard",m:"behaving contrary to what one claims to believe",s:["two-faced","deceitful","dishonest","insincere","duplicitous","false"],a:["sincere","honest","genuine","straightforward","authentic","candid"],c:2},
+{w:"sardonic",d:"hard",m:"grimly mocking; cynically humorous",s:["cynical","sarcastic","mocking","disdainful","scornful","derisive","ironic"],a:["sincere","warm","kind","complimentary","genuine","earnest"],c:2},
+{w:"perfidious",d:"hard",m:"deceitful and untrustworthy; treacherous",s:["treacherous","faithless","disloyal","traitorous","two-faced","false"],a:["loyal","trustworthy","faithful","reliable","honest","steadfast"],c:2},
+{w:"sanctimonious",d:"hard",m:"making a show of being morally superior",s:["self-righteous","preachy","pompous","priggish","holier-than-thou","smug"],a:["humble","modest","genuine","sincere","authentic","unpretentious"],c:2},
+{w:"facetious",d:"hard",m:"treating serious issues with inappropriate humor",s:["flippant","glib","tongue-in-cheek","frivolous","playful","joking"],a:["serious","sincere","solemn","earnest","grave","respectful"],c:2},
+{w:"duplicity",d:"hard",m:"deceitfulness; double-dealing",s:["deception","trickery","dishonesty","treachery","fraud","deceit","hypocrisy"],a:["honesty","sincerity","transparency","integrity","openness","truthfulness"],c:2},
+{w:"capricious",d:"hard",m:"given to sudden changes of mood; unpredictable",s:["impulsive","fickle","whimsical","erratic","volatile","inconsistent"],a:["consistent","stable","predictable","dependable","steady","reliable"],c:2},
+{w:"ostentatious",d:"hard",m:"designed to impress; showy",s:["showy","flashy","flamboyant","pretentious","gaudy","pompous"],a:["modest","simple","understated","plain","unassuming","restrained"],c:2},
+{w:"conniving",d:"hard",m:"scheming to do something harmful or illegal",s:["scheming","plotting","manipulative","devious","calculating","crafty"],a:["straightforward","open","honest","guileless","transparent","candid"],c:2},
+{w:"obsequious",d:"hard",m:"excessively obedient; fawning",s:["servile","fawning","sycophantic","groveling","subservient","kowtowing"],a:["assertive","bold","independent","dignified","self-respecting"],c:2},
+{w:"pedantic",d:"hard",m:"overly concerned with minor details or rules",s:["fussy","nitpicking","precise","finicky","hair-splitting","dogmatic"],a:["broad-minded","flexible","relaxed","easygoing","tolerant","casual"],c:2},
+{w:"acrimony",d:"hard",m:"bitterness or ill feeling in speech or manner",s:["bitterness","hostility","rancor","animosity","spite","resentment"],a:["goodwill","friendliness","amity","kindness","warmth","harmony"],c:2},
+{w:"loquacious",d:"hard",m:"tending to talk a great deal; talkative",s:["talkative","garrulous","chatty","voluble","verbose","long-winded"],a:["silent","taciturn","quiet","reserved","reticent","close-mouthed"],c:2},
+// ── CH2 MEDIUM ────────────────────────────────────────────────────────────────
+{w:"stubborn",d:"medium",m:"refusing to change despite attempts to persuade",s:["obstinate","persistent","headstrong","tenacious","inflexible","willful"],a:["flexible","accommodating","yielding","open-minded","compliant","agreeable"],c:2},
+{w:"deceitful",d:"medium",m:"guilty of deceit; misleading",s:["dishonest","deceptive","fraudulent","crafty","cunning","sly","treacherous"],a:["honest","truthful","sincere","genuine","straightforward","candid"],c:2},
+{w:"reluctant",d:"medium",m:"unwilling and hesitant; disinclined",s:["unwilling","hesitant","loath","disinclined","averse","resistant"],a:["willing","eager","enthusiastic","ready","inclined","keen"],c:2},
+{w:"meek",d:"medium",m:"quiet and submissive; not willing to argue",s:["submissive","timid","gentle","mild","obedient","docile","compliant"],a:["aggressive","bold","assertive","defiant","fierce","dominant"],c:2},
+{w:"cunning",d:"medium",m:"having skill in achieving goals by deceit",s:["crafty","sly","shrewd","devious","clever","scheming","artful"],a:["honest","straightforward","naive","guileless","open","candid"],c:2},
+{w:"irritable",d:"medium",m:"having tendency to be easily annoyed",s:["touchy","tetchy","grumpy","peevish","cantankerous","hot-tempered"],a:["patient","calm","easygoing","tolerant","good-natured","placid"],c:2},
+{w:"gullible",d:"medium",m:"easily persuaded to believe something; naive",s:["credulous","naive","trusting","unsuspecting","simple","innocent"],a:["skeptical","suspicious","savvy","alert","cautious","shrewd"],c:2},
+{w:"pompous",d:"medium",m:"affectedly grand or self-important",s:["arrogant","pretentious","self-important","vain","conceited","haughty"],a:["modest","humble","simple","unpretentious","down-to-earth","meek"],c:2},
+{w:"tactful",d:"medium",m:"having skill in dealing with others diplomatically",s:["diplomatic","discreet","sensitive","considerate","judicious","careful"],a:["tactless","blunt","thoughtless","insensitive","crude","rude"],c:2},
+{w:"impulsive",d:"medium",m:"acting without thinking; driven by sudden emotions",s:["rash","hasty","spontaneous","reckless","unthinking","capricious"],a:["cautious","deliberate","thoughtful","careful","controlled","measured"],c:2},
+// ── CH2 EASY ──────────────────────────────────────────────────────────────────
+{w:"funny",d:"easy",m:"causing laughter; amusing",s:["amusing","humorous","comical","entertaining","witty","hilarious"],a:["serious","solemn","grave","dull","boring","sad"],c:2},
+{w:"greedy",d:"easy",m:"wanting more than one needs",s:["avaricious","covetous","grasping","rapacious","selfish","acquisitive"],a:["generous","charitable","selfless","content","satisfied","giving"],c:2},
+{w:"cheerful",d:"easy",m:"noticeably happy and optimistic",s:["happy","jolly","merry","lively","bright","buoyant","upbeat"],a:["gloomy","sad","sullen","morose","miserable","melancholy"],c:2},
+{w:"silly",d:"easy",m:"lacking common sense; foolish",s:["foolish","absurd","ridiculous","idiotic","nonsensical","daft"],a:["sensible","wise","rational","reasonable","intelligent","smart"],c:2},
+{w:"rude",d:"easy",m:"offensively impolite or bad-mannered",s:["impolite","discourteous","disrespectful","insolent","boorish","crude"],a:["polite","courteous","respectful","civil","mannerly","considerate"],c:2},
+{w:"lazy",d:"easy",m:"unwilling to work or use energy",s:["idle","slothful","indolent","sluggish","inactive","lethargic"],a:["hardworking","diligent","active","energetic","industrious","ambitious"],c:2},
+{w:"selfish",d:"easy",m:"concerned chiefly with one's own profit or pleasure",s:["self-centered","greedy","egotistic","inconsiderate","mean","stingy"],a:["unselfish","generous","altruistic","kind","selfless","charitable"],c:2},
+{w:"noisy",d:"easy",m:"making or characterized by a lot of noise",s:["loud","boisterous","rowdy","clamorous","raucous","tumultuous"],a:["quiet","silent","calm","peaceful","hushed","noiseless"],c:2},
+// ── CH3 HARD ──────────────────────────────────────────────────────────────────
+{w:"lethargy",d:"hard",m:"lack of energy or enthusiasm; sluggishness",s:["sluggishness","apathy","torpor","listlessness","inertia","languor","fatigue"],a:["energy","vigor","vitality","alertness","enthusiasm","liveliness","zeal"],c:3},
+{w:"dissuade",d:"hard",m:"to persuade someone not to do something",s:["deter","discourage","divert","prevent","talk out of","caution against"],a:["persuade","encourage","urge","motivate","convince","incite","inspire"],c:3},
+{w:"self-consciousness",d:"hard",m:"excessive awareness of oneself; embarrassment",s:["awkwardness","shyness","inhibition","unease","embarrassment","timidity"],a:["confidence","boldness","self-assurance","poise","ease","composure"],c:3},
+{w:"contentment",d:"hard",m:"a state of happiness and satisfaction",s:["satisfaction","fulfillment","happiness","peace","tranquility","serenity","bliss"],a:["discontent","dissatisfaction","unhappiness","frustration","longing","misery"],c:3},
+{w:"extravagance",d:"hard",m:"lack of restraint in spending; excess",s:["wastefulness","lavishness","profligacy","excess","indulgence","squandering"],a:["frugality","economy","thrift","restraint","moderation","parsimony"],c:3},
+{w:"dilly-dallying",d:"hard",m:"wasting time through aimless indecision",s:["procrastinating","dawdling","loitering","stalling","vacillating","hesitating"],a:["deciding","acting","proceeding","resolving","hastening","advancing"],c:3},
+{w:"weary",d:"hard",m:"feeling or showing tiredness after effort",s:["exhausted","fatigued","worn out","drained","enervated","spent","jaded"],a:["energetic","refreshed","vigorous","lively","alert","rested","invigorated"],c:3},
+{w:"guilt",d:"hard",m:"remorse from an act considered wrong",s:["remorse","culpability","blame","regret","shame","self-reproach","contrition"],a:["innocence","blamelessness","virtue","righteousness","integrity","guiltlessness"],c:3},
+{w:"plight",d:"hard",m:"a dangerous or unfortunate situation",s:["predicament","dilemma","quandary","hardship","misfortune","straits","crisis"],a:["comfort","ease","advantage","prosperity","security","well-being"],c:3},
+{w:"belittled",d:"hard",m:"made to feel unimportant; dismissed",s:["degraded","demeaned","disparaged","humiliated","diminished","scorned"],a:["praised","honored","elevated","esteemed","respected","glorified"],c:3},
+{w:"shun",d:"hard",m:"to persistently avoid or ignore",s:["avoid","evade","dodge","eschew","boycott","snub","sidestep","spurn"],a:["embrace","welcome","seek","approach","pursue","cherish","engage"],c:3},
+{w:"candid",d:"hard",m:"truthful and straightforward; frank",s:["honest","frank","open","sincere","direct","blunt","forthright"],a:["evasive","dishonest","insincere","deceptive","reserved","secretive"],c:3},
+{w:"indolent",d:"hard",m:"wanting to avoid activity; lazy",s:["lazy","idle","sluggish","slothful","lethargic","inactive","languorous"],a:["hardworking","active","diligent","industrious","energetic","busy"],c:3},
+{w:"ostracize",d:"hard",m:"to exclude from society or a group",s:["exclude","banish","shun","isolate","expel","bar","blacklist"],a:["include","welcome","accept","embrace","integrate","invite"],c:3},
+{w:"diffident",d:"hard",m:"modest or shy because of lack of confidence",s:["shy","timid","bashful","hesitant","unassertive","reserved","reticent"],a:["confident","bold","assertive","forward","outgoing","self-assured"],c:3},
+{w:"acquiesce",d:"hard",m:"to accept something without protest",s:["comply","agree","consent","submit","yield","concede","accept"],a:["resist","protest","refuse","object","oppose","defy","reject"],c:3},
+{w:"nonchalant",d:"hard",m:"feeling or appearing casually calm; indifferent",s:["casual","unconcerned","cool","detached","blasé","indifferent"],a:["concerned","anxious","caring","eager","interested","passionate"],c:3},
+{w:"reticent",d:"hard",m:"not revealing one's thoughts; reserved",s:["reserved","quiet","taciturn","uncommunicative","silent","withdrawn"],a:["communicative","talkative","expressive","open","forthright","loquacious"],c:3},
+{w:"reconcile",d:"hard",m:"to restore friendly relations; to make compatible",s:["settle","resolve","harmonize","unite","conciliate","pacify"],a:["alienate","divide","estrange","separate","conflict","break apart"],c:3},
+{w:"altruistic",d:"hard",m:"showing concern for others without self-interest",s:["selfless","generous","philanthropic","humanitarian","charitable","noble"],a:["selfish","greedy","self-centered","egotistic","mean","avaricious"],c:3},
+// ── CH3 MEDIUM ────────────────────────────────────────────────────────────────
+{w:"remorse",d:"medium",m:"deep regret or guilt for wrongdoing",s:["regret","guilt","contrition","penitence","repentance","shame","sorrow"],a:["pride","indifference","satisfaction","callousness","boasting"],c:3},
+{w:"indebted",d:"medium",m:"owing money or gratitude to someone",s:["obligated","beholden","grateful","owing","liable","thankful"],a:["free","independent","unbeholden","ungrateful","cleared"],c:3},
+{w:"obedient",d:"medium",m:"complying with orders or requests; submissive",s:["compliant","dutiful","submissive","docile","cooperative","respectful"],a:["disobedient","defiant","rebellious","unruly","insubordinate"],c:3},
+{w:"sincere",d:"medium",m:"free from pretense or deceit; genuine",s:["genuine","authentic","honest","truthful","candid","heartfelt"],a:["insincere","false","deceptive","pretentious","dishonest","phony"],c:3},
+{w:"responsible",d:"medium",m:"having a duty to deal with something",s:["accountable","reliable","trustworthy","dutiful","dependable","conscientious"],a:["irresponsible","unreliable","untrustworthy","negligent","careless"],c:3},
+{w:"tolerant",d:"medium",m:"allowing different opinions without criticism",s:["accepting","open-minded","broad-minded","forbearing","patient","understanding"],a:["intolerant","bigoted","narrow-minded","prejudiced","biased"],c:3},
+{w:"anxious",d:"medium",m:"experiencing worry or unease",s:["worried","nervous","uneasy","troubled","apprehensive","concerned","tense"],a:["calm","relaxed","confident","at ease","composed","unworried"],c:3},
+{w:"humble",d:"medium",m:"having a modest estimate of one's importance",s:["modest","meek","unassuming","lowly","unpretentious","self-effacing"],a:["arrogant","proud","conceited","egotistic","haughty","pompous"],c:3},
+{w:"affectionate",d:"medium",m:"readily feeling or showing fondness",s:["loving","warm","tender","fond","caring","devoted","attached"],a:["cold","distant","aloof","detached","indifferent","unfeeling"],c:3},
+{w:"forgiving",d:"medium",m:"ready and willing to forgive",s:["merciful","lenient","tolerant","compassionate","charitable","gracious"],a:["vindictive","unforgiving","resentful","bitter","harsh","cruel"],c:3},
+// ── CH3 EASY ──────────────────────────────────────────────────────────────────
+{w:"sad",d:"easy",m:"feeling sorrow; unhappy",s:["unhappy","sorrowful","depressed","gloomy","downcast","miserable"],a:["happy","joyful","cheerful","content","pleased","elated"],c:3},
+{w:"tired",d:"easy",m:"in need of sleep or rest",s:["exhausted","sleepy","weary","fatigued","drained","worn out"],a:["energetic","refreshed","alert","vigorous","lively","rested"],c:3},
+{w:"proud",d:"easy",m:"feeling deep satisfaction from own achievements",s:["pleased","honored","satisfied","delighted","dignified","self-respecting"],a:["ashamed","embarrassed","humiliated","mortified","disgraced"],c:3},
+{w:"friendly",d:"easy",m:"kind and pleasant toward others",s:["amicable","warm","pleasant","affectionate","sociable","cordial"],a:["unfriendly","hostile","cold","aloof","rude","distant"],c:3},
+{w:"helpful",d:"easy",m:"giving assistance; useful",s:["cooperative","supportive","useful","beneficial","obliging","constructive"],a:["unhelpful","harmful","useless","obstructive","detrimental","selfish"],c:3},
+{w:"lonely",d:"easy",m:"sad because one has no friends or company",s:["isolated","solitary","alone","forsaken","desolate","secluded"],a:["accompanied","social","popular","befriended","included"],c:3},
+{w:"poor",d:"easy",m:"lacking sufficient money to live comfortably",s:["destitute","impoverished","needy","penniless","deprived","underprivileged"],a:["rich","wealthy","affluent","prosperous","well-off","privileged"],c:3},
+// ── CH4 HARD ──────────────────────────────────────────────────────────────────
+{w:"rendezvous",d:"hard",m:"a meeting at an agreed time and place",s:["appointment","meeting","assembly","tryst","encounter","gathering"],a:["avoidance","separation","dispersal","departure","absence"],c:4},
+{w:"aesthetics",d:"hard",m:"principles concerning beauty and artistic taste",s:["artistry","elegance","beauty","refinement","taste","sensibility","style"],a:["ugliness","crudeness","vulgarity","tastelessness","philistinism"],c:4},
+{w:"arrogance",d:"hard",m:"an attitude of superiority; overbearing manner",s:["haughtiness","conceit","pride","vanity","pomposity","egotism","insolence"],a:["humility","modesty","deference","meekness","respect","unpretentiousness"],c:4},
+{w:"agnostic",d:"hard",m:"one who believes God's existence cannot be known",s:["doubter","skeptic","non-believer","questioner","unbeliever","secular"],a:["believer","theist","faithful","religious","devotee","devout"],c:4},
+{w:"detractors",d:"hard",m:"people who criticize or belittle something",s:["critics","denigrators","disparagers","fault-finders","opponents"],a:["admirers","supporters","advocates","fans","promoters","champions"],c:4},
+{w:"verbose",d:"hard",m:"using more words than necessary",s:["wordy","long-winded","prolix","garrulous","tedious","rambling"],a:["concise","brief","succinct","terse","laconic","pithy","compact"],c:4},
+{w:"analogy",d:"hard",m:"a comparison to explain or clarify",s:["comparison","parallel","likeness","similarity","correspondence","metaphor"],a:["difference","dissimilarity","contrast","distinction","divergence"],c:4},
+{w:"repertoire",d:"hard",m:"the complete body of works an artist can perform",s:["collection","stock","range","portfolio","selection","canon","inventory"],a:["limitation","scarcity","deficiency","void","absence","barrenness"],c:4},
+{w:"indignation",d:"hard",m:"anger caused by unfair treatment",s:["outrage","anger","wrath","fury","resentment","umbrage","displeasure"],a:["contentment","acceptance","pleasure","calmness","indifference"],c:4},
+{w:"sarcasm",d:"hard",m:"the use of irony to mock or convey contempt",s:["irony","mockery","derision","scorn","cynicism","snark","satire"],a:["sincerity","praise","flattery","commendation","warmth","compliment"],c:4},
+{w:"didactic",d:"hard",m:"intended to teach, especially with a moral message",s:["instructive","educational","moralistic","pedagogical","enlightening"],a:["entertaining","frivolous","misleading","uninstructive","amusing"],c:4},
+{w:"aloof",d:"hard",m:"not friendly or forthcoming; emotionally distant",s:["distant","cold","standoffish","remote","detached","unfriendly","reserved"],a:["friendly","warm","approachable","sociable","open","engaging"],c:4},
+{w:"prolific",d:"hard",m:"producing much work or many offspring",s:["productive","fertile","fruitful","creative","abundant","fecund"],a:["barren","unproductive","sterile","scarce","inactive","unfruitful"],c:4},
+{w:"visionary",d:"hard",m:"having original ideas about the future",s:["innovative","pioneering","creative","imaginative","progressive","forward-thinking"],a:["conventional","unimaginative","backward","conservative","reactionary"],c:4},
+{w:"acclaimed",d:"hard",m:"praised enthusiastically and publicly",s:["celebrated","praised","honored","recognized","applauded","lauded"],a:["criticized","condemned","disparaged","ignored","scorned","unknown"],c:4},
+{w:"eloquent",d:"hard",m:"fluent and persuasive in speech or writing",s:["articulate","expressive","persuasive","fluent","silver-tongued","compelling"],a:["inarticulate","stumbling","tongue-tied","unclear","muddled"],c:4},
+{w:"enigmatic",d:"hard",m:"difficult to understand; mysterious",s:["mysterious","puzzling","cryptic","baffling","inscrutable","obscure"],a:["obvious","clear","straightforward","transparent","simple","plain"],c:4},
+{w:"poignant",d:"hard",m:"evoking a keen sense of sadness or regret",s:["touching","moving","affecting","heart-rending","emotional","pathetic"],a:["cheerful","trivial","unemotional","cold","indifferent","unaffecting"],c:4},
+{w:"lucid",d:"hard",m:"expressed clearly; easy to understand",s:["clear","coherent","understandable","intelligible","explicit","transparent"],a:["obscure","confused","muddled","vague","ambiguous","unclear"],c:4},
+{w:"seminal",d:"hard",m:"having great influence on later developments",s:["influential","pioneering","groundbreaking","original","foundational","formative"],a:["derivative","unoriginal","trivial","uninfluential","minor","insignificant"],c:4},
+// ── CH4 MEDIUM ────────────────────────────────────────────────────────────────
+{w:"singular",d:"medium",m:"exceptionally good; remarkable",s:["remarkable","extraordinary","exceptional","unique","rare","outstanding"],a:["ordinary","common","typical","usual","unremarkable","mediocre"],c:4},
+{w:"esteemed",d:"medium",m:"respected and admired; held in high regard",s:["respected","admired","revered","honored","valued","acclaimed"],a:["despised","disrespected","scorned","disgraced","looked down upon"],c:4},
+{w:"commendable",d:"medium",m:"deserving praise and approval",s:["praiseworthy","admirable","laudable","meritorious","worthy","exemplary"],a:["deplorable","blameworthy","disgraceful","reprehensible","shameful"],c:4},
+{w:"tribute",d:"medium",m:"an act to show respect or gratitude",s:["homage","honor","praise","recognition","salute","compliment","eulogy"],a:["insult","criticism","disrespect","contempt","blame","condemnation"],c:4},
+{w:"innovative",d:"medium",m:"introducing new ideas; creative",s:["creative","inventive","original","pioneering","novel","fresh","groundbreaking"],a:["conventional","traditional","uninventive","stale","old-fashioned"],c:4},
+{w:"spontaneous",d:"medium",m:"performed without being planned; natural",s:["natural","unplanned","instinctive","impulsive","unrehearsed","voluntary"],a:["planned","rehearsed","calculated","deliberate","scripted","forced"],c:4},
+{w:"prominent",d:"medium",m:"important; famous; easily seen",s:["well-known","famous","notable","distinguished","leading","foremost"],a:["obscure","unknown","insignificant","minor","unimportant","hidden"],c:4},
+{w:"vivid",d:"medium",m:"producing clear images; bright and intense",s:["bright","colorful","vibrant","striking","graphic","intense","lifelike"],a:["dull","faded","lifeless","bland","vague","dim","colorless"],c:4},
+{w:"legendary",d:"medium",m:"very famous and admired over a long period",s:["famous","celebrated","mythical","iconic","illustrious","renowned"],a:["unknown","obscure","forgotten","ordinary","unrecognized"],c:4},
+{w:"expressive",d:"medium",m:"effectively conveying feeling or meaning",s:["communicative","meaningful","vivid","telling","eloquent","revealing"],a:["unexpressive","blank","deadpan","inexpressive","vacant","dull"],c:4},
+// ── CH4 EASY ──────────────────────────────────────────────────────────────────
+{w:"famous",d:"easy",m:"known about by many people",s:["renowned","celebrated","well-known","acclaimed","legendary","distinguished"],a:["unknown","obscure","anonymous","unrecognized","forgotten"],c:4},
+{w:"beautiful",d:"easy",m:"pleasing to the eye; attractive",s:["lovely","gorgeous","stunning","attractive","elegant","graceful","handsome"],a:["ugly","unattractive","hideous","plain","unsightly","grotesque"],c:4},
+{w:"brilliant",d:"easy",m:"exceptionally clever or talented",s:["outstanding","exceptional","genius","masterful","magnificent","intelligent"],a:["mediocre","average","dull","ordinary","unremarkable","slow"],c:4},
+{w:"creative",d:"easy",m:"using imagination to produce original work",s:["imaginative","inventive","original","innovative","inspired","artistic"],a:["unimaginative","uncreative","derivative","conventional","dull"],c:4},
+{w:"popular",d:"easy",m:"liked by many people",s:["well-liked","beloved","celebrated","adored","fashionable","famous"],a:["unpopular","disliked","obscure","unfashionable","hated","rejected"],c:4},
+{w:"exciting",d:"easy",m:"causing great enthusiasm or eagerness",s:["thrilling","stimulating","exhilarating","stirring","fascinating","captivating"],a:["boring","dull","uninteresting","tedious","monotonous","dreary"],c:4},
+// ── CH5 HARD ──────────────────────────────────────────────────────────────────
+{w:"hostility",d:"hard",m:"unfriendly or aggressive opposition",s:["enmity","antagonism","aggression","animosity","hatred","belligerence"],a:["friendliness","goodwill","hospitality","kindness","amity","cordiality"],c:5},
+{w:"nonplussed",d:"hard",m:"so confused one doesn't know what to do",s:["baffled","perplexed","bewildered","confounded","stumped","puzzled","dumbfounded"],a:["confident","decisive","clear-headed","composed","poised","unruffled"],c:5},
+{w:"calamity",d:"hard",m:"a great and serious disaster or misfortune",s:["catastrophe","disaster","tragedy","devastation","misfortune","ruin"],a:["blessing","fortune","luck","benefit","boon","prosperity","triumph"],c:5},
+{w:"agony",d:"hard",m:"extreme physical or mental suffering",s:["torment","anguish","pain","suffering","distress","ordeal","misery"],a:["joy","bliss","pleasure","comfort","ease","relief","delight"],c:5},
+{w:"pernicious",d:"hard",m:"having a harmful effect in a gradual way",s:["harmful","destructive","damaging","malignant","detrimental","toxic","noxious"],a:["beneficial","helpful","wholesome","harmless","curative","healthful"],c:5},
+{w:"emancipation",d:"hard",m:"the fact of being freed from restriction",s:["liberation","freedom","release","independence","deliverance","enfranchisement"],a:["enslavement","bondage","oppression","subjugation","captivity"],c:5},
+{w:"stratification",d:"hard",m:"arrangement into different levels or layers",s:["layering","ranking","division","hierarchy","classification","segregation"],a:["equality","homogeneity","uniformity","integration","equalization"],c:5},
+{w:"engrossed",d:"hard",m:"absorbed in something to the exclusion of all else",s:["absorbed","immersed","captivated","riveted","consumed","preoccupied"],a:["distracted","disinterested","bored","indifferent","inattentive"],c:5},
+{w:"frantic",d:"hard",m:"wildly excited or desperate; panic-stricken",s:["frenzied","panicked","hysterical","desperate","distraught","agitated"],a:["calm","composed","tranquil","serene","relaxed","cool-headed"],c:5},
+{w:"oppression",d:"hard",m:"prolonged cruel or unjust treatment",s:["persecution","tyranny","subjugation","exploitation","injustice","cruelty"],a:["freedom","liberation","justice","equality","protection","emancipation"],c:5},
+{w:"invidious",d:"hard",m:"likely to cause resentment; unfairly discriminating",s:["discriminatory","unfair","unjust","biased","partial","objectionable"],a:["fair","just","equitable","impartial","neutral","unbiased"],c:5},
+{w:"malign",d:"hard",m:"to say unfairly negative things about; to defame",s:["slander","defame","disparage","denigrate","smear","vilify","libel"],a:["praise","commend","acclaim","laud","honor","extol","glorify"],c:5},
+{w:"impunity",d:"hard",m:"exemption from punishment or negative consequences",s:["immunity","exemption","privilege","license","freedom from punishment"],a:["accountability","punishment","liability","consequence","responsibility"],c:5},
+{w:"destitute",d:"hard",m:"without the basic necessities of life; very poor",s:["impoverished","penniless","poverty-stricken","bankrupt","indigent","needy"],a:["wealthy","rich","affluent","prosperous","well-off","comfortable"],c:5},
+{w:"bigotry",d:"hard",m:"intolerance toward those with different opinions",s:["intolerance","prejudice","narrow-mindedness","fanaticism","discrimination"],a:["tolerance","open-mindedness","acceptance","fairness","respect"],c:5},
+{w:"caste",d:"hard",m:"a social class separated by hereditary rank or profession",s:["rank","class","hierarchy","division","station","order","stratum"],a:["equality","classlessness","egalitarianism","uniformity"],c:5},
+{w:"perpetuate",d:"hard",m:"to make something continue indefinitely",s:["maintain","continue","preserve","sustain","prolong","keep up","extend"],a:["end","stop","terminate","abolish","cease","discontinue"],c:5},
+{w:"noxious",d:"hard",m:"harmful, poisonous or very unpleasant",s:["harmful","toxic","poisonous","injurious","destructive","deadly","lethal"],a:["harmless","safe","beneficial","wholesome","healthy","non-toxic"],c:5},
+{w:"iniquity",d:"hard",m:"immoral or grossly unfair behavior",s:["wickedness","injustice","wrongdoing","evil","immorality","unfairness"],a:["righteousness","justice","virtue","morality","goodness","fairness"],c:5},
+{w:"retribution",d:"hard",m:"punishment inflicted as vengeance for wrong",s:["punishment","vengeance","revenge","payback","retaliation","nemesis"],a:["mercy","forgiveness","pardon","clemency","reward","leniency"],c:5},
+// ── CH5 MEDIUM ────────────────────────────────────────────────────────────────
+{w:"obstinate",d:"medium",m:"stubbornly refusing to change one's opinion",s:["stubborn","headstrong","tenacious","unyielding","dogged","intransigent"],a:["flexible","cooperative","agreeable","accommodating","compliant"],c:5},
+{w:"momentum",d:"medium",m:"the force of movement or progress",s:["impetus","drive","force","energy","thrust","velocity","propulsion"],a:["stagnation","inertia","standstill","slowdown","halt","decline"],c:5},
+{w:"conventional",d:"medium",m:"based on what is generally done or believed",s:["traditional","customary","ordinary","standard","orthodox","normal"],a:["unconventional","radical","unusual","innovative","alternative","novel"],c:5},
+{w:"prejudice",d:"medium",m:"preconceived opinion not based on reason",s:["bias","discrimination","partiality","bigotry","intolerance","narrow-mindedness"],a:["fairness","impartiality","objectivity","tolerance","open-mindedness"],c:5},
+{w:"injustice",d:"medium",m:"lack of fairness or justice",s:["unfairness","inequity","wrongness","oppression","discrimination","bias"],a:["justice","fairness","equity","rightness","impartiality","equality"],c:5},
+{w:"aspiration",d:"medium",m:"a hope or ambition of achieving something",s:["ambition","goal","dream","aim","desire","objective","wish"],a:["apathy","indifference","contentment","lack of goals","complacency"],c:5},
+{w:"empowerment",d:"medium",m:"the process of becoming stronger and more confident",s:["enablement","liberation","strengthening","authorization","encouragement"],a:["disempowerment","suppression","oppression","subjugation","restriction"],c:5},
+{w:"resilience",d:"medium",m:"the ability to recover from difficulties",s:["toughness","tenacity","endurance","fortitude","durability","adaptability"],a:["fragility","weakness","vulnerability","helplessness","brittleness"],c:5},
+{w:"courageous",d:"medium",m:"not deterred by danger or pain",s:["brave","bold","fearless","daring","valiant","heroic","gallant"],a:["cowardly","fearful","timid","weak","spineless","scared"],c:5},
+{w:"liberation",d:"medium",m:"the action of setting someone free",s:["freedom","release","emancipation","independence","deliverance"],a:["captivity","imprisonment","bondage","subjugation","oppression"],c:5},
+// ── CH5 EASY ──────────────────────────────────────────────────────────────────
+{w:"equal",d:"easy",m:"being the same in quantity, size, or value",s:["identical","uniform","equivalent","even","balanced","fair","same"],a:["unequal","different","unfair","unbalanced","unjust","biased"],c:5},
+{w:"free",d:"easy",m:"not under control; able to act as one wants",s:["liberated","independent","unrestricted","autonomous","loose","unbound"],a:["imprisoned","restricted","captive","bound","enslaved","controlled"],c:5},
+{w:"peaceful",d:"easy",m:"free from disturbance; tranquil",s:["tranquil","calm","quiet","serene","still","harmonious","untroubled"],a:["violent","turbulent","chaotic","noisy","hostile","stormy"],c:5},
+{w:"clean",d:"easy",m:"free from dirt or pollution",s:["pure","spotless","tidy","hygienic","immaculate","neat","sterile"],a:["dirty","filthy","polluted","contaminated","untidy","soiled"],c:5},
+{w:"fair",d:"easy",m:"treating people equally without favoritism",s:["just","impartial","unbiased","equitable","objective","balanced"],a:["unfair","biased","unjust","partial","prejudiced","discriminatory"],c:5},
+{w:"safe",d:"easy",m:"not exposed to danger",s:["secure","protected","sheltered","shielded","guarded","harmless"],a:["dangerous","unsafe","risky","exposed","threatened","vulnerable"],c:5},
+{w:"good",d:"easy",m:"having the qualities required for a purpose",s:["excellent","admirable","satisfactory","praiseworthy","worthwhile","virtuous"],a:["bad","poor","terrible","unsatisfactory","wrong","evil"],c:5},
+// ── CH6 HARD ──────────────────────────────────────────────────────────────────
+{w:"pristine",d:"hard",m:"in its original condition; unspoiled",s:["pure","unspoiled","untouched","immaculate","virgin","clean","flawless"],a:["polluted","contaminated","tainted","corrupted","spoiled","impure"],c:6},
+{w:"indigenous",d:"hard",m:"originating naturally in a particular place",s:["native","aboriginal","endemic","autochthonous","local","original","innate"],a:["foreign","exotic","alien","imported","introduced","non-native"],c:6},
+{w:"equitable",d:"hard",m:"fair and impartial; treating everyone equally",s:["fair","just","impartial","even-handed","unbiased","balanced","righteous"],a:["unfair","unjust","biased","inequitable","discriminatory","one-sided"],c:6},
+{w:"sustainable",d:"hard",m:"able to be maintained without depleting resources",s:["maintainable","viable","renewable","enduring","lasting","eco-friendly"],a:["unsustainable","depleting","destructive","temporary","short-lived"],c:6},
+{w:"rehabilitation",d:"hard",m:"restoring something to its former condition",s:["restoration","recovery","regeneration","renewal","revitalization","reclamation"],a:["destruction","deterioration","ruination","neglect","degradation"],c:6},
+{w:"discontent",d:"hard",m:"dissatisfaction with one's circumstances",s:["dissatisfaction","unhappiness","restlessness","displeasure","resentment","frustration"],a:["contentment","satisfaction","happiness","fulfillment","peace"],c:6},
+{w:"degraded",d:"hard",m:"having deteriorated in quality; corrupted",s:["deteriorated","debased","polluted","corrupted","devalued","impaired"],a:["improved","elevated","restored","purified","enhanced","regenerated"],c:6},
+{w:"exotic",d:"hard",m:"originating in a foreign country; unusual",s:["foreign","alien","outlandish","unusual","unfamiliar","rare"],a:["native","domestic","local","indigenous","common","familiar","ordinary"],c:6},
+{w:"deforestation",d:"hard",m:"clearing of trees from a large area",s:["tree-felling","forest-clearing","denudation","logging","clearance"],a:["afforestation","reforestation","planting","conservation","preservation"],c:6},
+{w:"catastrophic",d:"hard",m:"involving sudden great damage or suffering",s:["disastrous","devastating","ruinous","calamitous","cataclysmic","terrible"],a:["beneficial","constructive","minor","trivial","helpful","positive"],c:6},
+{w:"annihilate",d:"hard",m:"to destroy completely; wipe out",s:["destroy","obliterate","eliminate","exterminate","eradicate","decimate"],a:["create","build","preserve","protect","save","conserve","nurture"],c:6},
+{w:"proliferate",d:"hard",m:"to increase rapidly in number",s:["multiply","expand","grow","spread","increase","reproduce","escalate"],a:["decrease","diminish","reduce","decline","shrink","dwindle","die out"],c:6},
+{w:"volatile",d:"hard",m:"liable to change rapidly and unpredictably",s:["unstable","unpredictable","erratic","changeable","explosive","mercurial"],a:["stable","steady","predictable","constant","reliable","fixed"],c:6},
+{w:"lethargic",d:"hard",m:"affected by lethargy; sluggish and apathetic",s:["sluggish","apathetic","torpid","listless","inactive","drowsy","languorous"],a:["energetic","lively","alert","active","vigorous","enthusiastic"],c:6},
+{w:"deteriorate",d:"hard",m:"to become progressively worse",s:["worsen","decline","degrade","decay","degenerate","fail","collapse"],a:["improve","recover","advance","upgrade","flourish","prosper","progress"],c:6},
+{w:"desolate",d:"hard",m:"deserted of people and in a state of decay",s:["barren","empty","lifeless","abandoned","bleak","uninhabited"],a:["inhabited","lively","populated","thriving","busy","flourishing"],c:6},
+{w:"contaminate",d:"hard",m:"to make impure by introducing pollutants",s:["pollute","taint","corrupt","infect","poison","foul","defile","soil"],a:["purify","cleanse","sanitize","decontaminate","disinfect","filter"],c:6},
+{w:"ecosystem",d:"hard",m:"biological community of interacting organisms and environment",s:["habitat","biome","environment","biosphere","ecology","system"],a:["wasteland","barren land","dead zone","desolation"],c:6},
+{w:"biodiversity",d:"hard",m:"the variety of life in a habitat",s:["ecological diversity","species richness","biological variety","natural diversity"],a:["monoculture","uniformity","homogeneity","biological sameness"],c:6},
+{w:"conservation",d:"hard",m:"protection of natural resources and environment",s:["preservation","protection","safeguarding","maintenance","stewardship"],a:["destruction","waste","exploitation","depletion","neglect","harm"],c:6},
+// ── CH6 MEDIUM ────────────────────────────────────────────────────────────────
+{w:"empower",d:"medium",m:"to give authority or strength",s:["enable","authorize","strengthen","capacitate","support","uplift","liberate"],a:["disempower","weaken","suppress","undermine","restrict","cripple"],c:6},
+{w:"restore",d:"medium",m:"to bring back to original state",s:["revive","rehabilitate","renew","repair","rebuild","reconstruct","reclaim"],a:["destroy","demolish","damage","ruin","neglect","deteriorate","wreck"],c:6},
+{w:"preserve",d:"medium",m:"to maintain in its original state",s:["conserve","protect","save","maintain","safeguard","retain","keep"],a:["destroy","ruin","waste","neglect","deplete","exhaust","squander"],c:6},
+{w:"nurture",d:"medium",m:"to care for and encourage development",s:["cultivate","foster","develop","nourish","support","encourage","tend"],a:["neglect","harm","stifle","hinder","damage","destroy","abandon"],c:6},
+{w:"flourish",d:"medium",m:"to grow or develop vigorously; to thrive",s:["thrive","prosper","grow","bloom","succeed","blossom","expand"],a:["wither","decline","decay","fail","shrink","languish","perish"],c:6},
+{w:"abundant",d:"medium",m:"existing in large quantities; plentiful",s:["plentiful","ample","copious","profuse","overflowing","generous","rich"],a:["scarce","rare","sparse","meager","insufficient","lacking","deficient"],c:6},
+{w:"barren",d:"medium",m:"too poor to produce vegetation; unproductive",s:["arid","dry","infertile","sterile","desolate","empty","bleak"],a:["fertile","productive","lush","abundant","rich","green","thriving"],c:6},
+{w:"extinct",d:"medium",m:"no longer existing; died out completely",s:["vanished","gone","dead","defunct","lost","obsolete","wiped out"],a:["surviving","thriving","existing","living","present","active"],c:6},
+{w:"migrate",d:"medium",m:"to move from one place to another",s:["move","travel","relocate","shift","journey","wander","trek"],a:["stay","remain","settle","reside","stop","inhabit"],c:6},
+{w:"pollute",d:"medium",m:"to contaminate with harmful substances",s:["contaminate","taint","dirty","foul","defile","poison","corrupt"],a:["purify","clean","filter","decontaminate","sanitize","cleanse"],c:6},
+// ── CH6 EASY ──────────────────────────────────────────────────────────────────
+{w:"healthy",d:"easy",m:"in good physical or mental condition",s:["fit","well","sound","vigorous","robust","hearty","thriving","strong"],a:["unhealthy","sick","ill","diseased","weak","unwell","frail"],c:6},
+{w:"green",d:"easy",m:"covered with vegetation; eco-friendly",s:["lush","verdant","eco-friendly","fertile","thriving","flourishing"],a:["barren","arid","polluted","desolate","withered","dead"],c:6},
+{w:"natural",d:"easy",m:"existing in or derived from nature",s:["organic","wild","genuine","native","pure","untouched","original"],a:["artificial","synthetic","fake","manufactured","processed","engineered"],c:6},
+{w:"protect",d:"easy",m:"to keep safe from harm",s:["guard","shield","defend","preserve","safeguard","shelter","secure"],a:["endanger","threaten","harm","expose","attack","destroy","neglect"],c:6},
+{w:"grow",d:"easy",m:"to increase in size progressively",s:["develop","expand","increase","flourish","thrive","advance","bloom"],a:["shrink","decline","wither","diminish","decrease","fade","die"],c:6},
+{w:"save",d:"easy",m:"to keep safe or rescue from harm",s:["rescue","preserve","protect","guard","salvage","defend","keep"],a:["waste","destroy","harm","lose","abandon","neglect","ruin"],c:6},
+// ── CH7 HARD ──────────────────────────────────────────────────────────────────
+{w:"erstwhile",d:"hard",m:"former; of an earlier time",s:["former","previous","past","quondam","one-time","bygone","sometime"],a:["current","present","existing","contemporary","modern","new","recent"],c:7},
+{w:"austere",d:"hard",m:"severe; lacking comfort or luxury",s:["severe","harsh","stern","spartan","ascetic","puritanical","strict","frugal"],a:["luxurious","indulgent","lavish","comfortable","lenient","soft"],c:7},
+{w:"segregation",d:"hard",m:"enforced separation of racial groups",s:["separation","division","isolation","apartheid","discrimination","exclusion"],a:["integration","inclusion","unification","desegregation","equality"],c:7},
+{w:"innate",d:"hard",m:"inborn; natural; present from birth",s:["inborn","inherent","natural","instinctive","congenital","intrinsic"],a:["acquired","learned","developed","cultivated","taught","conditioned"],c:7},
+{w:"optimism",d:"hard",m:"hopefulness and confidence about the future",s:["hopefulness","positivity","confidence","cheerfulness","sanguinity","buoyancy"],a:["pessimism","negativity","cynicism","despair","hopelessness","gloom"],c:7},
+{w:"babel",d:"hard",m:"a confused noise from many voices; confusion",s:["cacophony","din","clamor","uproar","tumult","pandemonium"],a:["silence","calm","quiet","tranquility","order","harmony","peace"],c:7},
+{w:"myriad",d:"hard",m:"a countless or extremely great number",s:["countless","innumerable","multitudinous","manifold","numerous","legion"],a:["few","limited","scarce","meager","handful","insignificant"],c:7},
+{w:"contemplation",d:"hard",m:"the action of thinking deeply",s:["meditation","reflection","musing","pondering","rumination","deliberation"],a:["action","distraction","inattention","thoughtlessness","impulsiveness"],c:7},
+{w:"discern",d:"hard",m:"to perceive something not immediately obvious",s:["perceive","recognize","detect","distinguish","identify","observe","notice"],a:["overlook","miss","ignore","fail to see","misidentify","disregard"],c:7},
+{w:"piety",d:"hard",m:"devout religious belief and reverence",s:["devoutness","religiosity","reverence","godliness","holiness","sanctity"],a:["impiety","irreverence","atheism","sacrilege","godlessness","profanity"],c:7},
+{w:"synthesis",d:"hard",m:"combining different elements into a unified whole",s:["combination","integration","amalgamation","fusion","unification","blend"],a:["separation","division","analysis","breakdown","fragmentation"],c:7},
+{w:"assimilation",d:"hard",m:"the process of absorbing or being absorbed into a group",s:["integration","absorption","incorporation","adoption","acculturation"],a:["exclusion","rejection","isolation","segregation","separation"],c:7},
+{w:"virtuosity",d:"hard",m:"great skill in music or another artistic pursuit",s:["skill","mastery","brilliance","proficiency","expertise","artistry"],a:["incompetence","mediocrity","clumsiness","ineptitude","inability"],c:7},
+{w:"manifold",d:"hard",m:"many and various in type",s:["numerous","various","diverse","varied","multiple","multifarious","many"],a:["singular","one","uniform","same","identical","limited","simple"],c:7},
+{w:"eminently",d:"hard",m:"to a notable degree; conspicuously",s:["notably","remarkably","conspicuously","exceptionally","highly","outstandingly"],a:["barely","slightly","insignificantly","marginally","hardly"],c:7},
+{w:"perennial",d:"hard",m:"lasting or existing for a long or apparently infinite time",s:["eternal","enduring","permanent","constant","perpetual","lasting"],a:["temporary","transient","brief","short-lived","fleeting","passing"],c:7},
+{w:"revere",d:"hard",m:"to feel deep respect and admiration for",s:["worship","venerate","honor","esteem","admire","respect","exalt"],a:["disrespect","scorn","despise","disdain","condemn","belittle"],c:7},
+{w:"cosmopolitan",d:"hard",m:"familiar with and at ease in many different countries",s:["worldly","sophisticated","international","multicultural","broad-minded"],a:["provincial","parochial","narrow-minded","insular","xenophobic"],c:7},
+{w:"orthodox",d:"hard",m:"following traditional and accepted beliefs",s:["conventional","traditional","conservative","mainstream","established"],a:["unorthodox","unconventional","radical","heterodox","innovative"],c:7},
+{w:"quintessential",d:"hard",m:"representing the most perfect example of a quality",s:["typical","exemplary","classic","ideal","representative","archetypal"],a:["atypical","uncharacteristic","unusual","exceptional","abnormal"],c:7},
+// ── CH7 MEDIUM ────────────────────────────────────────────────────────────────
+{w:"secular",d:"medium",m:"not connected with religious matters",s:["non-religious","worldly","temporal","civil","lay","non-spiritual"],a:["religious","sacred","spiritual","holy","divine","ecclesiastical"],c:7},
+{w:"tolerance",d:"medium",m:"accepting things one dislikes without objecting",s:["acceptance","patience","broad-mindedness","leniency","forbearance"],a:["intolerance","bigotry","prejudice","discrimination","narrowness"],c:7},
+{w:"heritage",d:"medium",m:"features passed from earlier generations",s:["tradition","legacy","inheritance","culture","ancestry","history"],a:["modernity","innovation","novelty","discard","foreign influence"],c:7},
+{w:"imminent",d:"medium",m:"about to happen very soon",s:["approaching","impending","near","forthcoming","looming","brewing"],a:["distant","remote","unlikely","far-off","delayed","future"],c:7},
+{w:"diverse",d:"medium",m:"showing a great deal of variety",s:["varied","different","mixed","multifaceted","various","assorted"],a:["uniform","same","homogeneous","similar","identical","monolithic"],c:7},
+{w:"unity",d:"medium",m:"the state of being joined together as a whole",s:["solidarity","cohesion","union","harmony","togetherness","integration"],a:["division","discord","fragmentation","disunity","conflict","separation"],c:7},
+{w:"traditional",d:"medium",m:"following long-established customs",s:["conventional","customary","established","time-honored","orthodox"],a:["modern","contemporary","unconventional","innovative","progressive"],c:7},
+{w:"unique",d:"medium",m:"being the only one of its kind",s:["distinctive","one-of-a-kind","singular","rare","unusual","exceptional"],a:["common","ordinary","typical","usual","generic","standard"],c:7},
+{w:"integrating",d:"medium",m:"combining different groups into one",s:["combining","uniting","merging","blending","incorporating","joining"],a:["segregating","separating","dividing","splitting","isolating","excluding"],c:7},
+{w:"cultural",d:"medium",m:"relating to the customs of a society",s:["social","artistic","civilizational","traditional","ethnic","national"],a:["anti-cultural","destructive","foreign","alien","barbaric"],c:7},
+// ── CH7 EASY ──────────────────────────────────────────────────────────────────
+{w:"united",d:"easy",m:"joined together for a common purpose",s:["unified","joined","combined","together","integrated","allied"],a:["divided","split","fragmented","separate","opposed","disconnected"],c:7},
+{w:"respect",d:"easy",m:"due regard for the feelings of others",s:["regard","esteem","admiration","honor","reverence","recognition"],a:["disrespect","contempt","disdain","scorn","rudeness","insult"],c:7},
+{w:"celebrate",d:"easy",m:"to acknowledge a happy day with festivities",s:["commemorate","honor","mark","observe","rejoice","feast"],a:["mourn","grieve","ignore","neglect","downplay","forget"],c:7},
+{w:"ancient",d:"easy",m:"belonging to the very distant past",s:["old","historic","antique","archaic","age-old","classical","time-honored"],a:["modern","new","contemporary","recent","current","fresh"],c:7},
+{w:"vast",d:"easy",m:"of very great extent; immense",s:["huge","enormous","immense","extensive","massive","large","boundless"],a:["tiny","small","limited","narrow","little","minute","compact"],c:7},
+{w:"peaceful",d:"easy",m:"free from disturbance; tranquil",s:["tranquil","calm","quiet","serene","still","harmonious","untroubled"],a:["violent","turbulent","chaotic","noisy","hostile","stormy"],c:7},
+// ── CH8 HARD ──────────────────────────────────────────────────────────────────
+{w:"imperiously",d:"hard",m:"in an arrogant and domineering manner",s:["arrogantly","domineeringly","haughtily","overbearingly","dictatorially"],a:["humbly","meekly","deferentially","respectfully","gently","modestly"],c:8},
+{w:"abjectly",d:"hard",m:"in a manner showing complete lack of pride",s:["submissively","miserably","wretchedly","dejectedly","shamefully"],a:["proudly","confidently","boldly","defiantly","independently"],c:8},
+{w:"impute",d:"hard",m:"to attribute a fault to someone",s:["attribute","assign","ascribe","charge","accuse","blame","credit"],a:["absolve","acquit","exonerate","vindicate","clear","excuse","pardon"],c:8},
+{w:"deficiency",d:"hard",m:"a lack of something required; a shortage",s:["lack","shortage","inadequacy","deficit","insufficiency","want","scarcity"],a:["abundance","surplus","excess","sufficiency","plenty","adequacy"],c:8},
+{w:"dexterous",d:"hard",m:"having or showing skill with hands or mind",s:["skillful","adroit","nimble","adept","expert","handy","proficient"],a:["clumsy","awkward","inept","maladroit","bungling","incompetent"],c:8},
+{w:"incognito",d:"hard",m:"having one's true identity concealed",s:["anonymously","disguised","under cover","secretly","unknown","unrecognized"],a:["openly","publicly","identified","revealed","known","unmasked"],c:8},
+{w:"sumptuous",d:"hard",m:"splendid and expensive-looking; lavish",s:["lavish","luxurious","opulent","extravagant","magnificent","rich"],a:["modest","plain","simple","austere","sparse","meager","frugal"],c:8},
+{w:"perturb",d:"hard",m:"to make someone anxious or unsettled",s:["disturb","unsettle","agitate","trouble","worry","alarm","disconcert"],a:["calm","soothe","reassure","pacify","comfort","ease","tranquilize"],c:8},
+{w:"hysteria",d:"hard",m:"uncontrollable excitement or emotion",s:["panic","frenzy","agitation","delirium","mania","excitement","turmoil"],a:["calm","composure","serenity","tranquility","control","equanimity"],c:8},
+{w:"servility",d:"hard",m:"excessive willingness to serve; subservience",s:["submissiveness","obsequiousness","subservience","meekness","docility"],a:["assertiveness","dignity","self-respect","independence","pride"],c:8},
+{w:"exploitation",d:"hard",m:"the action of using someone unfairly",s:["abuse","misuse","oppression","manipulation","victimization"],a:["fair treatment","protection","support","care","justice"],c:8},
+{w:"iniquity",d:"hard",m:"immoral or grossly unfair behavior",s:["wickedness","injustice","wrongdoing","evil","immorality","unfairness"],a:["righteousness","justice","virtue","morality","goodness","fairness"],c:8},
+{w:"derogatory",d:"hard",m:"showing a critical or disrespectful attitude",s:["disparaging","insulting","demeaning","degrading","disrespectful","belittling"],a:["complimentary","respectful","praising","honoring","flattering"],c:8},
+{w:"marginalise",d:"hard",m:"to treat as insignificant or unimportant",s:["sideline","exclude","trivialize","dismiss","overlook","isolate"],a:["include","embrace","center","value","respect","empower","elevate"],c:8},
+{w:"subjugation",d:"hard",m:"the action of bringing under domination or control",s:["oppression","domination","conquest","suppression","control","enslavement"],a:["liberation","freedom","independence","equality","emancipation"],c:8},
+{w:"transgression",d:"hard",m:"an act that goes against a law, rule, or moral code",s:["violation","offense","crime","sin","wrongdoing","infringement"],a:["obedience","compliance","virtue","righteousness","law-abiding"],c:8},
+{w:"inalienable",d:"hard",m:"not able to be taken away from or given away",s:["inviolable","absolute","inherent","fundamental","sacrosanct","untransferable"],a:["alienable","transferable","removable","optional","revocable"],c:8},
+{w:"empower",d:"hard",m:"to give power and confidence to someone",s:["enable","authorize","strengthen","liberate","uplift","capacitate"],a:["disempower","weaken","suppress","undermine","restrict","subjugate"],c:8},
+{w:"prejudice",d:"hard",m:"unreasonable dislike of a group, race or religion",s:["bias","discrimination","bigotry","intolerance","partiality","narrowmindedness"],a:["fairness","impartiality","objectivity","tolerance","open-mindedness"],c:8},
+{w:"ostracism",d:"hard",m:"exclusion from a society or group",s:["exclusion","banishment","rejection","isolation","exile","blackballing"],a:["inclusion","acceptance","welcome","integration","embrace","belonging"],c:8},
+// ── CH8 MEDIUM ────────────────────────────────────────────────────────────────
+{w:"discrimination",d:"medium",m:"unjust treatment of different categories of people",s:["prejudice","bias","inequality","injustice","bigotry","partiality"],a:["fairness","equality","justice","impartiality","nondiscrimination"],c:8},
+{w:"empathy",d:"medium",m:"ability to understand and share feelings of another",s:["compassion","understanding","sympathy","sensitivity","concern","care"],a:["apathy","indifference","callousness","coldness","insensitivity"],c:8},
+{w:"vigilant",d:"medium",m:"keeping careful watch for possible danger",s:["watchful","alert","attentive","careful","wary","cautious","hawk-eyed"],a:["careless","negligent","inattentive","unwary","oblivious","reckless"],c:8},
+{w:"adamant",d:"medium",m:"refusing to be persuaded; unyielding",s:["insistent","firm","resolute","determined","unyielding","steadfast"],a:["flexible","yielding","open-minded","changeable","agreeable","compliant"],c:8},
+{w:"dignity",d:"medium",m:"the state of being worthy of honor or respect",s:["honor","respect","worth","pride","nobility","self-respect","decency"],a:["dishonor","shame","disgrace","humiliation","indignity","degradation"],c:8},
+{w:"advocate",d:"medium",m:"to publicly support a particular cause",s:["support","champion","promote","defend","back","endorse","espouse"],a:["oppose","resist","fight against","reject","discourage","condemn"],c:8},
+{w:"suppress",d:"medium",m:"to put an end to forcibly; to silence",s:["crush","quell","quash","stifle","silence","oppress","restrain"],a:["encourage","allow","permit","support","liberate","enable","express"],c:8},
+{w:"stereotype",d:"medium",m:"a fixed, oversimplified image of a type of person",s:["generalization","cliche","preconception","assumption","pigeonhole"],a:["individual assessment","open-mindedness","nuance","uniqueness"],c:8},
+{w:"inequality",d:"medium",m:"difference in size, degree, or circumstance",s:["unfairness","disparity","imbalance","asymmetry","inequity","bias"],a:["equality","balance","fairness","equity","evenness","parity"],c:8},
+{w:"oppressed",d:"medium",m:"subject to harsh and authoritarian treatment",s:["persecuted","tyrannized","subdued","enslaved","downtrodden","exploited"],a:["free","liberated","empowered","protected","equal","independent"],c:8},
+// ── CH8 EASY ──────────────────────────────────────────────────────────────────
+{w:"innocent",d:"easy",m:"not guilty of a crime or offense",s:["blameless","guiltless","pure","virtuous","clean","faultless"],a:["guilty","culpable","blameworthy","at fault","corrupt","sinful"],c:8},
+{w:"brave",d:"easy",m:"ready to face danger without fear",s:["courageous","bold","fearless","heroic","valiant","daring"],a:["cowardly","timid","fearful","afraid","weak","scared"],c:8},
+{w:"kind",d:"easy",m:"having a friendly and generous nature",s:["caring","generous","warm","compassionate","gentle","good-natured"],a:["cruel","unkind","harsh","mean","cold","hostile"],c:8},
+{w:"honest",d:"easy",m:"free of deceit; truthful and sincere",s:["truthful","sincere","trustworthy","straightforward","candid"],a:["dishonest","deceitful","lying","corrupt","false","cheating"],c:8},
+{w:"equal",d:"easy",m:"having the same rights and opportunities",s:["same","identical","uniform","equivalent","even","balanced"],a:["unequal","different","unfair","unbalanced","unjust","biased"],c:8},
+{w:"safe",d:"easy",m:"protected from or not exposed to danger",s:["secure","protected","sheltered","shielded","guarded","harmless"],a:["dangerous","unsafe","risky","exposed","threatened","vulnerable"],c:8},
+{w:"free",d:"easy",m:"not under the control of another",s:["liberated","independent","unrestricted","autonomous","loose","unbound"],a:["imprisoned","restricted","captive","bound","enslaved","controlled"],c:8},
+{w:"right",d:"easy",m:"morally good, justified, or acceptable",s:["correct","proper","just","fair","appropriate","legitimate"],a:["wrong","unjust","improper","unfair","incorrect","illegal"],c:8},
+{w:"respect",d:"easy",m:"due regard for others' feelings or rights",s:["regard","esteem","admiration","honor","reverence","recognition"],a:["disrespect","contempt","disdain","scorn","rudeness","insult"],c:8},
+{w:"fair",d:"easy",m:"treating people equally without favoritism",s:["just","impartial","unbiased","equitable","objective","balanced"],a:["unfair","biased","unjust","partial","prejudiced","discriminatory"],c:8},
+];
+
+// ── EXTRA BATCH 2 — 300 MORE WORDS ───────────────────────────────────────────
+W.push(
+// CH1 extra hard
+{w:"acumen",d:"hard",m:"the ability to make good judgments quickly",s:["sharpness","astuteness","insight","shrewdness","perceptiveness","keenness"],a:["stupidity","dullness","ignorance","naivety","obtuseness","foolishness"],c:1},
+{w:"audacious",d:"hard",m:"showing willingness to take bold risks",s:["bold","daring","fearless","adventurous","reckless","intrepid","brazen"],a:["timid","cautious","cowardly","hesitant","fearful","restrained"],c:1},
+{w:"circumspect",d:"hard",m:"wary and unwilling to take risks; cautious",s:["cautious","careful","wary","guarded","discreet","judicious","watchful"],a:["reckless","careless","rash","impulsive","bold","incautious"],c:1},
+{w:"cogent",d:"hard",m:"clear, logical, and convincing",s:["convincing","compelling","persuasive","logical","forceful","sound","valid"],a:["unconvincing","weak","illogical","invalid","flawed","ineffective"],c:1},
+{w:"diligence",d:"hard",m:"careful and persistent work or effort",s:["industriousness","assiduity","dedication","application","conscientiousness"],a:["laziness","idleness","negligence","carelessness","sloth"],c:1},
+{w:"ebullient",d:"hard",m:"cheerful and full of energy",s:["exuberant","enthusiastic","vivacious","bubbly","spirited","lively","energetic"],a:["gloomy","depressed","dull","subdued","lethargic","sullen"],c:1},
+{w:"fortitude",d:"hard",m:"courage in pain or adversity",s:["courage","bravery","strength","grit","endurance","determination"],a:["weakness","cowardice","timidity","feebleness","fearfulness"],c:1},
+{w:"gregarious",d:"hard",m:"fond of company; sociable",s:["sociable","outgoing","friendly","affable","extroverted","convivial"],a:["antisocial","shy","introverted","reserved","solitary","reclusive"],c:1},
+{w:"impeccable",d:"hard",m:"in accordance with the highest standards; faultless",s:["flawless","perfect","faultless","irreproachable","immaculate","spotless"],a:["flawed","imperfect","faulty","defective","blemished","shoddy"],c:1},
+{w:"indispensable",d:"hard",m:"absolutely necessary; essential",s:["essential","necessary","vital","crucial","critical","irreplaceable"],a:["dispensable","unnecessary","optional","replaceable","nonessential"],c:1},
+{w:"intrepid",d:"hard",m:"fearless and adventurous",s:["fearless","bold","brave","audacious","daring","courageous","undaunted"],a:["timid","fearful","cowardly","cautious","nervous","hesitant"],c:1},
+{w:"judicious",d:"hard",m:"having or showing good judgment or sense",s:["wise","sensible","prudent","discerning","thoughtful","sound","rational"],a:["unwise","reckless","foolish","imprudent","irrational","careless"],c:1},
+{w:"magnanimous",d:"hard",m:"very generous or forgiving; noble in spirit",s:["generous","noble","big-hearted","charitable","liberal","unselfish"],a:["petty","mean-spirited","selfish","stingy","vindictive","small-minded"],c:1},
+{w:"mettle",d:"hard",m:"courage and fortitude; spirit",s:["courage","spirit","bravery","grit","determination","pluck","nerve"],a:["cowardice","weakness","timidity","fearfulness","fragility"],c:1},
+{w:"novice",d:"hard",m:"a person new to and inexperienced in a job or situation",s:["beginner","amateur","learner","newcomer","rookie","apprentice"],a:["expert","veteran","professional","master","specialist","pro"],c:1},
+{w:"ostentatious",d:"hard",m:"designed to impress or attract notice; showy",s:["showy","flashy","flamboyant","pretentious","gaudy","pompous","grandiose"],a:["modest","simple","understated","plain","unassuming","restrained"],c:1},
+{w:"perspicacious",d:"hard",m:"having a ready insight into things; shrewd",s:["shrewd","perceptive","astute","discerning","insightful","sharp"],a:["obtuse","dull","unperceptive","blind","ignorant","dense"],c:1},
+{w:"phlegmatic",d:"hard",m:"having a calm, stolidly unemotional disposition",s:["calm","composed","stoic","impassive","unruffled","placid","serene"],a:["excitable","emotional","volatile","passionate","agitated","anxious"],c:1},
+{w:"prodigious",d:"hard",m:"remarkably great in extent, size, or degree",s:["enormous","huge","immense","extraordinary","remarkable","astounding"],a:["tiny","ordinary","common","unremarkable","insignificant","small"],c:1},
+{w:"rectitude",d:"hard",m:"morally correct behavior or thinking",s:["integrity","virtue","morality","righteousness","uprightness","honor"],a:["corruption","dishonesty","wickedness","immorality","depravity"],c:1},
+{w:"sagacity",d:"hard",m:"having practical wisdom; good judgment",s:["wisdom","shrewdness","insight","acumen","discernment","perceptiveness"],a:["foolishness","stupidity","ignorance","rashness","naivety"],c:1},
+{w:"steadfast",d:"hard",m:"resolutely or dutifully firm and unwavering",s:["resolute","determined","firm","unwavering","committed","loyal","staunch"],a:["wavering","irresolute","fickle","uncertain","disloyal","faltering"],c:1},
+{w:"stoic",d:"hard",m:"enduring pain or hardship without complaint",s:["uncomplaining","patient","long-suffering","impassive","unflappable"],a:["complaining","emotional","sensitive","whining","melodramatic"],c:1},
+{w:"supercilious",d:"hard",m:"behaving as if superior to others; disdainful",s:["arrogant","disdainful","condescending","haughty","snobbish","patronizing"],a:["humble","modest","respectful","deferential","considerate"],c:1},
+{w:"taciturn",d:"hard",m:"reserved or uncommunicative in speech",s:["reserved","silent","quiet","uncommunicative","reticent","tight-lipped"],a:["talkative","loquacious","garrulous","chatty","communicative","open"],c:1},
+{w:"tenacity",d:"hard",m:"the quality or fact of continuing firmly",s:["persistence","determination","stubbornness","grit","perseverance","resolve"],a:["weakness","surrender","irresolution","giving up","capitulation"],c:1},
+{w:"vehement",d:"hard",m:"showing strong feeling; forceful or passionate",s:["passionate","fervent","intense","fierce","ardent","forceful","emphatic"],a:["mild","apathetic","indifferent","lukewarm","subdued","unenthusiastic"],c:1},
+{w:"zealous",d:"hard",m:"having or showing great enthusiasm or passion",s:["enthusiastic","fervent","passionate","ardent","eager","keen","fanatical"],a:["apathetic","indifferent","disinterested","lukewarm","half-hearted"],c:1},
+// CH2 extra hard
+{w:"absurdity",d:"hard",m:"the quality of being wildly unreasonable or illogical",s:["nonsense","ridiculousness","preposterousness","irrationality","folly"],a:["sense","reason","logic","sanity","rationality","wisdom"],c:2},
+{w:"affectation",d:"hard",m:"artificial behavior designed to impress",s:["pretense","pretension","insincerity","mannerism","pose","show"],a:["naturalness","sincerity","authenticity","genuineness","simplicity"],c:2},
+{w:"ambiguity",d:"hard",m:"the quality of being open to more than one interpretation",s:["vagueness","obscurity","uncertainty","doubt","equivocality"],a:["clarity","precision","definiteness","certainty","explicitness"],c:2},
+{w:"banter",d:"hard",m:"the playful and friendly exchange of teasing remarks",s:["repartee","wit","teasing","joking","ribbing","raillery","wordplay"],a:["seriousness","solemnity","argument","gravity","sincerity"],c:2},
+{w:"burlesque",d:"hard",m:"a literary or dramatic work that seeks to ridicule",s:["parody","satire","mockery","spoof","caricature","send-up","farce"],a:["tribute","seriousness","respect","praise","reverence","honor"],c:2},
+{w:"charade",d:"hard",m:"an absurd pretense intended to deceive",s:["pretense","farce","sham","mockery","deception","performance","act"],a:["reality","truth","authenticity","sincerity","genuineness"],c:2},
+{w:"derision",d:"hard",m:"contemptuous ridicule or mockery",s:["mockery","ridicule","contempt","scorn","disdain","laughing stock"],a:["respect","admiration","praise","reverence","honor","esteem"],c:2},
+{w:"eccentric",d:"hard",m:"unconventional and slightly strange",s:["quirky","odd","peculiar","idiosyncratic","unconventional","bizarre"],a:["conventional","normal","ordinary","typical","mainstream","usual"],c:2},
+{w:"flippant",d:"hard",m:"not showing appropriate seriousness; superficially clever",s:["glib","facetious","frivolous","disrespectful","cheeky","impertinent"],a:["serious","respectful","sincere","thoughtful","reverent","solemn"],c:2},
+{w:"frivolous",d:"hard",m:"not having any serious purpose or value",s:["trivial","trifling","silly","superficial","petty","unimportant","light"],a:["serious","important","significant","weighty","essential","vital"],c:2},
+{w:"hilarious",d:"hard",m:"extremely amusing; causing much laughter",s:["uproarious","side-splitting","comical","hysterical","rib-tickling"],a:["unfunny","grim","tragic","solemn","depressing","dull"],c:2},
+{w:"incredulous",d:"hard",m:"not willing to believe; disbelieving",s:["disbelieving","skeptical","doubtful","dubious","unconvinced","suspicious"],a:["credulous","believing","trusting","gullible","convinced","naive"],c:2},
+{w:"insinuation",d:"hard",m:"an unpleasant hint or suggestion",s:["implication","suggestion","hint","innuendo","allusion","inuendo"],a:["statement","declaration","direct speech","compliment","praise"],c:2},
+{w:"irony",d:"hard",m:"the expression of meaning using language that normally means the opposite",s:["sarcasm","paradox","contradiction","satire","mockery","wryness"],a:["sincerity","straightforwardness","directness","bluntness"],c:2},
+{w:"jocular",d:"hard",m:"fond of or characterized by joking; humorous",s:["humorous","playful","witty","jovial","jolly","merry","comic"],a:["serious","solemn","humorless","grave","grim","earnest"],c:2},
+{w:"ludicrous",d:"hard",m:"so foolish or unreasonable as to be amusing; absurd",s:["absurd","ridiculous","preposterous","farcical","silly","laughable"],a:["reasonable","sensible","logical","rational","serious","plausible"],c:2},
+{w:"parody",d:"hard",m:"an imitation that exaggerates for comic effect",s:["spoof","satire","caricature","mockery","burlesque","send-up"],a:["original","serious","genuine","sincere","authentic","reverent"],c:2},
+{w:"pretentious",d:"hard",m:"attempting to impress by affecting greater importance",s:["affected","pompous","showy","ostentatious","arrogant","snobby"],a:["modest","humble","genuine","unpretentious","natural","simple"],c:2},
+{w:"ridicule",d:"hard",m:"to subject someone to mockery and derision",s:["mock","deride","scoff at","taunt","jeer at","laugh at"],a:["praise","respect","admire","honor","commend","celebrate"],c:2},
+{w:"satire",d:"hard",m:"the use of humor to expose and criticize society",s:["irony","sarcasm","parody","mockery","wit","lampooning"],a:["sincerity","praise","seriousness","respect","earnestness"],c:2},
+// CH3 extra hard
+{w:"amiable",d:"hard",m:"having a friendly and pleasant manner",s:["friendly","pleasant","agreeable","likable","cordial","warm","congenial"],a:["unfriendly","hostile","disagreeable","cold","aloof","rude"],c:3},
+{w:"antipathy",d:"hard",m:"a deep-seated feeling of dislike; aversion",s:["dislike","aversion","hatred","hostility","animosity","repugnance"],a:["liking","affinity","fondness","sympathy","love","attraction"],c:3},
+{w:"benign",d:"hard",m:"gentle and kindly; not harmful",s:["kind","gentle","harmless","friendly","mild","generous","beneficial"],a:["malignant","hostile","harmful","dangerous","malicious","cruel"],c:3},
+{w:"conciliatory",d:"hard",m:"intended to make peace; appeasing",s:["peacemaking","appeasing","diplomatic","placating","mollifying"],a:["confrontational","hostile","aggressive","belligerent","provocative"],c:3},
+{w:"cordial",d:"hard",m:"warm and friendly",s:["warm","friendly","affable","genial","gracious","amicable","welcoming"],a:["cold","unfriendly","hostile","aloof","rude","distant","standoffish"],c:3},
+{w:"estrangement",d:"hard",m:"the feeling that one has become alienated from others",s:["alienation","separation","disconnection","distance","isolation"],a:["reconciliation","connection","closeness","bonding","unity","kinship"],c:3},
+{w:"fraternal",d:"hard",m:"of or like a brother; brotherly",s:["brotherly","friendly","comradely","loyal","supportive","solidary"],a:["hostile","unfriendly","adversarial","unsupportive","cold"],c:3},
+{w:"genial",d:"hard",m:"friendly and cheerful",s:["friendly","cheerful","warm","pleasant","affable","good-natured"],a:["cold","unfriendly","gloomy","hostile","disagreeable","morose"],c:3},
+{w:"impartial",d:"hard",m:"treating all rivals or disputants equally; unbiased",s:["neutral","unbiased","fair","objective","non-partisan","equitable"],a:["biased","partial","prejudiced","discriminatory","one-sided"],c:3},
+{w:"incite",d:"hard",m:"to encourage or stir up violent or unlawful behavior",s:["provoke","instigate","stir up","encourage","agitate","arouse"],a:["discourage","calm","pacify","soothe","suppress","quell"],c:3},
+{w:"malice",d:"hard",m:"the intention or desire to do evil; ill will",s:["spite","hatred","hostility","venom","meanness","wickedness"],a:["goodwill","kindness","benevolence","love","charity","goodness"],c:3},
+{w:"mediator",d:"hard",m:"a person who attempts to make peace between opposing sides",s:["arbitrator","peacemaker","go-between","negotiator","conciliator"],a:["agitator","troublemaker","instigator","combatant","aggressor"],c:3},
+{w:"nostalgic",d:"hard",m:"feeling sentimental longing for the past",s:["sentimental","wistful","homesick","longing","reminiscent","yearning"],a:["forward-looking","progressive","futuristic","optimistic","content"],c:3},
+{w:"patronizing",d:"hard",m:"treating someone as if inferior; condescending",s:["condescending","superior","snobbish","disdainful","supercilious"],a:["respectful","humble","equal","genuine","considerate"],c:3},
+{w:"poignant",d:"hard",m:"evoking a keen sense of sadness or regret",s:["touching","moving","affecting","heart-rending","emotional","sad"],a:["cheerful","trivial","unemotional","cold","indifferent"],c:3},
+{w:"reciprocal",d:"hard",m:"given, felt, or done in return; mutual",s:["mutual","shared","joint","corresponding","complementary","bidirectional"],a:["one-sided","unilateral","non-reciprocal","asymmetric"],c:3},
+{w:"resentment",d:"hard",m:"bitter indignation at having been treated unfairly",s:["bitterness","anger","indignation","animosity","hostility","rancor"],a:["gratitude","forgiveness","contentment","acceptance","goodwill"],c:3},
+{w:"solitude",d:"hard",m:"the state of being alone; seclusion",s:["loneliness","isolation","seclusion","privacy","aloneness","withdrawal"],a:["company","society","togetherness","community","companionship"],c:3},
+{w:"venerate",d:"hard",m:"to regard with great respect; to revere",s:["revere","respect","honor","worship","esteem","admire","exalt"],a:["disrespect","scorn","despise","disdain","condemn","belittle"],c:3},
+{w:"vulnerable",d:"hard",m:"exposed to the possibility of being harmed",s:["defenseless","susceptible","exposed","unprotected","weak","fragile"],a:["protected","secure","safe","invulnerable","strong","guarded"],c:3},
+// CH4 extra hard
+{w:"aesthetic",d:"hard",m:"concerned with beauty and the appreciation of art",s:["artistic","beautiful","tasteful","refined","elegant","graceful"],a:["ugly","crude","tasteless","inartistic","unaesthetic","vulgar"],c:4},
+{w:"archaic",d:"hard",m:"very old or old-fashioned",s:["ancient","antiquated","obsolete","outdated","old-fashioned","primitive"],a:["modern","contemporary","current","new","up-to-date","fresh"],c:4},
+{w:"captivating",d:"hard",m:"capable of attracting and holding interest; enchanting",s:["fascinating","enchanting","enthralling","mesmerizing","compelling","riveting"],a:["boring","dull","uninteresting","tedious","unappealing","repelling"],c:4},
+{w:"cinematic",d:"hard",m:"relating to cinema; having qualities of film",s:["filmic","dramatic","visual","screen-like","theatrical","spectacular"],a:["non-visual","literary","staged","prosaic","uncinematic"],c:4},
+{w:"commemorative",d:"hard",m:"existing to honor the memory of a person or event",s:["memorial","celebratory","dedicatory","honoring","tributary"],a:["forgetting","dishonoring","ignoring","disrespecting"],c:4},
+{w:"contemporaneous",d:"hard",m:"existing or occurring at the same time",s:["simultaneous","concurrent","coexisting","synchronous","parallel"],a:["preceding","following","sequential","anachronistic"],c:4},
+{w:"depict",d:"hard",m:"to show or represent by drawing or description",s:["portray","represent","illustrate","describe","show","paint","render"],a:["misrepresent","distort","conceal","hide","omit","falsify"],c:4},
+{w:"evocative",d:"hard",m:"bringing strong images or feelings to mind",s:["suggestive","reminiscent","atmospheric","expressive","meaningful"],a:["bland","uninspiring","expressionless","dull","meaningless"],c:4},
+{w:"grandeur",d:"hard",m:"splendor and impressiveness",s:["magnificence","splendor","majesty","glory","impressiveness","stateliness"],a:["humbleness","modesty","simplicity","insignificance","plainness"],c:4},
+{w:"iconic",d:"hard",m:"widely recognized and well-established",s:["legendary","celebrated","classic","famous","symbolic","archetypal"],a:["obscure","unknown","unrecognized","insignificant","forgotten"],c:4},
+{w:"immersive",d:"hard",m:"providing deep mental involvement",s:["engrossing","absorbing","captivating","engulfing","all-consuming"],a:["superficial","shallow","detached","distancing","boring"],c:4},
+{w:"melodramatic",d:"hard",m:"exaggerated for dramatic effect",s:["exaggerated","histrionic","theatrical","overstated","sensational"],a:["understated","realistic","measured","calm","restrained","muted"],c:4},
+{w:"narrative",d:"hard",m:"a spoken or written account of events",s:["story","account","tale","chronicle","recounting","narration"],a:["silence","omission","concealment","distortion","misrepresentation"],c:4},
+{w:"pioneering",d:"hard",m:"opening up new areas of thought or activity",s:["innovative","groundbreaking","original","trailblazing","avant-garde"],a:["conventional","derivative","conservative","ordinary","imitative"],c:4},
+{w:"portrayal",d:"hard",m:"the action of depicting someone in a work of art",s:["depiction","representation","description","rendering","characterization"],a:["distortion","misrepresentation","falsification","omission"],c:4},
+{w:"resonate",d:"hard",m:"to evoke an emotional or positive response",s:["strike a chord","connect","affect","move","touch","impact","stir"],a:["fail to connect","bore","leave cold","alienate","miss"],c:4},
+{w:"riveting",d:"hard",m:"completely engrossing; compelling",s:["gripping","enthralling","compelling","captivating","fascinating"],a:["boring","dull","uninteresting","tedious","unappealing"],c:4},
+{w:"satirize",d:"hard",m:"to mock or criticize using satire",s:["parody","lampoon","ridicule","mock","burlesque","caricature"],a:["praise","honor","respect","commend","celebrate"],c:4},
+{w:"spectacle",d:"hard",m:"a visually striking performance or display",s:["display","show","performance","exhibition","extravaganza","sight"],a:["ordinariness","mediocrity","dullness","plainness","routine"],c:4},
+{w:"zeitgeist",d:"hard",m:"the defining spirit or mood of a particular period",s:["spirit of the age","prevailing mood","ethos","cultural climate"],a:["timelessness","anachronism","irrelevance","outdated thinking"],c:4},
+// CH5 extra hard
+{w:"aberration",d:"hard",m:"a departure from what is normal or expected",s:["anomaly","deviation","oddity","irregularity","exception","quirk"],a:["norm","standard","typical","regular","expected","convention"],c:5},
+{w:"acquit",d:"hard",m:"to formally declare someone not guilty of a criminal charge",s:["absolve","exonerate","discharge","clear","vindicate","release"],a:["convict","condemn","sentence","blame","incriminate","punish"],c:5},
+{w:"advocate",d:"hard",m:"a person who publicly supports a particular cause",s:["supporter","champion","defender","proponent","backer","promoter"],a:["opponent","critic","adversary","detractor","antagonist"],c:5},
+{w:"anachronism",d:"hard",m:"a thing belonging to a period other than the one",s:["relic","throwback","artifact","remnant","outdated thing"],a:["contemporary thing","modern element","current practice"],c:5},
+{w:"apartheid",d:"hard",m:"a policy of segregation based on race",s:["segregation","discrimination","division","separation","racism"],a:["equality","integration","inclusion","unity","desegregation"],c:5},
+{w:"autocratic",d:"hard",m:"taking no account of others' wishes; dictatorial",s:["dictatorial","authoritarian","despotic","tyrannical","absolute"],a:["democratic","liberal","permissive","open","egalitarian"],c:5},
+{w:"benevolence",d:"hard",m:"the quality of being well meaning and kind",s:["kindness","charity","goodwill","generosity","compassion"],a:["malevolence","cruelty","selfishness","unkindness","spite"],c:5},
+{w:"bourgeois",d:"hard",m:"belonging to or typical of the middle class",s:["middle-class","conventional","materialistic","philistine","capitalist"],a:["working-class","radical","bohemian","revolutionary","proletarian"],c:5},
+{w:"catalyst",d:"hard",m:"a person or thing that speeds up a change",s:["trigger","stimulus","spark","impetus","spur","incentive"],a:["hindrance","obstacle","deterrent","inhibitor","retardant"],c:5},
+{w:"chauvinism",d:"hard",m:"excessive pride in one's country or group",s:["nationalism","jingoism","prejudice","bigotry","partisanship"],a:["open-mindedness","impartiality","fairness","tolerance"],c:5},
+{w:"civil disobedience",d:"hard",m:"refusal to comply with certain laws as nonviolent protest",s:["protest","resistance","defiance","noncooperation","dissent"],a:["compliance","obedience","submission","acquiescence","conformity"],c:5},
+{w:"coercion",d:"hard",m:"the practice of forcing someone to act using threats",s:["force","intimidation","compulsion","duress","pressure","threats"],a:["persuasion","encouragement","voluntary action","free will"],c:5},
+{w:"complicity",d:"hard",m:"the fact of being involved in wrongdoing",s:["involvement","participation","guilt","collusion","conspiracy"],a:["innocence","non-involvement","ignorance","blamelessness"],c:5},
+{w:"contentious",d:"hard",m:"causing or likely to cause argument; controversial",s:["controversial","disputatious","debatable","divisive","argumentative"],a:["uncontroversial","agreeable","harmonious","settled","undisputed"],c:5},
+{w:"cynicism",d:"hard",m:"an inclination to question sincerity of human motives",s:["skepticism","distrust","pessimism","doubt","disillusionment"],a:["optimism","idealism","trust","faith","hopefulness","positivity"],c:5},
+{w:"demagogue",d:"hard",m:"a leader who appeals to desires and prejudices of people",s:["populist","agitator","rabble-rouser","manipulator","propagandist"],a:["statesman","peacemaker","diplomat","mediator","unifier"],c:5},
+{w:"disenfranchise",d:"hard",m:"to deprive of a right or privilege",s:["deprive","strip","dispossess","exclude","marginalize","bar"],a:["enfranchise","include","empower","enable","allow","give rights"],c:5},
+{w:"dogmatic",d:"hard",m:"inclined to lay down principles as incontrovertibly true",s:["rigid","inflexible","doctrinaire","opinionated","authoritarian"],a:["open-minded","flexible","tolerant","questioning","empirical"],c:5},
+{w:"elitism",d:"hard",m:"advocacy of leadership by an elite group",s:["snobbishness","exclusivity","superiority","privilege","favoritism"],a:["egalitarianism","democracy","equality","inclusion","fairness"],c:5},
+{w:"enfranchise",d:"hard",m:"to give the right to vote or a privilege",s:["empower","include","liberate","entitle","authorize","enable"],a:["disenfranchise","deprive","exclude","marginalize","restrict"],c:5},
+// CH6 extra hard
+{w:"acidification",d:"hard",m:"the process of becoming acid; increase in acidity",s:["acidizing","acidulation","sourness increase","pH lowering"],a:["neutralization","alkalization","pH raising"],c:6},
+{w:"arable",d:"hard",m:"land that can be used for growing crops",s:["fertile","cultivable","farmable","productive","tillable"],a:["barren","infertile","arid","sterile","uncultivable"],c:6},
+{w:"arboreal",d:"hard",m:"relating to or resembling a tree; living in trees",s:["tree-related","forest-dwelling","woody","sylvan"],a:["terrestrial","ground-dwelling","non-arboreal"],c:6},
+{w:"canopy",d:"hard",m:"the upper layer of foliage in a forest",s:["treetop","coverage","roof","shelter","covering","canopy layer"],a:["floor","ground level","undergrowth","understory"],c:6},
+{w:"climate",d:"hard",m:"the weather conditions prevailing in an area over a long period",s:["weather","environment","atmosphere","conditions","ecology"],a:["internal condition","indoor climate"],c:6},
+{w:"decompose",d:"hard",m:"to rot or decay through bacterial action",s:["rot","decay","break down","putrefy","disintegrate","crumble"],a:["preserve","maintain","stabilize","keep","conserve"],c:6},
+{w:"ecology",d:"hard",m:"the branch of biology dealing with organisms' relationships",s:["ecosystem science","environmental science","bioscience","natural study"],a:["non-ecological study","isolated biology"],c:6},
+{w:"endemic",d:"hard",m:"native and restricted to a particular place",s:["native","indigenous","local","naturally occurring","regional"],a:["exotic","foreign","introduced","imported","alien"],c:6},
+{w:"erosion",d:"hard",m:"the gradual destruction by natural forces",s:["wearing away","weathering","degradation","corrosion","attrition"],a:["building up","accretion","deposition","preservation","conservation"],c:6},
+{w:"fecund",d:"hard",m:"producing or capable of producing an abundance",s:["fertile","productive","fruitful","prolific","rich","generative"],a:["barren","infertile","sterile","unproductive","impoverished"],c:6},
+{w:"flora",d:"hard",m:"the plants of a particular region or habitat",s:["vegetation","plant life","plant kingdom","greenery","foliage"],a:["fauna","animal life","desert","wastelands"],c:6},
+{w:"fauna",d:"hard",m:"the animals of a particular region or habitat",s:["animal life","wildlife","creatures","beasts","zoological life"],a:["flora","plant life","vegetation","inorganic matter"],c:6},
+{w:"glacial",d:"hard",m:"relating to ice ages or glaciers; extremely cold",s:["icy","frozen","frigid","arctic","freezing","polar"],a:["tropical","warm","hot","scorching","temperate","mild"],c:6},
+{w:"habitat",d:"hard",m:"the natural home or environment of an animal or plant",s:["environment","home","abode","territory","ecosystem","domain"],a:["foreign environment","unsuitable zone","artificial setting"],c:6},
+{w:"humus",d:"hard",m:"the organic component of soil formed by decomposition",s:["topsoil","compost","organic matter","soil layer","earth"],a:["rock","mineral soil","sterile substrate","clay"],c:6},
+{w:"incinerate",d:"hard",m:"to destroy by burning",s:["burn","combust","torch","ignite","reduce to ash","immolate"],a:["extinguish","quench","preserve","save","douse","protect"],c:6},
+{w:"irrigation",d:"hard",m:"the supply of water to land using artificial means",s:["watering","flooding","hydration","water supply","sprinkler use"],a:["drought","drying up","dehydration","neglect","leaving dry"],c:6},
+{w:"landfill",d:"hard",m:"a site for the disposal of waste material by burial",s:["dump","waste disposal site","garbage site","trash heap"],a:["recycling center","clean site","conservation area"],c:6},
+{w:"migratory",d:"hard",m:"relating to migration; moving seasonally",s:["traveling","nomadic","wandering","moving","roaming"],a:["sedentary","stationary","settled","resident","non-migratory"],c:6},
+{w:"pesticide",d:"hard",m:"a substance used to kill insects or organisms harmful to crops",s:["insecticide","herbicide","fungicide","poison","chemical spray"],a:["organic matter","natural fertilizer","beneficial compound"],c:6},
+// CH7 extra hard
+{w:"allegiance",d:"hard",m:"loyalty or commitment to a group, country or cause",s:["loyalty","devotion","faithfulness","commitment","fidelity"],a:["disloyalty","treachery","betrayal","desertion","faithlessness"],c:7},
+{w:"amalgamation",d:"hard",m:"the action of combining or uniting",s:["merger","combination","fusion","union","integration","blending"],a:["separation","division","splitting","fragmentation","dissolution"],c:7},
+{w:"antiquity",d:"hard",m:"the ancient past, especially before the Middle Ages",s:["ancient times","classical era","olden days","ancient history"],a:["modernity","present","contemporary times","recent history"],c:7},
+{w:"assiduous",d:"hard",m:"showing great care and perseverance",s:["diligent","industrious","dedicated","thorough","hardworking"],a:["lazy","careless","negligent","slothful","idle","indolent"],c:7},
+{w:"autonomy",d:"hard",m:"the right or condition of self-government",s:["independence","self-governance","sovereignty","freedom","liberty"],a:["dependence","subjugation","control","subordination","servitude"],c:7},
+{w:"benediction",d:"hard",m:"the utterance of a blessing",s:["blessing","invocation","prayer","grace","good wishes","favor"],a:["curse","condemnation","malediction","damnation","disapproval"],c:7},
+{w:"chauvinistic",d:"hard",m:"showing aggressive or exaggerated patriotism",s:["jingoistic","patriotic","nationalistic","partisan","biased"],a:["cosmopolitan","tolerant","open-minded","inclusive","fair"],c:7},
+{w:"chronicle",d:"hard",m:"a factual written account of important events",s:["record","account","history","narrative","annals","log"],a:["fiction","invention","falsification","distortion","myth"],c:7},
+{w:"confluence",d:"hard",m:"the junction of two rivers; a meeting point",s:["convergence","junction","meeting","union","merging","intersection"],a:["divergence","separation","parting","dispersion","splitting"],c:7},
+{w:"cosmopolitan",d:"hard",m:"familiar with and at ease in many different countries",s:["worldly","sophisticated","international","multicultural","broad-minded"],a:["provincial","parochial","narrow-minded","insular","xenophobic"],c:7},
+{w:"diaspora",d:"hard",m:"people who live outside their homeland as a community",s:["dispersal","migration","scattered community","emigrants"],a:["homeland community","indigenous population","local group"],c:7},
+{w:"egalitarian",d:"hard",m:"believing in the principle of equality for all people",s:["equal","fair","democratic","inclusive","classless"],a:["elitist","discriminatory","hierarchical","authoritarian","unequal"],c:7},
+{w:"erudite",d:"hard",m:"having or showing great knowledge or learning",s:["learned","scholarly","knowledgeable","intellectual","educated"],a:["ignorant","uneducated","illiterate","uninformed","unlearned"],c:7},
+{w:"ethos",d:"hard",m:"the characteristic spirit of a culture or community",s:["spirit","character","ideology","culture","values","beliefs"],a:["meaninglessness","vacuum","emptiness","characterlessness"],c:7},
+{w:"fraternity",d:"hard",m:"a group of people sharing a common profession or interest",s:["brotherhood","fellowship","association","community","solidarity"],a:["division","enmity","separation","discord","hostility"],c:7},
+{w:"homogeneous",d:"hard",m:"of the same kind; alike; uniform",s:["uniform","similar","identical","consistent","alike","standardized"],a:["heterogeneous","diverse","varied","mixed","different","dissimilar"],c:7},
+{w:"imperialism",d:"hard",m:"a policy of extending power through diplomacy or force",s:["colonialism","expansionism","domination","hegemony","subjugation"],a:["independence","self-determination","sovereignty","liberation"],c:7},
+{w:"lingual",d:"hard",m:"of or relating to language",s:["linguistic","verbal","language-related","communicative","speech"],a:["non-verbal","physical","silent","gestural"],c:7},
+{w:"monolithic",d:"hard",m:"large, powerful and resistant to change",s:["massive","uniform","rigid","huge","indivisible","totalitarian"],a:["diverse","flexible","varied","fragmented","changeable"],c:7},
+{w:"nomenclature",d:"hard",m:"the naming of things in a particular discipline",s:["terminology","naming","classification","labeling","taxonomy"],a:["misidentification","confusion","anonymity"],c:7},
+// CH8 extra hard
+{w:"abolish",d:"hard",m:"to formally put an end to a system, practice, or law",s:["eliminate","end","annul","revoke","terminate","eradicate"],a:["establish","create","introduce","implement","maintain","uphold"],c:8},
+{w:"atrocity",d:"hard",m:"an extremely wicked or cruel act",s:["horror","outrage","crime","monstrosity","brutality","wickedness"],a:["kindness","mercy","good deed","virtue","compassion","benevolence"],c:8},
+{w:"civil rights",d:"hard",m:"rights of citizens to political and social freedom",s:["liberties","freedoms","entitlements","privileges","human rights"],a:["oppression","enslavement","subjugation","restriction","denial"],c:8},
+{w:"coerce",d:"hard",m:"to persuade using force or threats",s:["force","compel","intimidate","pressure","threaten","bully"],a:["persuade","encourage","request","ask","invite","allow freely"],c:8},
+{w:"culpable",d:"hard",m:"deserving blame; guilty",s:["blameworthy","guilty","responsible","at fault","liable","answerable"],a:["innocent","blameless","guiltless","exonerated","acquitted"],c:8},
+{w:"denounce",d:"hard",m:"to publicly declare to be wrong or evil",s:["condemn","criticize","censure","accuse","castigate","rebuke"],a:["praise","defend","support","advocate","applaud","commend"],c:8},
+{w:"deprivation",d:"hard",m:"the harmful lack of material benefits",s:["poverty","hardship","want","need","absence","deficiency"],a:["abundance","privilege","luxury","sufficiency","prosperity"],c:8},
+{w:"disposition",d:"hard",m:"a person's inherent qualities of mind and character",s:["temperament","character","nature","personality","tendency"],a:["opposite character","contradiction","inconsistency"],c:8},
+{w:"egregious",d:"hard",m:"outstandingly bad; shocking",s:["shocking","appalling","outrageous","scandalous","glaring","flagrant"],a:["minor","trivial","acceptable","admirable","insignificant"],c:8},
+{w:"eloquent",d:"hard",m:"fluent or persuasive in speaking or writing",s:["articulate","expressive","persuasive","fluent","silver-tongued"],a:["inarticulate","stumbling","tongue-tied","unclear","muddled"],c:8},
+{w:"eminent",d:"hard",m:"famous and respected within a particular field",s:["distinguished","renowned","prominent","notable","illustrious"],a:["obscure","unknown","insignificant","unimportant","mediocre"],c:8},
+{w:"flagrant",d:"hard",m:"conspicuously or obviously offensive",s:["blatant","glaring","obvious","open","shameless","undisguised"],a:["subtle","hidden","concealed","covert","minor","slight"],c:8},
+{w:"forbid",d:"hard",m:"to refuse to allow; to prohibit",s:["prohibit","ban","bar","disallow","prevent","proscribe"],a:["allow","permit","authorize","enable","encourage","approve"],c:8},
+{w:"incarcerate",d:"hard",m:"to imprison; to confine",s:["imprison","jail","confine","detain","lock up","intern"],a:["free","release","liberate","pardon","acquit","discharge"],c:8},
+{w:"jurisdiction",d:"hard",m:"the official power to make legal decisions",s:["authority","power","control","rule","sovereignty","domain"],a:["powerlessness","lack of authority","impotence","subordination"],c:8},
+{w:"liberty",d:"hard",m:"the state of being free within society",s:["freedom","independence","autonomy","rights","emancipation"],a:["captivity","imprisonment","restriction","bondage","subjugation"],c:8},
+{w:"litigant",d:"hard",m:"a person involved in a lawsuit",s:["plaintiff","defendant","claimant","party to a lawsuit","petitioner"],a:["non-participant","bystander","observer","uninvolved party"],c:8},
+{w:"manifesto",d:"hard",m:"a public declaration of policy and aims",s:["declaration","statement","proclamation","announcement","policy"],a:["secrecy","silence","concealment","private agenda"],c:8},
+{w:"nullify",d:"hard",m:"to make legally null and void; to cancel",s:["cancel","void","annul","invalidate","revoke","repeal"],a:["validate","uphold","enforce","confirm","maintain","ratify"],c:8},
+{w:"oppressor",d:"hard",m:"a person who oppresses others",s:["tyrant","dictator","persecutor","despot","autocrat","bully"],a:["liberator","protector","emancipator","champion","defender"],c:8},
+{w:"perjury",d:"hard",m:"the offense of lying while under oath",s:["lying under oath","false testimony","deception","dishonesty"],a:["truthfulness","honesty","accurate testimony","integrity"],c:8},
+{w:"persecute",d:"hard",m:"to subject someone to hostility or ill-treatment",s:["oppress","harass","victimize","torment","abuse","mistreat"],a:["protect","defend","support","help","shelter","nurture"],c:8},
+{w:"ratify",d:"hard",m:"to make officially valid by signing or consenting",s:["approve","confirm","validate","sanction","endorse","authorize"],a:["reject","veto","repudiate","invalidate","nullify","disapprove"],c:8},
+{w:"recourse",d:"hard",m:"a source of help in a difficult situation",s:["resort","option","remedy","means","help","alternative"],a:["helplessness","lack of option","dead end","no way out"],c:8},
+{w:"redress",d:"hard",m:"remedy or compensation for wrong or grievance",s:["remedy","compensation","reparation","restitution","justice","amends"],a:["injustice","wrong","grievance","harm","injury","damage"],c:8},
+{w:"sovereign",d:"hard",m:"possessing supreme power; self-governing",s:["independent","supreme","autonomous","self-governing","ruling"],a:["subjugated","dependent","controlled","subordinate","occupied"],c:8},
+{w:"tribunal",d:"hard",m:"a body established to settle certain types of disputes",s:["court","panel","hearing","board","council","commission"],a:["lawlessness","anarchy","disorder","mob rule"],c:8},
+{w:"vindicate",d:"hard",m:"to clear from blame or suspicion",s:["exonerate","absolve","clear","acquit","justify","defend"],a:["blame","accuse","convict","incriminate","condemn","censure"],c:8}
+);
+const DO={hard:0,medium:1,easy:2};
+const extra2=[
+{w:"abhor",d:"hard",m:"to regard with disgust and hatred",s:["detest","loathe","despise","hate","execrate"],a:["love","adore","cherish","admire","like"],c:1},
+{w:"admonish",d:"hard",m:"to warn or reprimand firmly",s:["warn","reprimand","rebuke","caution","reprove"],a:["praise","commend","approve","encourage","applaud"],c:1},
+{w:"alleviate",d:"hard",m:"to make something bad less severe",s:["relieve","ease","lessen","reduce","mitigate"],a:["worsen","aggravate","intensify","increase","exacerbate"],c:1},
+{w:"animosity",d:"hard",m:"strong hostility or ill feeling",s:["hostility","hatred","enmity","antagonism","bitterness"],a:["friendship","goodwill","amity","love","harmony"],c:1},
+{w:"appease",d:"hard",m:"to pacify by agreeing to demands",s:["pacify","placate","conciliate","mollify","soothe"],a:["aggravate","provoke","antagonize","anger","inflame"],c:1},
+{w:"arbitrary",d:"hard",m:"based on random choice rather than any reason",s:["random","capricious","whimsical","haphazard","erratic"],a:["reasoned","rational","systematic","logical","planned"],c:1},
+{w:"astute",d:"hard",m:"having ability to accurately assess situations",s:["shrewd","sharp","clever","perceptive","discerning","canny"],a:["naive","gullible","foolish","unperceptive","obtuse"],c:2},
+{w:"avaricious",d:"hard",m:"having extreme greed for wealth",s:["greedy","covetous","rapacious","grasping","miserly"],a:["generous","charitable","unselfish","content","giving"],c:2},
+{w:"banal",d:"hard",m:"lacking originality; so obvious as to be boring",s:["trite","hackneyed","clichéd","commonplace","stale"],a:["original","fresh","innovative","interesting","unique"],c:2},
+{w:"belligerent",d:"hard",m:"hostile and aggressive",s:["aggressive","hostile","combative","quarrelsome","pugnacious"],a:["peaceful","friendly","passive","cooperative","harmonious"],c:2},
+{w:"brazen",d:"hard",m:"bold and without shame",s:["shameless","bold","audacious","impudent","insolent"],a:["ashamed","modest","timid","shy","restrained"],c:2},
+{w:"callous",d:"hard",m:"showing insensitive disregard for others",s:["heartless","unfeeling","cruel","cold","insensitive"],a:["compassionate","caring","sensitive","kind","warm"],c:3},
+{w:"censure",d:"hard",m:"to express severe disapproval of",s:["condemn","criticize","reprimand","rebuke","castigate"],a:["praise","commend","approve","applaud","endorse"],c:3},
+{w:"covetous",d:"hard",m:"having strong desire for things belonging to others",s:["envious","greedy","acquisitive","jealous","avaricious"],a:["content","generous","giving","satisfied","unselfish"],c:3},
+{w:"credulous",d:"hard",m:"too willing to believe things; gullible",s:["naive","gullible","trusting","unsuspecting","innocent"],a:["skeptical","suspicious","discerning","cynical","cautious"],c:3},
+{w:"crestfallen",d:"hard",m:"sad and deeply disappointed",s:["dejected","downcast","disheartened","dispirited","disappointed"],a:["elated","joyful","overjoyed","triumphant","thrilled"],c:3},
+{w:"cursory",d:"hard",m:"hasty and therefore not thorough",s:["superficial","hasty","brief","quick","perfunctory"],a:["thorough","detailed","careful","painstaking","exhaustive"],c:3},
+{w:"dauntless",d:"hard",m:"showing fearlessness and determination",s:["fearless","intrepid","brave","bold","undaunted"],a:["fearful","cowardly","timid","daunted","hesitant"],c:4},
+{w:"debilitate",d:"hard",m:"to make someone weak or exhausted",s:["weaken","exhaust","enervate","drain","impair"],a:["strengthen","energize","invigorate","fortify","revitalize"],c:4},
+{w:"decorum",d:"hard",m:"behavior in keeping with good taste and propriety",s:["propriety","dignity","etiquette","conduct","respectability"],a:["indecorum","impropriety","rudeness","vulgarity","indignity"],c:4},
+{w:"defiant",d:"hard",m:"showing bold resistance to authority",s:["rebellious","resistant","insubordinate","bold","challenging"],a:["obedient","compliant","submissive","cooperative","yielding"],c:4},
+{w:"denigrate",d:"hard",m:"to criticize unfairly; to disparage",s:["disparage","belittle","criticize","malign","slander"],a:["praise","honor","commend","celebrate","applaud"],c:5},
+{w:"desolation",d:"hard",m:"a state of complete emptiness or destruction",s:["devastation","ruin","bleakness","emptiness","barrenness"],a:["prosperity","liveliness","abundance","vitality","flourishing"],c:5},
+{w:"devious",d:"hard",m:"showing underhanded tactics; cunning",s:["cunning","crafty","scheming","calculating","sly"],a:["honest","straightforward","open","transparent","candid"],c:5},
+{w:"disparate",d:"hard",m:"essentially different in kind; not allowing comparison",s:["different","distinct","unequal","dissimilar","unlike"],a:["similar","same","identical","comparable","equivalent"],c:6},
+{w:"dogma",d:"hard",m:"a principle laid down by an authority as incontrovertibly true",s:["doctrine","belief","tenet","creed","ideology"],a:["doubt","questioning","skepticism","open-mindedness","flexibility"],c:7},
+{w:"dormant",d:"hard",m:"temporarily inactive but capable of becoming active",s:["sleeping","inactive","latent","quiescent","hibernating"],a:["active","awake","alive","operating","thriving"],c:7},
+{w:"effusive",d:"hard",m:"expressing feelings in an unrestrained way",s:["gushing","demonstrative","enthusiastic","lavish","overflowing"],a:["restrained","reserved","understated","cool","controlled"],c:7},
+{w:"embellish",d:"hard",m:"to make more attractive by adding decorative details",s:["adorn","decorate","ornament","enhance","beautify"],a:["simplify","strip","minimize","reduce","plain down"],c:7},
+{w:"empirical",d:"hard",m:"based on observation or experience rather than theory",s:["observed","experimental","practical","evidence-based","factual"],a:["theoretical","speculative","hypothetical","abstract","untested"],c:8},
+{w:"encroach",d:"hard",m:"to intrude on territory gradually or stealthily",s:["intrude","invade","trespass","violate","overstep"],a:["respect","withdraw","retreat","leave alone","stay away"],c:8},
+{w:"endorse",d:"hard",m:"to declare one's public approval of",s:["support","back","approve","advocate","champion","sanction"],a:["oppose","reject","disapprove","condemn","denounce"],c:8},
+{w:"ephemeral",d:"hard",m:"lasting for a very short time",s:["transient","fleeting","momentary","short-lived","temporary"],a:["permanent","lasting","enduring","eternal","perpetual"],c:1},
+{w:"equanimity",d:"hard",m:"mental calmness in difficult situations",s:["composure","calmness","serenity","tranquility","poise"],a:["anxiety","agitation","distress","panic","worry"],c:1},
+{w:"evasive",d:"hard",m:"avoiding commitment or direct statement",s:["elusive","indirect","vague","deceptive","noncommittal"],a:["direct","straightforward","frank","candid","honest"],c:2},
+{w:"exacerbate",d:"hard",m:"to make something worse or more severe",s:["worsen","aggravate","intensify","inflame","compound"],a:["improve","alleviate","soothe","ease","reduce"],c:2},
+{w:"exonerate",d:"hard",m:"to officially absolve from blame or criminal charge",s:["absolve","acquit","clear","vindicate","free"],a:["blame","convict","condemn","incriminate","accuse"],c:2},
+{w:"expedient",d:"hard",m:"convenient and practical though possibly improper",s:["convenient","advantageous","practical","useful","opportunistic"],a:["disadvantageous","inconvenient","impractical","principled"],c:3},
+{w:"extol",d:"hard",m:"to praise enthusiastically",s:["praise","glorify","laud","acclaim","celebrate","commend"],a:["condemn","criticize","disparage","denounce","belittle"],c:3},
+{w:"exuberant",d:"hard",m:"filled with lively energy and excitement",s:["enthusiastic","vivacious","ebullient","lively","spirited"],a:["subdued","gloomy","depressed","lethargic","dull"],c:3},
+{w:"fallacious",d:"hard",m:"based on a mistaken belief; misleading",s:["erroneous","false","wrong","incorrect","mistaken"],a:["correct","accurate","true","valid","sound"],c:4},
+{w:"fastidious",d:"hard",m:"very attentive to accuracy and detail; hard to please",s:["fussy","meticulous","exacting","particular","picky"],a:["careless","negligent","sloppy","easygoing","indifferent"],c:4},
+{w:"fervent",d:"hard",m:"having or displaying passionate intensity",s:["passionate","ardent","intense","zealous","earnest"],a:["apathetic","cold","indifferent","unenthusiastic","lukewarm"],c:4},
+{w:"ferocious",d:"hard",m:"savagely fierce, cruel, or violent",s:["fierce","savage","brutal","violent","vicious","ruthless"],a:["gentle","tame","mild","peaceful","harmless","docile"],c:5},
+{w:"floundering",d:"hard",m:"struggling or having great difficulty",s:["struggling","faltering","stumbling","failing","confused"],a:["succeeding","thriving","managing","excelling","flourishing"],c:5},
+{w:"formidable",d:"hard",m:"inspiring fear or respect through size or ability",s:["daunting","imposing","fearsome","intimidating","awesome"],a:["weak","unimpressive","harmless","insignificant","feeble"],c:6},
+{w:"frugal",d:"hard",m:"sparing or economical; unwilling to waste",s:["thrifty","economical","sparing","careful","parsimonious"],a:["wasteful","extravagant","lavish","spendthrift","squandering"],c:6},
+{w:"futile",d:"hard",m:"incapable of producing any useful result; pointless",s:["useless","pointless","vain","hopeless","worthless"],a:["effective","useful","successful","worthwhile","productive"],c:6},
+{w:"garrulous",d:"hard",m:"excessively talkative",s:["talkative","loquacious","verbose","chatty","rambling"],a:["taciturn","reticent","silent","quiet","reserved"],c:7},
+{w:"gratuitous",d:"hard",m:"uncalled for; lacking good reason",s:["unnecessary","unwarranted","uncalled-for","unprovoked"],a:["justified","warranted","necessary","appropriate","reasonable"],c:7},
+{w:"hamper",d:"hard",m:"to hinder the movement or progress of",s:["hinder","obstruct","impede","inhibit","restrict","block"],a:["help","assist","facilitate","advance","promote","encourage"],c:8},
+{w:"haughty",d:"hard",m:"arrogantly superior and disdainful",s:["arrogant","proud","disdainful","supercilious","condescending"],a:["humble","modest","respectful","meek","approachable"],c:8},
+{w:"hyperbole",d:"hard",m:"exaggerated statements not meant to be literal",s:["exaggeration","overstatement","embellishment","amplification"],a:["understatement","minimization","accuracy","truth","litotes"],c:1},
+{w:"imperious",d:"hard",m:"arrogant and domineering",s:["overbearing","domineering","dictatorial","haughty","commanding"],a:["humble","submissive","meek","gentle","deferential"],c:1},
+{w:"implicit",d:"hard",m:"suggested though not directly expressed",s:["implied","indirect","understood","unspoken","unstated"],a:["explicit","direct","stated","clear","expressed","obvious"],c:2},
+{w:"inadvertent",d:"hard",m:"not resulting from deliberate intention",s:["accidental","unintentional","unplanned","careless","involuntary"],a:["deliberate","intentional","planned","purposeful","calculated"],c:3},
+{w:"indignant",d:"hard",m:"feeling anger at unfair treatment",s:["angry","outraged","resentful","furious","wrathful","irate"],a:["pleased","content","accepting","calm","satisfied"],c:3},
+{w:"ingenuity",d:"hard",m:"the quality of being clever and original",s:["creativity","cleverness","inventiveness","originality","resourcefulness"],a:["stupidity","unoriginality","dullness","incompetence","ineptitude"],c:4},
+{w:"insolence",d:"hard",m:"rude and disrespectful behavior",s:["rudeness","impudence","disrespect","impertinence","audacity"],a:["respect","deference","politeness","humility","courtesy"],c:4},
+{w:"integrity",d:"hard",m:"the quality of being honest and morally principled",s:["honesty","morality","virtue","righteousness","honor","uprightness"],a:["corruption","dishonesty","immorality","deceit","wickedness"],c:4},
+{w:"intransigent",d:"hard",m:"refusing to change one's views; uncompromising",s:["stubborn","obstinate","uncompromising","inflexible","unyielding"],a:["flexible","compromising","accommodating","open-minded"],c:5},
+{w:"irrevocable",d:"hard",m:"not able to be changed, reversed, or recovered",s:["permanent","irreversible","final","unchangeable","unalterable"],a:["reversible","changeable","flexible","adjustable","temporary"],c:6},
+{w:"languid",d:"hard",m:"having disinclination for physical exertion",s:["listless","lethargic","sluggish","lazy","enervated","idle"],a:["energetic","vigorous","lively","active","alert","dynamic"],c:6},
+{w:"leniency",d:"hard",m:"mildness and mercy in the exercise of authority",s:["mercy","clemency","mildness","compassion","tolerance"],a:["harshness","severity","strictness","cruelty","rigidity"],c:7},
+{w:"lofty",d:"hard",m:"impressively high or great; noble",s:["elevated","towering","high","grand","noble","majestic"],a:["lowly","modest","humble","insignificant","minor"],c:7},
+{w:"malevolence",d:"hard",m:"the state of wishing evil to others",s:["spite","hatred","hostility","wickedness","cruelty","venom"],a:["goodwill","kindness","benevolence","love","charity"],c:8},
+{w:"mendacious",d:"hard",m:"not telling the truth; lying",s:["dishonest","untruthful","false","deceitful","lying"],a:["honest","truthful","sincere","candid","genuine"],c:8},
+{w:"mercurial",d:"hard",m:"subject to sudden unpredictable changes of mood",s:["volatile","unpredictable","erratic","changeable","fickle"],a:["stable","consistent","predictable","steady","dependable"],c:8},
+{w:"oblivious",d:"hard",m:"not aware of what is happening around one",s:["unaware","ignorant","unconscious","blind","inattentive"],a:["aware","conscious","attentive","alert","observant","mindful"],c:1},
+{w:"ominous",d:"hard",m:"giving the impression that something bad is about to happen",s:["threatening","foreboding","menacing","sinister","alarming"],a:["reassuring","promising","favorable","hopeful","auspicious"],c:1},
+{w:"opulent",d:"hard",m:"ostentatiously rich and luxurious",s:["lavish","luxurious","sumptuous","wealthy","affluent"],a:["poor","sparse","modest","plain","austere","frugal"],c:2},
+{w:"ostentatious",d:"hard",m:"showing off one's wealth or success",s:["showy","flashy","flamboyant","pretentious","gaudy","pompous"],a:["modest","simple","understated","plain","unassuming"],c:2},
+{w:"pacify",d:"hard",m:"to bring peace to; to calm someone down",s:["calm","appease","soothe","placate","mollify","quiet"],a:["agitate","provoke","anger","inflame","antagonize"],c:3},
+{w:"paradox",d:"hard",m:"a statement that seems contradictory but may be true",s:["contradiction","anomaly","inconsistency","dilemma","puzzle"],a:["consistency","agreement","harmony","logic","straightforwardness"],c:3},
+{w:"parsimonious",d:"hard",m:"unwilling to spend money; extremely frugal",s:["miserly","stingy","mean","tight-fisted","penny-pinching"],a:["generous","lavish","extravagant","liberal","munificent"],c:4},
+{w:"pedantic",d:"hard",m:"overly concerned with minor details or rules",s:["fussy","nitpicking","precise","finicky","dogmatic"],a:["broad-minded","flexible","relaxed","easygoing","casual"],c:4},
+{w:"pertinent",d:"hard",m:"relevant or applicable to a particular matter",s:["relevant","applicable","appropriate","fitting","germane"],a:["irrelevant","inapplicable","unrelated","unsuitable","inappropriate"],c:5},
+{w:"philanthropic",d:"hard",m:"seeking to promote the welfare of others",s:["charitable","humanitarian","altruistic","generous","benevolent"],a:["selfish","greedy","miserly","exploitative","self-centered"],c:5},
+{w:"placate",d:"hard",m:"to make someone less angry; to appease",s:["appease","calm","pacify","mollify","soothe","conciliate"],a:["anger","provoke","antagonize","upset","aggravate"],c:6},
+{w:"plausible",d:"hard",m:"seeming reasonable or probable",s:["reasonable","believable","credible","likely","probable"],a:["implausible","unreasonable","unlikely","improbable","unbelievable"],c:6},
+{w:"pompous",d:"hard",m:"affectedly self-important; grand",s:["arrogant","self-important","pretentious","vain","conceited"],a:["modest","humble","simple","unpretentious","down-to-earth"],c:7},
+{w:"precarious",d:"hard",m:"not securely held or in position; uncertain",s:["unstable","uncertain","risky","insecure","dangerous","shaky"],a:["stable","secure","safe","certain","steady","firm"],c:7},
+{w:"prejudicial",d:"hard",m:"harmful to someone or something; detrimental",s:["detrimental","harmful","damaging","injurious","unfavorable"],a:["beneficial","helpful","favorable","advantageous","positive"],c:8},
+{w:"presumptuous",d:"hard",m:"failing to observe proper limits; arrogant",s:["arrogant","overconfident","bold","audacious","impertinent"],a:["humble","modest","respectful","deferential","meek"],c:8},
+{w:"procrastinate",d:"hard",m:"to delay or postpone action",s:["delay","postpone","defer","dally","stall","dawdle"],a:["act","proceed","hasten","advance","be prompt","tackle"],c:1},
+{w:"profligate",d:"hard",m:"recklessly extravagant or wasteful",s:["wasteful","extravagant","squandering","dissolute","reckless"],a:["thrifty","frugal","economical","responsible","restrained"],c:1},
+{w:"querulous",d:"hard",m:"complaining in a petulant or whining manner",s:["complaining","whining","peevish","fretful","grumbling","petulant"],a:["content","satisfied","uncomplaining","cheerful","stoic"],c:2},
+{w:"rancorous",d:"hard",m:"characterized by bitterness or resentment",s:["bitter","resentful","hostile","malicious","spiteful"],a:["friendly","forgiving","kind","generous","amicable"],c:2},
+{w:"recalcitrant",d:"hard",m:"having an obstinately uncooperative attitude",s:["defiant","uncooperative","stubborn","disobedient","rebellious"],a:["cooperative","obedient","compliant","willing","amenable"],c:3},
+{w:"rectify",d:"hard",m:"to put something right; to correct",s:["correct","fix","remedy","amend","adjust","repair"],a:["worsen","damage","corrupt","aggravate","ignore"],c:3},
+{w:"relentless",d:"hard",m:"unceasingly intense; refusing to be deterred",s:["unstoppable","persistent","unrelenting","tireless","determined"],a:["yielding","lenient","flexible","stopping","merciful"],c:4},
+{w:"remorseful",d:"hard",m:"filled with guilt and regret",s:["regretful","guilty","contrite","penitent","sorry","ashamed"],a:["unremorseful","shameless","proud","callous","indifferent"],c:4},
+{w:"repudiate",d:"hard",m:"to refuse to accept or be associated with",s:["reject","deny","disown","disclaim","renounce","oppose"],a:["accept","acknowledge","embrace","support","endorse","approve"],c:5},
+{w:"revile",d:"hard",m:"to criticize in an abusive or angrily insulting manner",s:["abuse","berate","denounce","criticize","condemn","vilify"],a:["praise","commend","laud","applaud","honor","celebrate"],c:5},
+{w:"ruthless",d:"hard",m:"having or showing no pity or compassion for others",s:["merciless","heartless","cruel","pitiless","savage","brutal"],a:["merciful","compassionate","kind","humane","gentle","forgiving"],c:6},
+{w:"sanctimonious",d:"hard",m:"making a show of being morally superior",s:["self-righteous","preachy","pompous","holier-than-thou","smug"],a:["humble","modest","genuine","sincere","authentic"],c:6},
+{w:"scrupulous",d:"hard",m:"diligent, thorough and extreme careful regarding ethics",s:["meticulous","conscientious","thorough","honest","principled"],a:["careless","dishonest","unscrupulous","negligent","corrupt"],c:7},
+{w:"serenity",d:"hard",m:"the state of being calm and peaceful",s:["calmness","peace","tranquility","composure","stillness"],a:["turmoil","agitation","anxiety","chaos","distress","unrest"],c:7},
+{w:"skeptical",d:"hard",m:"not easily convinced; having doubts",s:["doubtful","uncertain","questioning","suspicious","dubious"],a:["credulous","trusting","naive","believing","gullible","certain"],c:8},
+{w:"spurious",d:"hard",m:"not being what it purports to be; false or fake",s:["false","fake","counterfeit","fraudulent","sham","bogus"],a:["genuine","authentic","real","true","legitimate","valid"],c:8},
+{w:"stigmatize",d:"hard",m:"to describe or regard as worthy of disgrace",s:["brand","shame","condemn","label","denounce","mark"],a:["honor","celebrate","rehabilitate","accept","embrace","esteem"],c:8},
+{w:"stoic",d:"hard",m:"enduring pain or hardship without complaint",s:["uncomplaining","patient","long-suffering","impassive","unflappable"],a:["complaining","emotional","sensitive","whining","melodramatic"],c:1},
+{w:"tenacity",d:"hard",m:"the quality of continuing firmly despite difficulty",s:["persistence","determination","stubbornness","grit","perseverance"],a:["weakness","surrender","irresolution","capitulation","giving up"],c:1},
+{w:"treacherous",d:"hard",m:"guilty of betrayal; dangerous in a concealed way",s:["disloyal","traitorous","deceitful","dangerous","hazardous"],a:["loyal","faithful","trustworthy","reliable","safe","dependable"],c:2},
+{w:"ubiquitous",d:"hard",m:"present everywhere at the same time",s:["omnipresent","pervasive","universal","everywhere","prevalent"],a:["rare","scarce","absent","limited","confined","localized"],c:2},
+{w:"vacillate",d:"hard",m:"to waver between different opinions; to be indecisive",s:["waver","hesitate","dither","fluctuate","falter","oscillate"],a:["decide","commit","resolve","stand firm","be steadfast"],c:3},
+{w:"vehement",d:"hard",m:"showing strong feeling; forceful or passionate",s:["passionate","fervent","intense","fierce","ardent","forceful"],a:["mild","apathetic","indifferent","lukewarm","subdued"],c:3},
+{w:"venomous",d:"hard",m:"full of malice; deadly",s:["poisonous","toxic","malicious","spiteful","virulent","lethal"],a:["harmless","benign","friendly","kind","innocuous","safe"],c:4},
+{w:"veracious",d:"hard",m:"speaking or representing the truth; truthful",s:["truthful","honest","accurate","candid","sincere","frank"],a:["dishonest","lying","false","deceptive","untruthful"],c:4},
+{w:"verbose",d:"hard",m:"using more words than needed; long-winded",s:["wordy","long-winded","prolix","garrulous","rambling","talkative"],a:["concise","brief","succinct","terse","laconic","pithy"],c:5},
+{w:"virulent",d:"hard",m:"extremely severe or harmful in its effects",s:["deadly","lethal","toxic","vicious","fierce","destructive"],a:["harmless","mild","benign","safe","gentle","innocuous"],c:5},
+{w:"wanton",d:"hard",m:"deliberate and unprovoked; reckless",s:["deliberate","willful","reckless","senseless","malicious"],a:["provoked","justified","reasonable","careful","considerate"],c:6},
+{w:"zealot",d:"hard",m:"a person who is fanatical about a cause",s:["fanatic","extremist","enthusiast","devotee","crusader"],a:["moderate","skeptic","pragmatist","indifferent","passive"],c:6},
+{w:"zeal",d:"hard",m:"great energy or enthusiasm in pursuit of a cause",s:["enthusiasm","passion","fervor","ardor","eagerness","devotion"],a:["apathy","indifference","disinterest","lethargy","laziness"],c:7},
+{w:"zenith",d:"hard",m:"the highest point reached by something",s:["peak","summit","pinnacle","apex","top","acme","crown"],a:["nadir","bottom","lowest point","base","trough","depth"],c:7}
+];
+extra2.forEach(e=>W.push(e));
+W.sort((a,b)=>DO[a.d]-DO[b.d]);
+
+let ad='all',ac='all';
+
+function render(list){
+  const g=document.getElementById('grid');
+  g.innerHTML='';
+  if(!list.length){
+    g.innerHTML='<div class="nr"><h3>No Words Found</h3><p>Try a different search or filter.</p></div>';
+    document.getElementById('vc').textContent='0';
+    return;
+  }
+  list.forEach(it=>{
+    const el=document.createElement('div');
+    el.className='card';
+    const dl=it.d==='hard'?'🔴 Hard':it.d==='medium'?'🟡 Medium':'🟢 Easy';
+    el.innerHTML=`
+      <div class="ch">
+        <div class="wd">${it.w}</div>
+        <div class="dt d${it.d[0]}">${dl}</div>
+      </div>
+      <div class="mn">${it.m}</div>
+      <div class="sar">
+        <div class="sb"><div class="bl">↑ Synonyms</div><div class="wl">${it.s.map(x=>`<span class="wc sc">${x}</span>`).join('')}</div></div>
+        <div class="ab"><div class="bl">↓ Antonyms</div><div class="wl">${it.a.map(x=>`<span class="wc ac">${x}</span>`).join('')}</div></div>
+      </div>
+      <div class="ct">Source: <span>${CN[it.c]}</span></div>`;
+    g.appendChild(el);
+  });
+  document.getElementById('vc').textContent=list.length;
+  document.getElementById('tot').textContent=W.length;
+}
+
+function go(){
+  const q=document.getElementById('sq').value.toLowerCase().trim();
+  const f=W.filter(it=>{
+    const md=ad==='all'||it.d===ad;
+    const mc=ac==='all'||String(it.c)===ac;
+    const mq=!q||it.w.toLowerCase().includes(q)||it.m.toLowerCase().includes(q)||it.s.some(x=>x.toLowerCase().includes(q))||it.a.some(x=>x.toLowerCase().includes(q));
+    return md&&mc&&mq;
+  });
+  render(f);
+}
+
+document.querySelectorAll('.fb').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.fb').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active'); ad=b.dataset.d; go();
+}));
+document.querySelectorAll('.cp').forEach(p=>p.addEventListener('click',()=>{
+  document.querySelectorAll('.cp').forEach(x=>x.classList.remove('active'));
+  p.classList.add('active'); ac=p.dataset.c; go();
+}));
+document.getElementById('sq').addEventListener('input',go);
+window.addEventListener('scroll',()=>document.getElementById('st').classList.toggle('vis',scrollY>400));
+render(W);
+</script>
+</body>
+</html>
