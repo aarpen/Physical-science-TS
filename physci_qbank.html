@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PhySci X — Question Bank</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #090c10;
+    --surface: #0f1318;
+    --surface2: #161b23;
+    --border: #1e2530;
+    --border2: #252d3a;
+    --text: #e8ecf0;
+    --muted: #6b7585;
+    --dim: #3a4455;
+    --accent: #4af0b0;
+    --accent2: #0ef;
+    --accent3: #f0a04a;
+    --mark2: #4a9eff;
+    --mark4: #a970ff;
+    --mark6: #ff6b6b;
+    --mark2bg: rgba(74,158,255,0.08);
+    --mark4bg: rgba(169,112,255,0.08);
+    --mark6bg: rgba(255,107,107,0.08);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── NOISE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* ── GLOW BG ── */
+  .bg-glow {
+    position: fixed;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(74,240,176,0.04) 0%, transparent 70%);
+    top: -200px; left: -200px;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .bg-glow2 {
+    position: fixed;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,238,255,0.03) 0%, transparent 70%);
+    bottom: -150px; right: -150px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ── HEADER ── */
+  header {
+    position: relative;
+    z-index: 10;
+    padding: 48px 40px 36px;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(180deg, rgba(9,12,16,0.98) 0%, rgba(9,12,16,0.85) 100%);
+    backdrop-filter: blur(12px);
+  }
+
+  .header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .header-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .header-tag::before {
+    content: '';
+    width: 28px; height: 1px;
+    background: var(--accent);
+    display: inline-block;
+  }
+
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: #fff;
+  }
+
+  h1 span {
+    background: linear-gradient(120deg, var(--accent) 0%, var(--accent2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .header-sub {
+    margin-top: 12px;
+    color: var(--muted);
+    font-size: 14px;
+    font-weight: 300;
+  }
+
+  .stats-row {
+    display: flex;
+    gap: 32px;
+    margin-top: 28px;
+    flex-wrap: wrap;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .stat-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .stat-num.c2 { color: var(--mark2); }
+  .stat-num.c4 { color: var(--mark4); }
+  .stat-num.c6 { color: var(--mark6); }
+
+  /* ── LAYOUT ── */
+  .layout {
+    position: relative;
+    z-index: 5;
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    max-width: 1100px;
+    margin: 0 auto;
+    min-height: calc(100vh - 200px);
+  }
+
+  /* ── SIDEBAR ── */
+  .sidebar {
+    border-right: 1px solid var(--border);
+    padding: 24px 0;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+  }
+
+  .sidebar::-webkit-scrollbar { width: 4px; }
+  .sidebar::-webkit-scrollbar-track { background: transparent; }
+  .sidebar::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+
+  .sidebar-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--dim);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0 20px 12px;
+  }
+
+  .chapter-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: none;
+    border: none;
+    padding: 11px 20px;
+    cursor: pointer;
+    color: var(--muted);
+    font-family: 'Inter', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    transition: all 0.15s ease;
+    position: relative;
+    border-left: 2px solid transparent;
+  }
+
+  .chapter-btn:hover {
+    color: var(--text);
+    background: rgba(255,255,255,0.03);
+  }
+
+  .chapter-btn.active {
+    color: var(--accent);
+    border-left-color: var(--accent);
+    background: rgba(74,240,176,0.05);
+    font-weight: 500;
+  }
+
+  .chapter-btn .ch-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--dim);
+    margin-right: 8px;
+  }
+
+  .chapter-btn.active .ch-num { color: var(--accent); opacity: 0.7; }
+
+  .chapter-btn .ch-count {
+    float: right;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--dim);
+    background: var(--surface2);
+    padding: 1px 6px;
+    border-radius: 3px;
+    margin-top: 1px;
+  }
+
+  .chapter-btn.active .ch-count {
+    background: rgba(74,240,176,0.1);
+    color: var(--accent);
+  }
+
+  /* ── MAIN ── */
+  .main {
+    padding: 32px 40px;
+    min-width: 0;
+  }
+
+  .chapter-view { display: none; }
+  .chapter-view.active { display: block; }
+
+  .chapter-header {
+    margin-bottom: 32px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .chapter-num-badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .chapter-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+  }
+
+  .chapter-meta {
+    display: flex;
+    gap: 16px;
+    margin-top: 14px;
+    flex-wrap: wrap;
+  }
+
+  .meta-pill {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .meta-pill.m2 { background: var(--mark2bg); color: var(--mark2); border: 1px solid rgba(74,158,255,0.15); }
+  .meta-pill.m4 { background: var(--mark4bg); color: var(--mark4); border: 1px solid rgba(169,112,255,0.15); }
+  .meta-pill.m6 { background: var(--mark6bg); color: var(--mark6); border: 1px solid rgba(255,107,107,0.15); }
+
+  /* ── MARK SECTION ── */
+  .mark-section { margin-bottom: 36px; }
+
+  .mark-section-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+
+  .mark-label {
+    font-family: 'Syne', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .mark-label.m2 { color: var(--mark2); }
+  .mark-label.m4 { color: var(--mark4); }
+  .mark-label.m6 { color: var(--mark6); }
+
+  .mark-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .mark-line.m2 { background: linear-gradient(90deg, rgba(74,158,255,0.3), transparent); }
+  .mark-line.m4 { background: linear-gradient(90deg, rgba(169,112,255,0.3), transparent); }
+  .mark-line.m6 { background: linear-gradient(90deg, rgba(255,107,107,0.3), transparent); }
+
+  /* ── QUESTION CARD ── */
+  .q-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin-bottom: 10px;
+    transition: border-color 0.2s, background 0.2s;
+    position: relative;
+  }
+
+  .q-card:hover {
+    border-color: var(--border2);
+    background: var(--surface2);
+  }
+
+  .q-card.m2:hover { border-color: rgba(74,158,255,0.2); }
+  .q-card.m4:hover { border-color: rgba(169,112,255,0.2); }
+  .q-card.m6:hover { border-color: rgba(255,107,107,0.2); }
+
+  .q-card .q-accent {
+    position: absolute;
+    left: 0; top: 12px; bottom: 12px;
+    width: 3px;
+    border-radius: 0 2px 2px 0;
+  }
+
+  .q-card.m2 .q-accent { background: var(--mark2); }
+  .q-card.m4 .q-accent { background: var(--mark4); }
+  .q-card.m6 .q-accent { background: var(--mark6); }
+
+  .q-text {
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.65;
+    padding-left: 4px;
+  }
+
+  .q-badges {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 3px;
+    letter-spacing: 0.05em;
+  }
+
+  .badge-diagram {
+    background: rgba(240,160,74,0.1);
+    color: var(--accent3);
+    border: 1px solid rgba(240,160,74,0.2);
+  }
+
+  .badge-src {
+    background: var(--surface2);
+    color: var(--dim);
+    border: 1px solid var(--border);
+  }
+
+  /* ── FILTER BAR ── */
+  .filter-bar {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .filter-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    color: var(--dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-right: 4px;
+  }
+
+  .filter-btn {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    padding: 5px 12px;
+    border-radius: 4px;
+    border: 1px solid var(--border2);
+    background: none;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .filter-btn:hover { color: var(--text); border-color: var(--border2); background: var(--surface2); }
+  .filter-btn.active-all { color: #fff; border-color: var(--dim); background: var(--surface2); }
+  .filter-btn.active-2 { color: var(--mark2); border-color: rgba(74,158,255,0.4); background: var(--mark2bg); }
+  .filter-btn.active-4 { color: var(--mark4); border-color: rgba(169,112,255,0.4); background: var(--mark4bg); }
+  .filter-btn.active-6 { color: var(--mark6); border-color: rgba(255,107,107,0.4); background: var(--mark6bg); }
+
+  /* scrollbar for main */
+  .main::-webkit-scrollbar { width: 4px; }
+
+  @media (max-width: 768px) {
+    .layout { grid-template-columns: 1fr; }
+    .sidebar { position: static; height: auto; border-right: none; border-bottom: 1px solid var(--border); overflow-x: auto; white-space: nowrap; display: flex; padding: 12px 0; }
+    .sidebar-label { display: none; }
+    .chapter-btn { display: inline-block; width: auto; border-left: none; border-bottom: 2px solid transparent; }
+    .chapter-btn.active { border-bottom-color: var(--accent); border-left: none; }
+    header { padding: 28px 20px 24px; }
+    .main { padding: 24px 20px; }
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeSlideIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .chapter-view.active {
+    animation: fadeSlideIn 0.25s ease forwards;
+  }
+
+  .q-card {
+    animation: fadeSlideIn 0.2s ease both;
+  }
+
+  .q-card:nth-child(1) { animation-delay: 0.03s; }
+  .q-card:nth-child(2) { animation-delay: 0.06s; }
+  .q-card:nth-child(3) { animation-delay: 0.09s; }
+  .q-card:nth-child(4) { animation-delay: 0.12s; }
+  .q-card:nth-child(5) { animation-delay: 0.15s; }
+
+  .empty-state {
+    color: var(--dim);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    padding: 20px 0;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<div class="bg-glow"></div>
+<div class="bg-glow2"></div>
+
+<header>
+  <div class="header-inner">
+    <div class="header-tag">SSC Pre-Final 2025–26 · Telangana</div>
+    <h1>Physical Science<br><span>Question Bank</span></h1>
+    <p class="header-sub">Class X · All districts · 2M, 4M & 6M questions classified by chapter</p>
+    <div class="stats-row">
+      <div class="stat"><span class="stat-num" id="total-q">—</span><span class="stat-label">Total Questions</span></div>
+      <div class="stat"><span class="stat-num c2" id="total-2">—</span><span class="stat-label">2 Markers</span></div>
+      <div class="stat"><span class="stat-num c4" id="total-4">—</span><span class="stat-label">4 Markers</span></div>
+      <div class="stat"><span class="stat-num c6" id="total-6">—</span><span class="stat-label">6 Markers</span></div>
+    </div>
+  </div>
+</header>
+
+<div class="layout">
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-label">Chapters</div>
+    <!-- injected by JS -->
+  </nav>
+
+  <main class="main" id="main">
+    <!-- injected by JS -->
+  </main>
+</div>
+
+<script>
+// ─────────────────────────────────────────────
+// DATA
+// ─────────────────────────────────────────────
+const chapters = [
+  {
+    id: 1,
+    title: "Reflection of Light at Curved Surfaces",
+    short: "Reflection — Curved Surfaces",
+    q2: [
+      { text: "Write the uses of lenses.", diagram: false, src: "Jagtial RJ-84" },
+      { text: "Does focal length of a spherical mirror change when it is completely immersed in water? Predict and write the reason.", diagram: false, src: "Medak SK-84" },
+      { text: "If the spherical mirrors were not known to human beings, guess the consequences?", diagram: false, src: "V-12" },
+      { text: "Write any two uses of convex mirrors in day to day life.", diagram: false, src: "Wanaparthy W09" },
+      { text: "Write any two uses of convex mirrors in day to day life.", diagram: false, src: "Narayanpet NP-9" },
+      { text: "Write any two uses of a convex mirror.", diagram: false, src: "Y-12 EA" },
+      { text: "Write the differences between Convex Mirrors and Concave Mirrors.", diagram: false, src: "K-9" },
+      { text: "List out the required material for observing the types of images and measuring the object and image distance from spherical mirror.", diagram: false, src: "Peddapally PR-84 & duplicate" },
+      { text: "List out the material required to find the object distance and image distance by a convex lens when the object is placed at distinct positions of the lens.", diagram: false, src: "MP-12" },
+    ],
+    q4: [
+      { text: "An object placed at 30 cm distance on the principal axis in front of a converging mirror of radius of curvature 40 cm. Find image distance.", diagram: false, src: "Warangal" },
+      { text: "Magnification of the image formed by a lens is −1.25. i) Mention the position of the object on the principal axis. ii) What is the height of the image if object size is 2 cm? iii) Mention the characteristics of the image. iv) What kind of lens is used to get this image?", diagram: false, src: "Medak SK-84" },
+      { text: "Write any four daily life uses of spherical mirrors.", diagram: false, src: "W09 / G09 / Warangal (×3)" },
+      { text: "Write any four daily life uses of spherical mirrors.", diagram: false, src: "Wanaparthy W09 duplicate" },
+      { text: "Write any four daily life uses of spherical mirrors.", diagram: false, src: "Jogulamba G09" },
+      { text: "Explain the uses of spherical mirrors in daily life.", diagram: false, src: "Mahabubnagar M09 (×2)" },
+      { text: "Explain the uses of spherical mirrors in daily life.", diagram: false, src: "Mahabubnagar M09 duplicate" },
+      { text: "Draw the magnetic field of solenoid and discuss the field lines formed. [NOTE: solenoid is in Electromagnetism; some papers placed it under mirror section — classify as Ch.10]", diagram: true, src: "C-9 duplicate" },
+      { text: "The focal length of a convex mirror is 20 cm. An object is placed 10 cm from the mirror. Draw a ray diagram for the given situation and write the characteristics of the image formed.", diagram: true, src: "MP-12" },
+      { text: "A biconcave lens of refractive index n = 1.5 is placed in air. The radii of curvature are R₁ = 30 cm and R₂ = 60 cm. Find the focal length of the lens.", diagram: false, src: "RP-12" },
+      { text: "Find the focal length of double convex lens kept in air with two spherical surfaces of radius 20 cm and 40 cm respectively and refractive index of lens is 1.5.", diagram: false, src: "Peddapally PR-84 (×2)" },
+      { text: "Find the focal length of double convex lens kept in air with two spherical surfaces of radius 20 cm and 40 cm respectively and refractive index of lens is 1.5.", diagram: false, src: "Peddapally PR-84 duplicate" },
+      { text: "An object is kept at a distance of 30 cm in front of a convex lens of focal length 20 cm. Find the image distance and draw a ray diagram.", diagram: true, src: "Karimnagar RM-84 (×2)" },
+      { text: "An object is kept at a distance of 30 cm in front of a convex lens of focal length 20 cm. Find the image distance and draw a ray diagram.", diagram: true, src: "Karimnagar RM-84 duplicate" },
+      { text: "Draw ray diagrams for the formation of images with a convex lens for: i) Object placed between pole and focus ii) Object placed between focus and centre of curvature (F₁ and C₁).", diagram: true, src: "Narayanpet NP-9" },
+      { text: "From the given electric circuit, find the current passing through the 10 Ω resistor.", diagram: true, src: "MP-12" },
+    ],
+    q6: [
+      { text: "Write the required materials and experimental procedure for the experiment to show that the ratio V/I is a constant for a conductor.", diagram: false, src: "Jagtial RJ-84" },
+      { text: "Draw the diagrams showing Hypermetropia and its correction.", diagram: true, src: "Jagtial RJ-84" },
+      { text: "Draw the ray diagrams for the concave mirror whose radius of curvature is 20 cm and object is placed in front of it: i) at 15 cm ii) at 5 cm. Write the characteristics of image formed in both cases.", diagram: true, src: "DP-14 (×2)" },
+      { text: "Draw the ray diagrams for the concave mirror whose radius of curvature is 20 cm and object is placed in front of it: i) at 15 cm ii) at 5 cm. Write the characteristics of image formed in both cases.", diagram: true, src: "DP-14 duplicate" },
+      { text: "Write the material required, procedure and precaution to find focal length of a convex lens experimentally.", diagram: false, src: "DP-14 (×2)" },
+      { text: "Write the material required, procedure and precaution to find focal length of a convex lens experimentally.", diagram: false, src: "DP-14 duplicate" },
+      { text: "List out the material required and explain the experimental procedure to observe the focal length of a lens — observe the types of images and measuring object and image distance from the lens.", diagram: false, src: "C-9 (×2)" },
+      { text: "List out the material required and explain the experimental procedure to observe the focal length of a lens — observe the types of images and measuring object and image distance from the lens.", diagram: false, src: "C-9 duplicate" },
+      { text: "Explain the experimental procedure to observe that the focal length of a lens depends on the surrounding medium.", diagram: false, src: "R-9 (×2)" },
+      { text: "Explain the experimental procedure to observe that the focal length of a lens depends on the surrounding medium.", diagram: false, src: "R-9 duplicate" },
+      { text: "a) Theoretically explain why the focal length of a convex lens changes when it is moved from air into water. b) Draw a comparative ray diagram showing a parallel beam of light passing through a convex lens in air versus the same lens submerged in water.", diagram: true, src: "19E (×3)" },
+      { text: "a) Theoretically explain why the focal length of a convex lens changes when it is moved from air into water. b) Draw a comparative ray diagram showing a parallel beam of light passing through a convex lens in air versus the same lens submerged in water.", diagram: true, src: "19E duplicate" },
+      { text: "a) Theoretically explain why the focal length of a convex lens changes when it is moved from air into water. b) Draw a comparative ray diagram showing a parallel beam of light passing through a convex lens in air versus the same lens submerged in water.", diagram: true, src: "19E duplicate 2" },
+      { text: "Draw a neat labelled diagram of an electric motor. [Note: Some papers include this under mirror section — belongs to Ch.10]", diagram: true, src: "N-12" },
+      { text: "Draw a ray diagram to form the image when the object is placed between 'F' and 'C' on the principal axis of a convex lens. Write the characteristics of the image formed.", diagram: true, src: "V-12" },
+      { text: "Write a lab activity to observe the different images and their properties formed by a concave mirror.", diagram: false, src: "Karimnagar RM-84 (×2)" },
+      { text: "Write a lab activity to observe the different images and their properties formed by a concave mirror.", diagram: false, src: "Karimnagar RM-84 duplicate" },
+      { text: "Ramu can see nearby objects but not objects at long distances. Draw the diagrams showing this eye defect and correction of the defect.", diagram: true, src: "PR-84 (×2)" },
+    ],
+  },
+  {
+    id: 2,
+    title: "Chemical Equations",
+    short: "Chemical Equations",
+    q2: [
+      { text: "What would happen if chemical equations are not balanced?", diagram: false, src: "RP-12" },
+      { text: "What would happen if chemical equations are not balanced?", diagram: false, src: "Narayanpet NP-9" },
+    ],
+    q4: [],
+    q6: [
+      { text: "Balance the following chemical equations: i) CH₄ + O₂ → CO₂ + H₂O  ii) ZnS + O₂ → ZnO + SO₂  iii) Na + H₂O → NaOH + H₂", diagram: false, src: "Y-12 EA" },
+      { text: "Write the balanced chemical equations of the following chemical reactions: a) Sodium hydroxide with zinc metal  b) Dil. hydrochloric acid with sodium hydrogen carbonate  c) Solid sodium chloride with conc. sulphuric acid.", diagram: false, src: "Peddapally PR-84 (×2)" },
+      { text: "Write the balanced chemical equations of the following chemical reactions: a) Sodium hydroxide with zinc metal  b) Dil. hydrochloric acid with sodium hydrogen carbonate  c) Solid sodium chloride with conc. sulphuric acid.", diagram: false, src: "Peddapally PR-84 duplicate" },
+      { text: "Calculate the mass and volume of hydrogen liberated when 460 g of sodium reacts with excess of water at STP. Na + H₂O → NaOH + H₂ (Atomic masses: Na=23, O=16, H=1)", diagram: false, src: "C-9 (×2)" },
+      { text: "Calculate the mass and volume of hydrogen liberated when 460 g of sodium reacts with excess of water at STP. Na + H₂O → NaOH + H₂ (Atomic masses: Na=23, O=16, H=1)", diagram: false, src: "C-9 duplicate" },
+    ],
+  },
+  {
+    id: 3,
+    title: "Acids, Bases and Salts",
+    short: "Acids, Bases & Salts",
+    q2: [
+      { text: "Write materials required for the experiment to observe the reaction of acids with carbonates and metal hydrogen carbonates.", diagram: false, src: "Jagtial RJ-84" },
+      { text: "Fresh milk has a pH of 6.6. Explain why the pH changes as it turns into curd.", diagram: false, src: "19E (×3)" },
+      { text: "Fresh milk has a pH of 6.6. Explain why the pH changes as it turns into curd.", diagram: false, src: "19E duplicate" },
+      { text: "Fresh milk has a pH of 6.6. Explain why the pH changes as it turns into curd.", diagram: false, src: "19E duplicate 2" },
+      { text: "What does the experiment with glucose solution, alcohol and dilute hydrochloric acid tell us about acids?", diagram: false, src: "C-9 (×2)" },
+      { text: "What does the experiment with glucose solution, alcohol and dilute hydrochloric acid tell us about acids?", diagram: false, src: "C-9 duplicate" },
+      { text: "Mention the use of antacid and its nature.", diagram: false, src: "Mahabubnagar M09 (×2)" },
+      { text: "Mention the use of antacid and its nature.", diagram: false, src: "Mahabubnagar M09 duplicate" },
+      { text: "We add acid to water while diluting an acid, but not water to acid. Why?", diagram: false, src: "DP-14 (×2)" },
+      { text: "We add acid to water while diluting an acid, but not water to acid. Why?", diagram: false, src: "DP-14 duplicate" },
+      { text: "List out required materials to conduct the activity of sodium carbonates and sodium hydrogen carbonates producing CO₂ and water when reacted with acids.", diagram: false, src: "W09/G09 (×5)" },
+      { text: "List out required materials to conduct the activity of sodium carbonates and sodium hydrogen carbonates producing CO₂ and water when reacted with acids.", diagram: false, src: "W09/G09 duplicate 1" },
+      { text: "List out required materials to conduct the activity of sodium carbonates and sodium hydrogen carbonates producing CO₂ and water when reacted with acids.", diagram: false, src: "W09/G09 duplicate 2" },
+      { text: "List out required materials to conduct the activity of sodium carbonates and sodium hydrogen carbonates producing CO₂ and water when reacted with acids.", diagram: false, src: "W09/G09 duplicate 3" },
+      { text: "List out required materials to conduct the activity of sodium carbonates and sodium hydrogen carbonates producing CO₂ and water when reacted with acids.", diagram: false, src: "W09/G09 duplicate 4" },
+      { text: "Distilled water does not conduct electricity. Why?", diagram: false, src: "V-12" },
+      { text: "List out the materials for the experiment 'Acid solution in water conducts electricity'.", diagram: false, src: "J-9" },
+      { text: "List the materials required for the experiment 'Do compounds containing Hydrogen act as acids'.", diagram: false, src: "RP-12" },
+    ],
+    q4: [
+      { text: "Observe the pH table (NaOH pH=14, HCl pH=2, CH₃COOH pH=3.5–4.5, NH₄OH pH=9–10) and answer: a) Which two substances will form a neutral salt? b) Name the weak acid. c) Identify the salt when CH₃COOH reacts with NaOH and write its formula. d) Which two substances form an acidic salt?", diagram: false, src: "G-13" },
+      { text: "Observe the pH table (NaOH, HCl, CH₃COOH, NH₄OH) and answer: a) Which two form a neutral salt? b) Name the weak acid. c) Identify the salt from CH₃COOH + NaOH and write its formula. d) Which two form an acidic salt?", diagram: false, src: "G-13 duplicate" },
+      { text: "Give four practical applications of neutralization reaction.", diagram: false, src: "Medak SK-84" },
+      { text: "Observe the pH table (NaOH=12, Milk of Magnesia=10.5, HCl=0.5, Gastric juice=2, Distilled water=7) and answer: i) Which is used to neutralise acidity in stomach? ii) Which is the strong acid? iii) Which give pink colour with phenolphthalein? iv) Nature of distilled water?", diagram: false, src: "Narayanpet NP-9" },
+      { text: "Write any four uses of Washing Soda.", diagram: false, src: "Y-12 EA" },
+      { text: "Write two uses of ethanol in day to day life. [Cross-ref: Carbon Ch.12]", diagram: false, src: "J-9" },
+      { text: "Write the uses of wash soda and plaster of paris in daily life.", diagram: false, src: "Karimnagar RM-84 (×2)" },
+      { text: "Write the uses of wash soda and plaster of paris in daily life.", diagram: false, src: "Karimnagar RM-84 duplicate" },
+      { text: "Give two important uses each of washing soda and baking soda.", diagram: false, src: "J-9" },
+      { text: "Write the two daily life applications of both hand picking and thermite processes.", diagram: false, src: "Peddapally PR-84 (×2)" },
+      { text: "Write the two daily life applications of both hand picking and thermite processes.", diagram: false, src: "Peddapally PR-84 duplicate" },
+      { text: "Write uses of bleaching powder.", diagram: false, src: "Warangal" },
+    ],
+    q6: [
+      { text: "List the materials required to verify the reaction of acids with metal carbonates. Write the experimental procedure mentioning precautions.", diagram: false, src: "MP-12" },
+      { text: "Explain the cleansing action of soap to remove dirt from clothes.", diagram: false, src: "Jagtial RJ-84" },
+      { text: "Explain the cleansing action of soap.", diagram: false, src: "N-12" },
+    ],
+  },
+  {
+    id: 4,
+    title: "Refraction of Light at Curved Surfaces",
+    short: "Refraction — Curved Surfaces",
+    q2: [
+      { text: "Write the list of materials required to find the refractive index of a glass prism.", diagram: false, src: "Medak SK-84" },
+      { text: "Write the list of materials required to find the refractive index of a glass prism.", diagram: false, src: "Narayanpet NP-9" },
+      { text: "Write the material required to find the Refractive index of a glass prism.", diagram: false, src: "R-9 (×2)" },
+      { text: "Write the material required to find the Refractive index of a glass prism.", diagram: false, src: "R-9 duplicate" },
+    ],
+    q4: [
+      { text: "Explain the procedure of experiment to produce artificial rainbow in your classroom.", diagram: false, src: "W09/G09 (×5)" },
+      { text: "Explain the procedure of experiment to produce artificial rainbow in your classroom.", diagram: false, src: "W09/G09 duplicate 1" },
+      { text: "Explain the procedure of experiment to produce artificial rainbow in your classroom.", diagram: false, src: "W09/G09 duplicate 2" },
+      { text: "Explain the procedure of experiment to produce artificial rainbow in your classroom.", diagram: false, src: "W09/G09 duplicate 3" },
+      { text: "Explain the procedure of experiment to produce artificial rainbow in your classroom.", diagram: false, src: "W09/G09 duplicate 4" },
+    ],
+    q6: [
+      { text: "Write an experimental procedure to find the angle of deviation when a light ray passes through a glass prism.", diagram: false, src: "N-12" },
+    ],
+  },
+  {
+    id: 5,
+    title: "Human Eye and Colourful World",
+    short: "Human Eye & Colourful World",
+    q2: [
+      { text: "What happens if the ciliary muscles do not perform contraction and expansion?", diagram: false, src: "J-9" },
+      { text: "Imagine what happens if the eye lens is unable to adjust its focal length.", diagram: false, src: "N-12" },
+      { text: "What is presbyopia? Indicate the eradication of the defect.", diagram: false, src: "M09 (×2)" },
+      { text: "What is presbyopia? Indicate the eradication of the defect.", diagram: false, src: "M09 duplicate" },
+      { text: "What happens if the eye lens of a person cannot accommodate its focal length more than 2.5 cm?", diagram: false, src: "S-12" },
+    ],
+    q4: [
+      { text: "What is Myopia? How do we correct it? Draw the diagram.", diagram: true, src: "C-9 (×2)" },
+      { text: "What is Myopia? How do we correct it? Draw the diagram.", diagram: true, src: "C-9 duplicate" },
+      { text: "a) Explain why sunlight must travel through a thicker layer of atmosphere during sunrise and sunset compared to other times of the day. b) Using principles of wavelength and scattering, explain why the sun appears red or orange at the horizon rather than blue.", diagram: false, src: "19E (×3)" },
+      { text: "a) Explain why sunlight must travel through a thicker layer of atmosphere during sunrise and sunset compared to other times of the day. b) Using principles of wavelength and scattering, explain why the sun appears red or orange at the horizon rather than blue.", diagram: false, src: "19E duplicate" },
+      { text: "a) Explain why sunlight must travel through a thicker layer of atmosphere during sunrise and sunset compared to other times of the day. b) Using principles of wavelength and scattering, explain why the sun appears red or orange at the horizon rather than blue.", diagram: false, src: "19E duplicate 2" },
+      { text: "During the sunset and sunrise, sun appears red. Why?", diagram: false, src: "V-12" },
+      { text: "Write two applications each for dispersion and scattering of light.", diagram: false, src: "DP-14 (×2)" },
+      { text: "Write two applications each for dispersion and scattering of light.", diagram: false, src: "DP-14 duplicate" },
+      { text: "Show the dispersion of sunlight by a prism with a diagram.", diagram: true, src: "Y-12 EA" },
+      { text: "Write any two uses of each convex mirror and concave mirror.", diagram: false, src: "G-13" },
+    ],
+    q6: [
+      { text: "A person cannot see far objects and can see near objects clearly. Draw ray diagram to show the defect of vision and its correction.", diagram: true, src: "Warangal" },
+      { text: "A person cannot see objects at distances but can see nearby objects. Show the defect of vision and correction with the help of diagrams.", diagram: true, src: "J-9" },
+      { text: "Ramu is using a lens with power +2D for proper vision. Explain the defect of vision he is suffering from and how to correct it.", diagram: true, src: "K-9" },
+    ],
+  },
+  {
+    id: 6,
+    title: "Structure of Atom",
+    short: "Structure of Atom",
+    q2: [
+      { text: "Out of 3d and 4s orbitals, which is filled first? Why?", diagram: false, src: "Karimnagar RM-84 (×2)" },
+      { text: "Out of 3d and 4s orbitals, which is filled first? Why?", diagram: false, src: "Karimnagar RM-84 duplicate" },
+    ],
+    q4: [
+      { text: "Explain Aufbau principle with an example.", diagram: false, src: "Jagtial RJ-84" },
+      { text: "Information on s, p, d and f orbitals: i) In which principal energy level do f orbitals first appear? ii) Which quantum number determines the shape of an atomic orbital? iii) What is the specific shape associated with a p orbital? iv) How many electrons can a single d orbital hold?", diagram: false, src: "19E (×3)" },
+      { text: "Information on s, p, d and f orbitals: i) In which principal energy level do f orbitals first appear? ii) Which quantum number determines the shape of an atomic orbital? iii) What is the specific shape associated with a p orbital? iv) How many electrons can a single d orbital hold?", diagram: false, src: "19E duplicate" },
+      { text: "Information on s, p, d and f orbitals: i) In which principal energy level do f orbitals first appear? ii) Which quantum number determines the shape of an atomic orbital? iii) What is the specific shape associated with a p orbital? iv) How many electrons can a single d orbital hold?", diagram: false, src: "19E duplicate 2" },
+      { text: "If Hund's rule is not obeyed, write the electronic configuration of Carbon and Nitrogen.", diagram: false, src: "M09 (×2)" },
+      { text: "If Hund's rule is not obeyed, write the electronic configuration of Carbon and Nitrogen.", diagram: false, src: "M09 duplicate" },
+      { text: "Four quantum numbers for the differentiating electron of an element are given. Answer: i) Write the electron configuration of the element. ii) Write the name of the element. iii) Which orbital does it belong to? iv) Which shell does it belong to?", diagram: false, src: "J-9" },
+      { text: "Explain Pauli's exclusion principle with an example.", diagram: false, src: "Narayanpet NP-9" },
+      { text: "Read the subshell table (4s, 4p, 4d, 4f with mₗ values and total orbitals) and answer: i) Which orbital has more energy? ii) Max electrons in 4d? iii) Principal quantum number? iv) Max electrons in the main shell?", diagram: false, src: "MP-12" },
+      { text: "Write the important postulates of Bohr's model of hydrogen atom and its limitations.", diagram: false, src: "DP-14 (×2)" },
+      { text: "Write the important postulates of Bohr's model of hydrogen atom and its limitations.", diagram: false, src: "DP-14 duplicate" },
+    ],
+    q6: [
+      { text: "Write the postulates of Bohr's model of hydrogen atom and its limitations.", diagram: false, src: "R-9 (×2)" },
+      { text: "Write the postulates of Bohr's model of hydrogen atom and its limitations.", diagram: false, src: "R-9 duplicate" },
+      { text: "Draw and label the shapes of s and P orbitals.", diagram: true, src: "K-9" },
+      { text: "Explain the significance of three quantum numbers in predicting the positions of an electron in an atom.", diagram: false, src: "Y-12 EA" },
+      { text: "Explain sp³ hybridisation with an example.", diagram: false, src: "Karimnagar RM-84 (×2)" },
+      { text: "Explain sp³ hybridisation with an example.", diagram: false, src: "Karimnagar RM-84 duplicate" },
+    ],
+  },
+  {
+    id: 7,
+    title: "Classification of Elements — The Periodic Table",
+    short: "Periodic Table",
+    q2: [
+      { text: "An element has atomic number 19. Where would you expect this element to be in the periodic table and why?", diagram: false, src: "19E (×3)" },
+      { text: "An element has atomic number 19. Where would you expect this element to be in the periodic table and why?", diagram: false, src: "19E duplicate" },
+      { text: "An element has atomic number 19. Where would you expect this element to be in the periodic table and why?", diagram: false, src: "19E duplicate 2" },
+      { text: "Observe the element table (Be, O, P, K, Ne, Cr with atomic numbers). a) Which are 'S' block elements? b) Which are P-block elements?", diagram: false, src: "M09 (×2)" },
+      { text: "Observe the element table (Be, O, P, K, Ne, Cr with atomic numbers). a) Which are 'S' block elements? b) Which are P-block elements?", diagram: false, src: "M09 duplicate" },
+    ],
+    q4: [
+      { text: "Observe the electronic configuration table (Li: 1s²2s¹; second element: 1s²2s²2p⁶3s¹; third: 1s²2s²2p⁶3s²3p⁶; fourth: 1s²2s²2p⁵). A) Which are 1st group elements? B) What is the valency of 17th group element? C) Which are P-block elements? D) Which belongs to 3rd period?", diagram: false, src: "Jagtial RJ-84" },
+      { text: "Observe the element table (Na, Mg, Al, Si, P, S, Cl with atomic numbers 11–17) and answer: i) Which has highest atomic number? ii) From right to left, how does metallic character change? iii) Which period do these elements belong to? iv) Mention the metals.", diagram: false, src: "V-12" },
+      { text: "Electronic configuration table (B, C, D elements). i) Which element belongs to 18th group? ii) Write the valency of element B. iii) Which element belongs to IIA group? iv) Write the position of element D in the periodic table.", diagram: false, src: "N-12" },
+      { text: "Observe the electronic configuration table (Sodium 11, Magnesium, Potassium, Calcium). i) Write the valency of sodium. ii) Which element has more electropositivity? iii) Write elements belonging to the fourth period. iv) Write elements belonging to Second group.", diagram: false, src: "Warangal" },
+      { text: "Explain the influence of any three factors on ionization energy of elements.", diagram: false, src: "Narayanpet NP-9" },
+    ],
+    q6: [
+      { text: "Explain how the periodic properties of elements — ionization energy and atomic radius — change in groups and periods in the modern periodic table.", diagram: false, src: "Medak SK-84" },
+      { text: "Explain the variation of atomic radius, ionization energy, electropositivity, electronegativity and metallic character along periods and groups.", diagram: false, src: "G-13" },
+      { text: "Explain the change in metallic nature and electron affinity in period and group.", diagram: false, src: "S-12" },
+      { text: "What are the factors that affect the ionisation energy of an element? Explain in detail.", diagram: false, src: "C-9 (×2)" },
+      { text: "What are the factors that affect the ionisation energy of an element? Explain in detail.", diagram: false, src: "C-9 duplicate" },
+    ],
+  },
+  {
+    id: 8,
+    title: "Chemical Bonding",
+    short: "Chemical Bonding",
+    q2: [
+      { text: "Draw the crystal structure of sodium chloride.", diagram: true, src: "C-9 (×2)" },
+      { text: "Draw the crystal structure of sodium chloride.", diagram: true, src: "C-9 duplicate" },
+      { text: "Show the formation of the BF₃ molecule with a diagram.", diagram: true, src: "Y-12 EA" },
+    ],
+    q4: [
+      { text: "Observe the hybridisation table (BeCl₂, BF₃, H₂O, NH₃, C₂H₂ with hybridization types). a) Identify the hybridisation in boron trifluoride. b) What is the shape of water molecule? c) Mention the bond angle in BeCl₂. d) SP² hybridisation takes place in which carbon compound?", diagram: false, src: "Peddapally PR-84 (×2)" },
+      { text: "Observe the hybridisation table and answer: a) Hybridisation in BF₃. b) Shape of water molecule. c) Bond angle in BeCl₂. d) SP² hybridisation carbon compound.", diagram: false, src: "Peddapally PR-84 duplicate" },
+      { text: "With the help of Valence Bond Theory (VBT), draw the shape of boron trifluoride (BF₃) molecule.", diagram: true, src: "G-13" },
+      { text: "Explain about Covalent bond with an example.", diagram: false, src: "K-9" },
+      { text: "Explain the formation of the O₂ molecule on the basis of Valence Bond Theory.", diagram: false, src: "RP-12" },
+    ],
+    q6: [
+      { text: "Explain the formation of Ionic bond with suitable example.", diagram: false, src: "J-9" },
+      { text: "Explain about Ionic bond and give example by the molecular NaCl and Na₂O.", diagram: false, src: "M09 (×2)" },
+      { text: "Explain about Ionic bond and give example by the molecular NaCl and Na₂O.", diagram: false, src: "M09 duplicate" },
+      { text: "a) Draw a diagram of the N₂ molecule (Lewis structure or orbital overlap). Label the sigma bond, pi bonds, and lone pairs. b) Explain how unhybridized p orbitals contribute to the triple bond and state the resulting molecular geometry.", diagram: true, src: "19E (×3)" },
+      { text: "a) Draw a diagram of the N₂ molecule (Lewis structure or orbital overlap). Label the sigma bond, pi bonds, and lone pairs. b) Explain how unhybridized p orbitals contribute to the triple bond and state the resulting molecular geometry.", diagram: true, src: "19E duplicate" },
+      { text: "a) Draw a diagram of the N₂ molecule (Lewis structure or orbital overlap). Label the sigma bond, pi bonds, and lone pairs. b) Explain how unhybridized p orbitals contribute to the triple bond and state the resulting molecular geometry.", diagram: true, src: "19E duplicate 2" },
+      { text: "Explain the formation of N₂ molecule with valence bond theory concept.", diagram: false, src: "W09/G09/Warangal (×5)" },
+      { text: "Explain the formation of N₂ molecule with valence bond theory concept.", diagram: false, src: "W09/G09 duplicate 1" },
+      { text: "Explain the formation of N₂ molecule with valence bond theory concept.", diagram: false, src: "W09/G09 duplicate 2" },
+      { text: "Explain the formation of N₂ molecule with valence bond theory concept.", diagram: false, src: "W09/G09 duplicate 3" },
+      { text: "Explain the formation of N₂ molecule with valence bond theory concept.", diagram: false, src: "W09/G09 duplicate 4" },
+      { text: "Explain the formation of O₂ molecule by using Valence Bond Theory.", diagram: false, src: "V-12" },
+      { text: "Explain the formation of oxygen molecule according to valence bond theory.", diagram: false, src: "Karimnagar RM-84 (×2)" },
+      { text: "Explain the formation of oxygen molecule according to valence bond theory.", diagram: false, src: "Karimnagar RM-84 duplicate" },
+      { text: "Explain the formation of a beryllium chloride molecule using hybridization.", diagram: false, src: "MP-12" },
+    ],
+  },
+  {
+    id: 9,
+    title: "Electric Current",
+    short: "Electric Current",
+    q2: [
+      { text: "What would happen if a high melting point conductor is used as fuse in household electric circuits?", diagram: false, src: "Jagtial RJ-84" },
+      { text: "What is the effect on the intensity of each bulb when identical bulbs (same resistance) are connected one by one in a series circuit? Justify your answer.", diagram: false, src: "C-9 (×2)" },
+      { text: "What is the effect on the intensity of each bulb when identical bulbs (same resistance) are connected one by one in a series circuit? Justify your answer.", diagram: false, src: "C-9 duplicate" },
+      { text: "What happens if household electric appliances are connected in series?", diagram: false, src: "Warangal" },
+      { text: "Why do we consider tungsten as a suitable material for making the filament of a bulb?", diagram: false, src: "W09/G09 (×5)" },
+      { text: "Why do we consider tungsten as a suitable material for making the filament of a bulb?", diagram: false, src: "W09/G09 duplicate 1" },
+      { text: "Why do we consider tungsten as a suitable material for making the filament of a bulb?", diagram: false, src: "W09/G09 duplicate 2" },
+      { text: "Why do we consider tungsten as a suitable material for making the filament of a bulb?", diagram: false, src: "W09/G09 duplicate 3" },
+      { text: "Why do we consider tungsten as a suitable material for making the filament of a bulb?", diagram: false, src: "W09/G09 duplicate 4" },
+      { text: "Where are electric motors used in daily life?", diagram: false, src: "DP-14 (×2)" },
+      { text: "Where are electric motors used in daily life?", diagram: false, src: "DP-14 duplicate" },
+    ],
+    q4: [
+      { text: "A bulb is marked as 60 W and 120 V. Find its resistance. If the same bulb is connected to a 12 V battery, find the power consumption.", diagram: false, src: "N-12" },
+      { text: "Which law is used to find the value of I₂ in the given figure? Write the law and also find the value of I₂. [Diagram of junction with currents]", diagram: true, src: "Karimnagar RM-84 (×2)" },
+      { text: "Which law is used to find the value of I₂ in the given figure? Write the law and also find the value of I₂. [Diagram of junction with currents]", diagram: true, src: "Karimnagar RM-84 duplicate" },
+      { text: "Calculate the 'I' value in the following diagram. [Circuit with 4Ω and 7Ω resistors, V=20V]", diagram: true, src: "G-13" },
+    ],
+    q6: [
+      { text: "a) State Ohm's law and provide its mathematical expression, identifying the proportionality constant and its SI units. b) Identify the factors that determine the resistance of a conductor. c) Describe limitations or deviations of Ohm's law, citing examples of materials or devices where the law does not hold.", diagram: false, src: "19E (×3)" },
+      { text: "a) State Ohm's law and provide its mathematical expression, identifying the proportionality constant and its SI units. b) Identify the factors that determine the resistance of a conductor. c) Describe limitations or deviations of Ohm's law, citing examples of materials or devices where the law does not hold.", diagram: false, src: "19E duplicate" },
+      { text: "a) State Ohm's law and provide its mathematical expression, identifying the proportionality constant and its SI units. b) Identify the factors that determine the resistance of a conductor. c) Describe limitations or deviations of Ohm's law, citing examples of materials or devices where the law does not hold.", diagram: false, src: "19E duplicate 2" },
+      { text: "List the material required and explain the procedure for the experiment to verify Ohm's law.", diagram: false, src: "Narayanpet NP-9" },
+      { text: "Write the material required and experimental procedure for the experiment to verify Ohm's law.", diagram: false, src: "Y-12 EA" },
+      { text: "Write the required materials, procedure and observations in an activity to prove Ohm's law.", diagram: false, src: "V-12" },
+      { text: "Write the experimental procedure of activity to support: 'The potential difference between both ends of the conductor is directly proportional to the current passing through it at constant temperature'.", diagram: false, src: "Peddapally PR-84 (×2)" },
+      { text: "Write the experimental procedure of activity to support: 'The potential difference between both ends of the conductor is directly proportional to the current passing through it at constant temperature'.", diagram: false, src: "Peddapally PR-84 duplicate" },
+      { text: "State Ohm's law. To verify the law, write the materials required and procedure. Also explain its limitations.", diagram: false, src: "RP-12" },
+      { text: "Explain Kirchhoff's Laws. How could the sign convention be taken.", diagram: false, src: "DP-14 (×2)" },
+      { text: "Explain Kirchhoff's Laws. How could the sign convention be taken.", diagram: false, src: "DP-14 duplicate" },
+      { text: "Draw a circuit diagram for a circuit in which three resistors R₁, R₂ and R₃ are connected in parallel and the combination is connected to a battery, ammeter, voltmeter and key.", diagram: true, src: "Medak SK-84" },
+      { text: "Write the procedure and observations of the experiment to observe the relation between Resistance of an electric conductor and its length.", diagram: false, src: "K-9" },
+    ],
+  },
+  {
+    id: 10,
+    title: "Electromagnetism",
+    short: "Electromagnetism",
+    q2: [
+      { text: "Write the daily life applications of Faraday's Law of electromagnetic induction.", diagram: false, src: "Karimnagar RM-84 (×2)" },
+      { text: "Write the daily life applications of Faraday's Law of electromagnetic induction.", diagram: false, src: "Karimnagar RM-84 duplicate" },
+      { text: "What happens when a current carrying wire is kept in a magnetic field?", diagram: false, src: "W09/G09 (×5)" },
+      { text: "What happens when a current carrying wire is kept in a magnetic field?", diagram: false, src: "W09/G09 duplicate 1" },
+      { text: "What happens when a current carrying wire is kept in a magnetic field?", diagram: false, src: "W09/G09 duplicate 2" },
+      { text: "What happens when a current carrying wire is kept in a magnetic field?", diagram: false, src: "W09/G09 duplicate 3" },
+      { text: "What happens when a current carrying wire is kept in a magnetic field?", diagram: false, src: "W09/G09 duplicate 4" },
+      { text: "Predict what happens if both coil and bar magnet move in the same direction in electromagnetic induction process.", diagram: false, src: "Peddapally PR-84 (×2)" },
+      { text: "Predict what happens if both coil and bar magnet move in the same direction in electromagnetic induction process.", diagram: false, src: "Peddapally PR-84 duplicate" },
+      { text: "Give three applications of Faraday's law of induction in daily life.", diagram: false, src: "V-12" },
+    ],
+    q4: [
+      { text: "Write any four applications of Faraday's Electromagnetic Induction.", diagram: false, src: "Jagtial RJ-84" },
+      { text: "List out the applications of Faraday's law of electromagnetic induction.", diagram: false, src: "M09 (×2)" },
+      { text: "List out the applications of Faraday's law of electromagnetic induction.", diagram: false, src: "M09 duplicate" },
+      { text: "Explain Faraday's law of induction with two uses.", diagram: false, src: "J-9" },
+      { text: "Write the uses of Faraday's law.", diagram: false, src: "N-12" },
+      { text: "Write uses/applications of Electromagnetism in detail.", diagram: false, src: "19E (×3)" },
+      { text: "Write uses/applications of Electromagnetism in detail.", diagram: false, src: "19E duplicate" },
+      { text: "Write uses/applications of Electromagnetism in detail.", diagram: false, src: "19E duplicate 2" },
+      { text: "Draw the magnetic field of solenoid and discuss the field lines formed.", diagram: true, src: "C-9 (×2)" },
+      { text: "Draw the magnetic field of solenoid and discuss the field lines formed.", diagram: true, src: "C-9 duplicate" },
+    ],
+    q6: [
+      { text: "Write materials required and experimental procedure to observe the magnetic field around a current carrying conductor (Oersted experiment).", diagram: false, src: "Warangal" },
+      { text: "List out the material required to conduct Oersted experiment with precautions and explain the experimental procedure.", diagram: false, src: "Medak SK-84" },
+      { text: "Explain the working of an AC generator with the help of a neat labelled diagram.", diagram: true, src: "RP-12" },
+      { text: "Draw a neat diagram of the device that changes electrical energy into mechanical energy (Electric Motor).", diagram: true, src: "R-9 (×2)" },
+      { text: "Draw a neat diagram of the device that changes electrical energy into mechanical energy (Electric Motor).", diagram: true, src: "R-9 duplicate" },
+    ],
+  },
+  {
+    id: 11,
+    title: "Principles of Metallurgy",
+    short: "Principles of Metallurgy",
+    q2: [
+      { text: "Where do we use handpicking and washing methods in our daily life? Give examples. How do you correlate these examples with enrichment of ore?", diagram: false, src: "19E (×3)" },
+      { text: "Where do we use handpicking and washing methods in our daily life? Give examples. How do you correlate these examples with enrichment of ore?", diagram: false, src: "19E duplicate" },
+      { text: "Where do we use handpicking and washing methods in our daily life? Give examples. How do you correlate these examples with enrichment of ore?", diagram: false, src: "19E duplicate 2" },
+      { text: "What happen if there is no oxidation in Nature?", diagram: false, src: "Karimnagar RM-84 (×2)" },
+      { text: "What happen if there is no oxidation in Nature?", diagram: false, src: "Karimnagar RM-84 duplicate" },
+      { text: "Differentiate roasting and calcination of ores.", diagram: false, src: "DP-14 (×2)" },
+      { text: "Differentiate roasting and calcination of ores.", diagram: false, src: "DP-14 duplicate" },
+      { text: "Write the materials required for the experiment to find the refractive index of a prism. [Cross-ref: Ch.4]", diagram: false, src: "Medak SK-84 duplicate" },
+    ],
+    q4: [
+      { text: "Observe the tabular data (Magnesite MgCO₃, Magnetite Fe₂O₃, Cinnabar HgS, Epsom salt MgSO₄·7H₂O, Rock salt NaCl). i) Which metal is obtained from cinnabar? ii) Identify the oxide ore. iii) Write the ores of magnesium. iv) Which metal can be extracted from halide ore?", diagram: false, src: "R-9 (×2)" },
+      { text: "Observe the tabular data (Magnesite MgCO₃, Magnetite Fe₂O₃, Cinnabar HgS, Epsom salt MgSO₄·7H₂O, Rock salt NaCl). i) Which metal is obtained from cinnabar? ii) Identify the oxide ore. iii) Write the ores of magnesium. iv) Which metal can be extracted from halide ore?", diagram: false, src: "R-9 duplicate" },
+      { text: "How many grams of Oxygen (O₂) is required for the combustion of 480 grams of Mg? Find the mass of MgO formed. (Mg=24u, O=16u)", diagram: false, src: "Medak SK-84" },
+      { text: "Calculate the mass of the iron produced when 27 kg of Aluminium is used in the reaction: Al + Fe₂O₃ → Al₂O₃ + Fe. (Al=27u, Fe=56u, O=16u)", diagram: false, src: "K-9" },
+      { text: "What is the thermite reaction? Mention its applications in daily life situations.", diagram: false, src: "RP-12" },
+      { text: "What is thermite process? Mention its applications in daily life.", diagram: false, src: "V-12" },
+    ],
+    q6: [
+      { text: "Explain the experiment to prove that the presence of air and water are essential for corrosion.", diagram: false, src: "W09/G09 (×5)" },
+      { text: "Explain the experiment to prove that the presence of air and water are essential for corrosion.", diagram: false, src: "W09/G09 duplicate 1" },
+      { text: "Explain the experiment to prove that the presence of air and water are essential for corrosion.", diagram: false, src: "W09/G09 duplicate 2" },
+      { text: "Explain the experiment to prove that the presence of air and water are essential for corrosion.", diagram: false, src: "W09/G09 duplicate 3" },
+      { text: "Explain the experiment to prove that the presence of air and water are essential for corrosion.", diagram: false, src: "W09/G09 duplicate 4" },
+      { text: "List out the apparatus required for the experiment which shows corrosion of metals requires air and water. Explain the process of experiment.", diagram: false, src: "M09 (×2)" },
+      { text: "List out the apparatus required for the experiment which shows corrosion of metals requires air and water. Explain the process of experiment.", diagram: false, src: "M09 duplicate" },
+      { text: "List the materials required and explain the experimental procedure to prove that the presence of air and water are essential for corrosion.", diagram: false, src: "19E-related" },
+      { text: "Mention the methods of prevention of corrosion of iron in your daily life.", diagram: false, src: "Narayanpet NP-9" },
+      { text: "Draw the following diagrams and label them: i) Froth flotation process ii) Magnetic separation process.", diagram: true, src: "W09/G09 (×5)" },
+      { text: "Draw the following diagrams and label them: i) Froth flotation process ii) Magnetic separation process.", diagram: true, src: "W09/G09 duplicate 1" },
+      { text: "Draw the following diagrams and label them: i) Froth flotation process ii) Magnetic separation process.", diagram: true, src: "W09/G09 duplicate 2" },
+      { text: "Draw the following diagrams and label them: i) Froth flotation process ii) Magnetic separation process.", diagram: true, src: "W09/G09 duplicate 3" },
+      { text: "Draw the following diagrams and label them: i) Froth flotation process ii) Magnetic separation process.", diagram: true, src: "W09/G09 duplicate 4" },
+    ],
+  },
+  {
+    id: 12,
+    title: "Carbon and its Compounds",
+    short: "Carbon & its Compounds",
+    q2: [
+      { text: "Write any two uses of graphite.", diagram: false, src: "Peddapally PR-84 (×2)" },
+      { text: "Write any two uses of graphite.", diagram: false, src: "Peddapally PR-84 duplicate" },
+      { text: "Where do we use nanotubes in our day to day life?", diagram: false, src: "R-9 (×2)" },
+      { text: "Where do we use nanotubes in our day to day life?", diagram: false, src: "R-9 duplicate" },
+      { text: "Write the uses of Nano-tubes.", diagram: false, src: "N-12" },
+      { text: "Guess the consequences if the semiconductors were not known to human beings.", diagram: false, src: "R-9 (×2)" },
+      { text: "Guess the consequences if the semiconductors were not known to human beings.", diagram: false, src: "R-9 duplicate" },
+      { text: "Draw structures of Ethane and Propane.", diagram: true, src: "S-12" },
+      { text: "Write two uses of ethanol in day to day life.", diagram: false, src: "Medak SK-84" },
+      { text: "What are the materials required to observe the Esterification reaction?", diagram: false, src: "K-9" },
+      { text: "What happens if First and Second group metals are used to make Jewels?", diagram: false, src: "K-9" },
+    ],
+    q4: [
+      { text: "Observe the hydrocarbon table (Methane CH₄, Ethane C₂H₆, Propene C₃H₈, Butene C₄H₈, Pentyne C₅H₈, Hexyne C₆H₁₀). i) Write general formula of alkanes. ii) Write the hydrocarbons with unsaturated bonds. iii) Write homologous series of alkynes. iv) Write formula of Hexane.", diagram: false, src: "W09/G09 (×5)" },
+      { text: "Observe the hydrocarbon table (Methane, Ethane, Propene, Butene, Pentyne, Hexyne). i) Write general formula of alkanes. ii) Write the unsaturated hydrocarbons. iii) Write homologous series of alkynes. iv) Write formula of Hexane.", diagram: false, src: "W09/G09 duplicate 1" },
+      { text: "Observe the hydrocarbon table (Methane, Ethane, Propene, Butene, Pentyne, Hexyne). i) Write general formula of alkanes. ii) Write the unsaturated hydrocarbons. iii) Write homologous series of alkynes. iv) Write formula of Hexane.", diagram: false, src: "W09/G09 duplicate 2" },
+      { text: "Observe the hydrocarbon table (Methane, Ethane, Propene, Butene, Pentyne, Hexyne). i) Write general formula of alkanes. ii) Write the unsaturated hydrocarbons. iii) Write homologous series of alkynes. iv) Write formula of Hexane.", diagram: false, src: "W09/G09 duplicate 3" },
+      { text: "Observe the hydrocarbon table (Methane, Ethane, Propene, Butene, Pentyne, Hexyne). i) Write general formula of alkanes. ii) Write the unsaturated hydrocarbons. iii) Write homologous series of alkynes. iv) Write formula of Hexane.", diagram: false, src: "W09/G09 duplicate 4" },
+      { text: "Observe the Alkanes/Alkenes/Alkynes table and answer: i) Formula of alkane with 4 carbons. ii) Is C₂H₂ saturated or unsaturated? iii) What type of hydrocarbon is C₂H₂? iv) Which type of bond exists between two carbon atoms in unsaturated hydrocarbons?", diagram: false, src: "C-9 (×2)" },
+      { text: "Observe the Alkanes/Alkenes/Alkynes table and answer: i) Formula of alkane with 4 carbons. ii) Is C₂H₂ saturated or unsaturated? iii) What type of hydrocarbon is C₂H₂? iv) Which type of bond exists between two carbon atoms in unsaturated hydrocarbons?", diagram: false, src: "C-9 duplicate" },
+      { text: "Observe the hydrocarbon table (Methane, Ethane, Propene, Butene, Pentyne, Hexyne — with M09 format). a) Write general formula of Alkanes. b) Which are unsaturated hydrocarbons? c) Mention homologous series of Alkanes. d) Mention the formula of Hexane.", diagram: false, src: "M09 (×2)" },
+      { text: "Observe the hydrocarbon table (M09 format). a) Write general formula of Alkanes. b) Which are unsaturated hydrocarbons? c) Mention homologous series of Alkanes. d) Mention the formula of Hexane.", diagram: false, src: "M09 duplicate" },
+      { text: "Observe the functional groups table (Carboxylic acid: –COOH, Ester: –COOR, Aldehyde: –CHO, Ketone: –C=O, Alcohol: –OH). i) Functional group of Ethanol. ii) Formula of Aldehyde. iii) Carboxylic acid used as preservative in pickles. iv) Structure of Acetone (Dimethyl Ketone).", diagram: false, src: "DP-14 (×2)" },
+      { text: "Observe the functional groups table. i) Functional group of Ethanol. ii) Formula of Aldehyde. iii) Carboxylic acid used as preservative in pickles. iv) Structure of Acetone (Dimethyl Ketone).", diagram: false, src: "DP-14 duplicate" },
+      { text: "Observe the table about p⁴ values and answer questions (acids, bases, indicators, pH).", diagram: false, src: "K-9" },
+      { text: "Observe the alkanes table (H–(CH₂)ₙ–H format with RP-12). i) Number of carbon atoms in butane. ii) General formula of alkanes. iii) Number of sigma bonds in ethane. iv) Structure of pentane.", diagram: false, src: "RP-12" },
+      { text: "Write any two uses of graphite and two uses of ethanol in day to day life.", diagram: false, src: "MP-12" },
+    ],
+    q6: [
+      { text: "Explain the formation of Ionic bond with suitable example. [Cross-ref: Ch.8 — included by some papers in carbon section]", diagram: false, src: "J-9 carbon section" },
+    ],
+  },
+];
+
+// ─────────────────────────────────────────────
+// RENDER
+// ─────────────────────────────────────────────
+let activeChapter = 1;
+let activeFilter = 'all';
+
+function countQuestions(ch) {
+  return ch.q2.length + ch.q4.length + ch.q6.length;
+}
+
+function renderSidebar() {
+  const sidebar = document.getElementById('sidebar');
+  let html = '<div class="sidebar-label">Chapters</div>';
+  chapters.forEach(ch => {
+    const total = countQuestions(ch);
+    html += `
+      <button class="chapter-btn ${ch.id === activeChapter ? 'active' : ''}" 
+              onclick="switchChapter(${ch.id})">
+        <span class="ch-num">CH${String(ch.id).padStart(2,'0')}</span>${ch.short}
+        <span class="ch-count">${total}</span>
+      </button>
+    `;
+  });
+  sidebar.innerHTML = html;
+}
+
+function renderMain() {
+  const main = document.getElementById('main');
+  let html = '';
+
+  chapters.forEach(ch => {
+    const isActive = ch.id === activeChapter;
+    const filtered2 = activeFilter === 'all' || activeFilter === '2' ? ch.q2 : [];
+    const filtered4 = activeFilter === 'all' || activeFilter === '4' ? ch.q4 : [];
+    const filtered6 = activeFilter === 'all' || activeFilter === '6' ? ch.q6 : [];
+
+    html += `<div class="chapter-view ${isActive ? 'active' : ''}" id="ch-${ch.id}">`;
+
+    // Chapter header
+    html += `
+      <div class="chapter-header">
+        <div class="chapter-num-badge">Chapter ${ch.id} of 12</div>
+        <div class="chapter-title">${ch.title}</div>
+        <div class="chapter-meta">
+          <span class="meta-pill m2">◈ ${ch.q2.length} × 2M</span>
+          <span class="meta-pill m4">◈ ${ch.q4.length} × 4M</span>
+          <span class="meta-pill m6">◈ ${ch.q6.length} × 6M</span>
+        </div>
+      </div>
+    `;
+
+    // Filter bar
+    html += `
+      <div class="filter-bar">
+        <span class="filter-label">Filter</span>
+        <button class="filter-btn ${activeFilter==='all'?'active-all':''}" onclick="setFilter('all',${ch.id})">All</button>
+        <button class="filter-btn ${activeFilter==='2'?'active-2':''}" onclick="setFilter('2',${ch.id})">2 Marks</button>
+        <button class="filter-btn ${activeFilter==='4'?'active-4':''}" onclick="setFilter('4',${ch.id})">4 Marks</button>
+        <button class="filter-btn ${activeFilter==='6'?'active-6':''}" onclick="setFilter('6',${ch.id})">6 Marks</button>
+      </div>
+    `;
+
+    // 2 Markers
+    if (filtered2.length > 0) {
+      html += `<div class="mark-section">`;
+      html += `<div class="mark-section-header"><span class="mark-label m2">2 Marks</span><div class="mark-line m2"></div></div>`;
+      filtered2.forEach((q, i) => {
+        html += `
+          <div class="q-card m2">
+            <div class="q-accent"></div>
+            <div class="q-text">${i+1}. ${q.text}</div>
+            <div class="q-badges">
+              ${q.diagram ? '<span class="badge badge-diagram">📐 Diagram</span>' : ''}
+              <span class="badge badge-src">${q.src}</span>
+            </div>
+          </div>
+        `;
+      });
+      html += `</div>`;
+    }
+
+    // 4 Markers
+    if (filtered4.length > 0) {
+      html += `<div class="mark-section">`;
+      html += `<div class="mark-section-header"><span class="mark-label m4">4 Marks</span><div class="mark-line m4"></div></div>`;
+      filtered4.forEach((q, i) => {
+        html += `
+          <div class="q-card m4">
+            <div class="q-accent"></div>
+            <div class="q-text">${i+1}. ${q.text}</div>
+            <div class="q-badges">
+              ${q.diagram ? '<span class="badge badge-diagram">📐 Diagram</span>' : ''}
+              <span class="badge badge-src">${q.src}</span>
+            </div>
+          </div>
+        `;
+      });
+      html += `</div>`;
+    }
+
+    // 6 Markers
+    if (filtered6.length > 0) {
+      html += `<div class="mark-section">`;
+      html += `<div class="mark-section-header"><span class="mark-label m6">6 Marks</span><div class="mark-line m6"></div></div>`;
+      filtered6.forEach((q, i) => {
+        html += `
+          <div class="q-card m6">
+            <div class="q-accent"></div>
+            <div class="q-text">${i+1}. ${q.text}</div>
+            <div class="q-badges">
+              ${q.diagram ? '<span class="badge badge-diagram">📐 Diagram</span>' : ''}
+              <span class="badge badge-src">${q.src}</span>
+            </div>
+          </div>
+        `;
+      });
+      html += `</div>`;
+    }
+
+    if (filtered2.length + filtered4.length + filtered6.length === 0) {
+      html += `<div class="empty-state">// no questions for this filter</div>`;
+    }
+
+    html += `</div>`;
+  });
+
+  main.innerHTML = html;
+}
+
+function renderStats() {
+  let total2=0, total4=0, total6=0;
+  chapters.forEach(ch => { total2+=ch.q2.length; total4+=ch.q4.length; total6+=ch.q6.length; });
+  document.getElementById('total-q').textContent = total2+total4+total6;
+  document.getElementById('total-2').textContent = total2;
+  document.getElementById('total-4').textContent = total4;
+  document.getElementById('total-6').textContent = total6;
+}
+
+function switchChapter(id) {
+  activeChapter = id;
+  activeFilter = 'all';
+  renderSidebar();
+  renderMain();
+  document.getElementById('main').scrollTop = 0;
+}
+
+function setFilter(f, chId) {
+  activeFilter = f;
+  renderMain();
+}
+
+// Init
+renderSidebar();
+renderMain();
+renderStats();
+</script>
+</body>
+</html>
